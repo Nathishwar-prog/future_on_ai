@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your 2025 Roadmap to Becoming a Python Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .step-circle {
+            background-color: #0074D9;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border: 4px solid #f0f4f8;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#001f3f] text-white text-center py-16 px-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-3 text-[#7FDBFF]">Become a Python Developer in 2025</h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Your step-by-step visual guide to mastering Python and launching a high-demand career in the US tech market.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-3xl font-bold text-[#001f3f] mb-4">Why Python? The Opportunity is Now.</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-lg">Python's simplicity and power have made it the go-to language for the world's fastest-growing industries. In 2025, the demand for skilled Python developers in the US is stronger than ever, offering incredible salaries and diverse career paths. Your journey starts here.</p>
+            <div class="mt-10 bg-white rounded-lg shadow-2xl p-8 max-w-md mx-auto border-t-4 border-[#FFDC00]">
+                <h3 class="text-2xl font-bold text-gray-500 mb-2 uppercase tracking-wider">Median Mid-Level Salary (US)</h3>
+                <p class="text-6xl font-extrabold text-[#0074D9]">$130,000+</p>
+                <p class="text-gray-600 mt-2">A testament to the high value companies place on Python skills.</p>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-20">
+             <h2 class="text-3xl font-bold text-[#001f3f] text-center mb-12">Your 12-Month Learning Path</h2>
+             <div class="relative max-w-4xl mx-auto">
+                 <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-300"></div>
+                 
+                 <div class="relative flex items-center mb-12">
+                     <div class="w-1/2 pr-8 text-right">
+                         <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-[#0074D9]">Phase 1: The Foundation</h3>
+                            <p class="text-sm text-gray-500 mb-2">(Months 1-2)</p>
+                            <p class="text-gray-600">Build a rock-solid understanding of core Python syntax, data structures, and logic.</p>
+                         </div>
+                     </div>
+                     <div class="step-circle absolute left-1/2 transform -translate-x-1/2">1</div>
+                     <div class="w-1/2"></div>
+                 </div>
+
+                 <div class="relative flex items-center mb-12">
+                     <div class="w-1/2"></div>
+                     <div class="step-circle absolute left-1/2 transform -translate-x-1/2">2</div>
+                     <div class="w-1/2 pl-8">
+                         <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-[#2ECC40]">Phase 2: Developer Toolkit</h3>
+                            <p class="text-sm text-gray-500 mb-2">(Months 3-4)</p>
+                            <p class="text-gray-600">Master professional tools like Git/GitHub and learn key concepts like OOP and API interaction.</p>
+                         </div>
+                     </div>
+                 </div>
+                 
+                 <div class="relative flex items-center mb-12">
+                     <div class="w-1/2 pr-8 text-right">
+                         <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-[#FF4136]">Phase 3: Specialization</h3>
+                             <p class="text-sm text-gray-500 mb-2">(Months 5-7)</p>
+                            <p class="text-gray-600">Choose your career path: Web Development, Data Science, or Automation.</p>
+                         </div>
+                     </div>
+                     <div class="step-circle absolute left-1/2 transform -translate-x-1/2">3</div>
+                     <div class="w-1/2"></div>
+                 </div>
+
+                 <div class="relative flex items-center">
+                     <div class="w-1/2"></div>
+                     <div class="step-circle absolute left-1/2 transform -translate-x-1/2">4</div>
+                     <div class="w-1/2 pl-8">
+                         <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-[#FFDC00]">Phase 4: Portfolio & Job Hunt</h3>
+                             <p class="text-sm text-gray-500 mb-2">(Months 8-12)</p>
+                            <p class="text-gray-600">Apply your skills to real-world projects, build your portfolio, and land your first job.</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </section>
+        
+        <section id="specialization" class="mb-20">
+            <h2 class="text-3xl font-bold text-[#001f3f] text-center mb-4">Phase 3 Deep Dive: Choose Your Specialization</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-10">Python's versatility is its greatest strength. This is where you tailor your learning to a specific, high-demand career track. Each path utilizes a unique set of powerful frameworks and libraries.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="chart-container h-96 md:h-[450px]">
+                    <canvas id="specializationChart"></canvas>
+                </div>
+                 <p class="text-center text-gray-600 mt-4">This chart compares the key library and framework skills for each specialization path. While all roles require core Python, your focus will shift dramatically depending on the career you choose.</p>
+            </div>
+        </section>
+
+        <section id="salary" class="mb-20">
+            <h2 class="text-3xl font-bold text-[#001f3f] text-center mb-4">Phase 5 Preview: The Career Payoff</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-10">The investment in learning Python pays significant dividends. In the US, salaries for Python developers are highly competitive and show strong growth with experience. Data science and ML roles often see an even higher premium.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="chart-container h-96 md:h-[450px]">
+                    <canvas id="salaryChart"></canvas>
+                </div>
+                 <p class="text-center text-gray-600 mt-4">This line chart illustrates the typical salary trajectory, with ranges increasing significantly as you move from an entry-level to a senior position.</p>
+            </div>
+        </section>
+        
+        <section id="portfolio" class="bg-white p-8 md:p-12 rounded-lg shadow-lg text-center">
+            <h2 class="text-3xl font-bold text-[#001f3f] mb-4">Your Portfolio: From Knowledge to Hireable Skills</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-lg mb-10">A GitHub profile filled with well-documented projects is your modern resume. It's definitive proof to employers that you can apply your knowledge to solve real problems. Start building today!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border border-gray-200 p-6 rounded-lg">
+                    <div class="text-4xl mb-3">💻</div>
+                    <h3 class="text-xl font-bold text-[#0074D9]">Web Developer Project</h3>
+                    <p class="text-gray-600">Build a functional e-commerce site with Django, user authentication, and a payment API integration.</p>
+                </div>
+                <div class="border border-gray-200 p-6 rounded-lg">
+                    <div class="text-4xl mb-3">📊</div>
+                    <h3 class="text-xl font-bold text-[#2ECC40]">Data Scientist Project</h3>
+                    <p class="text-gray-600">Create an interactive dashboard with Plotly and Pandas to visualize and analyze a public dataset from Kaggle.</p>
+                </div>
+                <div class="border border-gray-200 p-6 rounded-lg">
+                     <div class="text-4xl mb-3">🤖</div>
+                    <h3 class="text-xl font-bold text-[#FF4136]">Automation Specialist Project</h3>
+                    <p class="text-gray-600">Write a script that automates a daily task, like scraping a news site for specific keywords and emailing a summary.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-[#001f3f] text-gray-400 mt-16">
+        <p>Your journey to becoming a Python Developer starts now. Good luck!</p>
+    </footer>
+
+    <script>
+        const palette = {
+            blue: '#0074D9',
+            green: '#2ECC40',
+            red: '#FF4136',
+            yellow: '#FFDC00',
+            teal: '#39CCCC',
+            darkBlue: '#001f3f',
+        };
+
+        function processLabel(label) {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const specializationCtx = document.getElementById('specializationChart').getContext('2d');
+        new Chart(specializationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Web Dev (Back-End)', 'Data Science & ML', 'Automation & DevOps'].map(processLabel),
+                datasets: [
+                    {
+                        label: 'Frameworks (e.g., Django, Flask)',
+                        data: [9, 2, 4],
+                        backgroundColor: palette.blue,
+                    },
+                    {
+                        label: 'Data Libraries (e.g., Pandas, NumPy)',
+                        data: [4, 10, 5],
+                        backgroundColor: palette.green,
+                    },
+                    {
+                        label: 'Cloud & System Tools',
+                        data: [5, 6, 9],
+                        backgroundColor: palette.red,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Relative Skill Focus by Specialization',
+                        font: { size: 18, weight: 'bold'},
+                        color: palette.darkBlue,
+                        padding: { top: 10, bottom: 20 }
+                    },
+                     tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Relative Importance'
+                        }
+                    }
+                }
+            }
+        });
+
+        const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+        new Chart(salaryCtx, {
+            type: 'line',
+            data: {
+                labels: ['Entry-Level (0-2 Yrs)', 'Mid-Level (2-5 Yrs)', 'Senior-Level (5+ Yrs)'],
+                datasets: [{
+                    label: 'Low End Salary (USD)',
+                    data: [99000, 117000, 149000],
+                    borderColor: palette.blue,
+                    backgroundColor: 'rgba(0, 116, 217, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: 'High End Salary (USD)',
+                    data: [118000, 143000, 167000],
+                    borderColor: palette.darkBlue,
+                    backgroundColor: 'rgba(0, 31, 63, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Expected Salary Growth in the US (2025)',
+                        font: { size: 18, weight: 'bold' },
+                        color: palette.darkBlue
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                           label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value, index, ticks) {
+                                return '$' + (value / 1000) + 'k';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Annual Salary (USD)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Experience Level'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

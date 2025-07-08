@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future on AI</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Three.js for 3D animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        /* Custom styles for the futuristic look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #00001a; /* Deep space blue */
+            color: #e0e0e0;
+            overflow: hidden; /* Hide scrollbars */
+        }
+        #animation-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place canvas behind content */
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.4s ease;
+            padding: 12px 16px;
+            border-radius: 9999px; /* Fully rounded */
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            background-color: rgba(0, 246, 255, 0.1);
+            text-shadow: 0 0 15px rgba(0, 246, 255, 1);
+            transform: translateY(-2px);
+        }
+        .special-link {
+            border: 1px solid #00f6ff;
+            transition: all 0.4s ease;
+        }
+        .special-link:hover {
+            background-color: #00f6ff;
+            color: #00001a;
+            box-shadow: 0 0 20px #00f6ff;
+        }
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 246, 255, 0.9), 0 0 25px rgba(0, 246, 255, 0.7), 0 0 50px rgba(255, 0, 255, 0.5);
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        /* Animation for the title */
+        @keyframes pulse-glow {
+            0%, 100% {
+                text-shadow: 0 0 8px rgba(0, 246, 255, 0.9), 0 0 25px rgba(0, 246, 255, 0.7), 0 0 50px rgba(255, 0, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 12px rgba(0, 246, 255, 1), 0 0 35px rgba(0, 246, 255, 0.9), 0 0 60px rgba(255, 0, 255, 0.7);
+            }
+        }
+        .title-animated {
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col items-center p-4">
+
+    <!-- The 3D animation will be rendered here -->
+    <canvas id="animation-canvas"></canvas>
+
+    <!-- Main content container -->
+    <div class="content-container w-full h-full flex flex-col items-center justify-between">
+        <!-- Header -->
+        <header class="w-full max-w-7xl mx-auto py-4 flex items-center justify-between">
+            <div class="text-2xl font-bold text-white text-glow">
+                Welcome learners !
+            </div>
+             <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-white hover:bg-gray-800 z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- Central Content -->
+        <main class="flex-grow flex flex-col items-center justify-center text-center px-4">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-wider leading-tight text-glow title-animated">
+                Future on AI
+            </h1>
+            <p class="mt-8 max-w-3xl text-lg md:text-xl text-gray-300 leading-relaxed">
+                "The best way to predict the future is to create it. The future is AI. Let's build it together."
+            </p>
+        </main>
+
+        <!-- Footer Navigation -->
+        <footer class="w-full flex justify-center items-center py-4">
+             <nav class="hidden md:flex items-center space-x-2 lg:space-x-4 bg-black bg-opacity-25 p-2 rounded-full border border-gray-800 text-sm font-semibold">
+                <a href="pages/home.html" class="nav-link">Home</a>
+                <a href="pages/about.html" class="nav-link">About</a>
+                <a href="pages/course.html" class="nav-link">Courses</a>
+                <a href="language_infograpics/dsa_visual_guide.html" class="nav-link">Infographics</a>
+                <a href="pages/resources.html" class="nav-link">Resources</a>
+                <a href="pages/contact.html" class="nav-link">Contact</a>
+                <a href="pages/student_id.html" class="nav-link text-cyan-400 special-link">Student ID Offers</a>
+                <a href="roll_info/ai_roadmap.html" class="nav-link text-cyan-400 special-link">Roadmaps</a>
+                
+            </nav>
+        </footer>
+        
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden fixed bottom-20 left-1/2 -translate-x-1/2 w-11/12 max-w-sm bg-black bg-opacity-70 backdrop-blur-md rounded-lg p-4 z-10 border border-gray-700">
+        <a href="pages/home.html" class="block py-3 text-center nav-link">Home</a>
+        <a href="pages/about.html" class="block py-3 text-center nav-link">About</a>
+        <a href="pages/course.html" class="block py-3 text-center nav-link">Courses</a>
+        <a href="language_infograpics/dsa_visual_guide.html" class="block py-3 text-center nav-link">Infographics</a>
+        <a href="pages/resources.html" class="block py-3 text-center nav-link">Resources</a>
+        <a href="pages/contact.html" class="block py-3 text-center nav-link">Contact</a>
+        <a href="pages/student_id.html" class="block mt-2 py-3 text-center text-cyan-400 special-link">Student ID Offers</a>
+    </div>
+    
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Three.js Animation ---
+        let scene, camera, renderer, particles, brainSphere;
+
+        function init() {
+            // Scene setup
+            scene = new THREE.Scene();
+
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Renderer setup
+            const canvas = document.getElementById('animation-canvas');
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            // --- Central Brain/Globe Object ---
+            const sphereGeometry = new THREE.IcosahedronGeometry(1.5, 5); // More complex geometry
+            const wireframeMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00f6ff,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.2
+            });
+            brainSphere = new THREE.Mesh(sphereGeometry, wireframeMaterial);
+            scene.add(brainSphere);
+            
+            // --- Particle System with multiple colors ---
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 7000;
+            const posArray = new Float32Array(particlesCount * 3);
+            const colorArray = new Float32Array(particlesCount * 3);
+            const colorCyan = new THREE.Color(0x00f6ff);
+            const colorMagenta = new THREE.Color(0xff00ff);
+
+            for (let i = 0; i < particlesCount; i++) {
+                posArray[i * 3 + 0] = (Math.random() - 0.5) * 20;
+                posArray[i * 3 + 1] = (Math.random() - 0.5) * 20;
+                posArray[i * 3 + 2] = (Math.random() - 0.5) * 20;
+
+                const mixedColor = Math.random() > 0.5 ? colorCyan : colorMagenta;
+                colorArray[i * 3 + 0] = mixedColor.r;
+                colorArray[i * 3 + 1] = mixedColor.g;
+                colorArray[i * 3 + 2] = mixedColor.b;
+            }
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.009,
+                vertexColors: true, // Use vertex colors
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+            });
+            particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize, false);
+            document.addEventListener('mousemove', onMouseMove, false);
+
+            animate();
+        }
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        function onMouseMove(event) {
+            mouseX = (event.clientX - window.innerWidth / 2) / 200;
+            mouseY = (event.clientY - window.innerHeight / 2) / 200;
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = Date.now() * 0.0001;
+
+            // Animate particles
+            particles.rotation.y = time * 0.5;
+            
+            // Animate central sphere
+            brainSphere.rotation.x -= 0.0005;
+            brainSphere.rotation.y -= 0.001;
+
+            // Camera movement based on mouse
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        // Initialize the animation on window load.
+        window.onload = init;
+    </script>
+</body>
+</html>

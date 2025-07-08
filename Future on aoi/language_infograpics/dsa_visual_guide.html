@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA in Python: Visual Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #f8fafc;
+            --text-light: #0f172a;
+            --border-light: #e2e8f0;
+            --bg-dark: #0b1120;
+            --text-dark: #e2e8f0;
+            --border-dark: #1e293b;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --code-bg-light: #f1f5f9;
+            --code-bg-dark: #1e293b;
+        }
+        html.dark {
+            --bg: var(--bg-dark);
+            --text: var(--text-dark);
+            --border: var(--border-dark);
+            --code-bg: var(--code-bg-dark);
+        }
+        html:not(.dark) {
+            --bg: var(--bg-light);
+            --text: var(--text-light);
+            --border: var(--border-light);
+            --code-bg: var(--code-bg-light);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .fira-code {
+            font-family: 'Fira Code', monospace;
+        }
+        /* Sidebar scrollbar styling */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 3px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        .nav-link.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            padding: 10px 20px;
+            background-color: #22c55e;
+            color: white;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        /* --- Common Visualization Styles --- */
+        .viz-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            border-radius: 8px;
+            background-color: var(--bg);
+            border: 2px solid var(--primary);
+            transition: all 0.5s ease-in-out;
+        }
+        .viz-item.highlight {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--primary);
+        }
+        .viz-item.secondary-highlight {
+            border-color: #f59e0b; /* amber-500 */
+        }
+
+        /* --- Stack Visualization Styles --- */
+        #stack-visualization {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 8px;
+            min-height: 300px;
+            width: 150px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+        }
+        .stack-item {
+            width: 100px;
+            height: 40px;
+        }
+        .stack-item.new-item {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        .stack-item.popped-item {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        /* --- Queue Visualization Styles --- */
+        #queue-visualization {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 100px;
+            min-width: 100%;
+            padding: 20px;
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .queue-item {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0; /* Prevent items from shrinking */
+        }
+        .queue-item.new-item {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        .queue-item.dequeued-item {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        /* --- Tree visualization styles --- */
+        .tree-node {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-weight: 600;
+            background-color: var(--bg);
+            position: absolute;
+            transition: transform 0.5s, background-color 0.3s, border-color 0.3s;
+            z-index: 10;
+        }
+        .tree-node.highlight {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        .tree-line {
+            position: absolute;
+            background-color: var(--border);
+            height: 2px;
+            transform-origin: 0 0;
+            z-index: 5;
+            transition: background-color 0.3s;
+        }
+        
+        /* --- Array Visualization Styles --- */
+        .array-cell {
+            border: 2px solid var(--primary);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            background-color: var(--bg);
+        }
+        .array-index {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        /* --- Linked List Visualization Styles --- */
+        #ll-visualization {
+            display: flex;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 150px;
+            overflow-x: auto;
+        }
+        .ll-node-item {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .ll-node {
+            display: flex;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            background-color: var(--bg);
+            font-weight: 600;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            min-width: 60px;
+            text-align: center;
+        }
+        .ll-node .data {
+            padding: 10px 15px;
+            border-right: 2px solid var(--primary);
+        }
+        .ll-node .next {
+            width: 20px;
+            background-color: #93c5fd; /* light mode: blue-300 */
+        }
+        html.dark .ll-node .next {
+            background-color: #1e40af; /* dark mode: blue-800 */
+        }
+        .ll-node.highlight {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--primary);
+            border-color: #60a5fa;
+        }
+        .ll-pointer-group {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+            color: var(--text);
+        }
+        .ll-label {
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--primary);
+            margin: 0 10px;
+            flex-shrink: 0;
+        }
+        .cll-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 40px;
+        }
+        .cll-arrow {
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 35px;
+            pointer-events: none;
+        }
+        .cll-arrow path {
+            stroke: var(--primary);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 5;
+            marker-start: url(#cll-arrow-head);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="toast-container" class="toast">Copied to clipboard!</div>
+
+    <div class="flex h-screen bg-gray-100 dark:bg-gray-900">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 bg-[var(--bg)] border-r border-[var(--border)] transition-colors duration-300">
+            <div class="flex items-center justify-between h-16 px-4 border-b border-[var(--border)]">
+                <h1 class="text-xl font-bold text-[var(--text)]">DSA Visualizer</h1>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i data-lucide="sun" class="hidden dark:block"></i>
+                    <i data-lucide="moon" class="block dark:hidden"></i>
+                </button>
+            </div>
+            <div class="flex flex-col flex-grow p-4">
+                <div class="relative mb-4">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                    <input type="text" id="search-input" placeholder="Search topics..." class="w-full pl-10 pr-4 py-2 border border-[var(--border)] rounded-lg bg-[var(--bg)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+                </div>
+                <nav id="nav-menu" class="flex-grow overflow-y-auto sidebar-scroll space-y-2">
+                    <!-- Navigation items will be injected here by JavaScript -->
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header class="flex items-center justify-between h-16 px-6 bg-[var(--bg)] border-b border-[var(--border)]">
+                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md">
+                       <i data-lucide="menu"></i>
+                 </button>
+                <h2 id="topic-title" class="text-2xl font-semibold text-[var(--text)]">Select a Topic</h2>
+            </header>
+            <div id="content-area" class="flex-1 overflow-y-auto p-4 md:p-8">
+                <!-- Content will be injected here -->
+                <div class="flex items-center justify-center h-full text-gray-500">
+                    <div class="text-center">
+                        <i data-lucide="book-open" class="mx-auto h-12 w-12"></i>
+                        <h3 class="mt-2 text-sm font-medium">Welcome!</h3>
+                        <p class="mt-1 text-sm">Select a topic from the sidebar to begin.</p>
+                        <p class="mt-1 text-sm md:hidden">Tap the menu icon to open the sidebar.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="mt-20 pt-10 border-t border-slate-700/50">
+             <div class="max-w-4xl mx-auto bg-gradient-to-br from-slate-900 to-slate-800/70 rounded-2xl shadow-2xl shadow-black/30 p-8 md:p-12 relative overflow-hidden">
+                 
+                 <!-- Enhanced Background Effects -->
+                 <div class="absolute inset-0 overflow-hidden">
+                     <div class="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-sky-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+                     <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse [animation-delay:3s]"></div>
+                     <div class="absolute top-20 right-20 w-32 h-32 bg-sky-400/10 rounded-full blur-2xl animate-bounce [animation-delay:1s]"></div>
+                     
+                     <!-- Code-like decorative elements -->
+                     <div class="absolute top-8 left-8 text-sky-500/20 font-mono text-sm opacity-50">
+                         <div class="animate-pulse [animation-delay:0.5s]">def create_magic():</div>
+                         <div class="animate-pulse [animation-delay:1s] ml-4">return innovation</div>
+                     </div>
+                     <div class="absolute bottom-8 right-8 text-purple-500/20 font-mono text-sm opacity-50">
+                         <div class="animate-pulse [animation-delay:1.5s]">class Developer:</div>
+                         <div class="animate-pulse [animation-delay:2s] ml-4">passion = True</div>
+                     </div>
+                 </div>
+
+                 <div class="md:grid md:grid-cols-3 md:gap-12 items-center relative z-10">
+                     <!-- Enhanced Profile Section -->
+                     <div class="md:col-span-1 text-center">
+                         <div class="relative inline-block group">
+                             <!-- Animated rings around profile -->
+                             <div class="absolute inset-0 rounded-full border-2 border-sky-500/30 animate-ping"></div>
+                             <div class="absolute inset-0 rounded-full border-2 border-purple-500/30 animate-ping [animation-delay:1s]"></div>
+                             
+                             <!-- Profile image with enhanced styling -->
+                             <img class="h-40 w-40 rounded-full object-cover ring-4 ring-sky-500/50 relative z-10 transition-transform duration-500 group-hover:scale-110 group-hover:ring-sky-400/70" 
+                                 src="https://placehold.co/400x400/0f172a/e0e7ff?text=N" 
+                                 alt="Profile picture of Mr. Nathishwar">
+                             
+                             <!-- Enhanced badge with animation -->
+                             <span class="absolute bottom-2 -right-2 block h-10 w-10 rounded-full bg-gradient-to-r from-sky-500 to-purple-500 border-4 border-slate-800 flex items-center justify-center text-white font-bold text-xs shadow-lg animate-pulse">
+                                 PY
+                             </span>
+                             
+                             <!-- Floating skill badges -->
+                             <div class="absolute -top-4 -left-4 bg-sky-500/90 text-white px-2 py-1 rounded-full text-xs font-semibold animate-bounce [animation-delay:0.5s]">
+                                 Full Stack
+                             </div>
+                             <div class="absolute -bottom-4 -right-8 bg-purple-500/90 text-white px-2 py-1 rounded-full text-xs font-semibold animate-bounce [animation-delay:1.5s]">
+                                 UI/UX
+                             </div>
+                         </div>
+                         
+                         <!-- Achievement indicators -->
+                         <div class="mt-6 flex justify-center space-x-2">
+                             <div class="w-2 h-2 bg-sky-400 rounded-full animate-pulse"></div>
+                             <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse [animation-delay:0.5s]"></div>
+                             <div class="w-2 h-2 bg-pink-400 rounded-full animate-pulse [animation-delay:1s]"></div>
+                         </div>
+                     </div>
+
+                     <!-- Enhanced Content Section -->
+                     <div class="md:col-span-2 mt-8 md:mt-0 text-center md:text-left">
+                         <!-- Title with enhanced styling -->
+                         <div class="relative">
+                             <p class="text-base font-semibold text-sky-400 tracking-wider uppercase animate-pulse">
+                                 <span class="inline-block w-2 h-2 bg-sky-400 rounded-full mr-2 animate-ping"></span>
+                                 Lead Developer & Course Architect
+                             </p>
+                             <h3 class="mt-2 text-4xl lg:text-5xl font-extrabold text-white bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-purple-400 to-pink-400 animate-pulse">
+                                 Mr. Nathishwar
+                             </h3>
+                             
+                             <!-- Decorative line -->
+                             <div class="mt-3 w-24 h-1 bg-gradient-to-r from-sky-500 to-purple-500 rounded-full mx-auto md:mx-0 animate-pulse"></div>
+                         </div>
+                         
+                         <!-- Enhanced description -->
+                         <p class="mt-4 text-lg text-slate-400 leading-relaxed">
+                             A passionate <span class="text-sky-400 font-semibold">Python & Frontend developer</span> and 
+                             <span class="text-purple-400 font-semibold">UI/UX enthusiast</span> with a mission to revolutionize 
+                             tech education. This platform represents the perfect fusion of 
+                             <span class="text-pink-400 font-semibold">cutting-edge technology</span> and 
+                             <span class="text-sky-400 font-semibold">beautiful design</span>, proving that learning to code 
+                             should be an inspiring and visually captivating journey.
+                         </p>
+
+                         <!-- Skills showcase -->
+                         <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
+                             <span class="px-3 py-1 bg-sky-500/20 text-sky-300 rounded-full text-sm font-medium border border-sky-500/30 animate-pulse">Python</span>
+                             <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30 animate-pulse [animation-delay:0.5s]">JavaScript</span>
+                             <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm font-medium border border-pink-500/30 animate-pulse [animation-delay:1s]">React</span>
+                             <span class="px-3 py-1 bg-sky-500/20 text-sky-300 rounded-full text-sm font-medium border border-sky-500/30 animate-pulse [animation-delay:1.5s]">Design</span>
+                         </div>
+
+                         <!-- Enhanced social links -->
+                         <div class="mt-8 flex justify-center md:justify-start items-center space-x-6">
+                             <p class="text-slate-500 font-semibold flex items-center">
+                                 <span class="inline-block w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                                 Connect:
+                             </p>
+                             
+                             <!-- GitHub link with enhanced styling -->
+                             <a href="https://github.com/Nathishwar-prog" class="group relative text-slate-400 hover:text-white transition-all duration-300 hover:scale-125" title="GitHub">
+                                 <div class="absolute inset-0 bg-slate-700/50 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                 <svg class="w-8 h-8 relative z-10 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                     <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                                 </svg>
+                                 <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">GitHub</span>
+                             </a>
+                             
+                             <!-- LinkedIn link with enhanced styling -->
+                             <a href="https://www.linkedin.com/in/nathishwar/" class="group relative text-slate-400 hover:text-white transition-all duration-300 hover:scale-125" title="LinkedIn">
+                                 <div class="absolute inset-0 bg-blue-700/50 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                 <svg class="w-8 h-8 relative z-10 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                 </svg>
+                                 <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">LinkedIn</span>
+                             </a>
+                             
+                             <!-- Portfolio link -->
+                             <a href="https://nathishwardev.neocities.org/" class="group relative text-slate-400 hover:text-white transition-all duration-300 hover:scale-125" title="Portfolio">
+                                 <div class="absolute inset-0 bg-purple-700/50 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                 <svg class="w-8 h-8 relative z-10 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6m8 0H8m0 0v2m0-2V4m8 2v2m0-2V4" />
+                                 </svg>
+                                 <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">Portfolio</span>
+                             </a>
+                         </div>
+
+                         <!-- Stats section -->
+                         <div class="mt-8 grid grid-cols-3 gap-4">
+                             <div class="text-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                                 <div class="text-2xl font-bold text-sky-400 animate-pulse">3+</div>
+                                 <div class="text-xs text-slate-500 uppercase tracking-wider">Years Experience</div>
+                             </div>
+                             <div class="text-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                                 <div class="text-2xl font-bold text-purple-400 animate-pulse [animation-delay:0.5s]">50+</div>
+                                 <div class="text-xs text-slate-500 uppercase tracking-wider">Projects Built</div>
+                             </div>
+                             <div class="text-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                                 <div class="text-2xl font-bold text-pink-400 animate-pulse [animation-delay:1s]">1k+</div>
+                                 <div class="text-xs text-slate-500 uppercase tracking-wider">Students Taught</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+    
+
+    <script>
+        // --- Placeholder Content Generator ---
+const createComingSoonContent = (title, url = null) => {
+            return `
+        <div class="flex flex-col items-center justify-center h-full p-4 md:p-8 text-center bg-[var(--bg)]">
+            <div class="relative mb-6">
+                <div class="absolute -inset-3 bg-[var(--primary)]/20 rounded-full blur-2xl animate-pulse"></div>
+                <i data-lucide="play-circle" class="relative w-20 h-20 md:w-24 md:h-24 text-[var(--primary)] animate-bounce" style="animation-duration: 1.5s;"></i>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold text-[var(--text)] mb-3">
+                ${title}
+            </h3>
+            <p class="max-w-md mx-auto text-gray-500 dark:text-gray-400 mb-8">
+                Dive deep into the mechanics of this algorithm with our interactive visualizer. Click the button below to see it in action and grasp the concepts with ease.
+            </p>
+            ${
+                url
+                ? `<a href="${url}" target="_blank" rel="noopener noreferrer"
+                    class="visualization-btn px-6 py-3 font-semibold text-white bg-[var(--primary)] rounded-lg shadow-lg hover:bg-[var(--primary-hover)] transform hover:scale-105 transition-all duration-300">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="wand-2" class="w-5 h-5"></i>
+                            <span>Start Visualization</span>
+                        </span>
+                   </a>`
+                : `<button class="visualization-btn px-6 py-3 font-semibold text-white bg-[var(--primary)] rounded-lg shadow-lg hover:bg-[var(--primary-hover)] transform hover:scale-105 transition-all duration-300">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="wand-2" class="w-5 h-5"></i>
+                            <span>Start Visualization</span>
+                        </span>
+                   </button>`
+            }
+        </div>
+        `;
+        };
+
+        // --- DATA STORE ---
+        // This object holds all the content for the DSA topics.
+        const dsaData = {
+            'bst': {
+                title: 'Binary Search Tree',
+                category: 'trees',
+                content: `
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">What is a Binary Search Tree (BST)?</h3>
+                                <p class="text-base leading-relaxed">
+                                    A Binary Search Tree is a node-based binary tree data structure which has the following properties:
+                                </p>
+                                <ul class="list-disc list-inside mt-2 pl-4 space-y-1">
+                                    <li>The left subtree of a node contains only nodes with keys lesser than the node's key.</li>
+                                    <li>The right subtree of a node contains only nodes with keys greater than the node's key.</li>
+                                    <li>The left and right subtree each must also be a binary search tree.</li>
+                                    <li>There must be no duplicate nodes.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Interactive Visualization -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Interactive Visualization</h3>
+                                <div class="border border-[var(--border)] rounded-lg p-4 bg-[var(--code-bg)]">
+                                    <div class="flex flex-wrap items-center gap-2 mb-4">
+                                        <input type="number" id="bst-node-value" class="w-24 px-2 py-1 border border-[var(--border)] rounded bg-[var(--bg)]" placeholder="Value">
+                                        <button id="bst-insert-btn" class="px-4 py-1.5 bg-[var(--primary)] text-white rounded-lg hover:bg-[var(--primary-hover)] transition-colors">Insert</button>
+                                        <button id="bst-reset-btn" class="px-4 py-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">Reset</button>
+                                    </div>
+                                    <div id="bst-visualization" class="relative w-full h-80 md:h-96 overflow-auto">
+                                        <!-- Tree will be rendered here -->
+                                    </div>
+                                    <div id="bst-explanation" class="mt-4 text-sm min-h-[40px] text-center fira-code"></div>
+                                </div>
+                            </div>
+
+                            <!-- Python Implementation -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Python Implementation</h3>
+                                <div class="bg-[var(--code-bg)] rounded-lg overflow-hidden">
+                                    <div class="flex justify-between items-center px-4 py-2 bg-gray-200 dark:bg-gray-700">
+                                        <span class="text-sm font-semibold">bst.py</span>
+                                        <button class="copy-code-btn flex items-center gap-2 text-sm px-2 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600">
+                                            <i data-lucide="copy" class="w-4 h-4"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="p-4 text-sm overflow-x-auto fira-code"><code class="language-python">
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+    else:
+        if root.val == key:
+            return root  # No duplicates allowed
+        elif root.val < key:
+            root.right = insert(root.right, key)
+        else:
+            root.left = insert(root.left, key)
+    return root
+
+# Example Usage:
+# root = None
+# root = insert(root, 50)
+# root = insert(root, 30)
+# root = insert(root, 20)
+# root = insert(root, 40)
+# root = insert(root, 70)
+# root = insert(root, 60)
+# root = insert(root, 80)
+                                        </code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Complexity Analysis -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Complexity Analysis</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="border border-[var(--border)] rounded-lg p-4">
+                                        <h4 class="font-semibold text-lg">Time Complexity</h4>
+                                        <table class="w-full mt-2 text-sm">
+                                            <tbody>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Average Case</td><td class="text-right fira-code">O(log n)</td></tr>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Worst Case</td><td class="text-right fira-code">O(n)</td></tr>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Best Case</td><td class="text-right fira-code">O(log n)</td></tr>
+                                            </tbody>
+                                        </table>
+                                        <p class="text-xs mt-2 text-gray-500 dark:text-gray-400">Worst case occurs for skewed trees (e.g., inserting sorted numbers).</p>
+                                    </div>
+                                    <div class="border border-[var(--border)] rounded-lg p-4">
+                                        <h4 class="font-semibold text-lg">Space Complexity</h4>
+                                         <table class="w-full mt-2 text-sm">
+                                            <tbody>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Worst Case</td><td class="text-right fira-code">O(n)</td></tr>
+                                            </tbody>
+                                        </table>
+                                        <p class="text-xs mt-2 text-gray-500 dark:text-gray-400">For both balanced and skewed trees, the space complexity is O(n) for storing the nodes. The recursion stack space can be O(n) in the worst case (skewed tree) and O(log n) in the average case (balanced tree).</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Use Cases -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Real-World Use Cases</h3>
+                                 <ul class="list-disc list-inside pl-4 space-y-1">
+                                    <li>Used in indexing for databases to quickly search for records.</li>
+                                    <li>Implementing dynamic sets and lookup tables.</li>
+                                    <li>Used in many search applications where data is constantly entering and leaving.</li>
+                                    <li>Used by compilers to manage symbol tables.</li>
+                                </ul>
+                            </div>
+                        </div>
+                `,
+                init: initBSTVisualizer
+            },
+            'array': {
+                title: 'Array / List',
+                category: 'datastructures',
+                content: `
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">What is a Python List (Array)?</h3>
+                                <p class="text-base leading-relaxed">
+                                    In Python, the most common "array" is the built-in <code class="fira-code bg-[var(--code-bg)] px-1 rounded">list</code> type. It's a versatile, dynamic array, meaning it can grow and shrink in size. It's a fundamental data structure with the following key characteristics:
+                                </p>
+                                <ul class="list-disc list-inside mt-2 pl-4 space-y-1">
+                                    <li><strong>Ordered:</strong> The items have a defined order, and that order will not change. If you add new items to a list, they will be placed at the end.</li>
+                                    <li><strong>Mutable:</strong> The list can be changed, meaning we can add, remove, and modify elements after it has been created.</li>
+                                    <li><strong>Allows Duplicates:</strong> Lists can contain items with the same value.</li>
+                                    <li><strong>Zero-Indexed:</strong> The first element is at index 0, the second at index 1, and so on.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Visual Representation</h3>
+                                <div class="bg-[var(--code-bg)] p-4 rounded-lg flex justify-center">
+                                    <div class="flex flex-col items-center">
+                                        <div class="flex">
+                                            <div class="text-center mx-1"><div class="array-cell">11</div><div class="array-index">0</div></div>
+                                            <div class="text-center mx-1"><div class="array-cell">22</div><div class="array-index">1</div></div>
+                                            <div class="text-center mx-1"><div class="array-cell">33</div><div class="array-index">2</div></div>
+                                            <div class="text-center mx-1"><div class="array-cell">44</div><div class="array-index">3</div></div>
+                                            <div class="text-center mx-1"><div class="array-cell">55</div><div class="array-index">4</div></div>
+                                        </div>
+                                        <code class="fira-code mt-3">my_list = [11, 22, 33, 44, 55]</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Common Operations</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="border border-[var(--border)] rounded-lg p-4 space-y-2">
+                                        <h4 class="font-semibold">Accessing Element</h4>
+                                        <p class="text-sm">Retrieve an element by its index.</p>
+                                        <code class="fira-code block bg-[var(--code-bg)] p-2 rounded">element = my_list[2] # 33</code>
+                                        <p class="text-sm font-medium">Time Complexity: <span class="fira-code">O(1)</span></p>
+                                    </div>
+                                    <div class="border border-[var(--border)] rounded-lg p-4 space-y-2">
+                                        <h4 class="font-semibold">Slicing</h4>
+                                        <p class="text-sm">Get a sub-list from the original list.</p>
+                                        <code class="fira-code block bg-[var(--code-bg)] p-2 rounded">sub_list = my_list[1:4] # [22, 33, 44]</code>
+                                        <p class="text-sm font-medium">Time Complexity: <span class="fira-code">O(k)</span></p>
+                                    </div>
+                                    <div class="border border-[var(--border)] rounded-lg p-4 space-y-2">
+                                        <h4 class="font-semibold">Append (Add to End)</h4>
+                                        <p class="text-sm">Add an element to the very end of the list.</p>
+                                        <code class="fira-code block bg-[var(--code-bg)] p-2 rounded">my_list.append(66)</code>
+                                        <p class="text-sm font-medium">Time Complexity: <span class="fira-code">O(1)</span> (Amortized)</p>
+                                    </div>
+                                    <div class="border border-[var(--border)] rounded-lg p-4 space-y-2">
+                                        <h4 class="font-semibold">Insert at Index</h4>
+                                        <p class="text-sm">Add an element at a specific index, shifting others.</p>
+                                        <code class="fira-code block bg-[var(--code-bg)] p-2 rounded">my_list.insert(1, 99)</code>
+                                        <p class="text-sm font-medium">Time Complexity: <span class="fira-code">O(n)</span></p>
+                                    </div>
+                                    <div class="border border-[var(--border)] rounded-lg p-4 space-y-2">
+                                        <h4 class="font-semibold">Remove Element</h4>
+                                        <p class="text-sm">Remove an element by index (<code class="fira-code text-xs">pop</code>) or value (<code class="fira-code text-xs">remove</code>).</p>
+                                        <code class="fira-code block bg-[var(--code-bg)] p-2 rounded">my_list.pop(2)<br>my_list.remove(44)</code>
+                                        <p class="text-sm font-medium">Time Complexity: <span class="fira-code">O(n)</span></p>
+                                    </div>
+                                    <div class="border border-[var(--border)] rounded-lg p-4 space-y-2">
+                                        <h4 class="font-semibold">Get Length</h4>
+                                        <p class="text-sm">Find the number of elements in the list.</p>
+                                        <code class="fira-code block bg-[var(--code-bg)] p-2 rounded">length = len(my_list)</code>
+                                        <p class="text-sm font-medium">Time Complexity: <span class="fira-code">O(1)</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Python Implementation Example</h3>
+                                <div class="bg-[var(--code-bg)] rounded-lg overflow-hidden">
+                                    <div class="flex justify-between items-center px-4 py-2 bg-gray-200 dark:bg-gray-700">
+                                        <span class="text-sm font-semibold">list_operations.py</span>
+                                        <button class="copy-code-btn flex items-center gap-2 text-sm px-2 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600">
+                                            <i data-lucide="copy" class="w-4 h-4"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="p-4 text-sm overflow-x-auto fira-code"><code class="language-python">
+# 1. Create a list
+numbers = [10, 20, 30, 40, 50]
+print(f"Initial list: {numbers}")
+
+# 2. Access an element (O(1))
+element = numbers[2]
+print(f"Element at index 2: {element}")
+
+# 3. Append an element (O(1) amortized)
+numbers.append(60)
+print(f"After appending 60: {numbers}")
+
+# 4. Insert an element (O(n))
+numbers.insert(1, 15) # Insert 15 at index 1
+print(f"After inserting 15 at index 1: {numbers}")
+
+# 5. Remove an element by value (O(n))
+numbers.remove(30)
+print(f"After removing 30: {numbers}")
+
+# 6. Remove an element by index (O(n))
+popped_element = numbers.pop(3)
+print(f"Popped element at index 3: {popped_element}")
+print(f"List after pop: {numbers}")
+
+# 7. Get the length (O(1))
+print(f"Current length of the list: {len(numbers)}")
+
+# 8. Slicing (O(k) where k is the size of the slice)
+sub_list = numbers[1:3]
+print(f"Slice from index 1 to 3: {sub_list}")
+                                        </code></pre>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Space Complexity</h3>
+                                <p>The space complexity of a Python list is <code class="fira-code bg-[var(--code-bg)] px-1 rounded">O(n)</code>, where 'n' is the number of elements in the list. This is because the list needs to store all its elements in memory.</p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Real-World Use Cases</h3>
+                                 <ul class="list-disc list-inside pl-4 space-y-1">
+                                    <li>Storing a collection of items, like a list of user scores in a game.</li>
+                                    <li>Used as a buffer to hold data temporarily.</li>
+                                    <li>Implementing other data structures like stacks and queues.</li>
+                                    <li>Reading and processing data from files line by line.</li>
+                                </ul>
+                            </div>
+                        </div>
+                `,
+                init: null
+            },
+            'linkedlist': {
+                title: 'Linked List',
+                category: 'datastructures',
+                content: `
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">What is a Linked List?</h3>
+                                <p class="text-base leading-relaxed">
+                                    A linked list is a linear data structure, but unlike arrays, elements are not stored at contiguous memory locations. The elements in a linked list are linked using pointers. Each element, called a <strong class="text-[var(--primary)]">node</strong>, consists of two parts:
+                                </p>
+                                <ul class="list-disc list-inside mt-2 pl-4 space-y-1">
+                                    <li><strong>Data:</strong> The actual value stored in the node.</li>
+                                    <li><strong>Next Pointer:</strong> A reference (or pointer) to the next node in the sequence. The last node's pointer is typically <code class="fira-code">null</code> or <code class="fira-code">None</code>.</li>
+                                </ul>
+                                <p class="mt-2">The entry point into a linked list is called the <strong class="text-[var(--primary)]">HEAD</strong> of the list.</p>
+                            </div>
+
+                            <!-- Types of Linked Lists -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Types of Linked Lists</h3>
+                                <div class="space-y-6">
+                                    <!-- Singly Linked List -->
+                                    <div class="border border-[var(--border)] rounded-lg p-4">
+                                        <h4 class="font-semibold text-lg">1. Singly Linked List</h4>
+                                        <p class="text-sm mt-1">Each node contains data and a pointer to the next node. Traversal is only possible in one direction (forward).</p>
+                                        <div class="bg-[var(--code-bg)] p-4 mt-3 rounded-lg flex justify-center items-center space-x-2 overflow-x-auto">
+                                            <div class="ll-label">HEAD</div>
+                                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                            <div class="ll-node"><div class="data">10</div><div class="next"></div></div>
+                                            <i data-lucide="arrow-right" class="w-4 h-4 mx-2"></i>
+                                            <div class="ll-node"><div class="data">20</div><div class="next"></div></div>
+                                            <i data-lucide="arrow-right" class="w-4 h-4 mx-2"></i>
+                                            <div class="ll-label">NULL</div>
+                                        </div>
+                                    </div>
+                                    <!-- Doubly Linked List -->
+                                    <div class="border border-[var(--border)] rounded-lg p-4">
+                                        <h4 class="font-semibold text-lg">2. Doubly Linked List</h4>
+                                        <p class="text-sm mt-1">Each node contains data, a pointer to the next node (<code class="fira-code text-xs">next</code>), and a pointer to the previous node (<code class="fira-code text-xs">prev</code>). This allows for traversal in both forward and backward directions.</p>
+                                        <div class="bg-[var(--code-bg)] p-4 mt-3 rounded-lg overflow-x-auto">
+                                            <div class="flex justify-center items-center space-x-2">
+                                                <div class="ll-label">NULL</div>
+                                                <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+                                                <div class="ll-node !rounded-none flex"><div class="next !bg-red-200 dark:!bg-red-800"></div><div class="data">10</div><div class="next"></div></div>
+                                                <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+                                                <div class="ll-node !rounded-none flex"><div class="next !bg-red-200 dark:!bg-red-800"></div><div class="data">20</div><div class="next"></div></div>
+                                                <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+                                                <div class="ll-label">NULL</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Circular Linked List -->
+                                    <div class="border border-[var(--border)] rounded-lg p-4">
+                                        <h4 class="font-semibold text-lg">3. Circular Linked List</h4>
+                                        <p class="text-sm mt-1">A variation where the last node's 'next' pointer points back to the head of the list instead of being null, forming a circle. Useful for applications like round-robin scheduling.</p>
+                                        <div class="bg-[var(--code-bg)] p-4 mt-3 rounded-lg overflow-x-auto">
+                                            <div class="cll-container">
+                                                <div class="flex items-center">
+                                                    <span class="font-bold text-sm mr-2">HEAD</span>
+                                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                                </div>
+                                                <div class="ll-node-item">
+                                                    <div class="ll-node"><div class="data">10</div><div class="next"></div></div>
+                                                    <div class="ll-pointer-group"><i data-lucide="arrow-right"></i></div>
+                                                </div>
+                                                <div class="ll-node-item">
+                                                    <div class="ll-node"><div class="data">20</div><div class="next"></div></div>
+                                                    <div class="ll-pointer-group"><i data-lucide="arrow-right"></i></div>
+                                                </div>
+                                                <div class="ll-node-item">
+                                                    <div class="ll-node"><div class="data">30</div><div class="next"></div></div>
+                                                </div>
+                                                <svg class="cll-arrow" viewBox="0 0 100 30" preserveAspectRatio="none">
+                                                    <path d="M 99 15 C 99 30, 1 30, 1 15" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Visualization -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Interactive Singly Linked List</h3>
+                                <div class="border border-[var(--border)] rounded-lg p-4 bg-[var(--code-bg)]">
+                                    <div class="flex flex-wrap items-center gap-2 mb-4">
+                                        <input type="text" id="ll-node-value" class="w-24 px-2 py-1 border border-[var(--border)] rounded bg-[var(--bg)]" placeholder="Value">
+                                        <button id="ll-append-btn" class="px-3 py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm">Append</button>
+                                        <button id="ll-prepend-btn" class="px-3 py-1.5 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm">Prepend</button>
+                                        <button id="ll-delete-btn" class="px-3 py-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm">Delete</button>
+                                        <button id="ll-reset-btn" class="px-3 py-1.5 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm">Reset</button>
+                                    </div>
+                                    <div id="ll-visualization" class="relative w-full min-h-[150px] overflow-x-auto overflow-y-hidden">
+                                        <!-- LL will be rendered here -->
+                                    </div>
+                                    <div id="ll-explanation" class="mt-4 text-sm min-h-[40px] text-center fira-code"></div>
+                                </div>
+                            </div>
+
+                            <!-- Python Implementation -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Python Implementation (Singly)</h3>
+                                <div class="bg-[var(--code-bg)] rounded-lg overflow-hidden">
+                                    <div class="flex justify-between items-center px-4 py-2 bg-gray-200 dark:bg-gray-700">
+                                        <span class="text-sm font-semibold">linked_list.py</span>
+                                        <button class="copy-code-btn flex items-center gap-2 text-sm px-2 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600">
+                                            <i data-lucide="copy" class="w-4 h-4"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="p-4 text-sm overflow-x-auto fira-code"><code class="language-python">
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Append a node to the end
+    def append(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        last_node = self.head
+        while last_node.next:
+            last_node = last_node.next
+        last_node.next = new_node
+
+    # Prepend a node to the beginning
+    def prepend(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    # Delete a node by value
+    def delete_node(self, key):
+        current_node = self.head
+        # If head node itself holds the key
+        if current_node and current_node.data == key:
+            self.head = current_node.next
+            current_node = None
+            return
+        
+        # Search for the key to be deleted
+        prev = None
+        while current_node and current_node.data != key:
+            prev = current_node
+            current_node = current_node.next
+        
+        # If key was not present in linked list
+        if current_node is None:
+            return
+
+        # Unlink the node from linked list
+        prev.next = current_node.next
+        current_node = None
+
+    # Print the linked list
+    def print_list(self):
+        current_node = self.head
+        while current_node:
+            print(current_node.data, end=" -> ")
+            current_node = current_node.next
+        print("NULL")
+                                        </code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Complexity Analysis -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Complexity Analysis</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="border border-[var(--border)] rounded-lg p-4">
+                                        <h4 class="font-semibold text-lg">Time Complexity</h4>
+                                        <table class="w-full mt-2 text-sm">
+                                            <tbody>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Access / Search</td><td class="text-right fira-code">O(n)</td></tr>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Insertion (Start)</td><td class="text-right fira-code">O(1)</td></tr>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Insertion (End)</td><td class="text-right fira-code">O(n)</td></tr>
+                                                <tr class="border-b border-[var(--border)]"><td class="py-1">Deletion (Start)</td><td class="text-right fira-code">O(1)</td></tr>
+                                                <tr><td class="py-1">Deletion (End/Mid)</td><td class="text-right fira-code">O(n)</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="border border-[var(--border)] rounded-lg p-4">
+                                        <h4 class="font-semibold text-lg">Space Complexity</h4>
+                                        <p class="mt-2 text-sm">The space complexity of a linked list is <strong class="fira-code">O(n)</strong> to store the 'n' nodes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Use Cases -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Real-World Use Cases</h3>
+                                 <ul class="list-disc list-inside pl-4 space-y-1">
+                                    <li>Implementing stacks and queues.</li>
+                                    <li>The "undo" functionality in software applications.</li>
+                                    <li>Music player playlists (navigating next/previous songs).</li>
+                                    <li>Browser history (navigating back and forward through pages).</li>
+                                </ul>
+                            </div>
+                        </div>
+                `,
+                init: initLinkedListVisualizer
+            },
+            'stack': {
+                title: 'Stack',
+                category: 'datastructures',
+                content: `
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">What is a Stack?</h3>
+                                <p class="text-base leading-relaxed">
+                                    A stack is a linear data structure that follows a particular order in which operations are performed. The order is <strong class="text-[var(--primary)]">LIFO (Last-In, First-Out)</strong>. Think of it like a stack of plates: you can only add a new plate to the top, and you can only remove the top plate.
+                                </p>
+                                <ul class="list-disc list-inside mt-2 pl-4 space-y-1">
+                                    <li><strong>Push:</strong> Adds an item to the top of the stack.</li>
+                                    <li><strong>Pop:</strong> Removes the item from the top of the stack.</li>
+                                    <li><strong>Peek (or Top):</strong> Returns the top item from the stack without removing it.</li>
+                                    <li><strong>isEmpty:</strong> Checks if the stack is empty.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Interactive Visualization -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Interactive Visualization</h3>
+                                <div class="border border-[var(--border)] rounded-lg p-4 bg-[var(--code-bg)]">
+                                    <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+                                        <input type="text" id="stack-node-value" class="w-24 px-2 py-1 border border-[var(--border)] rounded bg-[var(--bg)]" placeholder="Value">
+                                        <button id="stack-push-btn" class="px-3 py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm">Push</button>
+                                        <button id="stack-pop-btn" class="px-3 py-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm">Pop</button>
+                                        <button id="stack-peek-btn" class="px-3 py-1.5 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm">Peek</button>
+                                        <button id="stack-reset-btn" class="px-3 py-1.5 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm">Reset</button>
+                                    </div>
+                                    <div class="flex justify-center">
+                                        <div id="stack-visualization">
+                                            <!-- Stack items will be rendered here -->
+                                        </div>
+                                    </div>
+                                    <div id="stack-explanation" class="mt-4 text-sm min-h-[40px] text-center fira-code"></div>
+                                </div>
+                            </div>
+
+                            <!-- Python Implementation -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Python Implementation (using List)</h3>
+                                <div class="bg-[var(--code-bg)] rounded-lg overflow-hidden">
+                                    <div class="flex justify-between items-center px-4 py-2 bg-gray-200 dark:bg-gray-700">
+                                        <span class="text-sm font-semibold">stack.py</span>
+                                        <button class="copy-code-btn flex items-center gap-2 text-sm px-2 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600">
+                                            <i data-lucide="copy" class="w-4 h-4"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="p-4 text-sm overflow-x-auto fira-code"><code class="language-python">
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    # Check if the stack is empty
+    def is_empty(self):
+        return not self.items
+
+    # Add an item to the stack
+    def push(self, item):
+        self.items.append(item)
+
+    # Remove and return the top item
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        return "Stack is empty"
+
+    # Return the top item without removing it
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+        return "Stack is empty"
+
+    # Return the size of the stack
+    def size(self):
+        return len(self.items)
+
+# Example Usage:
+# s = Stack()
+# s.push(10)
+# s.push(20)
+# print(s.peek())  # Output: 20
+# print(s.pop())   # Output: 20
+# print(s.size())  # Output: 1
+                                        </code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Complexity Analysis -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Complexity Analysis</h3>
+                                 <div class="border border-[var(--border)] rounded-lg p-4">
+                                    <h4 class="font-semibold text-lg">Time & Space Complexity</h4>
+                                    <p class="text-xs mt-1 mb-2 text-gray-500 dark:text-gray-400">When using a dynamic array (like Python's list), most operations are efficient.</p>
+                                    <table class="w-full mt-2 text-sm">
+                                        <tbody>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Push</td><td class="text-right fira-code">O(1) (Amortized)</td></tr>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Pop</td><td class="text-right fira-code">O(1)</td></tr>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Peek</td><td class="text-right fira-code">O(1)</td></tr>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Space Complexity</td><td class="text-right fira-code">O(n)</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Use Cases -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Real-World Use Cases</h3>
+                                 <ul class="list-disc list-inside pl-4 space-y-1">
+                                    <li><strong>Function Call Stack:</strong> Programming languages use a stack to keep track of function calls.</li>
+                                    <li><strong>Undo/Redo Features:</strong> Text editors and other software use stacks to implement undo and redo functionality.</li>
+                                    <li><strong>Expression Evaluation:</strong> Stacks are used to convert expressions from infix to postfix or prefix notation and evaluate them.</li>
+                                    <li><strong>Browser History:</strong> The back button in a web browser uses a stack to store previously visited URLs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                `,
+                init: initStackVisualizer
+            },
+            'queue': {
+                title: 'Queue',
+                category: 'datastructures',
+                content: `
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">What is a Queue?</h3>
+                                <p class="text-base leading-relaxed">
+                                    A queue is a linear data structure that follows the <strong class="text-[var(--primary)]">FIFO (First-In, First-Out)</strong> principle. This is like a queue of people waiting for a bus; the first person to join the line is the first person to get on the bus.
+                                </p>
+                                <ul class="list-disc list-inside mt-2 pl-4 space-y-1">
+                                    <li><strong>Enqueue:</strong> Adds an item to the end (rear) of the queue.</li>
+                                    <li><strong>Dequeue:</strong> Removes the item from the front of the queue.</li>
+                                    <li><strong>Front (or Peek):</strong> Returns the front item from the queue without removing it.</li>
+                                    <li><strong>isEmpty:</strong> Checks if the queue is empty.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Interactive Visualization -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Interactive Visualization</h3>
+                                <div class="border border-[var(--border)] rounded-lg p-4 bg-[var(--code-bg)]">
+                                    <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+                                        <input type="text" id="queue-node-value" class="w-24 px-2 py-1 border border-[var(--border)] rounded bg-[var(--bg)]" placeholder="Value">
+                                        <button id="queue-enqueue-btn" class="px-3 py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm">Enqueue</button>
+                                        <button id="queue-dequeue-btn" class="px-3 py-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm">Dequeue</button>
+                                        <button id="queue-peek-btn" class="px-3 py-1.5 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm">Peek</button>
+                                        <button id="queue-reset-btn" class="px-3 py-1.5 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm">Reset</button>
+                                    </div>
+                                    <div class="flex justify-start items-center relative">
+                                        <span class="font-bold absolute left-0 -translate-x-full pr-2">Front</span>
+                                        <div id="queue-visualization">
+                                            <!-- Queue items will be rendered here -->
+                                        </div>
+                                         <span class="font-bold absolute right-0 translate-x-full pl-2">Rear</span>
+                                    </div>
+                                    <div id="queue-explanation" class="mt-4 text-sm min-h-[40px] text-center fira-code"></div>
+                                </div>
+                            </div>
+
+                            <!-- Python Implementation -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Python Implementation (using collections.deque)</h3>
+                                <p class="text-sm mb-2">Using a list for a queue is inefficient for dequeuing (O(n)). Python's <code class="fira-code">collections.deque</code> is a double-ended queue designed for fast appends and pops from both ends.</p>
+                                <div class="bg-[var(--code-bg)] rounded-lg overflow-hidden">
+                                    <div class="flex justify-between items-center px-4 py-2 bg-gray-200 dark:bg-gray-700">
+                                        <span class="text-sm font-semibold">queue.py</span>
+                                        <button class="copy-code-btn flex items-center gap-2 text-sm px-2 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600">
+                                            <i data-lucide="copy" class="w-4 h-4"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="p-4 text-sm overflow-x-auto fira-code"><code class="language-python">
+from collections import deque
+
+class Queue:
+    def __init__(self):
+        self.buffer = deque()
+
+    # Check if the queue is empty
+    def is_empty(self):
+        return not self.buffer
+
+    # Add an item to the end of the queue
+    def enqueue(self, item):
+        self.buffer.append(item)
+
+    # Remove and return the item from the front
+    def dequeue(self):
+        if not self.is_empty():
+            return self.buffer.popleft()
+        return "Queue is empty"
+
+    # Return the front item without removing it
+    def front(self):
+        if not self.is_empty():
+            return self.buffer[0]
+        return "Queue is empty"
+
+    # Return the size of the queue
+    def size(self):
+        return len(self.buffer)
+
+# Example Usage:
+# q = Queue()
+# q.enqueue(10)
+# q.enqueue(20)
+# print(q.front())   # Output: 10
+# print(q.dequeue()) # Output: 10
+# print(q.size())    # Output: 1
+                                        </code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Complexity Analysis -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Complexity Analysis (using deque)</h3>
+                                 <div class="border border-[var(--border)] rounded-lg p-4">
+                                    <h4 class="font-semibold text-lg">Time & Space Complexity</h4>
+                                    <table class="w-full mt-2 text-sm">
+                                        <tbody>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Enqueue (append)</td><td class="text-right fira-code">O(1)</td></tr>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Dequeue (popleft)</td><td class="text-right fira-code">O(1)</td></tr>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Front (Peek)</td><td class="text-right fira-code">O(1)</td></tr>
+                                            <tr class="border-b border-[var(--border)]"><td class="py-1">Space Complexity</td><td class="text-right fira-code">O(n)</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Use Cases -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Real-World Use Cases</h3>
+                                 <ul class="list-disc list-inside pl-4 space-y-1">
+                                    <li><strong>Task Scheduling:</strong> Operating systems use queues to schedule processes (e.g., CPU scheduling).</li>
+                                    <li><strong>Data Buffering:</strong> Used in streaming data, like video buffering, where data is added and consumed at different rates.</li>
+                                    <li><strong>Breadth-First Search (BFS):</strong> The BFS algorithm for traversing graphs and trees uses a queue.</li>
+                                    <li><strong>Resource Sharing:</strong> Managing access to a shared resource, like a printer queue.</li>
+                                </ul>
+                            </div>
+                        </div>
+                `,
+                init: initQueueVisualizer
+            },
+            'bubblesort': {
+                title: 'Bubble Sort',
+                category: 'sorting',
+                content: createComingSoonContent('Bubble Sort','sorting_algorithm.html'),
+                init: null,
+                isComingSoon: true
+            },
+            'mergesort': {
+                title: 'Merge Sort',
+                category: 'sorting',
+                content: createComingSoonContent('Bubble Sort','sorting_algorithm.html'),              
+                init: null,
+                isComingSoon: true
+            },
+            'quicksort': {
+                title: 'Quick Sort',
+                category: 'sorting',
+                content: createComingSoonContent('Bubble Sort','sorting_algorithm.html'),             
+                init: null,
+                isComingSoon: true
+            },
+            'selectionsort': {
+                title: 'Selection Sort',
+                category: 'sorting',
+                content: createComingSoonContent('Bubble Sort','sorting_algorithm.html'),
+                init: null,
+                isComingSoon: true
+            },
+            'insertionsort': {
+                title: 'Insertion Sort',
+                category: 'sorting',
+                content: createComingSoonContent('Bubble Sort','sorting_algorithm.html'),
+                init: null,
+                isComingSoon: true
+            },
+            'countingsort': {
+                title: 'Counting Sort',
+                category: 'sorting',
+                content: createComingSoonContent('Bubble Sort','sorting_algorithm.html'),
+                init: null,
+                isComingSoon: true
+            },
+            'radixsort': {
+                title: 'Radix Sort',
+                category: 'sorting',
+                content:createComingSoonContent('Bubble Sort','sorting_algorithm.html'), 
+                init: null,
+                isComingSoon: true
+            },
+            'linearsearch': {
+                title: 'Linear Search',
+                category: 'searching',
+                content: createComingSoonContent('Linear Search','searching_algorithms.html'),
+                init: null,
+                isComingSoon: true
+            },
+            'binarysearch': {
+                title: 'Binary Search',
+                category: 'searching',
+                content: createComingSoonContent('Binary Search','searching_algorithms.html'),
+                init: null,
+                isComingSoon: true
+            },
+            'bfs': {
+                title: 'BFS',
+                category: 'graphs',
+                content: createComingSoonContent('Breadth-First Search','graph_algorithms.html'),
+                init: null,
+                isComingSoon: true
+            },
+            'dfs': {
+                title: 'DFS',
+                category: 'graphs',
+                content: createComingSoonContent('Depth-First Search','graph_algorithms.html'),
+                init: null,
+                isComingSoon: true
+            },
+        };
+
+        const navStructure = [
+            {
+                name: 'Data Structures',
+                items: [
+                    { id: 'array', name: 'Array / List' },
+                    { id: 'linkedlist', name: 'Linked List' },
+                    { id: 'stack', name: 'Stack' },
+                    { id: 'queue', name: 'Queue' },
+                    { 
+                        name: 'Trees',
+                        items: [
+                            { id: 'bst', name: 'Binary Search Tree' },
+                        ]
+                    }
+                ]
+            },
+            {
+                name: 'Algorithms',
+                items: [
+                    { 
+                        name: 'Sorting',
+                        items: [
+                            { id: 'bubblesort', name: 'Bubble Sort' },
+                            { id: 'mergesort', name: 'Merge Sort' },
+                            { id: 'quicksort', name: 'Quick Sort' },
+                            { id: 'selectionsort', name: 'Selection Sort' },
+                            { id: 'insertionsort', name: 'Insertion Sort' },
+                            { id: 'countingsort', name: 'Counting Sort' },
+                            { id: 'radixsort', name: 'Radix Sort' },
+                        ]
+                    },
+                    { 
+                        name: 'Searching',
+                        items: [
+                            { id: 'linearsearch', name: 'Linear Search' },
+                            { id: 'binarysearch', name: 'Binary Search' },
+                        ]
+                    },
+                    {
+                        name: 'Graphs',
+                        items: [
+                            { id: 'bfs', name: 'BFS' },
+                            { id: 'dfs', name: 'DFS' },
+                        ]
+                    }
+                ]
+            }
+        ];
+
+
+        // --- CORE SCRIPT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const contentArea = document.getElementById('content-area');
+            const topicTitle = document.getElementById('topic-title');
+            const searchInput = document.getElementById('search-input');
+            const navMenu = document.getElementById('nav-menu');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('sidebar');
+
+            // --- Generic Toast Notification ---
+            function showToast(message = 'Copied to clipboard!', type = 'success') {
+                const toast = document.getElementById('toast-container');
+                toast.textContent = message;
+
+                if (type === 'success') {
+                    toast.style.backgroundColor = '#22c55e'; // green-500
+                } else if (type === 'warning') {
+                    toast.style.backgroundColor = '#f59e0b'; // amber-500
+                } else { // error
+                    toast.style.backgroundColor = '#ef4444'; // red-500
+                }
+
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2500);
+            }
+
+            // --- Theme Management ---
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            };
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
+
+
+            // --- Navigation Generation ---
+            function createNav(items, level = 0) {
+                const container = document.createElement('div');
+                items.forEach(item => {
+                    if (item.items) { // It's a category
+                        const details = document.createElement('details');
+                        details.open = level < 1;
+                        const summary = document.createElement('summary');
+                        summary.className = 'flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700';
+                        summary.innerHTML = `
+                            <span class="font-semibold">${item.name}</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform transform details-arrow"></i>
+                        `;
+                        details.appendChild(summary);
+                        const subMenu = createNav(item.items, level + 1);
+                        subMenu.classList.add('ml-4', 'mt-1', 'space-y-1');
+                        details.appendChild(subMenu);
+                        container.appendChild(details);
+                    } else { // It's a link
+                        const link = document.createElement('a');
+                        link.href = '#';
+                        link.dataset.topic = item.id;
+                        link.textContent = item.name;
+                        link.className = 'nav-link block p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700';
+                        container.appendChild(link);
+                    }
+                });
+                return container;
+            }
+            navMenu.appendChild(createNav(navStructure));
+
+
+            // --- Content Rendering ---
+            function renderContent(topicId) {
+                const topic = dsaData[topicId];
+                if (!topic) {
+                    contentArea.innerHTML = '<div class="text-center p-8">Topic not found.</div>';
+                    topicTitle.textContent = 'Error';
+                    return;
+                }
+
+                topicTitle.textContent = topic.title;
+                contentArea.innerHTML = topic.content;
+                contentArea.scrollTop = 0;
+
+                lucide.createIcons();
+                addCopyListeners();
+
+                // If the content is a "coming soon" page, add a listener to its button
+                if (topic.isComingSoon) {
+                    const vizButton = contentArea.querySelector('.visualization-btn');
+                    if (vizButton) {
+                        vizButton.addEventListener('click', () => {
+                            showToast(`Visualization for ${topic.title} is coming soon!`, 'warning');
+                        });
+                    }
+                }
+
+                if (topic.init && typeof topic.init === 'function') {
+                    topic.init();
+                }
+
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                const activeLink = document.querySelector(`.nav-link[data-topic="${topicId}"]`);
+                if(activeLink) {
+                    activeLink.classList.add('active');
+                    let parent = activeLink.closest('details');
+                    while(parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            }
+
+            // --- Event Delegation for Navigation ---
+            navMenu.addEventListener('click', (e) => {
+                const link = e.target.closest('.nav-link');
+                if (link && link.dataset.topic) {
+                    e.preventDefault();
+                    renderContent(link.dataset.topic);
+                    if(window.innerWidth < 768) {
+                        sidebar.classList.add('hidden');
+                    }
+                }
+            });
+
+            // --- Search Functionality ---
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll('#nav-menu a').forEach(link => {
+                    const linkText = link.textContent.toLowerCase();
+                    const parentDetails = link.closest('details');
+                    if (linkText.includes(searchTerm)) {
+                        link.style.display = 'block';
+                        let current = parentDetails;
+                        while(current) {
+                            current.style.display = 'block';
+                            current.open = true;
+                            current = current.parentElement.closest('details');
+                        }
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            });
+            
+            // --- Mobile Menu Toggle ---
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden');
+            });
+
+
+            // --- Code Copying ---
+            function addCopyListeners() {
+                document.querySelectorAll('.copy-code-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const pre = e.currentTarget.closest('div').nextElementSibling;
+                        const code = pre.querySelector('code').innerText;
+                        
+                        const textarea = document.createElement('textarea');
+                        textarea.value = code;
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        try {
+                            document.execCommand('copy');
+                            showToast('Copied to clipboard!', 'success');
+                        } catch (err) {
+                            console.error('Failed to copy text: ', err);
+                            showToast('Failed to copy!', 'error');
+                        }
+                        document.body.removeChild(textarea);
+                    });
+                });
+            }
+
+            // --- Final Setup ---
+            lucide.createIcons();
+            renderContent('bst'); // Load a default topic
+        });
+
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        // --- STACK VISUALIZER SCRIPT ---
+        function initStackVisualizer() {
+            const vizArea = document.getElementById('stack-visualization');
+            const explanationDiv = document.getElementById('stack-explanation');
+            const valueInput = document.getElementById('stack-node-value');
+            const pushBtn = document.getElementById('stack-push-btn');
+            const popBtn = document.getElementById('stack-pop-btn');
+            const peekBtn = document.getElementById('stack-peek-btn');
+            const resetBtn = document.getElementById('stack-reset-btn');
+
+            let stack = [];
+            let isAnimating = false;
+
+            const setAnimating = (state) => {
+                isAnimating = state;
+                [pushBtn, popBtn, peekBtn, resetBtn, valueInput].forEach(el => el.disabled = state);
+            };
+
+            const draw = () => {
+                vizArea.innerHTML = '';
+                stack.forEach(val => {
+                    const item = document.createElement('div');
+                    item.className = 'viz-item stack-item';
+                    item.textContent = val;
+                    vizArea.appendChild(item);
+                });
+            };
+
+            async function handlePush() {
+                const value = valueInput.value.trim();
+                if (!value || isAnimating) return;
+                setAnimating(true);
+                
+                explanationDiv.textContent = `Pushing ${value} onto the stack.`;
+                const newItem = document.createElement('div');
+                newItem.className = 'viz-item stack-item new-item';
+                newItem.textContent = value;
+                vizArea.appendChild(newItem);
+
+                await sleep(50); // allow element to be added to DOM
+                newItem.classList.remove('new-item');
+                
+                await sleep(500); // animation duration
+                stack.push(value);
+                draw();
+                
+                explanationDiv.textContent = `Push complete.`;
+                valueInput.value = '';
+                setAnimating(false);
+            }
+
+            async function handlePop() {
+                if (stack.length === 0 || isAnimating) return;
+                setAnimating(true);
+
+                explanationDiv.textContent = `Popping element from the stack.`;
+                const topElement = vizArea.lastChild;
+                if (topElement) {
+                    topElement.classList.add('popped-item');
+                }
+
+                await sleep(500);
+                const poppedValue = stack.pop();
+                draw();
+                explanationDiv.textContent = `Popped ${poppedValue}.`;
+                setAnimating(false);
+            }
+
+            async function handlePeek() {
+                if (stack.length === 0 || isAnimating) return;
+                setAnimating(true);
+                explanationDiv.textContent = `Peeking at the top element: ${stack[stack.length - 1]}`;
+                const topElement = vizArea.lastChild;
+                if (topElement) {
+                    topElement.classList.add('highlight');
+                    await sleep(1000);
+                    topElement.classList.remove('highlight');
+                }
+                explanationDiv.textContent = `Peek complete.`;
+                setAnimating(false);
+            }
+            
+            function handleReset() {
+                 if (isAnimating) return;
+                 stack = [];
+                 draw();
+                 explanationDiv.textContent = 'Stack has been reset.';
+            }
+
+            pushBtn.addEventListener('click', handlePush);
+            popBtn.addEventListener('click', handlePop);
+            peekBtn.addEventListener('click', handlePeek);
+            resetBtn.addEventListener('click', handleReset);
+            valueInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handlePush(); });
+            
+            draw();
+            explanationDiv.textContent = 'Enter a value and choose an operation.';
+        }
+
+        // --- QUEUE VISUALIZER SCRIPT ---
+        function initQueueVisualizer() {
+            const vizArea = document.getElementById('queue-visualization');
+            const explanationDiv = document.getElementById('queue-explanation');
+            const valueInput = document.getElementById('queue-node-value');
+            const enqueueBtn = document.getElementById('queue-enqueue-btn');
+            const dequeueBtn = document.getElementById('queue-dequeue-btn');
+            const peekBtn = document.getElementById('queue-peek-btn');
+            const resetBtn = document.getElementById('queue-reset-btn');
+
+            let queue = [];
+            let isAnimating = false;
+
+            const setAnimating = (state) => {
+                isAnimating = state;
+                [enqueueBtn, dequeueBtn, peekBtn, resetBtn, valueInput].forEach(el => el.disabled = state);
+            };
+
+            const draw = () => {
+                vizArea.innerHTML = '';
+                queue.forEach(val => {
+                    const item = document.createElement('div');
+                    item.className = 'viz-item queue-item';
+                    item.textContent = val;
+                    vizArea.appendChild(item);
+                });
+            };
+
+            async function handleEnqueue() {
+                const value = valueInput.value.trim();
+                if (!value || isAnimating) return;
+                setAnimating(true);
+                
+                explanationDiv.textContent = `Enqueuing ${value} to the rear.`;
+                const newItem = document.createElement('div');
+                newItem.className = 'viz-item queue-item new-item';
+                newItem.textContent = value;
+                vizArea.appendChild(newItem);
+
+                await sleep(50);
+                newItem.classList.remove('new-item');
+                
+                await sleep(500);
+                queue.push(value);
+                draw();
+                
+                explanationDiv.textContent = `Enqueue complete.`;
+                valueInput.value = '';
+                setAnimating(false);
+            }
+
+            async function handleDequeue() {
+                if (queue.length === 0 || isAnimating) return;
+                setAnimating(true);
+
+                explanationDiv.textContent = `Dequeuing element from the front.`;
+                const frontElement = vizArea.firstChild;
+                if (frontElement) {
+                    frontElement.classList.add('dequeued-item');
+                }
+
+                await sleep(500);
+                const dequeuedValue = queue.shift();
+                draw();
+                explanationDiv.textContent = `Dequeued ${dequeuedValue}.`;
+                setAnimating(false);
+            }
+
+            async function handlePeek() {
+                if (queue.length === 0 || isAnimating) return;
+                setAnimating(true);
+                explanationDiv.textContent = `Peeking at the front element: ${queue[0]}`;
+                const frontElement = vizArea.firstChild;
+                if (frontElement) {
+                    frontElement.classList.add('highlight');
+                    await sleep(1000);
+                    frontElement.classList.remove('highlight');
+                }
+                explanationDiv.textContent = `Peek complete.`;
+                setAnimating(false);
+            }
+            
+            function handleReset() {
+                 if (isAnimating) return;
+                 queue = [];
+                 draw();
+                 explanationDiv.textContent = 'Queue has been reset.';
+            }
+
+            enqueueBtn.addEventListener('click', handleEnqueue);
+            dequeueBtn.addEventListener('click', handleDequeue);
+            peekBtn.addEventListener('click', handlePeek);
+            resetBtn.addEventListener('click', handleReset);
+            valueInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleEnqueue(); });
+            
+            draw();
+            explanationDiv.textContent = 'Enter a value and choose an operation.';
+        }
+
+        // --- BST VISUALIZER SCRIPT ---
+        function initBSTVisualizer() {
+            const visualizationArea = document.getElementById('bst-visualization');
+            const insertBtn = document.getElementById('bst-insert-btn');
+            const resetBtn = document.getElementById('bst-reset-btn');
+            const nodeValueInput = document.getElementById('bst-node-value');
+            const explanationDiv = document.getElementById('bst-explanation');
+
+            let treeRoot = null;
+            let isAnimating = false;
+
+            class TreeNode {
+                constructor(value, level, order) {
+                    this.value = value;
+                    this.left = null;
+                    this.right = null;
+                    this.level = level;
+                    this.order = order;
+                    this.element = null;
+                    this.line = null;
+                }
+            }
+            
+            async function insertNode() {
+                if(isAnimating) return;
+                const value = parseInt(nodeValueInput.value);
+                if (isNaN(value)) {
+                    explanationDiv.textContent = "Please enter a valid number.";
+                    return;
+                }
+                isAnimating = true;
+                insertBtn.disabled = true;
+                resetBtn.disabled = true;
+                nodeValueInput.value = '';
+
+                if (!treeRoot) {
+                    treeRoot = new TreeNode(value, 0, 0);
+                    explanationDiv.textContent = `Tree is empty. Creating root node with value ${value}.`;
+                    await sleep(1000);
+                    drawTree();
+                } else {
+                    let current = treeRoot;
+                    let parent = null;
+                    let level = 0;
+                    
+                    while (current) {
+                        parent = current;
+                        highlightNode(current.element);
+                        await sleep(800);
+
+                        if (value < current.value) {
+                            explanationDiv.textContent = `${value} < ${current.value}. Moving to the left.`;
+                            current = current.left;
+                        } else if (value > current.value) {
+                            explanationDiv.textContent = `${value} > ${current.value}. Moving to the right.`;
+                            current = current.right;
+                        } else {
+                            explanationDiv.textContent = `Value ${value} already exists in the tree. No duplicates allowed.`;
+                            unhighlightAll();
+                            isAnimating = false;
+                            insertBtn.disabled = false;
+                            resetBtn.disabled = false;
+                            return;
+                        }
+                        level++;
+                        unhighlightNode(parent.element);
+                        await sleep(500);
+                    }
+
+                    if (value < parent.value) {
+                        explanationDiv.textContent = `Found a spot! Inserting ${value} as the left child of ${parent.value}.`;
+                        parent.left = new TreeNode(value, level, 0);
+                    } else {
+                        explanationDiv.textContent = `Found a spot! Inserting ${value} as the right child of ${parent.value}.`;
+                        parent.right = new TreeNode(value, level, 0);
+                    }
+                         await sleep(1000);
+                    drawTree();
+                }
+                explanationDiv.textContent = `Insertion of ${value} complete.`;
+                isAnimating = false;
+                insertBtn.disabled = false;
+                resetBtn.disabled = false;
+            }
+
+            function drawTree() {
+                visualizationArea.innerHTML = '';
+                if (!treeRoot) return;
+
+                const traversalQueue = [treeRoot];
+                treeRoot.level = 0;
+                let head = 0;
+                while(head < traversalQueue.length) {
+                    const current = traversalQueue[head++];
+                    if(current.left) {
+                        current.left.level = current.level + 1;
+                        traversalQueue.push(current.left);
+                    }
+                    if(current.right) {
+                        current.right.level = current.level + 1;
+                        traversalQueue.push(current.right);
+                    }
+                }
+
+                let orderCounter = 0;
+                function assignOrder(node) {
+                    if(!node) return;
+                    assignOrder(node.left);
+                    node.order = orderCounter++;
+                    assignOrder(node.right);
+                }
+                assignOrder(treeRoot);
+
+                const nodeCount = traversalQueue.length;
+                const nodeWidth = 40;
+                const horizontalGap = 20;
+                const verticalGap = 70;
+                const totalWidth = nodeCount * (nodeWidth + horizontalGap);
+                
+                traversalQueue.forEach(node => {
+                    const x = (node.order * (totalWidth / nodeCount)) + (totalWidth / (2 * nodeCount));
+                    const y = node.level * verticalGap + 40;
+                    node.x = x;
+                    node.y = y;
+                });
+                
+                traversalQueue.forEach(node => {
+                    if (node.left) drawLine(node, node.left);
+                    if (node.right) drawLine(node, node.right);
+                });
+                traversalQueue.forEach(node => {
+                    drawNode(node);
+                });
+            }
+
+            function drawNode(node) {
+                const nodeEl = document.createElement('div');
+                nodeEl.className = 'tree-node';
+                nodeEl.textContent = node.value;
+                nodeEl.style.left = `${node.x - 20}px`;
+                nodeEl.style.top = `${node.y - 20}px`;
+                node.element = nodeEl;
+                visualizationArea.appendChild(nodeEl);
+            }
+
+            function drawLine(parent, child) {
+                const line = document.createElement('div');
+                line.className = 'tree-line';
+                const x1 = parent.x;
+                const y1 = parent.y;
+                const x2 = child.x;
+                const y2 = child.y;
+
+                const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+                const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
+                
+                line.style.width = `${length}px`;
+                line.style.left = `${x1}px`;
+                line.style.top = `${y1}px`;
+                line.style.transform = `rotate(${angle}deg)`;
+                
+                visualizationArea.appendChild(line);
+            }
+
+            function highlightNode(element) {
+                if(element) element.classList.add('highlight');
+            }
+
+            function unhighlightNode(element) {
+                if(element) element.classList.remove('highlight');
+            }
+            
+            function unhighlightAll() {
+                document.querySelectorAll('.tree-node').forEach(n => n.classList.remove('highlight'));
+            }
+
+            function resetTree() {
+                if(isAnimating) return;
+                treeRoot = null;
+                visualizationArea.innerHTML = '';
+                explanationDiv.textContent = 'Tree has been reset. Insert a new node to start.';
+            }
+
+            insertBtn.addEventListener('click', insertNode);
+            resetBtn.addEventListener('click', resetTree);
+            nodeValueInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    insertNode();
+                }
+            });
+            
+            explanationDiv.textContent = 'Enter a number and click "Insert" to build the tree.';
+        }
+
+        // --- LINKED LIST VISUALIZER SCRIPT ---
+        function initLinkedListVisualizer() {
+            const vizArea = document.getElementById('ll-visualization');
+            const explanationDiv = document.getElementById('ll-explanation');
+            const valueInput = document.getElementById('ll-node-value');
+            const appendBtn = document.getElementById('ll-append-btn');
+            const prependBtn = document.getElementById('ll-prepend-btn');
+            const deleteBtn = document.getElementById('ll-delete-btn');
+            const resetBtn = document.getElementById('ll-reset-btn');
+
+            let head = null;
+            let nodes = [];
+            let isAnimating = false;
+
+            class VisNode {
+                constructor(value) {
+                    this.value = value;
+                    this.next = null;
+                    this.id = `node-${Date.now()}-${Math.random()}`;
+                    this.element = null;
+                }
+            }
+
+            const setAnimating = (state) => {
+                isAnimating = state;
+                [appendBtn, prependBtn, deleteBtn, resetBtn, valueInput].forEach(el => el.disabled = state);
+            };
+
+            const draw = () => {
+                vizArea.innerHTML = '';
+
+                const headLabel = document.createElement('div');
+                headLabel.className = 'll-label';
+                headLabel.textContent = 'HEAD';
+                vizArea.appendChild(headLabel);
+
+                const startArrow = document.createElement('div');
+                startArrow.className = 'll-pointer-group';
+                startArrow.innerHTML = `<i data-lucide="arrow-right"></i>`;
+                vizArea.appendChild(startArrow);
+
+                if (!head) {
+                    const nullText = document.createElement('span');
+                    nullText.className = 'll-label';
+                    nullText.textContent = 'NULL';
+                    vizArea.appendChild(nullText);
+                    lucide.createIcons();
+                    return;
+                }
+
+                nodes.forEach((node) => {
+                    const nodeItem = document.createElement('div');
+                    nodeItem.className = 'll-node-item';
+                    nodeItem.id = node.id;
+
+                    const nodeEl = document.createElement('div');
+                    nodeEl.className = 'll-node';
+                    nodeEl.innerHTML = `<div class="data">${node.value}</div><div class="next"></div>`;
+                    node.element = nodeEl;
+
+                    const pointerGroup = document.createElement('div');
+                    pointerGroup.className = 'll-pointer-group';
+                    pointerGroup.innerHTML = `<i data-lucide="arrow-right"></i>`;
+
+                    nodeItem.appendChild(nodeEl);
+                    nodeItem.appendChild(pointerGroup);
+                    vizArea.appendChild(nodeItem);
+                });
+
+                const nullText = document.createElement('span');
+                nullText.className = 'll-label';
+                nullText.textContent = 'NULL';
+                vizArea.appendChild(nullText);
+
+                lucide.createIcons();
+            };
+
+            const highlightNode = (node, remove = false) => {
+                if (node && node.element) {
+                    node.element.classList.toggle('highlight', !remove);
+                }
+            };
+
+            async function handleAppend() {
+                const value = valueInput.value.trim();
+                if (!value || isAnimating) return;
+                setAnimating(true);
+                explanationDiv.textContent = `Creating new node with value: ${value}`;
+                const newNode = new VisNode(value);
+                await sleep(500);
+
+                if (!head) {
+                    head = newNode;
+                    nodes = [newNode];
+                    explanationDiv.textContent = `List is empty. Setting new node as HEAD.`;
+                    draw();
+                    highlightNode(newNode);
+                    await sleep(800);
+                    highlightNode(newNode, true);
+                } else {
+                    explanationDiv.textContent = `Traversing to the end of the list...`;
+                    let lastNodeInArray = nodes[nodes.length - 1];
+                    for (const node of nodes) {
+                        highlightNode(node);
+                        await sleep(500);
+                        highlightNode(node, true);
+                        if (node === lastNodeInArray) break;
+                    }
+
+                    explanationDiv.textContent = `Found the last node. Appending new node.`;
+                    lastNodeInArray.next = newNode;
+                    nodes.push(newNode);
+                    await sleep(500);
+                    draw();
+                    
+                    const newNodeInDom = nodes[nodes.length - 1];
+                    highlightNode(newNodeInDom);
+                    await sleep(800);
+                    highlightNode(newNodeInDom, true);
+                }
+                explanationDiv.textContent = `Append complete.`;
+                valueInput.value = '';
+                setAnimating(false);
+            }
+
+            async function handlePrepend() {
+                const value = valueInput.value.trim();
+                if (!value || isAnimating) return;
+                setAnimating(true);
+                explanationDiv.textContent = `Creating new node with value: ${value}`;
+                const newNode = new VisNode(value);
+                await sleep(500);
+
+                explanationDiv.textContent = `Setting new node's 'next' to current HEAD.`;
+                newNode.next = head;
+                await sleep(500);
+
+                explanationDiv.textContent = `Updating HEAD to point to the new node.`;
+                head = newNode;
+                nodes.unshift(newNode);
+                await sleep(500);
+                draw();
+
+                highlightNode(newNode);
+                await sleep(800);
+                highlightNode(newNode, true);
+
+                explanationDiv.textContent = `Prepend complete.`;
+                valueInput.value = '';
+                setAnimating(false);
+            }
+
+            async function handleDelete() {
+                const value = valueInput.value.trim();
+                if (!value || isAnimating || !head) return;
+                setAnimating(true);
+
+                let foundNode = null;
+                let prev = null;
+
+                if (head.value === value) {
+                    explanationDiv.textContent = `Value found at HEAD. Updating HEAD pointer.`;
+                    highlightNode(head);
+                    await sleep(800);
+                    head = head.next;
+                    nodes.shift();
+                    draw();
+                } else {
+                    explanationDiv.textContent = `Searching for node with value ${value}...`;
+                    for (const node of nodes) {
+                        highlightNode(node);
+                        await sleep(500);
+                        if (node.value === value) {
+                            foundNode = node;
+                            break;
+                        }
+                        highlightNode(node, true);
+                        prev = node;
+                    }
+
+                    if (!foundNode) {
+                        explanationDiv.textContent = `Node with value ${value} not found.`;
+                        document.querySelectorAll('.ll-node.highlight').forEach(el => el.classList.remove('highlight'));
+                    } else {
+                        explanationDiv.textContent = `Node found. Unlinking it from the list.`;
+                        await sleep(800);
+                        if (prev) {
+                            prev.next = foundNode.next;
+                        }
+                        nodes = nodes.filter(n => n.id !== foundNode.id);
+                        draw();
+                    }
+                }
+                
+                explanationDiv.textContent = `Deleted node with value ${value}.`;
+                valueInput.value = '';
+                setAnimating(false);
+            }
+
+            function handleReset() {
+                if (isAnimating) return;
+                head = null;
+                nodes = [];
+                draw();
+                explanationDiv.textContent = 'List has been reset.';
+            }
+
+            appendBtn.addEventListener('click', handleAppend);
+            prependBtn.addEventListener('click', handlePrepend);
+            deleteBtn.addEventListener('click', handleDelete);
+            resetBtn.addEventListener('click', handleReset);
+            valueInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') handleAppend();
+            });
+
+            draw();
+            explanationDiv.textContent = 'Enter a value and choose an operation.';
+        }
+    </script>
+
+    <svg width="0" height="0" style="position:absolute;visibility:hidden">
+      <defs>
+        <marker id="cll-arrow-head" viewBox="0 0 10 10" refX="9" refY="5"
+                markerWidth="6" markerHeight="6"
+                orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--primary)"></path>
+        </marker>
+      </defs>
+    </svg>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoGraphic about Data Science</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #333333;
+        }
+        .header {
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+            border-top: 4px solid #4e54c8;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .tech-term {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+        .step-circle {
+            background-color: #4e54c8;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border: 4px solid #f0f2f5;
+            z-index: 10;
+        }
+        .lifecycle-arrow {
+            font-size: 2rem;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header text-white text-center py-20 px-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">The Ultimate Guide to Data Science</h1>
+        <p class="text-lg md:text-xl text-indigo-100 max-w-3xl mx-auto">Your complete 2025 roadmap to mastering the most in-demand career of the decade, from foundational concepts to advanced deployment.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="why-ds" class="text-center mb-20">
+            <h2 class="text-3xl font-bold mb-4">Why Data Science is the Most Important Skill of 2025</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 text-lg mb-8">Data is the new oil, and data science is the engine that turns it into value. Every industry, from healthcare to finance, is leveraging data to make smarter decisions, innovate products, and gain a competitive edge. Mastering data science means you're not just learning a skill—you're positioning yourself at the forefront of global innovation.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg"><div class="text-4xl mb-3">🚀</div><h3 class="text-xl font-bold">High Demand</h3><p>An ever-growing number of roles with a significant talent shortage.</p></div>
+                <div class="bg-white p-6 rounded-lg shadow-lg"><div class="text-4xl mb-3">💡</div><h3 class="text-xl font-bold">Impactful Work</h3><p>Solve real-world problems, from curing diseases to combating climate change.</p></div>
+                <div class="bg-white p-6 rounded-lg shadow-lg"><div class="text-4xl mb-3">💰</div><h3 class="text-xl font-bold">Lucrative Careers</h3><p>Highly competitive salaries and strong potential for career growth.</p></div>
+            </div>
+        </section>
+        
+        <section id="skillset" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">The Modern Data Scientist Skillset</h2>
+            <div class="card p-6">
+                <div class="chart-container h-96">
+                    <canvas id="skillsetChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">A successful data scientist is a blend of a computer scientist, a statistician, and a business strategist. This chart shows the interdisciplinary nature of the role.</p>
+            </div>
+        </section>
+
+        <section id="roadmap" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-12">The Data Science Learning Roadmap</h2>
+            <div class="relative max-w-4xl mx-auto">
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-300"></div>
+                <div class="relative flex items-center mb-12"><div class="w-1/2 pr-8 text-right"><div class="bg-white p-6 rounded-lg shadow-lg"><h3 class="text-xl font-bold text-[#4e54c8]">Stage 1: The Foundation</h3><p class="text-gray-600">Build your base with Math, Statistics, and core programming (Python/R & SQL).</p></div></div><div class="step-circle absolute left-1/2 transform -translate-x-1/2">1</div><div class="w-1/2"></div></div>
+                <div class="relative flex items-center mb-12"><div class="w-1/2"></div><div class="step-circle absolute left-1/2 transform -translate-x-1/2" style="background-color: #8f94fb;">2</div><div class="w-1/2 pl-8"><div class="bg-white p-6 rounded-lg shadow-lg"><h3 class="text-xl font-bold text-[#8f94fb]">Stage 2: Core Skills</h3><p class="text-gray-600">Learn to wrangle, explore, and visualize data to uncover initial insights.</p></div></div></div>
+                <div class="relative flex items-center mb-12"><div class="w-1/2 pr-8 text-right"><div class="bg-white p-6 rounded-lg shadow-lg"><h3 class="text-xl font-bold text-[#4e54c8]">Stage 3: Machine Learning</h3><p class="text-gray-600">Master supervised and unsupervised algorithms to build predictive models.</p></div></div><div class="step-circle absolute left-1/2 transform -translate-x-1/2">3</div><div class="w-1/2"></div></div>
+                <div class="relative flex items-center"><div class="w-1/2"></div><div class="step-circle absolute left-1/2 transform -translate-x-1/2" style="background-color: #8f94fb;">4</div><div class="w-1/2 pl-8"><div class="bg-white p-6 rounded-lg shadow-lg"><h3 class="text-xl font-bold text-[#8f94fb]">Stage 4: Advanced Topics</h3><p class="text-gray-600">Dive into Deep Learning, Big Data, and deploying models to production.</p></div></div></div>
+            </div>
+        </section>
+
+        <section id="lifecycle" class="mb-20 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-10">The Data Science Project Lifecycle</h2>
+            <div class="flex flex-col md:flex-row items-center justify-around text-center space-y-6 md:space-y-0">
+                <div class="flex flex-col items-center p-2"><div class="text-3xl mb-2">📊</div><h3 class="font-bold">1. Business Understanding</h3></div>
+                <div class="lifecycle-arrow hidden md:block">→</div>
+                <div class="lifecycle-arrow block md:hidden">↓</div>
+                <div class="flex flex-col items-center p-2"><div class="text-3xl mb-2">🧹</div><h3 class="font-bold">2. Data Wrangling</h3></div>
+                <div class="lifecycle-arrow hidden md:block">→</div>
+                <div class="lifecycle-arrow block md:hidden">↓</div>
+                <div class="flex flex-col items-center p-2"><div class="text-3xl mb-2">📈</div><h3 class="font-bold">3. EDA & Modeling</h3></div>
+                <div class="lifecycle-arrow hidden md:block">→</div>
+                <div class="lifecycle-arrow block md:hidden">↓</div>
+                <div class="flex flex-col items-center p-2"><div class="text-3xl mb-2">⚙️</div><h3 class="font-bold">4. Evaluation</h3></div>
+                <div class="lifecycle-arrow hidden md:block">→</div>
+                <div class="lifecycle-arrow block md:hidden">↓</div>
+                <div class="flex flex-col items-center p-2"><div class="text-3xl mb-2">🚀</div><h3 class="font-bold">5. Deployment</h3></div>
+            </div>
+        </section>
+
+        <section id="foundations" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Stage 1: Building the Foundation</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-6"><h3 class="text-2xl font-bold mb-3">Mathematics & Statistics</h3><p class="mb-4">This is the 'science' in data science. These concepts are essential for understanding how algorithms work and for validating your results.</p><ul class="space-y-2"><li><strong>Linear Algebra:</strong> For understanding data as vectors and matrices (e.g., in Deep Learning).</li><li><strong>Calculus:</strong> Key for optimizing machine learning models (e.g., gradient descent).</li><li><strong>Probability & Statistics:</strong> The core of making inferences and quantifying uncertainty.</li></ul><p class="mt-4"><strong>Practice:</strong> Khan Academy, 3Blue1Brown (YouTube).</p></div>
+                <div class="card p-6"><h3 class="text-2xl font-bold mb-3">Programming Languages</h3><p class="mb-4">Your tools for manipulating data and building models. Python is the dominant language, with R used in academia and SQL being essential for data retrieval.</p><div class="chart-container"><canvas id="languageChart"></canvas></div><p class="mt-4"><strong>Practice:</strong> LeetCode, HackerRank, DataCamp, Codecademy.</p></div>
+            </div>
+        </section>
+
+        <section id="core-skills" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Stage 2: Mastering Core Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6"><h3 class="text-xl font-bold mb-2">Data Wrangling</h3><p>Real-world data is messy. This step involves cleaning, transforming, and structuring data. It often consumes up to 80% of a project's time. <br><strong>Tools:</strong> <span class="tech-term">Pandas</span>, <span class="tech-term">dplyr</span>.</p></div>
+                <div class="card p-6"><h3 class="text-xl font-bold mb-2">Exploratory Data Analysis (EDA)</h3><p>The art of "interviewing" your dataset. Using summary statistics and visualizations to understand its main characteristics, find patterns, and spot anomalies. <br><strong>Tools:</strong> <span class="tech-term">Pandas Profiling</span>.</p></div>
+                <div class="card p-6"><h3 class="text-xl font-bold mb-2">Data Visualization</h3><p>Telling a story with data. Creating charts and graphs to communicate findings effectively to both technical and non-technical audiences. <br><strong>Tools:</strong> <span class="tech-term">Matplotlib</span>, <span class="tech-term">Seaborn</span>, <span class="tech-term">Plotly</span>, <span class="tech-term">Tableau</span>.</p></div>
+            </div>
+        </section>
+
+        <section id="ml" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Stage 3: Diving into Machine Learning</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="card p-6"><h3 class="text-2xl font-bold mb-3">Machine Learning Concepts</h3><p class="mb-4">This is where you teach the computer to learn from data without being explicitly programmed. It's the engine behind prediction, classification, and clustering.</p><ul class="space-y-2"><li><strong>Supervised Learning:</strong> Learning from labeled data (e.g., predicting house prices from features).</li><li><strong>Unsupervised Learning:</strong> Finding hidden structures in unlabeled data (e.g., customer segmentation).</li></ul><p class="mt-4"><strong>Practice:</strong> Kaggle competitions, Scikit-learn documentation projects.</p></div>
+                <div class="card p-6"><h3 class="text-xl font-bold text-center mb-4">Common ML Tasks</h3><div class="chart-container h-80"><canvas id="mlTasksChart"></canvas></div></div>
+            </div>
+        </section>
+
+        <section id="advanced" class="bg-gray-800 text-white p-12 rounded-lg shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-10">Stage 4: Advanced Frontiers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div><h3 class="text-2xl font-bold mb-2">Deep Learning</h3><p class="text-gray-300">Using complex neural networks for tasks like image recognition and NLP. <br><strong>Tools:</strong> <span class="tech-term text-black">TensorFlow</span>, <span class="tech-term text-black">PyTorch</span>.</p></div>
+                <div><h3 class="text-2xl font-bold mb-2">Big Data</h3><p class="text-gray-300">Working with massive datasets that don't fit on one machine. <br><strong>Tools:</strong> <span class="tech-term text-black">Spark</span>, <span class="tech-term text-black">Hadoop</span>.</p></div>
+                <div><h3 class="text-2xl font-bold mb-2">Deployment (MLOps)</h3><p class="text-gray-300">Bringing models to life in a production environment. <br><strong>Tools:</strong> <span class="tech-term text-black">Docker</span>, <span class="tech-term text-black">AWS</span>, <span class="tech-term text-black">GCP</span>.</p></div>
+                <div><h3 class="text-2xl font-bold mb-2">Ethics & AI</h3><p class="text-gray-300">Understanding fairness, accountability, and transparency in models to prevent bias and build trust.</p></div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-gray-200 text-gray-600 mt-16">
+        <p>Your data science journey is a marathon of continuous learning. Embrace curiosity and start building!</p>
+    </footer>
+
+    <script>
+        const palette = {
+            primary: '#4e54c8',
+            secondary: '#8f94fb',
+            accent1: '#ff6f61',
+            accent2: '#ffb443',
+        };
+
+        const skillsetCtx = document.getElementById('skillsetChart').getContext('2d');
+        new Chart(skillsetCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Programming', 'Math & Stats', 'Machine Learning', 'Data Visualization', 'Communication', 'Business Acumen'],
+                datasets: [{
+                    label: 'Data Scientist Skillset',
+                    data: [9, 8, 9, 8, 7, 6],
+                    backgroundColor: 'rgba(78, 84, 200, 0.2)',
+                    borderColor: palette.primary,
+                    pointBackgroundColor: palette.primary,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: palette.primary
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.1)' },
+                        pointLabels: { font: { size: 14 } },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+
+        const languageCtx = document.getElementById('languageChart').getContext('2d');
+        new Chart(languageCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Python', 'SQL', 'R'],
+                datasets: [{
+                    label: 'Industry Importance',
+                    data: [95, 85, 40],
+                    backgroundColor: [palette.secondary, palette.primary, palette.accent2],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { max: 100 } }
+            }
+        });
+
+        const mlTasksCtx = document.getElementById('mlTasksChart').getContext('2d');
+        new Chart(mlTasksCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Classification', 'Regression', 'Clustering', 'Other'],
+                datasets: [{
+                    data: [45, 30, 15, 10],
+                    backgroundColor: [palette.primary, palette.secondary, '#88D8B0', '#79A9D1'],
+                    borderColor: '#fff',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+    </script>
+</body>
+</html>

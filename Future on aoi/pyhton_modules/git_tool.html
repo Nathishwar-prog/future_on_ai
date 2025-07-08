@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Guide to Git & GitHub Commands</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: 1px solid #e2e8f0; /* slate-200 */
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tag-safe { background-color: #dcfce7; color: #166534; } /* green-100, green-800 */
+        .tag-local { background-color: #e0f2fe; color: #0c4a6e; } /* sky-100, sky-800 */
+        .tag-danger { background-color: #fee2e2; color: #991b1b; } /* red-100, red-800 */
+        
+        .icon-container {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-bold text-slate-800 mb-2">Visual Git Command Guide</h1>
+            <p class="text-lg text-slate-600">A quick reference for the most essential Git & GitHub commands.</p>
+        </header>
+
+        <!-- Section: Daily Toolkit -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-slate-700 section-title">A Developer's Daily Toolkit</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- git clone -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git clone</h3>
+                            <p class="text-slate-500 mt-1">Copy a remote repository.</p>
+                        </div>
+                        <div class="icon-container bg-blue-100 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v-6m0 0l-3 3m3-3l3 3" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git clone [url]</code>
+                </div>
+
+                <!-- git status -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git status</h3>
+                            <p class="text-slate-500 mt-1">Check the state of your repo.</p>
+                        </div>
+                        <div class="icon-container bg-green-100 text-green-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git status</code>
+                </div>
+
+                <!-- git add -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git add</h3>
+                            <p class="text-slate-500 mt-1">Stage changes for commit.</p>
+                        </div>
+                        <div class="icon-container bg-green-100 text-green-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git add [file]  |  git add .</code>
+                </div>
+
+                <!-- git commit -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git commit</h3>
+                            <p class="text-slate-500 mt-1">Save staged changes locally.</p>
+                        </div>
+                        <div class="icon-container bg-green-100 text-green-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git commit -m "Your message"</code>
+                </div>
+
+                <!-- git pull -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git pull</h3>
+                            <p class="text-slate-500 mt-1">Fetch & merge remote changes.</p>
+                        </div>
+                        <div class="icon-container bg-blue-100 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git pull origin main</code>
+                </div>
+
+                <!-- git push -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git push</h3>
+                            <p class="text-slate-500 mt-1">Share local commits remotely.</p>
+                        </div>
+                         <div class="icon-container bg-blue-100 text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git push origin [branch-name]</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Branching & Integration -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-slate-700 section-title">Branching & Integration</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- git branch -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git branch</h3>
+                            <p class="text-slate-500 mt-1">Create or list branches.</p>
+                        </div>
+                        <div class="icon-container bg-purple-100 text-purple-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git branch [new-branch-name]</code>
+                </div>
+
+                <!-- git checkout -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git checkout</h3>
+                            <p class="text-slate-500 mt-1">Switch to a different branch.</p>
+                        </div>
+                        <div class="icon-container bg-purple-100 text-purple-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git checkout [branch-name]</code>
+                </div>
+
+                <!-- git merge -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git merge</h3>
+                            <p class="text-slate-500 mt-1">Combine histories of branches.</p>
+                        </div>
+                        <div class="icon-container bg-purple-100 text-purple-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-5M3 4v5h5m10 0a2 2 0 012 2v3a2 2 0 01-2 2h-3m-1-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git merge [branch-to-merge]</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Problem Solving Arsenal -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-slate-700 section-title">Problem-Solving Arsenal</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- git rebase -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git rebase</h3>
+                            <p class="text-slate-500 mt-1">Re-apply commits on a new base.</p>
+                        </div>
+                        <div class="icon-container bg-yellow-100 text-yellow-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5M5 9a7 7 0 0110.5-6L14 7" /><path stroke-linecap="round" stroke-linejoin="round" d="M20 20v-5h-5M19 15a7 7 0 01-10.5 6L10 17" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git rebase [base-branch]</code>
+                    <div class="mt-4"><span class="tag tag-local">Private Branches Only</span></div>
+                </div>
+
+                <!-- git reset -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git reset</h3>
+                            <p class="text-slate-500 mt-1">Undo commits, erasing history.</p>
+                        </div>
+                        <div class="icon-container bg-red-100 text-red-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git reset [--soft|mixed|hard]</code>
+                    <div class="mt-4"><span class="tag tag-danger">Destructive</span></div>
+                </div>
+
+                <!-- git revert -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git revert</h3>
+                            <p class="text-slate-500 mt-1">Undo a commit with a new one.</p>
+                        </div>
+                        <div class="icon-container bg-green-100 text-green-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15l-6-6m0 0l6-6m-6 6h12a6 6 0 010 12h-3" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git revert [commit-hash]</code>
+                    <div class="mt-4"><span class="tag tag-safe">Safe for Public Branches</span></div>
+                </div>
+                
+                <!-- git stash -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git stash</h3>
+                            <p class="text-slate-500 mt-1">Temporarily save changes.</p>
+                        </div>
+                        <div class="icon-container bg-indigo-100 text-indigo-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git stash | git stash pop</code>
+                    <div class="mt-4"><span class="tag tag-local">Local Workspace</span></div>
+                </div>
+
+                <!-- git cherry-pick -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git cherry-pick</h3>
+                            <p class="text-slate-500 mt-1">Apply a specific commit.</p>
+                        </div>
+                        <div class="icon-container bg-pink-100 text-pink-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path d="M11.02,7.373c0.232-0.345,0.13-0.824-0.234-1.043c-0.364-0.219-0.852-0.109-1.07,0.234L8,8.277V3c0-0.552-0.447-1-1-1S6,2.448,6,3v5.277L4.284,6.564c-0.218-0.344-0.706-0.453-1.07-0.234c-0.363,0.219-0.466,0.698-0.234,1.043l3.499,5.249C6.681,12.979,7.323,13.3,8,13.3h0.001c0.677,0,1.319-0.321,1.72-0.814L11.02,7.373z" /><path d="M15,12c-2.209,0-4,1.791-4,4c0,2.209,1.791,4,4,4s4-1.791,4-4C19,13.791,17.209,12,15,12z M15,18.5c-1.381,0-2.5-1.119-2.5-2.5s1.119-2.5,2.5-2.5s2.5,1.119,2.5,2.5S16.381,18.5,15,18.5z" /><path d="M16,12c-2.209,0-4,1.791-4,4c0,2.209,1.791,4,4,4s4-1.791,4-4C20,13.791,18.209,12,16,12z M16,18.5c-1.381,0-2.5-1.119-2.5-2.5s1.119-2.5,2.5-2.5s2.5,1.119,2.5,2.5S17.381,18.5,16,18.5z" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git cherry-pick [commit-hash]</code>
+                    <div class="mt-4"><span class="tag tag-local">For Hotfixes</span></div>
+                </div>
+
+                <!-- git reflog -->
+                <div class="card p-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">git reflog</h3>
+                            <p class="text-slate-500 mt-1">Your ultimate safety net.</p>
+                        </div>
+                        <div class="icon-container bg-red-100 text-red-600">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                    </div>
+                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git reflog</code>
+                    <div class="mt-4"><span class="tag tag-danger">Local Recovery</span></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

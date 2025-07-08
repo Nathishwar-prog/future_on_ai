@@ -1,0 +1,1270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering NumPy: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .visual-box {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            background-color: #111827; /* bg-gray-900 */
+            min-height: 50px;
+        }
+        .visual-item {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #6b7280; /* border-gray-500 */
+            color: #f9fafb; /* text-gray-50 */
+        }
+        .arrow {
+            color: #6b7280; /* text-gray-500 */
+        }
+        .tag {
+            background-color: #374151;
+            color: #a5f3fc;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #4ade80, #38bdf8, #1f2937);
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">NumPy</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for the 80/20 of numerical computing in Python.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+
+        <!-- Important & Utility Functions -->
+        <section id="other-functions" class="py-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Important Functions -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Important Functions <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+                    <p class="mt-2 text-gray-400">Frequently used to support the critical functions.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">abs()</span><span class="tag">add()</span><span class="tag">multiply()</span><span class="tag">power()</span><span class="tag">sqrt()</span><span class="tag">sin()</span><span class="tag">cos()</span><span class="tag">argmax()</span><span class="tag">argmin()</span><span class="tag">cumsum()</span><span class="tag">flatten()</span><span class="tag">ravel()</span><span class="tag">hstack()</span><span class="tag">vstack()</span><span class="tag">median()</span><span class="tag">percentile()</span><span class="tag">unique()</span><span class="tag">isnan()</span><span class="tag">isfinite()</span>
+                    </div>
+                </div>
+
+                <!-- Utility Functions -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Utility Functions <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+                    <p class="mt-2 text-gray-400">Valuable for edge cases and specific applications.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">all()</span><span class="tag">any()</span><span class="tag">ceil()</span><span class="tag">floor()</span><span class="tag">copy()</span><span class="tag">corrcoef()</span><span class="tag">eye()</span><span class="tag">diag()</span><span class="tag">full()</span><span class="tag">histogram()</span><span class="tag">interp()</span><span class="tag">polyfit()</span><span class="tag">roll()</span><span class="tag">squeeze()</span><span class="tag">savez()</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+        
+        <!-- Learning Path -->
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">Follow this path for maximum return on your learning investment.</p>
+            </div>
+            <div class="relative">
+                <!-- The connecting line -->
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Array Creation</h4>
+                        <p class="text-gray-400 text-sm">array, arange, linspace, zeros, ones</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Basic Operations</h4>
+                        <p class="text-gray-400 text-sm">sum, mean, max, min, add, multiply</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Manipulation</h4>
+                        <p class="text-gray-400 text-sm">reshape, transpose, concatenate</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Advanced Topics</h4>
+                        <p class="text-gray-400 text-sm">dot, matmul, where, I/O</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+<!-- ============ START: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+<section id="quick-reference" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+        <p class="mt-2 text-gray-400">A searchable list of all covered NumPy functions.</p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="max-w-2xl mx-auto mb-8">
+        <input type="text" id="searchInput" onkeyup="filterFunctions()" placeholder="Search for a function..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
+    </div>
+
+    <!-- Functions Table -->
+    <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table id="functionsTable" class="min-w-full text-left">
+                <thead class="bg-gray-900">
+                    <tr>
+                        <th class="p-4 font-semibold text-sky-400 font-code">Function</th>
+                        <th class="p-4 font-semibold text-sky-400">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-4">*(Note: This is a subset; NumPy has ~500+ functions total.)*</p>
+</section>
+
+<script>
+    const functionsList = [
+        { name: 'abs', desc: 'Absolute value of array elements' },
+        { name: 'add', desc: 'Element-wise addition' },
+        { name: 'all', desc: 'Test if all elements are True' },
+        { name: 'any', desc: 'Test if any elements are True' },
+        { name: 'arange', desc: 'Evenly spaced values within an interval' },
+        { name: 'argmax', desc: 'Indices of maximum values' },
+        { name: 'argmin', desc: 'Indices of minimum values' },
+        { name: 'argsort', desc: 'Indirect sort indices' },
+        { name: 'array', desc: 'Create a NumPy array' },
+        { name: 'asarray', desc: 'Convert input to an array' },
+        { name: 'average', desc: 'Weighted average' },
+        { name: 'broadcast_to', desc: 'Broadcast array to new shape' },
+        { name: 'ceil', desc: 'Ceiling of elements' },
+        { name: 'concatenate', desc: 'Join arrays along an axis' },
+        { name: 'copy', desc: 'Return a copy of an array' },
+        { name: 'corrcoef', desc: 'Correlation coefficients' },
+        { name: 'cos', desc: 'Cosine (element-wise)' },
+        { name: 'cumsum', desc: 'Cumulative sum' },
+        { name: 'diag', desc: 'Extract or construct a diagonal matrix' },
+        { name: 'dot', desc: 'Dot product of two arrays' },
+        { name: 'empty', desc: 'Uninitialized array of given shape' },
+        { name: 'exp', desc: 'Exponential (element-wise)' },
+        { name: 'eye', desc: 'Identity matrix' },
+        { name: 'fill', desc: 'Fill array with a scalar value' },
+        { name: 'flatten', desc: '1D copy of the array' },
+        { name: 'floor', desc: 'Floor of elements' },
+        { name: 'frombuffer', desc: 'Create array from buffer' },
+        { name: 'full', desc: 'Array filled with a given value' },
+        { name: 'histogram', desc: 'Compute histogram of data' },
+        { name: 'hstack', desc: 'Stack arrays horizontally' },
+        { name: 'interp', desc: '1D linear interpolation' },
+        { name: 'isfinite', desc: 'Test for finiteness' },
+        { name: 'isinf', desc: 'Test for infinity' },
+        { name: 'isnan', desc: 'Test for NaN' },
+        { name: 'linspace', desc: 'Evenly spaced numbers over a range' },
+        { name: 'loadtxt', desc: 'Load data from a text file' },
+        { name: 'log', desc: 'Natural logarithm (element-wise)' },
+        { name: 'matmul', desc: 'Matrix multiplication' },
+        { name: 'max', desc: 'Maximum along an axis' },
+        { name: 'mean', desc: 'Arithmetic mean' },
+        { name: 'median', desc: 'Median along an axis' },
+        { name: 'meshgrid', desc: 'Coordinate matrices from vectors' },
+        { name: 'min', desc: 'Minimum along an axis' },
+        { name: 'nan_to_num', desc: 'Replace NaN with zero and inf with large numbers' },
+        { name: 'ones', desc: 'Array filled with ones' },
+        { name: 'percentile', desc: 'Compute percentiles' },
+        { name: 'polyfit', desc: 'Least squares polynomial fit' },
+        { name: 'power', desc: 'Element-wise exponentiation' },
+        { name: 'prod', desc: 'Product of array elements' },
+        { name: 'random', desc: 'Random number generation' },
+        { name: 'ravel', desc: 'Flattened array (view if possible)' },
+        { name: 'repeat', desc: 'Repeat elements of an array' },
+        { name: 'reshape', desc: 'Change array shape' },
+        { name: 'roll', desc: 'Roll array elements' },
+        { name: 'round', desc: 'Round elements to decimals' },
+        { name: 'save', desc: 'Save array to a binary file' },
+        { name: 'savez', desc: 'Save multiple arrays to uncompressed .npz' },
+        { name: 'sin', desc: 'Sine (element-wise)' },
+        { name: 'sort', desc: 'Sort an array' },
+        { name: 'split', desc: 'Split array into sub-arrays' },
+        { name: 'sqrt', desc: 'Square root (element-wise)' },
+        { name: 'squeeze', desc: 'Remove single-dimensional entries' },
+        { name: 'std', desc: 'Standard deviation' },
+        { name: 'sum', desc: 'Sum of array elements' },
+        { name: 'tile', desc: 'Repeat array to make a larger array' },
+        { name: 'transpose', desc: 'Transpose matrix' },
+        { name: 'trunc', desc: 'Truncate elements' },
+        { name: 'unique', desc: 'Unique elements in an array' },
+        { name: 'var', desc: 'Variance' },
+        { name: 'vstack', desc: 'Stack arrays vertically' },
+        { name: 'where', desc: 'Return elements based on condition' },
+        { name: 'zeros', desc: 'Array filled with zeros' }
+    ];
+
+    const tableBody = document.querySelector('#functionsTable tbody');
+
+    function populateTable(functions) {
+        if (!tableBody) return;
+        tableBody.innerHTML = ''; // Clear existing rows
+        functions.forEach(func => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-gray-700';
+            row.innerHTML = `
+                <td class="p-4 font-code text-green-400">${func.name}</td>
+                <td class="p-4 text-gray-300">${func.desc}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function filterFunctions() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const filteredFunctions = functionsList.filter(func => {
+            return func.name.toLowerCase().includes(filter) || func.desc.toLowerCase().includes(filter);
+        });
+        populateTable(filteredFunctions);
+    }
+
+    // Initial population
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+         populateTable(functionsList);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => populateTable(functionsList));
+    }
+
+</script>
+<!-- ======================================================================= -->
+<!-- ============== END: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+
+        <!-- ======================================================================= -->
+<!-- ============= START: Critical Functions Section ======================= -->
+<!-- ======================================================================= -->
+<section id="critical-functions" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Critical 20 Functions <span class="text-lg font-semibold text-green-400">(80% of Use Cases)</span></h2>
+        <p class="mt-2 text-gray-400">Master these functions to handle the vast majority of your numerical tasks.</p>
+    </div>
+
+    <!-- Category: Array Creation & Initialization -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Array Creation & Initialization</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.array() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.array()</h4>
+            <p class="text-gray-400 mt-1 mb-4">The fundamental way to create an array from a Python list or tuple.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([[1, 2], [3, 4]])</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="text-center">
+                        <p class="font-code text-xs">[[1,2],[3,4]]</p>
+                        <p class="text-gray-500 text-xs">Python List</p>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-2 gap-1">
+                            <div class="visual-item p-2 text-center rounded">1</div>
+                            <div class="visual-item p-2 text-center rounded">2</div>
+                            <div class="visual-item p-2 text-center rounded">3</div>
+                            <div class="visual-item p-2 text-center rounded">4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.arange() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.arange()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Create an array with evenly spaced values within a given interval (by step).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.arange(0, 10, 2)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded flex justify-around items-center">
+                    <div class="visual-item p-2 rounded">0</div>
+                    <div class="visual-item p-2 rounded">2</div>
+                    <div class="visual-item p-2 rounded">4</div>
+                    <div class="visual-item p-2 rounded">6</div>
+                    <div class="visual-item p-2 rounded">8</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.linspace() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.linspace()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Create an array with a specific number of evenly spaced points.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.linspace(0, 10, 5)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded flex justify-around items-center">
+                    <div class="visual-item p-2 rounded">0.0</div>
+                    <div class="visual-item p-2 rounded">2.5</div>
+                    <div class="visual-item p-2 rounded">5.0</div>
+                    <div class="visual-item p-2 rounded">7.5</div>
+                    <div class="visual-item p-2 rounded">10.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.zeros() / np.ones() / np.empty() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.zeros() / ones()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Create efficiently initialized placeholder arrays of a given shape.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">zeros_arr = np.zeros((2, 3))</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (zeros):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="grid grid-cols-3 gap-1">
+                        <div class="visual-item p-2 text-center rounded">0</div>
+                        <div class="visual-item p-2 text-center rounded">0</div>
+                        <div class="visual-item p-2 text-center rounded">0</div>
+                        <div class="visual-item p-2 text-center rounded">0</div>
+                        <div class="visual-item p-2 text-center rounded">0</div>
+                        <div class="visual-item p-2 text-center rounded">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.random.* -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.random.rand()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Generate arrays of random numbers (e.g., from a uniform distribution).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">rand_arr = np.random.rand(2, 3)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                 <div class="visual-box p-2 rounded">
+                    <div class="grid grid-cols-3 gap-1">
+                        <div class="visual-item p-2 text-center rounded text-xs">0.12</div>
+                        <div class="visual-item p-2 text-center rounded text-xs">0.98</div>
+                        <div class="visual-item p-2 text-center rounded text-xs">0.54</div>
+                        <div class="visual-item p-2 text-center rounded text-xs">0.33</div>
+                        <div class="visual-item p-2 text-center rounded text-xs">0.67</div>
+                        <div class="visual-item p-2 text-center rounded text-xs">0.09</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Array Manipulation -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Array Manipulation & Shaping</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.reshape() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.reshape()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Change the shape of an array without changing its data.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.arange(6).reshape((2, 3))</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">4</div><div class="visual-item p-2 rounded">5</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-3 gap-1">
+                            <div class="visual-item p-2 text-center rounded">0</div><div class="visual-item p-2 text-center rounded">1</div><div class="visual-item p-2 text-center rounded">2</div>
+                            <div class="visual-item p-2 text-center rounded">3</div><div class="visual-item p-2 text-center rounded">4</div><div class="visual-item p-2 text-center rounded">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.concatenate() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.concatenate()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Join a sequence of arrays along an existing axis.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">a = np.array([[1],[2]])
+b = np.array([[3],[4]])
+np.concatenate((a, b), axis=0)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (axis=0):</p>
+                <div class="flex items-center justify-center space-x-2">
+                    <div class="flex flex-col space-y-2">
+                        <div class="visual-box p-1 rounded"><div class="visual-item px-2 py-1 rounded">1</div><div class="visual-item px-2 py-1 mt-1 rounded">2</div></div>
+                        <div class="visual-box p-1 rounded"><div class="visual-item px-2 py-1 rounded">3</div><div class="visual-item px-2 py-1 mt-1 rounded">4</div></div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item px-2 py-1 rounded">1</div><div class="visual-item px-2 py-1 mt-1 rounded">2</div><div class="visual-item px-2 py-1 mt-1 rounded bg-sky-600 border-sky-400">3</div><div class="visual-item px-2 py-1 mt-1 rounded bg-sky-600 border-sky-400">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.transpose() or .T -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.transpose() or .T</h4>
+            <p class="text-gray-400 mt-1 mb-4">Swap the axes of an array (rows become columns and vice-versa).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([[1,2],[3,4]])
+arr.T</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-2 gap-1">
+                            <div class="visual-item p-2 text-center rounded">1</div><div class="visual-item p-2 text-center rounded bg-sky-600 border-sky-400">2</div>
+                            <div class="visual-item p-2 text-center rounded bg-green-600 border-green-400">3</div><div class="visual-item p-2 text-center rounded">4</div>
+                        </div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-2 gap-1">
+                           <div class="visual-item p-2 text-center rounded">1</div><div class="visual-item p-2 text-center rounded bg-green-600 border-green-400">3</div>
+                            <div class="visual-item p-2 text-center rounded bg-sky-600 border-sky-400">2</div><div class="visual-item p-2 text-center rounded">4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Statistics, Math & Logic -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Statistics, Math & Logic</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.sum() / mean() / max() / min() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">sum() / mean() / max()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Calculate aggregate statistics across the entire array or an axis.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 5, 2, 8])
+arr.sum() # Result: 16</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (sum):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">5</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">8</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">16</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.dot() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.dot()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Perform dot product of two arrays (essential for linear algebra).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">a = np.array([1, 2])
+b = np.array([3, 4])
+np.dot(a, b) # Result: 11</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization: (1*3) + (2*4)</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="flex flex-col space-y-2">
+                        <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div></div>
+                        <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">4</div></div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">11</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.matmul() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.matmul()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Perform matrix product of two arrays.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">a = np.ones((2,3))
+b = np.ones((3,2))
+np.matmul(a,b)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-2">
+                    <div class="text-xs text-center">2x3</div>
+                    <div class="visual-box p-1 rounded">...</div>
+                    <div class="text-2xl font-bold">X</div>
+                    <div class="text-xs text-center">3x2</div>
+                    <div class="visual-box p-1 rounded">...</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="text-xs text-center">2x2</div>
+                    <div class="visual-box p-1 rounded">...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.sort() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.sort()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Return a sorted copy of an array.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([5, 1, 8, 2])
+np.sort(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">5</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">8</div><div class="visual-item p-2 rounded">2</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">5</div><div class="visual-item p-2 rounded">8</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.where() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.where()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Return elements chosen from x or y depending on a condition.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.arange(5)
+np.where(arr > 2, 'big', 'small')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="text-center">
+                    <div class="visual-box p-1 rounded flex space-x-1 justify-center">
+                        <div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">3</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">4</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&darr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1 text-xs justify-center">
+                        <div class="visual-item p-2 rounded">s</div><div class="visual-item p-2 rounded">s</div><div class="visual-item p-2 rounded">s</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">b</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">b</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category: Data I/O -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">4. Data Input/Output</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- Card: np.loadtxt() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.loadtxt()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Load data from a text file, with each row as a new array entry.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">data = np.loadtxt('data.txt')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        <p class="text-gray-500 text-xs mt-1">data.txt</p>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-2 gap-1">
+                            <div class="visual-item p-2 text-center rounded">1</div><div class="visual-item p-2 text-center rounded">2</div>
+                            <div class="visual-item p-2 text-center rounded">3</div><div class="visual-item p-2 text-center rounded">4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.save() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.save()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Save an array to a binary file in NumPy `.npy` format.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1,2,3])
+np.save('my_array.npy', arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                     <div class="visual-box p-2 rounded">
+                        <div class="flex space-x-1">
+                            <div class="visual-item p-2 text-center rounded">1</div>
+                            <div class="visual-item p-2 text-center rounded">2</div>
+                            <div class="visual-item p-2 text-center rounded">3</div>
+                        </div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" /><path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
+                        <p class="text-gray-500 text-xs mt-1">my_array.npy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Critical Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+         <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Critical?</h3>
+         <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+            <p class="text-gray-300"><strong class="text-green-400">Core Functionality:</strong> They handle array creation, math, statistics, and I/O — the absolute bedrock of most NumPy use cases.</p>
+            <p class="text-gray-300"><strong class="text-green-400">Broad Application:</strong> These functions are indispensable in data science, machine learning, and scientific computing. For example, <code class="font-code text-sm bg-gray-700 px-1 rounded">np.dot()</code> and <code class="font-code text-sm bg-gray-700 px-1 rounded">np.matmul()</code> are the engines behind neural networks and other advanced algorithms.</p>
+         </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Critical Functions Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============ START: Important Functions Section ======================= -->
+<!-- ======================================================================= -->
+<section id="important-functions" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Important 30 Functions <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+        <p class="mt-2 text-gray-400">Frequently used to support critical functions and handle specialized tasks.</p>
+    </div>
+
+    <!-- Category: Element-wise Operations -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Element-wise & Mathematical Operations</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.add() / abs() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">add() / sqrt() / power()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Perform element-wise mathematical operations on arrays.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 4, 9])
+np.sqrt(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (sqrt):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">4</div><div class="visual-item p-2 rounded">9</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">1.</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">2.</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">3.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.log() / exp() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">log() / exp()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Compute element-wise natural logarithm or exponential.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 2, 3])
+np.exp(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (exp):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1 text-xs">
+                        <div class="visual-item p-2 rounded">2.71</div><div class="visual-item p-2 rounded">7.38</div><div class="visual-item p-2 rounded">20.08</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: np.sin() / cos() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">sin() / cos()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Apply trigonometric functions to each element in an array.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([0, np.pi/2])
+np.sin(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (sin):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1 text-xs">
+                        <div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1.57</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Shaping & Stacking -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Shaping, Stacking & Splitting</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.flatten() / ravel() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">flatten() / ravel()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Collapse a multi-dimensional array into a single dimension.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([[1,2],[3,4]])
+arr.flatten()</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-2 gap-1">
+                            <div class="visual-item p-2 text-center rounded">1</div><div class="visual-item p-2 text-center rounded">2</div>
+                            <div class="visual-item p-2 text-center rounded">3</div><div class="visual-item p-2 text-center rounded">4</div>
+                        </div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.hstack() / vstack() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">hstack() / vstack()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Stack arrays together either horizontally or vertically.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">a = np.array([1,2])
+b = np.array([3,4])
+np.hstack((a,b))</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (hstack):</p>
+                <div class="flex items-center justify-center space-x-2">
+                    <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div></div>
+                    <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">4</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded bg-sky-600 border-sky-400">3</div><div class="visual-item p-2 rounded bg-sky-600 border-sky-400">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.split() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.split()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Split an array into multiple sub-arrays.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.arange(6)
+np.split(arr, 3)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                 <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">4</div><div class="visual-item p-2 rounded">5</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="flex space-x-2">
+                        <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1</div></div>
+                        <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div></div>
+                        <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">4</div><div class="visual-item p-2 rounded">5</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: np.tile() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.tile()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Construct a new array by repeating an existing one.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 2])
+np.tile(arr, 3)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                 <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded bg-sky-600 border-sky-400">1</div><div class="visual-item p-2 rounded bg-sky-600 border-sky-400">2</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">1</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: np.diag() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.diag()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Extract a diagonal or construct a diagonal array.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.arange(9).reshape((3,3))
+np.diag(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-3 gap-1">
+                            <div class="visual-item p-2 text-center rounded bg-green-600 border-green-400">0</div><div class="visual-item p-2 text-center rounded">1</div><div class="visual-item p-2 text-center rounded">2</div>
+                            <div class="visual-item p-2 text-center rounded">3</div><div class="visual-item p-2 text-center rounded bg-green-600 border-green-400">4</div><div class="visual-item p-2 text-center rounded">5</div>
+                            <div class="visual-item p-2 text-center rounded">6</div><div class="visual-item p-2 text-center rounded">7</div><div class="visual-item p-2 text-center rounded bg-green-600 border-green-400">8</div>
+                        </div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">4</div><div class="visual-item p-2 rounded">8</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.meshgrid() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.meshgrid()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Create coordinate matrices from coordinate vectors for plotting.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">x = [0,1]; y = [0,1]
+xv, yv = np.meshgrid(x, y)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                 <div class="flex items-center justify-center space-x-2 text-xs">
+                    <div class="text-center">x=[0,1]<br/>y=[0,1]</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="text-center">
+                        xv = [[0,1],[0,1]]
+                        <div class="visual-box p-1 rounded mt-1">
+                           <div class="grid grid-cols-2 gap-1"><div class="visual-item p-1 rounded">0</div><div class="visual-item p-1 rounded">1</div><div class="visual-item p-1 rounded">0</div><div class="visual-item p-1 rounded">1</div></div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        yv = [[0,0],[1,1]]
+                        <div class="visual-box p-1 rounded mt-1">
+                           <div class="grid grid-cols-2 gap-1"><div class="visual-item p-1 rounded">0</div><div class="visual-item p-1 rounded">0</div><div class="visual-item p-1 rounded">1</div><div class="visual-item p-1 rounded">1</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category: Statistics & Analysis -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Statistics, Analysis & Uniqueness</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.argmax() / argmin() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">argmax() / argmin()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Find the indices (positions) of the maximum or minimum values.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([5, 1, 9, 2])
+arr.argmax() # Result: 2</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (argmax):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1 relative">
+                        <div class="visual-item p-2 rounded">5</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">9</div><div class="visual-item p-2 rounded">2</div>
+                        <div class="absolute -bottom-4 text-xs text-gray-400 flex w-full justify-around"><span>0</span><span>1</span><span>2</span><span>3</span></div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.cumsum() / prod() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">cumsum() / prod()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Calculate the cumulative sum or product of array elements.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 2, 3, 4])
+arr.cumsum()</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (cumsum):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">4</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">6</div><div class="visual-item p-2 rounded">10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.std() / var() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">std() / var()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Compute the standard deviation or variance of the data.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 2, 3, 4])
+arr.std() # Result: 1.118</code></pre>
+             <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (std):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">4</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">1.118</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.percentile() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.percentile()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Compute the q-th percentile of the data along a specified axis.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.arange(1, 101)
+np.percentile(arr, 50) # Median</code></pre>
+             <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (50th Percentile):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1 text-xs">
+                        <div class="visual-item p-1 rounded">1</div><div class="visual-item p-1 rounded">...</div><div class="visual-item p-1 rounded bg-green-600 border-green-400">50</div><div class="visual-item p-1 rounded">...</div><div class="visual-item p-1 rounded">100</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">50.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.unique() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">np.unique()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Find the sorted unique elements of an array.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 2, 2, 3, 1])
+np.unique(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div><div class="visual-item p-2 rounded">1</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Important Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+         <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Important?</h3>
+         <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+            <p class="text-gray-300"><strong class="text-green-400">Enhance Critical Functions:</strong> They provide the building blocks for more complex operations. For example, <code class="font-code text-sm bg-gray-700 px-1 rounded">std()</code> (standard deviation) relies on the result of <code class="font-code text-sm bg-gray-700 px-1 rounded">mean()</code>.</p>
+            <p class="text-gray-300"><strong class="text-green-400">Enable Specialized Tasks:</strong> These functions are crucial for specific domains. For instance, <code class="font-code text-sm bg-gray-700 px-1 rounded">meshgrid()</code> is essential for creating 2D and 3D plots, and <code class="font-code text-sm bg-gray-700 px-1 rounded">unique()</code> is vital for data cleaning and analysis.</p>
+         </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============= END: Important Functions Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============= START: Utility Functions Section ======================== -->
+<!-- ======================================================================= -->
+<section id="utility-functions" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Utility Functions <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+        <p class="mt-2 text-gray-400">Valuable for edge cases, convenience, or specific applications.</p>
+    </div>
+
+    <!-- Category: Boolean, Checks & Rounding -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Boolean, Checks & Rounding</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.all() / any() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">all() / any()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Check if all or any elements in an array evaluate to True.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([True, True, False])
+arr.any() # Result: True</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (any):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1 text-xs">
+                        <div class="visual-item p-2 rounded">T</div><div class="visual-item p-2 rounded">T</div><div class="visual-item p-2 rounded bg-rose-600 border-rose-400">F</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">True</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.isnan() / isinf() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">isnan() / isinf()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Create a boolean mask to identify NaN (Not a Number) or infinity.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, np.nan, 3])
+np.isnan(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (isnan):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded bg-rose-600 border-rose-400">NaN</div><div class="visual-item p-2 rounded">3</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1 text-xs">
+                        <div class="visual-item p-2 rounded">F</div><div class="visual-item p-2 rounded bg-green-600 border-green-400">T</div><div class="visual-item p-2 rounded">F</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: np.ceil() / floor() / round() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">ceil() / floor() / round()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Perform element-wise rounding to the ceiling, floor, or nearest integer.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1.1, 2.9])
+np.ceil(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (ceil):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1.1</div><div class="visual-item p-2 rounded">2.9</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">2.</div><div class="visual-item p-2 rounded">3.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Data Generation & Manipulation -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Data Generation & Manipulation</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.full() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">full()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Create a new array of a given shape, filled with a specific value.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.full((2, 3), 7)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="text-center text-gray-400">Shape: (2,3)<br/>Fill: 7</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded">
+                        <div class="grid grid-cols-3 gap-1">
+                            <div class="visual-item p-2 text-center rounded">7</div><div class="visual-item p-2 text-center rounded">7</div><div class="visual-item p-2 text-center rounded">7</div>
+                            <div class="visual-item p-2 text-center rounded">7</div><div class="visual-item p-2 text-center rounded">7</div><div class="visual-item p-2 text-center rounded">7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.repeat() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">repeat()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Repeat elements of an array a given number of times.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([1, 2])
+np.repeat(arr, 3)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.roll() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">roll()</h4>
+            <p class="text-gray-400 mt-1 mb-4">"Roll" array elements along an axis; elements that roll off one end reappear on the other.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.arange(4)
+np.roll(arr, 1)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                 <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div><div class="visual-item p-2 rounded bg-rose-600 border-rose-400">3</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded flex space-x-1">
+                        <div class="visual-item p-2 rounded bg-rose-600 border-rose-400">3</div><div class="visual-item p-2 rounded">0</div><div class="visual-item p-2 rounded">1</div><div class="visual-item p-2 rounded">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: np.squeeze() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">squeeze()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Remove single-dimensional entries from the shape of an array.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">arr = np.array([[[1, 2, 3]]])
+np.squeeze(arr)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                 <div class="flex items-center justify-center space-x-4">
+                    <div class="text-center">
+                        <div class="visual-box p-1 rounded">...</div>
+                        <p class="text-gray-500 text-xs mt-1">Shape: (1, 1, 3)</p>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="text-center">
+                        <div class="visual-box p-1 rounded">...</div>
+                        <p class="text-gray-500 text-xs mt-1">Shape: (3,)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: np.average() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">average()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Compute the weighted average along a specified axis.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">data = [10, 20]
+weights = [1, 3]
+np.average(data, weights=weights)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization: (10*1 + 20*3) / 4</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="text-center">
+                        <div class="visual-box p-1 rounded flex space-x-1"><div class="visual-item p-2 rounded">10</div><div class="visual-item p-2 rounded">20</div></div>
+                        <p class="text-gray-500 text-xs mt-1">Weights: [1, 3]</p>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">17.5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.corrcoef() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">corrcoef()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Return Pearson product-moment correlation coefficients.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">x = [1,2,3]; y = [3,5,7]
+np.corrcoef(x, y)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                 <div class="flex items-center justify-center space-x-4 text-xs">
+                    <div class="text-center">x=[1,2,3]<br/>y=[3,5,7]</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="text-center">
+                        <p>Correlation Matrix</p>
+                        <div class="visual-box p-1 rounded mt-1">
+                           <div class="grid grid-cols-2 gap-1"><div class="visual-item p-1 rounded">1.</div><div class="visual-item p-1 rounded">1.</div><div class="visual-item p-1 rounded">1.</div><div class="visual-item p-1 rounded">1.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category: Advanced Analysis -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Advanced Analysis & Interop</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: np.histogram() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">histogram()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Compute the histogram of a set of data.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">data = [1, 2, 1, 3, 1]
+np.histogram(data, bins=3)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded flex space-x-1">...</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded flex items-end space-x-1 h-20">
+                        <div class="visual-item w-4 bg-green-600" style="height: 80%"></div>
+                        <div class="visual-item w-4 bg-green-600" style="height: 30%"></div>
+                        <div class="visual-item w-4 bg-green-600" style="height: 30%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.interp() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">interp()</h4>
+            <p class="text-gray-400 mt-1 mb-4">One-dimensional linear interpolation.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">np.interp(2.5, [1,3], [5,9])</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="text-center text-xs text-gray-400">
+                        x=2.5<br/>xp=[1, 3]<br/>fp=[5, 9]
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">7.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: np.polyfit() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">polyfit()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Fit a polynomial to a set of data points.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">x=[1,2,3]; y=[2,4.1,5.9]
+np.polyfit(x, y, 1)</code></pre>
+             <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded h-20 w-24 relative">
+                        <div class="absolute visual-item rounded-full w-2 h-2" style="left: 10%; bottom: 20%;"></div>
+                        <div class="absolute visual-item rounded-full w-2 h-2" style="left: 45%; bottom: 50%;"></div>
+                        <div class="absolute visual-item rounded-full w-2 h-2" style="left: 80%; bottom: 75%;"></div>
+                        <div class="absolute w-full h-0.5 bg-rose-500" style="top: 55%; transform: rotate(-20deg);"></div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="text-center text-xs">Coefficients<br/>[slope, intercept]</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Utility Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+         <h3 class="text-2xl font-semibold text-rose-400 mb-4">Why Are These "Utility"?</h3>
+         <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+            <p class="text-gray-300"><strong class="text-green-400">Niche Use Cases:</strong> Many of these functions solve specific problems that don't appear in every project. For example, <code class="font-code text-sm bg-gray-700 px-1 rounded">polyfit()</code> is mainly for curve fitting, and <code class="font-code text-sm bg-gray-700 px-1 rounded">interp()</code> is for interpolation tasks.</p>
+            <p class="text-gray-300"><strong class="text-green-400">Convenience & Optimization:</strong> Some are helpers that offer a convenient syntax (<code class="font-code text-sm bg-gray-700 px-1 rounded">ceil()</code>, <code class="font-code text-sm bg-gray-700 px-1 rounded">floor()</code>) or are used for performance optimization in rare cases, like interfacing with low-level memory buffers (<code class="font-code text-sm bg-gray-700 px-1 rounded">frombuffer()</code>).</p>
+         </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Utility Functions Section ========================= -->
+<!-- ======================================================================= -->
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Created to make NumPy mastery accessible and visual.</p>
+    </footer>
+
+</body>
+</html>

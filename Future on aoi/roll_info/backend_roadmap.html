@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoGraphic about Frontend vs Backend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfdfd;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#1a1a1a] text-white text-center py-16 px-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-3">Frontend vs. Backend</h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Your 2025 guide to choosing a path and mastering the skills for a career in web development.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] mb-4">Choose Your Side of the Web</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-lg">Every website and application you use is built on two fundamental pillars: the Frontend, which is everything you see and interact with, and the Backend, the powerful engine working behind the scenes. Both are critical, high-demand fields. This guide will help you understand each path to make an informed choice for your developer journey.</p>
+        </section>
+
+        <section id="comparison" class="mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-[#ff4136]">
+                    <h3 class="text-3xl font-bold text-[#ff4136] mb-4">Frontend Developer</h3>
+                    <p class="text-lg text-gray-600 mb-4">The Architect of User Experience</p>
+                    <p>As a frontend developer, you build the visual and interactive elements of a website. You are responsible for bringing designs to life and ensuring a smooth, intuitive, and accessible experience for every user. Your work is what people see, touch, and engage with directly.</p>
+                    <ul class="mt-6 space-y-2 text-gray-700">
+                        <li class="flex items-start"><span class="text-[#ff4136] mr-2 font-bold">✓</span><span>Builds user interfaces (UI)</span></li>
+                        <li class="flex items-start"><span class="text-[#ff4136] mr-2 font-bold">✓</span><span>Focuses on user experience (UX)</span></li>
+                        <li class="flex items-start"><span class="text-[#ff4136] mr-2 font-bold">✓</span><span>Works with visual design and interactivity</span></li>
+                        <li class="flex items-start"><span class="text-[#ff4136] mr-2 font-bold">✓</span><span>Ensures web accessibility and responsiveness</span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-[#0074d9]">
+                    <h3 class="text-3xl font-bold text-[#0074d9] mb-4">Backend Developer</h3>
+                    <p class="text-lg text-gray-600 mb-4">The Engineer of Data and Logic</p>
+                    <p>As a backend developer, you build and maintain the server, application, and database that power the frontend. You handle data processing, user authentication, and business logic. Your work is the invisible foundation that makes everything possible.</p>
+                     <ul class="mt-6 space-y-2 text-gray-700">
+                        <li class="flex items-start"><span class="text-[#0074d9] mr-2 font-bold">✓</span><span>Manages servers and databases</span></li>
+                        <li class="flex items-start"><span class="text-[#0074d9] mr-2 font-bold">✓</span><span>Builds and maintains APIs</span></li>
+                        <li class="flex items-start"><span class="text-[#0074d9] mr-2 font-bold">✓</span><span>Handles business logic and user authentication</span></li>
+                        <li class="flex items-start"><span class="text-[#0074d9] mr-2 font-bold">✓</span><span>Ensures security and scalability</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-20">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] text-center mb-10">Core Technology Stacks</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-10">While both paths require strong problem-solving skills, their core technologies are distinct. This chart highlights the essential languages and frameworks you'll need to master for each role.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="chart-container h-96 md:h-[450px]">
+                    <canvas id="skillsRadarChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">This radar chart visualizes the relative importance of different technology areas for each role. Notice the frontend's focus on UI frameworks and the backend's emphasis on server-side languages and databases.</p>
+            </div>
+        </section>
+
+        <section id="frameworks" class="mb-20">
+             <h2 class="text-3xl font-bold text-[#1a1a1a] text-center mb-10">The Framework Battleground (2025)</h2>
+             <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-10">Frameworks are essential for modern development, providing structure and efficiency. The ecosystem for both frontend and backend is vast, but a few key players dominate the US job market.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#ff4136]">Top Frontend Frameworks</h3>
+                    <div class="chart-container h-80">
+                        <canvas id="frontendFrameworksChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">React continues to be the most in-demand framework, followed closely by Vue and Angular, which are popular in enterprise environments.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#0074d9]">Top Backend Frameworks</h3>
+                    <div class="chart-container h-80">
+                        <canvas id="backendFrameworksChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">Node.js (with Express) is dominant for its speed and JavaScript ecosystem, while Python's Django and Java's Spring Boot are powerhouses for complex applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="salary" class="mb-20">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] text-center mb-10">Career Payoff: Salary Comparison (US, 2025)</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-10">Both frontend and backend development are lucrative career paths. Historically, backend roles have often had a slight edge in salary due to the complexity of managing data and infrastructure, but the demand for expert frontend developers has narrowed this gap significantly.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="chart-container h-96 md:h-[450px]">
+                    <canvas id="salaryComparisonChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">This chart shows that while both roles offer excellent earning potential, senior backend roles can reach higher salary bands. However, top-tier frontend developers who master complex frameworks and UX principles are also highly compensated.</p>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-[#1a1a1a] text-gray-400 mt-16">
+        <p>Choose your path, start learning, and build the web of tomorrow.</p>
+    </footer>
+
+    <script>
+        const palette = {
+            frontend: '#ff4136',
+            backend: '#0074d9',
+            neutral: '#1a1a1a',
+            light: '#fdfdfd',
+            accent: '#ffdc00'
+        };
+
+        function processLabel(label) {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const skillsRadarCtx = document.getElementById('skillsRadarChart').getContext('2d');
+        new Chart(skillsRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['HTML/CSS/JS', 'UI Frameworks (React, Vue)', 'API Design & Dev', 'Databases (SQL/NoSQL)', 'Server-Side Languages', 'DevOps & Cloud'],
+                datasets: [{
+                    label: 'Frontend Developer',
+                    data: [10, 9, 4, 3, 2, 4],
+                    backgroundColor: 'rgba(255, 65, 54, 0.2)',
+                    borderColor: palette.frontend,
+                    pointBackgroundColor: palette.frontend,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: palette.frontend
+                }, {
+                    label: 'Backend Developer',
+                    data: [3, 2, 9, 9, 10, 8],
+                    backgroundColor: 'rgba(0, 116, 217, 0.2)',
+                    borderColor: palette.backend,
+                    pointBackgroundColor: palette.backend,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: palette.backend
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Relative Skill Importance',
+                        font: { size: 18, weight: 'bold'},
+                        color: palette.neutral
+                    },
+                     tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.1)' },
+                        pointLabels: { font: { size: 12 } },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+
+        const frontendFrameworksCtx = document.getElementById('frontendFrameworksChart').getContext('2d');
+        new Chart(frontendFrameworksCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['React', 'Vue', 'Angular'],
+                datasets: [{
+                    label: 'Market Share',
+                    data: [55, 25, 20],
+                    backgroundColor: [palette.frontend, '#ff851b', '#ffdc00'],
+                    borderColor: palette.light,
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+        
+        const backendFrameworksCtx = document.getElementById('backendFrameworksChart').getContext('2d');
+        new Chart(backendFrameworksCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Node.js (Express)', 'Python (Django/Flask)', 'Java (Spring)'],
+                datasets: [{
+                    label: 'Market Share',
+                    data: [45, 35, 20],
+                    backgroundColor: [palette.backend, '#39cccc', '#3d9970'],
+                    borderColor: palette.light,
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const salaryComparisonCtx = document.getElementById('salaryComparisonChart').getContext('2d');
+        new Chart(salaryComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Entry-Level', 'Mid-Level', 'Senior-Level'],
+                datasets: [
+                    {
+                        label: 'Frontend Salary (USD)',
+                        data: [95000, 125000, 155000],
+                        backgroundColor: palette.frontend,
+                        borderColor: 'rgba(255, 65, 54, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Backend Salary (USD)',
+                        data: [100000, 135000, 170000],
+                        backgroundColor: palette.backend,
+                        borderColor: 'rgba(0, 116, 217, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Average Annual Salary by Role and Experience',
+                        font: { size: 18, weight: 'bold' },
+                        color: palette.neutral
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                           label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                         ticks: {
+                            callback: function(value, index, ticks) {
+                                return '$' + (value / 1000) + 'k';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Annual Salary (USD)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

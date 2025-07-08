@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Resources Section</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Deep space blue */
+            color: #ffffff;
+        }
+
+                /* Styles for the navigation bar */
+                .header-nav {
+            background-color: rgba(0, 0, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 246, 255, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            color: #a0a0c0; /* Lighter text for contrast */
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 246, 255, 0.8);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00f6ff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .special-link {
+            border: 1px solid #00f6ff;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .special-link:hover {
+            background-color: #00f6ff;
+            color: #00001a;
+            box-shadow: 0 0 20px #00f6ff;
+            text-shadow: none;
+        }
+        .special-link:hover::after {
+            width: 0; /* Don't show underline on button hover */
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 246, 255, 0.9), 0 0 25px rgba(255, 0, 255, 0.5);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .resource-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+        }
+        
+        .blog-tag {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+        
+        .category-pill {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Reusable Header and Navigation Section -->
+    <header class="header-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Site Title -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-2xl font-bold text-white text-glow">
+                        Future on AI
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:block">
+                    <nav class="ml-10 flex items-baseline space-x-4">
+                        <a href="pages/home.html" class="nav-link">Home</a>
+                        <a href="/pages/about.html" class="nav-link">About</a>
+                        <a href="/pages/course.html" class="nav-link">Courses</a>
+                        <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link">Infographics</a>
+                        <a href="/pages/resources.html" class="nav-link">Resources</a>
+                        <a href="/pages/contact.html" class="nav-link">Contact</a>
+                        <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link">Student ID Offers</a>
+                    </nav>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Icon for menu open -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Icon for menu close (hidden by default) -->
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/pages/home.html" class="nav-link block text-center py-2">Home</a>
+                <a href="/pages/about.html" class="nav-link block text-center py-2">About</a>
+                <a href="/pages/course.html" class="nav-link block text-center py-2">Courses</a>
+                <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link block text-center py-2">Infographics</a>
+                <a href="/pages/resources.html" class="nav-link block text-center py-2">Resources</a>
+                <a href="/pages/contact.html" class="nav-link block text-center py-2">Contact</a>
+                <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link block text-center mx-auto mt-2 w-fit">Student ID Offers</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="resources" class="page relative min-h-screen">
+        <div class="floating-elements">
+            <div class="floating-element w-16 h-16 bg-blue-400 rounded-full"></div>
+            <div class="floating-element w-12 h-12 bg-purple-400 rounded-full"></div>
+            <div class="floating-element w-20 h-20 bg-pink-400 rounded-full"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 py-20">
+            <!-- Header Section -->
+            <div class="text-center mb-20">
+                <h2 class="text-6xl font-bold mb-6 animate-on-scroll">
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Resources Hub</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">
+                    Discover our comprehensive collection of AI resources, tutorials, and tools to accelerate your learning journey
+                </p>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <div class="text-center animate-on-scroll">
+                    <div class="stats-counter">150+</div>
+                    <p class="text-gray-600 text-lg">Free Resources</p>
+                </div>
+                <div class="text-center animate-on-scroll" style="transition-delay: 150ms;">
+                    <div class="stats-counter">50+</div>
+                    <p class="text-gray-600 text-lg">Blog Articles</p>
+                </div>
+                <div class="text-center animate-on-scroll" style="transition-delay: 300ms;">
+                    <div class="stats-counter">25+</div>
+                    <p class="text-gray-600 text-lg">Video Tutorials</p>
+                </div>
+            </div>
+            
+            <!-- Featured Content -->
+            <div class="mb-20">
+                <h3 class="text-4xl font-bold mb-4 animate-on-scroll">Featured Content</h3>
+                <p class="text-gray-600 mb-12 text-lg animate-on-scroll">Handpicked resources to jumpstart your AI journey</p>
+                
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll">
+                        <span class="blog-tag text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Featured</span>
+                        <h4 class="text-2xl font-bold mb-4">The Complete Guide to Transformer Architecture</h4>
+                        <p class="text-gray-600 mb-6">An in-depth exploration of the revolutionary architecture that powers modern AI systems like GPT and BERT.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">12 min read</span>
+                                <span class="text-sm text-gray-500">•</span>
+                                <span class="text-sm text-gray-500">Advanced</span>
+                            </div>
+                            <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg card-hover animate-on-scroll" style="transition-delay: 150ms;">
+                            <span class="category-pill text-gray-800 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block">Tutorial</span>
+                            <h4 class="text-lg font-bold mb-2">Building Your First Neural Network</h4>
+                            <p class="text-gray-600 text-sm mb-4">Step-by-step guide for beginners</p>
+                            <a href="#" class="text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors">Start Learning →</a>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-lg card-hover animate-on-scroll" style="transition-delay: 300ms;">
+                            <span class="category-pill text-gray-800 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block">Case Study</span>
+                            <h4 class="text-lg font-bold mb-2">AI in Healthcare: Real-World Applications</h4>
+                            <p class="text-gray-600 text-sm mb-4">Success stories and implementations</p>
+                            <a href="#" class="text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Blog Section -->
+            <div class="mb-20">
+                <div class="flex items-center justify-between mb-12">
+                    <h3 class="text-4xl font-bold animate-on-scroll">Latest from Our Blog</h3>
+                    <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors animate-on-scroll">View All Posts →</a>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">The Ethics of AI: A Deep Dive</h4>
+                        <p class="text-gray-600 mb-4">Exploring the complex ethical questions surrounding artificial intelligence and its impact on society.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">5 min read</span>
+                            <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll" style="transition-delay: 150ms;">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Getting Started with PyTorch</h4>
+                        <p class="text-gray-600 mb-4">A beginner-friendly guide to one of the most popular deep learning frameworks in the industry.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">8 min read</span>
+                            <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll" style="transition-delay: 300ms;">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Optimizing Machine Learning Models</h4>
+                        <p class="text-gray-600 mb-4">Best practices and techniques for improving the performance of your ML models.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">6 min read</span>
+                            <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Free Resources Section -->
+            <div class="mb-20">
+                <h3 class="text-4xl font-bold mb-4 animate-on-scroll">Free Resources</h3>
+                <p class="text-gray-600 mb-12 text-lg animate-on-scroll">Download our comprehensive collection of AI tools, guides, and templates</p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="resource-card p-6 rounded-xl shadow-lg flex justify-between items-center card-hover animate-on-scroll">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">AI Glossary & Cheat Sheets</h4>
+                                <p class="text-gray-600 text-sm">Essential terms and quick reference guides</p>
+                                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-2 inline-block">PDF • 2.5 MB</span>
+                            </div>
+                        </div>
+                        <button class="download-btn text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all pulse-animation" onclick="downloadResource('ai-glossary.pdf')">
+                            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                    
+                    <div class="resource-card p-6 rounded-xl shadow-lg flex justify-between items-center card-hover animate-on-scroll" style="transition-delay: 150ms;">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Webinar: The Future of Generative AI</h4>
+                                <p class="text-gray-600 text-sm">Expert insights into the next generation of AI</p>
+                                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-2 inline-block">MP4 • 1.2 GB</span>
+                            </div>
+                        </div>
+                        <button class="download-btn text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all" onclick="downloadResource('webinar-generative-ai.mp4')">
+                            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H15M9 10V9a2 2 0 012-2h2a2 2 0 012 2v1M9 10v5a2 2 0 002 2h2a2 2 0 002-2v-5m-6 0h6"></path>
+                            </svg>
+                            Watch Now
+                        </button>
+                    </div>
+                    
+                    <div class="resource-card p-6 rounded-xl shadow-lg flex justify-between items-center card-hover animate-on-scroll" style="transition-delay: 300ms;">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Machine Learning Templates</h4>
+                                <p class="text-gray-600 text-sm">Ready-to-use Jupyter notebooks and code samples</p>
+                                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-2 inline-block">ZIP • 15 MB</span>
+                            </div>
+                        </div>
+                        <button class="download-btn text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all" onclick="downloadResource('ml-templates.zip')">
+                            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                    
+                    <div class="resource-card p-6 rounded-xl shadow-lg flex justify-between items-center card-hover animate-on-scroll" style="transition-delay: 450ms;">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">AI Dataset Collection</h4>
+                                <p class="text-gray-600 text-sm">Curated datasets for training and testing</p>
+                                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-2 inline-block">CSV • 500 MB</span>
+                            </div>
+                        </div>
+                        <button class="download-btn text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all" onclick="downloadResource('ai-datasets.zip')">
+                            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Newsletter Section -->
+            <div class="gradient-bg rounded-2xl p-12 text-center text-white animate-on-scroll">
+                <h3 class="text-3xl font-bold mb-4">Stay Updated</h3>
+                <p class="text-xl mb-8 opacity-90">Get the latest AI insights and resources delivered to your inbox</p>
+                <div class="flex max-w-md mx-auto">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 rounded-l-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
+                    <button class="bg-white text-gray-800 px-8 py-3 rounded-r-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Animate on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Resource URLs - Replace these with your actual file URLs
+        const resourceUrls = {
+            'ai-glossary.pdf': 'https://example.com/downloads/ai-glossary.pdf',
+            'webinar-generative-ai.mp4': 'https://youtube.com/watch?v=example-video-id',
+            'ml-templates.zip': 'https://example.com/downloads/ml-templates.zip',
+            'ai-datasets.zip': 'https://example.com/downloads/ai-datasets.zip'
+        };
+        
+        // Download resource function
+        function downloadResource(filename) {
+            const button = event.target.closest('button');
+            const originalText = button.innerHTML;
+            
+            // Show loading state
+            button.innerHTML = `
+                <svg class="w-5 h-5 inline-block mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                Loading...
+            `;
+            button.disabled = true;
+            
+            // Handle video/tutorial links (redirect)
+            if (filename.includes('webinar') || filename.includes('tutorial')) {
+                setTimeout(() => {
+                    window.open(resourceUrls[filename], '_blank');
+                    
+                    button.innerHTML = `
+                        <svg class="w-5 h-5 inline-block mr-2 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        Opened!
+                    `;
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }, 2000);
+                }, 1000);
+                return;
+            }
+            
+            // Handle file downloads
+            const url = resourceUrls[filename];
+            if (url) {
+                // Create download link
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                
+                setTimeout(() => {
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    button.innerHTML = `
+                        <svg class="w-5 h-5 inline-block mr-2 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Downloaded!
+                    `;
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }, 2000);
+                }, 1000);
+            } else {
+                // Fallback for missing URLs
+                setTimeout(() => {
+                    button.innerHTML = `
+                        <svg class="w-5 h-5 inline-block mr-2 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Error
+                    `;
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }, 2000);
+                }, 1000);
+            }
+        }
+        
+        // Initial animation
+        animateOnScroll();
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = mobileMenuButton.querySelector('svg:first-child');
+        const closeIcon = mobileMenuButton.querySelector('svg:last-child');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
