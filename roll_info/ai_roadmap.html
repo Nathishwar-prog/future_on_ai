@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoGraphic about AI Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0074D9;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-[#003B73] text-white text-center py-12 px-4">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-2">Your 2025 Roadmap to Becoming an AI Engineer</h1>
+        <p class="text-lg md:text-xl text-[#BEE3DB]">A visual guide to launching your AI career in India's booming tech landscape.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="intro" class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-[#003B73] mb-4">The AI Revolution is Here</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-lg">The field of Artificial Intelligence is experiencing unprecedented growth. In India, the demand for skilled AI Engineers is skyrocketing, making it one of the most promising career paths. This roadmap breaks down the journey into clear, actionable phases to guide you from novice to a proficient AI professional in 2025.</p>
+            <div class="mt-8 bg-white rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold text-[#0074D9] mb-3">Indian AI Market Projection (2025)</h3>
+                <p class="text-5xl font-extrabold text-[#003B73]">$7.8 Billion</p>
+                <p class="text-gray-600 mt-2">With a projected Compound Annual Growth Rate (CAGR) of 20%, the opportunity is massive.</p>
+            </div>
+        </section>
+
+        <section id="phase1" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#003B73] text-center mb-8">Phase 1: Building the Foundation (Months 1-3)</h2>
+             <div class="w-full p-6 bg-white rounded-lg shadow-md mb-8">
+                <p class="text-gray-700 text-center text-lg mb-6">Every great structure needs a solid foundation. This initial phase focuses on the non-negotiable core skills. Mastering these three areas—Programming, Mathematics, and Data Structures—is the first critical step and will set you up for success in the more complex topics ahead.</p>
+                <div class="chart-container h-96 md:h-[450px] mx-auto" style="max-width: 800px;">
+                    <canvas id="foundationSkillsChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">This chart shows the core pillars of your initial learning. Each is equally important and forms the bedrock of your AI knowledge. Your goal is to build a strong, balanced proficiency across all three.</p>
+            </div>
+        </section>
+        
+        <section id="phase2" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#003B73] text-center mb-8">Phase 2: Core AI & Machine Learning (Months 4-6)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-[#0074D9] mb-4">Machine Learning Fundamentals</h3>
+                    <p class="text-gray-700 mb-4">This is where you start building intelligent models. You'll learn the difference between supervised and unsupervised learning and work with classic algorithms that solve a wide range of problems, from prediction to clustering.</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><span class="font-semibold">Supervised Learning:</span> Teach models with labeled data (e.g., predicting house prices).</li>
+                        <li><span class="font-semibold">Unsupervised Learning:</span> Find hidden patterns in unlabeled data (e.g., grouping customers).</li>
+                        <li><span class="font-semibold">Model Evaluation:</span> Learn how to measure your model's performance accurately.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                     <div class="chart-container h-80">
+                        <canvas id="learningTypesChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">A conceptual breakdown of the two primary types of machine learning you will master in this phase.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#003B73] text-center mb-12">The 12-Month Journey at a Glance</h2>
+            <div class="relative">
+                <div class="border-l-4 border-[#0074D9] absolute h-full top-0 left-1/2 -ml-0.5"></div>
+                <div class="space-y-12">
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2 flex justify-end">
+                            <div class="bg-white p-6 rounded-lg shadow-lg w-11/12">
+                                <h3 class="font-bold text-xl text-[#0074D9]">Months 1-3</h3>
+                                <p class="text-gray-700">Establish Foundational Skills: Python, Math, and Data Structures.</p>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 bg-[#0074D9] rounded-full absolute left-1/2 -translate-x-1/2 flex items-center justify-center text-white font-bold">1</div>
+                        <div class="w-1/2"></div>
+                    </div>
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2"></div>
+                        <div class="w-12 h-12 bg-[#0074D9] rounded-full absolute left-1/2 -translate-x-1/2 flex items-center justify-center text-white font-bold">2</div>
+                        <div class="w-1/2 flex justify-start">
+                             <div class="bg-white p-6 rounded-lg shadow-lg w-11/12">
+                                <h3 class="font-bold text-xl text-[#0074D9]">Months 4-6</h3>
+                                <p class="text-gray-700">Dive into Core AI & Machine Learning concepts and Deep Learning basics.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2 flex justify-end">
+                             <div class="bg-white p-6 rounded-lg shadow-lg w-11/12">
+                                <h3 class="font-bold text-xl text-[#0074D9]">Months 7-9</h3>
+                                <p class="text-gray-700">Choose a Specialization: NLP, Computer Vision, or Reinforcement Learning.</p>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 bg-[#0074D9] rounded-full absolute left-1/2 -translate-x-1/2 flex items-center justify-center text-white font-bold">3</div>
+                        <div class="w-1/2"></div>
+                    </div>
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2"></div>
+                         <div class="w-12 h-12 bg-[#0074D9] rounded-full absolute left-1/2 -translate-x-1/2 flex items-center justify-center text-white font-bold">4</div>
+                        <div class="w-1/2 flex justify-start">
+                             <div class="bg-white p-6 rounded-lg shadow-lg w-11/12">
+                                <h3 class="font-bold text-xl text-[#0074D9]">Months 10-12+</h3>
+                                <p class="text-gray-700">Build Your Portfolio, gain practical experience, and start your job search.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gemini-explorer" class="mb-16 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-[#003B73] text-center mb-4">✨ AI Career Explorer</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-8">Select a specialization and your experience level to get a personalized career snapshot, powered by the Future on AI. Discover potential roles, key skills, and even sample interview questions.</p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-6">
+                <select id="specialization-select" class="w-full md:w-auto p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#0074D9]">
+                    <option value="Natural Language Processing">Natural Language Processing</option>
+                    <option value="Computer Vision">Computer Vision</option>
+                    <option value="Reinforcement Learning">Reinforcement Learning</option>
+                    <option value="General Machine Learning">General Machine Learning</option>
+                </select>
+                <select id="experience-select" class="w-full md:w-auto p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#0074D9]">
+                    <option value="Entry-Level (0-2 years)">Entry-Level (0-2 years)</option>
+                    <option value="Mid-Level (2-5 years)">Mid-Level (2-5 years)</option>
+                    <option value="Senior-Level (5+ years)">Senior-Level (5+ years)</option>
+                </select>
+                <button id="generate-insight-btn" class="w-full md:w-auto bg-[#0074D9] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#005aab] transition duration-300 shadow-md">Generate Insight</button>
+            </div>
+
+            <div id="gemini-output" class="mt-8 p-6 border border-gray-200 rounded-lg bg-gray-50 min-h-[200px]">
+                <div id="loader" class="hidden mx-auto loader"></div>
+                <div id="insight-content" class="text-gray-800 prose">
+                    <p class="text-gray-500 text-center">Your personalized career insights will appear here.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="phase6" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#003B73] text-center mb-8">Career & Salary Outlook in India (2025)</h2>
+             <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-8">The demand for AI talent in India is robust, with competitive salaries that grow significantly with experience. This chart illustrates the typical salary progression you can expect as you advance in your AI engineering career in major tech hubs.</p>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="chart-container h-96 md:h-[450px]">
+                    <canvas id="salaryChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">Salary ranges are estimates for 2025 in Lakhs Per Annum (LPA) and can vary by company, location, and specific skills. The trend clearly shows a high reward for expertise and experience.</p>
+            </div>
+        </section>
+        
+        <section id="softskills" class="text-center bg-[#BEE3DB] p-8 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-[#003B73] mb-4">Beyond the Code: Essential Soft Skills</h2>
+            <p class="max-w-3xl mx-auto text-gray-800 text-lg mb-8">Technical prowess alone isn't enough. In the collaborative and rapidly evolving field of AI, soft skills are what distinguish a good engineer from a great one. These abilities ensure your technical work has a real-world impact.</p>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-3">
+                    <span class="text-2xl">💡</span>
+                    <span class="font-semibold text-gray-700">Problem-Solving</span>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-3">
+                    <span class="text-2xl">📢</span>
+                    <span class="font-semibold text-gray-700">Communication</span>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-3">
+                    <span class="text-2xl">🤝</span>
+                    <span class="font-semibold text-gray-700">Collaboration</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-3">
+                    <span class="text-2xl">🔄</span>
+                    <span class="font-semibold text-gray-700">Lifelong Learning</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-6 bg-[#003B73] text-white mt-16">
+        <p>&copy; 2025 Future on AI. Start your journey today!</p>
+    </footer>
+
+    <script>
+        const brilliantBlues = {
+            primary: '#0074D9',
+            secondary: '#003B73',
+            accent: '#7FDBFF',
+            light: '#BEE3DB',
+            dark: '#001f3f',
+        };
+
+        function processLabel(label) {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const foundationSkillsCtx = document.getElementById('foundationSkillsChart').getContext('2d');
+        new Chart(foundationSkillsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Programming (Python)', 'Mathematics & Statistics', 'Data Structures & Algorithms'].map(processLabel),
+                datasets: [{
+                    label: 'Importance (1-10 Scale)',
+                    data: [10, 10, 10],
+                    backgroundColor: [brilliantBlues.primary, brilliantBlues.secondary, brilliantBlues.accent],
+                    borderColor: [brilliantBlues.dark, brilliantBlues.dark, brilliantBlues.dark],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Foundational Skill Pillars',
+                        font: { size: 18, weight: 'bold'},
+                        color: brilliantBlues.dark,
+                        padding: { top: 10, bottom: 20 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: {
+                           stepSize: 2
+                        },
+                        title: {
+                            display: true,
+                            text: 'Proficiency Target'
+                        }
+                    }
+                }
+            }
+        });
+
+        const learningTypesCtx = document.getElementById('learningTypesChart').getContext('2d');
+        new Chart(learningTypesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Supervised Learning', 'Unsupervised Learning'],
+                datasets: [{
+                    label: 'Learning Types',
+                    data: [65, 35],
+                    backgroundColor: [brilliantBlues.primary, brilliantBlues.accent],
+                    borderColor: ['#ffffff'],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Focus Areas in ML Fundamentals',
+                         font: { size: 16 },
+                         color: brilliantBlues.dark
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+        new Chart(salaryCtx, {
+            type: 'line',
+            data: {
+                labels: ['Entry-Level (0-2 Yrs)', 'Mid-Level (2-5 Yrs)', 'Senior-Level (5+ Yrs)'],
+                datasets: [{
+                    label: 'Average Low End (LPA)',
+                    data: [5, 12, 25],
+                    borderColor: brilliantBlues.primary,
+                    backgroundColor: 'rgba(0, 116, 217, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: 'Average High End (LPA)',
+                    data: [12, 25, 80],
+                    borderColor: brilliantBlues.secondary,
+                    backgroundColor: 'rgba(0, 59, 115, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Expected Salary Growth (in ₹ Lakhs Per Annum)',
+                        font: { size: 18, weight: 'bold' },
+                        color: brilliantBlues.dark
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Salary in LPA (₹)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Experience Level'
+                        }
+                    }
+                }
+            }
+        });
+
+        const generateBtn = document.getElementById('generate-insight-btn');
+        const specializationSelect = document.getElementById('specialization-select');
+        const experienceSelect = document.getElementById('experience-select');
+        const insightContent = document.getElementById('insight-content');
+        const loader = document.getElementById('loader');
+
+        generateBtn.addEventListener('click', async () => {
+            const specialization = specializationSelect.value;
+            const experience = experienceSelect.value;
+            
+            insightContent.innerHTML = '';
+            loader.classList.remove('hidden');
+
+            const prompt = `
+                As an expert AI career coach in India, provide a career snapshot for an AI Engineer with the following profile:
+                - Specialization: ${specialization}
+                - Experience Level: ${experience}
+
+                Please structure your response in Markdown with the following sections:
+                
+                ### Likely Job Roles
+                List 3-4 specific job titles this person could target.
+                
+                ### Key Technical Skills to Master
+                List the top 5-7 most important technical skills, frameworks, or tools for this profile.
+                
+                ### Sample Interview Questions
+                Provide 2 technical questions and 1 behavioral question suitable for this level.
+            `;
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                let text = 'No content generated. Please try again.';
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                  text = result.candidates[0].content.parts[0].text;
+                }
+                
+                let htmlContent = text
+                    .replace(/### (.*)/g, '<h3 class="text-xl font-bold text-[#0074D9] mt-4 mb-2">$1</h3>')
+                    .replace(/\* \*(.*)\* \*/g, '<strong>$1</strong>')
+                    .replace(/\* (.*)/g, '<li class="ml-5 list-disc">$1</li>')
+                    .replace(/\n/g, '<br>');
+
+                insightContent.innerHTML = htmlContent;
+
+            } catch (error) {
+                console.error("Error fetching from Gemini API:", error);
+                insightContent.innerHTML = '<p class="text-red-500 text-center">Sorry, something went wrong. Please try again later.</p>';
+            } finally {
+                loader.classList.add('hidden');
+            }
+        });
+
+    </script>
+</body>
+</html>

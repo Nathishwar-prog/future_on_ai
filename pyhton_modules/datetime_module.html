@@ -1,0 +1,976 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Python's Datetime & Time: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .visual-box {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            background-color: #111827; /* bg-gray-900 */
+            min-height: 50px;
+        }
+        .visual-item {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #6b7280; /* border-gray-500 */
+            color: #f9fafb; /* text-gray-50 */
+        }
+        .arrow {
+            color: #6b7280; /* text-gray-500 */
+        }
+        .tag {
+            background-color: #374151;
+            color: #a5f3fc;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #60a5fa, #a78bfa, #1f2937);
+            margin: 4rem 0;
+        }
+        /* General Body and Font Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111827; /* Dark background for the page */
+    color: #d1d5db; /* Light gray text color */
+}
+
+.font-code {
+    font-family: 'Source Code Pro', monospace; /* Monospaced font for code snippets */
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #4f46e5, #14b8a6); /* Gradient for titles */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Card Layout and Styling */
+.card {
+    background-color: #1f2937; /* Darker card background */
+    border: 1px solid #374151; /* Subtle border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+    display: flex;
+    flex-direction: column; /* Stacks visual and content vertically */
+    overflow: hidden; /* Ensures content respects border radius */
+}
+
+.card:hover {
+    transform: translateY(-8px); /* Lifts the card on hover */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1); /* Adds depth on hover */
+}
+
+/* Visual Container for SVGs */
+.card-visual {
+    min-height: 144px; /* 9rem - ensures consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111827; /* Matches the main page background */
+    border-bottom: 1px solid #374151; /* Separates visual from content */
+}
+
+/* Content Area within Cards */
+.card-content {
+    padding: 1rem; /* p-4 */
+    flex-grow: 1; /* Allows content to fill available space */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content pre {
+    background-color: #111827; /* Dark background for code blocks */
+    padding: 0.75rem; /* p-3 */
+    margin-top: 0.75rem; /* mt-3 */
+    border-radius: 0.375rem; /* rounded-md */
+    overflow-x: auto; /* Allows horizontal scrolling for long code lines */
+    font-size: 0.75rem; /* text-xs */
+    color: #e5e7eb; /* Lighter text for code */
+}
+
+/* Animation Keyframes */
+@keyframes draw-line {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scale-up {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+/* Animation Utility Classes */
+.animate-draw-line {
+    stroke-dasharray: 1000; /* A large value to cover any path length */
+    stroke-dashoffset: 1000; /* Hides the line initially */
+    animation: draw-line 1.5s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease-in forwards;
+}
+
+.animate-scale-up {
+    transform-origin: center; /* Ensures scaling happens from the center */
+    animation: scale-up 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; /* Bouncy effect */
+}
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">Datetime</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for handling dates and times in Python.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- ======================================================================= -->
+        <!-- ============= START: Critical Functions Section ======================= -->
+        <!-- ======================================================================= -->
+        <section id="critical-functions" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">The Critical 5 Functions <span class="text-lg font-semibold text-green-400">(80% of Use Cases)</span></h2>
+                <p class="mt-2 text-gray-400">Master these to handle the vast majority of your date and time tasks.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card: datetime.now() -->
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">datetime.now()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Get the current local date and time.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">from datetime import datetime
+now = datetime.now()</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded">
+                                <div class="visual-item p-2 text-center rounded text-xs font-code">2025-07-08 19:56:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: datetime.strptime() -->
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">datetime.strptime()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Parse a string into a datetime object using a format code.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">dt_obj = datetime.strptime(
+  "2025-07-08", "%Y-%m-%d")</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="visual-box p-2 rounded">
+                                <div class="visual-item p-2 text-center rounded text-xs font-code">"2025-07-08"</div>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded">
+                                <div class="visual-item p-2 text-center rounded text-xs font-code">datetime(2025, 7, 8)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: datetime.strftime() -->
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">datetime.strftime()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Format a datetime object into a string using a format code.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">now.strftime("%A, %B %d")</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="visual-box p-2 rounded">
+                                <div class="visual-item p-2 text-center rounded text-xs font-code">datetime(...)</div>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded">
+                                <div class="visual-item p-2 text-center rounded text-xs font-code">"Tuesday, July 08"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: timedelta -->
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">timedelta</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Represents a duration; used for date arithmetic.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">from datetime import timedelta
+future = now + timedelta(days=10)</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                         <div class="flex items-center justify-center space-x-2">
+                            <div class="visual-box p-2 rounded text-xs text-center">now</div>
+                            <div class="text-2xl font-bold text-green-400">+</div>
+                            <div class="visual-box p-2 rounded text-xs text-center">10 days</div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs text-center font-code">2025-07-18...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: time.sleep() -->
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">time.sleep()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Suspend execution of the current thread for a given number of seconds.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">import time
+time.sleep(2) # Pauses for 2s</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="text-center">
+                                <p class="font-code text-sm">Code runs...</p>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded flex items-center justify-center h-12">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full animate-ping"></div>
+                            </div>
+                             <span class="arrow text-2xl font-bold">&rarr;</span>
+                             <div class="text-center">
+                                <p class="font-code text-sm">...resumes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- ============== END: Critical Functions Section ======================== -->
+        <!-- ======================================================================= -->
+
+        <div class="section-divider"></div>
+
+        <!-- Learning Path -->
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">Follow this path for maximum return on your learning investment.</p>
+            </div>
+            <div class="relative">
+                <!-- The connecting line -->
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Getting Current Time</h4>
+                        <p class="text-gray-400 text-sm">now, utcnow, time.time</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">String Formatting</h4>
+                        <p class="text-gray-400 text-sm">strftime, strptime</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Date Arithmetic</h4>
+                        <p class="text-gray-400 text-sm">timedelta, timestamp</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Timezones</h4>
+                        <p class="text-gray-400 text-sm">pytz, astimezone, tzinfo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ======================================================================= -->
+        <!-- ============ START: Quick Reference Section =========================== -->
+        <!-- ======================================================================= -->
+        <section id="quick-reference" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+                <p class="mt-2 text-gray-400">A searchable list of common datetime and time functions.</p>
+            </div>
+
+            <!-- Search Input -->
+            <div class="max-w-2xl mx-auto mb-8">
+                <input type="text" id="searchInput" onkeyup="filterFunctions()" placeholder="Search for a function..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
+            </div>
+
+            <!-- Functions Table -->
+            <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table id="functionsTable" class="min-w-full text-left">
+                        <thead class="bg-gray-900">
+                            <tr>
+                                <th class="p-4 font-semibold text-sky-400 font-code">Function</th>
+                                <th class="p-4 font-semibold text-sky-400">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-700">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+<script>
+    const functionsList = [
+        // datetime.datetime
+        { name: 'datetime.now()', desc: 'Current local date and time.' },
+        { name: 'datetime.utcnow()', desc: 'Current UTC date and time (naive). Use now(timezone.utc) instead.' },
+        { name: 'datetime.strptime()', desc: 'Parse a string into a datetime object.' },
+        { name: 'datetime.strftime()', desc: 'Format a datetime object into a string.' },
+        { name: 'datetime.fromtimestamp()', desc: 'Create a datetime from a POSIX timestamp.' },
+        { name: 'datetime.timestamp()', desc: 'Convert a datetime object to a POSIX timestamp.' },
+        { name: 'datetime.combine()', desc: 'Combine a date object and a time object.' },
+        { name: 'datetime.replace()', desc: 'Return a new datetime with specified fields replaced.' },
+        { name: 'datetime.astimezone()', desc: 'Convert datetime to a specific timezone.' },
+        { name: 'datetime.isoformat()', desc: 'Return the date in ISO 8601 format.' },
+        { name: 'datetime.weekday()', desc: 'Return the day of the week as an integer (Monday=0).' },
+        { name: 'datetime.isoweekday()', desc: 'Return the day of the week as an integer (Monday=1).' },
+        // datetime.date
+        { name: 'date.today()', desc: 'Current local date.' },
+        { name: 'date.fromisoformat()', desc: 'Create a date from an ISO 8601 string.' },
+        // datetime.time
+        { name: 'time.isoformat()', desc: 'Return the time in ISO 8601 format.' },
+        // datetime.timedelta
+        { name: 'timedelta()', desc: 'Represents a duration between two dates or times.' },
+        { name: 'timedelta.total_seconds()', desc: 'Return the total number of seconds in the duration.' },
+        // time module
+        { name: 'time.sleep()', desc: 'Pause program execution for a specified number of seconds.' },
+        { name: 'time.time()', desc: 'Return the current time as a POSIX timestamp (seconds since the Epoch).' },
+        { name: 'time.perf_counter()', desc: 'Return a high-resolution performance counter for measuring short durations.' },
+        { name: 'time.gmtime()', desc: 'Convert a timestamp to a struct_time in UTC.' },
+        { name: 'time.localtime()', desc: 'Convert a timestamp to a struct_time in the local timezone.' },
+        { name: 'time.mktime()', desc: 'Convert a struct_time into a timestamp.' },
+    ];
+
+    const tableBody = document.querySelector('#functionsTable tbody');
+
+    function populateTable(functions) {
+        if (!tableBody) return;
+        tableBody.innerHTML = ''; // Clear existing rows
+        functions.forEach(func => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-gray-700';
+            row.innerHTML = `
+                <td class="p-4 font-code text-green-400">${func.name}</td>
+                <td class="p-4 text-gray-300">${func.desc}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function filterFunctions() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const filteredFunctions = functionsList.filter(func => {
+            return func.name.toLowerCase().includes(filter) || func.desc.toLowerCase().includes(filter);
+        });
+        populateTable(filteredFunctions);
+    }
+
+    // Initial population
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+         populateTable(functionsList);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => populateTable(functionsList));
+    }
+
+</script>
+        <!-- ======================================================================= -->
+        <!-- ============== END: Quick Reference Section =========================== -->
+        <!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Complete Function Inventory Section ================ -->
+<!-- ======================================================================= -->
+<section id="complete-function-inventory">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Complete Function Inventory <span class="gradient-text">(datetime & time)</span></h2>
+        <p class="mt-2 text-lg text-gray-400">A visual guide to Python's core time-handling modules.</p>
+    </div>
+
+    <!-- datetime Module Functions -->
+    <div class="mb-16">
+        <h3 class="text-3xl font-semibold text-white mb-8 border-b-2 border-indigo-500 pb-2">datetime Module Functions</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            <!-- datetime.now() -->
+            <div class="card">
+                <div class="card-visual">
+                    <svg class="w-24 h-24 text-indigo-400" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"/>
+                        <line x1="50" y1="50" x2="50" y2="25" stroke="currentColor" stroke-width="4" transform-origin="center">
+                            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s" repeatCount="indefinite" />
+                        </line>
+                        <line x1="50" y1="50" x2="75" y2="50" stroke="currentColor" stroke-width="4" transform-origin="center">
+                             <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="60s" repeatCount="indefinite" />
+                        </line>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h4 class="font-bold font-code text-teal-300">datetime.now()</h4>
+                    <p class="text-gray-400 text-sm mt-1 flex-grow">Returns the current local datetime (timezone-aware if possible).</p>
+                    <pre><code class="font-code">from datetime import datetime
+# Returns: 2025-07-08 19:53:00
+now = datetime.now()</code></pre>
+                </div>
+            </div>
+
+            <!-- datetime.strftime() -->
+            <div class="card">
+                <div class="card-visual">
+                    <svg class="w-32 h-24" viewBox="0 0 120 60">
+                        <g class="animate-fade-in">
+                            <rect x="10" y="10" width="40" height="40" fill="#1f2937" stroke="#d1d5db" rx="3"/>
+                            <text x="25" y="35" font-size="12" fill="#d1d5db">8</text>
+                            <path d="M55 30 L 75 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                            <text x="80" y="35" font-size="8" fill="#d1d5db" class="animate-fade-in" style="animation-delay: 1s;">'Tue, 19:53'</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h4 class="font-bold font-code text-teal-300">datetime.strftime()</h4>
+                    <p class="text-gray-400 text-sm mt-1 flex-grow">Formats a datetime object into a string.</p>
+                    <pre><code class="font-code">now.strftime("%a, %H:%M")</code></pre>
+                </div>
+            </div>
+
+            <!-- datetime.strptime() -->
+            <div class="card">
+                <div class="card-visual">
+                    <svg class="w-32 h-24" viewBox="0 0 120 60">
+                         <g class="animate-fade-in">
+                            <text x="5" y="35" font-size="10" fill="#d1d5db" class="animate-fade-in">"2025-07-08"</text>
+                            <path d="M65 30 L 85 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                            <g class="animate-fade-in" style="animation-delay: 1s;">
+                                <rect x="80" y="10" width="40" height="40" fill="#1f2937" stroke="#d1d5db" rx="3"/>
+                                <text x="95" y="35" font-size="12" fill="#d1d5db">8</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h4 class="font-bold font-code text-teal-300">datetime.strptime()</h4>
+                    <p class="text-gray-400 text-sm mt-1 flex-grow">Parses a string into a datetime object.</p>
+                    <pre><code class="font-code">datetime.strptime("2025-07-08", "%Y-%m-%d")</code></pre>
+                </div>
+            </div>
+
+            <!-- timedelta() -->
+            <div class="card">
+                <div class="card-visual">
+                    <svg class="w-32 h-24" viewBox="0 0 100 60">
+                        <line x1="10" y1="30" x2="90" y2="30" stroke="#4b5563" stroke-width="1.5"/>
+                        <circle cx="20" cy="30" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay: 0.2s;"/>
+                        <circle cx="80" cy="30" r="3" fill="#14b8a6" class="animate-scale-up" style="animation-delay: 0.4s;"/>
+                        <path d="M23 30 C 30 20, 70 20, 77 30" stroke="#d1d5db" stroke-width="2" fill="none" class="animate-draw-line" style="animation-delay: 0.8s;"/>
+                        <text x="50" y="18" text-anchor="middle" font-size="7" fill="#d1d5db">+10 days</text>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h4 class="font-bold font-code text-teal-300">timedelta()</h4>
+                    <p class="text-gray-400 text-sm mt-1 flex-grow">Represents a duration for time arithmetic.</p>
+                    <pre><code class="font-code">from datetime import timedelta
+deadline = now + timedelta(days=10)</code></pre>
+                </div>
+            </div>
+            
+            <!-- Other datetime functions... -->
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">date(Y, M, D)</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">date()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Creates a date object (year, month, day).</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">time(H, M, S)</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">time()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Creates a time object (hour, minute, second).</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">datetime(...)</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">datetime()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Creates a full datetime object.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">combine(d, t)</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">datetime.combine()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Combines a date and a time object.</p></div>
+            </div>
+             <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="8" fill="#d1d5db" class="font-code">fromisoformat('...')</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">datetime.fromisoformat()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Parses an ISO 8601 string.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">fromtimestamp(...)</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">datetime.fromtimestamp()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Converts a POSIX timestamp.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">.timestamp()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">datetime.timestamp()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Converts to a POSIX timestamp.</p></div>
+            </div>
+             <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">.today()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">datetime.today()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Current local datetime (naive).</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- time Module Functions -->
+    <div>
+        <h3 class="text-3xl font-semibold text-white mb-8 border-b-2 border-indigo-500 pb-2">time Module Functions</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            <!-- time.time() -->
+            <div class="card">
+                <div class="card-visual">
+                    <svg class="w-24 h-24 text-green-400" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"/>
+                        <line x1="50" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="3">
+                            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite" />
+                        </line>
+                        <text x="50" y="60" text-anchor="middle" font-size="9" fill="currentColor" class="font-code">1751998380.0</text>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h4 class="font-bold font-code text-teal-300">time.time()</h4>
+                    <p class="text-gray-400 text-sm mt-1 flex-grow">Returns current POSIX timestamp (for benchmarking).</p>
+                    <pre><code class="font-code">import time
+start_time = time.time()</code></pre>
+                </div>
+            </div>
+
+            <!-- time.sleep() -->
+            <div class="card">
+                <div class="card-visual">
+                    <svg class="w-24 h-24 text-sky-400" viewBox="0 0 100 100">
+                        <g class="animate-fade-in">
+                            <text x="30" y="40" font-size="20" style="animation-delay: 0.2s;">Z</text>
+                            <text x="45" y="55" font-size="20" style="animation-delay: 0.6s;">z</text>
+                            <text x="60" y="70" font-size="20" style="animation-delay: 1s;">z</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h4 class="font-bold font-code text-teal-300">time.sleep()</h4>
+                    <p class="text-gray-400 text-sm mt-1 flex-grow">Suspends execution for a given number of seconds.</p>
+                    <pre><code class="font-code">time.sleep(5) # Pause for 5s</code></pre>
+                </div>
+            </div>
+            
+            <!-- Other time functions... -->
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">gmtime()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">time.gmtime()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Converts timestamp to UTC struct_time.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">localtime()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">time.localtime()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Converts timestamp to local struct_time.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">mktime()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">time.mktime()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Converts struct_time to a timestamp.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">ctime()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">time.ctime()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">Converts a timestamp to a string.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">perf_counter()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">time.perf_counter()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">High-resolution performance counter.</p></div>
+            </div>
+             <div class="card">
+                <div class="card-visual"><svg class="w-32 h-24" viewBox="0 0 120 60"><text x="60" y="35" text-anchor="middle" font-size="10" fill="#d1d5db" class="font-code">monotonic()</text></svg></div>
+                <div class="card-content"><h4 class="font-bold font-code text-teal-300">time.monotonic()</h4><p class="text-gray-400 text-sm mt-1 flex-grow">A clock that cannot go backward.</p></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Complete Function Inventory Section ================= -->
+<!-- ======================================================================= -->
+
+
+
+<!-- ======================================================================= -->
+<!-- ========= START: Critical Datetime & Time Functions Section ========= -->
+<!-- ======================================================================= -->
+<section id="critical-datetime-functions">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Critical Datetime & Time Functions <span class="gradient-text">(High Impact)</span></h2>
+        <p class="mt-2 text-lg text-gray-400">The essential functions for handling time-related operations in Python.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- datetime.now() / datetime.today() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-indigo-400" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <line x1="50" y1="50" x2="50" y2="25" stroke="currentColor" stroke-width="4" transform-origin="center">
+                        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="50" y1="50" x2="75" y2="50" stroke="currentColor" stroke-width="4" transform-origin="center">
+                         <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="60s" repeatCount="indefinite" />
+                    </line>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">datetime.now() / .today()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Essential for getting the current time, used in logging, timestamps, and scheduling.</p>
+                <pre><code class="font-code">from datetime import datetime
+now = datetime.now()</code></pre>
+            </div>
+        </div>
+
+        <!-- datetime.strftime() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 120 60">
+                    <g class="animate-fade-in">
+                        <rect x="10" y="10" width="40" height="40" fill="#1f2937" stroke="#d1d5db" rx="3"/>
+                        <rect x="15" y="10" width="30" height="8" fill="#d1d5db"/>
+                        <text x="25" y="35" font-size="12" fill="#d1d5db">8</text>
+                        <path d="M55 30 L 75 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <text x="80" y="35" font-size="10" fill="#d1d5db" class="animate-fade-in" style="animation-delay: 1s;">'Jul 08, 2025'</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">datetime.strftime()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Critical for formatting dates into human-readable strings (e.g., logs, reports).</p>
+                <pre><code class="font-code">now.strftime("%b %d, %Y")</code></pre>
+            </div>
+        </div>
+        
+        <!-- datetime.strptime() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 120 60">
+                     <g class="animate-fade-in">
+                        <text x="5" y="35" font-size="10" fill="#d1d5db" class="animate-fade-in">"2025-07-08"</text>
+                        <path d="M65 30 L 85 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <g class="animate-fade-in" style="animation-delay: 1s;">
+                            <rect x="80" y="10" width="40" height="40" fill="#1f2937" stroke="#d1d5db" rx="3"/>
+                            <rect x="85" y="10" width="30" height="8" fill="#d1d5db"/>
+                            <text x="95" y="35" font-size="12" fill="#d1d5db">8</text>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">datetime.strptime()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Key for parsing strings into datetime objects (e.g., user input, file parsing).</p>
+                <pre><code class="font-code">datetime.strptime("2025-07-08", "%Y-%m-%d")</code></pre>
+            </div>
+        </div>
+
+        <!-- timedelta() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <line x1="10" y1="30" x2="90" y2="30" stroke="#4b5563" stroke-width="1.5"/>
+                    <circle cx="20" cy="30" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay: 0.2s;"/>
+                    <circle cx="80" cy="30" r="3" fill="#14b8a6" class="animate-scale-up" style="animation-delay: 0.4s;"/>
+                    <path d="M23 30 C 30 20, 70 20, 77 30" stroke="#d1d5db" stroke-width="2" fill="none" class="animate-draw-line" style="animation-delay: 0.8s;"/>
+                    <path d="M77 30 l -5 -5 m 5 5 l -5 5" stroke="#d1d5db" stroke-width="2" class="animate-fade-in" style="animation-delay: 1.4s;"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">timedelta()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Fundamental for time arithmetic (e.g., calculating deadlines, time differences).</p>
+                <pre><code class="font-code">from datetime import timedelta
+deadline = now + timedelta(days=10)</code></pre>
+            </div>
+        </div>
+
+        <!-- time.time() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-green-400" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <line x1="50" y1="10" x2="50" y2="20" stroke="currentColor" stroke-width="4"/>
+                    <line x1="50" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="3">
+                        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite" />
+                    </line>
+                    <text x="50" y="60" text-anchor="middle" font-size="10" fill="currentColor" class="font-code">1720458000.5</text>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">time.time()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Core for benchmarking, timing operations, and simple timestamps (Unix epoch time).</p>
+                <pre><code class="font-code">import time
+start_time = time.time()</code></pre>
+            </div>
+        </div>
+
+        <!-- time.sleep() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-sky-400" viewBox="0 0 100 100">
+                    <g class="animate-fade-in">
+                        <text x="30" y="40" font-size="20" style="animation-delay: 0.2s;">Z</text>
+                        <text x="45" y="55" font-size="20" style="animation-delay: 0.6s;">z</text>
+                        <text x="60" y="70" font-size="20" style="animation-delay: 1s;">z</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">time.sleep()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Essential for delays, rate limiting, and synchronization.</p>
+                <pre><code class="font-code">import time
+time.sleep(5) # Pauses for 5 seconds</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Critical Datetime & Time Functions Section ========== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Important Functions Section (Supporting Role) ======== -->
+<!-- ======================================================================= -->
+<section id="important-datetime-functions">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Important Functions <span class="gradient-text">(Supporting Role)</span></h2>
+        <p class="mt-2 text-lg text-gray-400">Frequently used functions that build upon the critical set.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- datetime.fromtimestamp() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 120 60">
+                    <g class="animate-fade-in">
+                        <text x="5" y="35" font-size="8" class="font-code" fill="#d1d5db">1751998320</text>
+                        <path d="M55 30 L 75 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <g class="animate-fade-in" style="animation-delay: 1s;">
+                            <rect x="80" y="10" width="40" height="40" fill="#1f2937" stroke="#d1d5db" rx="3"/>
+                            <rect x="85" y="10" width="30" height="8" fill="#d1d5db"/>
+                            <text x="95" y="35" font-size="12" fill="#d1d5db">8</text>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">datetime.fromtimestamp()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Create a datetime from a POSIX timestamp.</p>
+                <pre><code class="font-code">dt_obj = datetime.fromtimestamp(1751998320)</code></pre>
+            </div>
+        </div>
+
+        <!-- datetime.combine() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 120 60">
+                    <g class="animate-fade-in">
+                        <!-- Calendar -->
+                        <rect x="5" y="15" width="30" height="30" fill="#1f2937" stroke="#d1d5db" rx="2"/>
+                        <text x="15" y="35" font-size="10" fill="#d1d5db">D</text>
+                        <!-- Clock -->
+                        <circle cx="55" cy="30" r="15" fill="#1f2937" stroke="#d1d5db"/>
+                        <line x1="55" y1="30" x2="55" y2="20" stroke="#d1d5db" stroke-width="1.5"/>
+                        <!-- Plus -->
+                        <line x1="38" y1="30" x2="42" y2="30" stroke="#60a5fa" stroke-width="2"/>
+                        <line x1="40" y1="28" x2="40" y2="32" stroke="#60a5fa" stroke-width="2"/>
+                         <!-- Arrow -->
+                        <path d="M75 30 L 85 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <!-- Combined -->
+                        <g class="animate-fade-in" style="animation-delay: 1s;">
+                             <rect x="90" y="15" width="30" height="30" fill="#1f2937" stroke="#14b8a6" rx="2"/>
+                             <text x="100" y="35" font-size="10" fill="#14b8a6">D+T</text>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">datetime.combine()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Combine a separate date and time into one object.</p>
+                <pre><code class="font-code">d = date(2025, 7, 8)
+t = time(19, 52)
+dt = datetime.combine(d, t)</code></pre>
+            </div>
+        </div>
+
+        <!-- datetime.timestamp() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 120 60">
+                    <g class="animate-fade-in">
+                        <rect x="5" y="10" width="40" height="40" fill="#1f2937" stroke="#d1d5db" rx="3"/>
+                        <rect x="10" y="10" width="30" height="8" fill="#d1d5db"/>
+                        <text x="20" y="35" font-size="12" fill="#d1d5db">8</text>
+                        <path d="M50 30 L 70 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <text x="75" y="35" font-size="8" class="font-code animate-fade-in" style="animation-delay: 1s;" fill="#d1d5db">1751998320.0</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">datetime.timestamp()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Convert a datetime object to a POSIX timestamp.</p>
+                <pre><code class="font-code">ts = datetime.now().timestamp()</code></pre>
+            </div>
+        </div>
+
+        <!-- time.localtime() / time.gmtime() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 120 60">
+                    <g class="animate-fade-in">
+                        <!-- Globe -->
+                        <circle cx="30" cy="30" r="20" fill="#1f2937" stroke="#d1d5db"/>
+                        <path d="M30 10 v 40 M 10 30 h 40" stroke="#4b5563" stroke-width="0.5"/>
+                        <path d="M15,45 C 25,35 35,35 45,45" stroke="#d1d5db" stroke-width="1" fill="none"/>
+                        <!-- Arrow -->
+                        <path d="M55 30 L 75 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <!-- Struct -->
+                        <text x="80" y="35" font-size="8" class="font-code animate-fade-in" style="animation-delay: 1s;" fill="#d1d5db">tm_hour=19</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">time.localtime() / .gmtime()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Convert timestamp to local or UTC time struct.</p>
+                <pre><code class="font-code">local = time.localtime() # From current time
+utc = time.gmtime(1751998320)</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================================================================= -->
+<!-- ========= START: Utility Functions Section (Edge Cases) ============= -->
+<!-- ======================================================================= -->
+<section id="utility-datetime-functions" class="mt-16">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Utility Functions <span class="gradient-text">(Edge Cases & Convenience)</span></h2>
+        <p class="mt-2 text-lg text-gray-400">Useful for specific or advanced scenarios.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- time.perf_counter() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-green-400" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="3" fill="none"/>
+                    <line x1="50" y1="10" x2="50" y2="18" stroke="currentColor" stroke-width="3"/>
+                    <line x1="45" y1="10" x2="55" y2="10" stroke="currentColor" stroke-width="3"/>
+                    <line x1="50" y1="50" x2="50" y2="20" stroke="currentColor" stroke-width="3">
+                         <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="0.5s" repeatCount="indefinite" />
+                    </line>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">time.perf_counter()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">High-resolution timer for performance measurement.</p>
+                <pre><code class="font-code">start = time.perf_counter()
+# ... some code ...
+end = time.perf_counter()</code></pre>
+            </div>
+        </div>
+
+        <!-- time.process_time() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-sky-400" viewBox="0 0 100 100">
+                    <rect x="20" y="20" width="60" height="60" rx="5" stroke="currentColor" stroke-width="3" fill="none"/>
+                    <path d="M40 20V10 M50 20V10 M60 20V10 M40 80V90 M50 80V90 M60 80V90 M20 40H10 M20 50H10 M20 60H10 M80 40H90 M80 50H90 M80 60H90" stroke="currentColor" stroke-width="3"/>
+                    <line x1="50" y1="50" x2="65" y2="35" stroke="currentColor" stroke-width="3">
+                         <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.5s" repeatCount="indefinite" />
+                    </line>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">time.process_time()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Returns CPU time of the current process.</p>
+                <pre><code class="font-code">cpu_time = time.process_time()</code></pre>
+            </div>
+        </div>
+
+        <!-- time.ctime() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 120 60">
+                    <g class="animate-fade-in">
+                        <text x="5" y="35" font-size="8" class="font-code" fill="#d1d5db">1751998320</text>
+                        <path d="M55 30 L 75 30" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <text x="70" y="35" font-size="7" class="animate-fade-in" style="animation-delay: 1s;" fill="#d1d5db">'Tue Jul  8 19:52:00 2025'</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">time.ctime()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Convert a timestamp to a pre-formatted string.</p>
+                <pre><code class="font-code">time_str = time.ctime(1751998320)</code></pre>
+            </div>
+        </div>
+
+        <!-- datetime.utcnow() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-amber-500" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <line x1="50" y1="50" x2="50" y2="25" stroke="currentColor" stroke-width="4"/>
+                    <line x1="50" y1="50" x2="75" y2="50" stroke="currentColor" stroke-width="4"/>
+                    <line x1="20" y1="80" x2="80" y2="20" stroke="#ef4444" stroke-width="6" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                    <text x="50" y="95" text-anchor="middle" font-size="8" fill="#ef4444" class="animate-fade-in" style="animation-delay: 1s;">DEPRECATED</text>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-amber-400">datetime.utcnow()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Naive UTC time; deprecated in favor of timezone-aware now().</p>
+                <pre><code class="font-code">from datetime import timezone
+now_utc = datetime.now(timezone.utc)</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Utility Functions Section (Edge Cases) ============== -->
+<!-- ======================================================================= -->
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Created to make Python's datetime module accessible and visual.</p>
+    </footer>
+
+</body>
+</html>

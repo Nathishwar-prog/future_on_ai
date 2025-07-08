@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Guide to DSA in Python (2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+        .command {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .concept-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+        .concept-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#0074D9] text-white text-center py-20 px-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Mastering Data Structures & Algorithms in Python</h1>
+        <p class="text-lg md:text-xl text-blue-200 max-w-3xl mx-auto">Your ultimate 2025 roadmap to building a strong foundation for technical interviews and a successful software engineering career.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="why-dsa" class="text-center mb-20">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] mb-4">Why is DSA the Bedrock of Programming?</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-lg mb-8">Data Structures and Algorithms are not just interview topics; they are the fundamental tools for writing efficient, scalable, and robust software. Understanding DSA empowers you to select the right tool for the job, optimize performance, and solve complex problems elegantly. It's the difference between just making code work and making code work *well*.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-4xl mb-3">🚀</div>
+                    <h3 class="text-xl font-bold">Performance</h3>
+                    <p>Write code that runs faster and uses less memory.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-4xl mb-3">🧩</div>
+                    <h3 class="text-xl font-bold">Problem-Solving</h3>
+                    <p>Develop a systematic approach to deconstructing and solving challenges.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-4xl mb-3">💼</div>
+                    <h3 class="text-xl font-bold">Interview Success</h3>
+                    <p>Ace technical interviews at top tech companies.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="big-o" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-[#1a1a1a] mb-10">Understanding Complexity: Big O Notation</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg mb-10">Big O notation is how we measure an algorithm's efficiency. It describes how the runtime or memory usage grows as the input size increases. Mastering this concept is crucial for comparing algorithms and making performance-conscious decisions.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="chart-container">
+                    <canvas id="bigOChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-structures" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-[#1a1a1a] mb-10">Core Data Structures</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="concept-card p-6 border-t-4 border-[#0074D9]">
+                    <h3 class="text-2xl font-bold text-[#0074D9] mb-3">Arrays (Lists in Python)</h3>
+                    <p class="mb-4"><strong>Analogy:</strong> A numbered list of storage boxes. Accessing any box is fast if you know its number, but adding a new box in the middle is slow.</p>
+                    <p class="mb-2"><strong>Complexity:</strong> Access: <span class="command">O(1)</span>, Search: <span class="command">O(n)</span>, Insert/Delete: <span class="command">O(n)</span>.</p>
+                    <div class="code-block">
+                        <pre><code># Python lists are dynamic arrays
+my_list = [10, 20, 30]
+print(my_list[1]) # Fast access: 20
+my_list.append(40) # Add to end
+my_list.insert(1, 15) # Slow insert</code></pre>
+                    </div>
+                </div>
+
+                <div class="concept-card p-6 border-t-4 border-[#2ECC40]">
+                    <h3 class="text-2xl font-bold text-[#2ECC40] mb-3">Linked Lists</h3>
+                    <p class="mb-4"><strong>Analogy:</strong> A treasure hunt where each clue points to the next. Fast to add/remove clues, but finding a specific one requires following the trail.</p>
+                    <p class="mb-2"><strong>Complexity:</strong> Access: <span class="command">O(n)</span>, Search: <span class="command">O(n)</span>, Insert/Delete: <span class="command">O(1)</span> (at head/tail).</p>
+                    <div class="code-block">
+                        <pre><code># Basic node structure
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None</code></pre>
+                    </div>
+                </div>
+
+                <div class="concept-card p-6 border-t-4 border-[#FF851B]">
+                    <h3 class="text-2xl font-bold text-[#FF851B] mb-3">Stacks</h3>
+                    <p class="mb-4"><strong>Analogy:</strong> A stack of plates. You can only add or remove from the top. (Last-In, First-Out - LIFO).</p>
+                    <p class="mb-2"><strong>Complexity:</strong> Push/Pop/Peek: <span class="command">O(1)</span>.</p>
+                    <div class="code-block">
+                        <pre><code># Python lists can act as stacks
+stack = []
+stack.append('A') # Push
+stack.append('B')
+print(stack.pop()) # Pop: returns 'B'</code></pre>
+                    </div>
+                </div>
+
+                <div class="concept-card p-6 border-t-4 border-[#FF4136]">
+                    <h3 class="text-2xl font-bold text-[#FF4136] mb-3">Queues</h3>
+                    <p class="mb-4"><strong>Analogy:</strong> A line at a checkout counter. The first person in line is the first one out. (First-In, First-Out - FIFO).</p>
+                    <p class="mb-2"><strong>Complexity:</strong> Enqueue/Dequeue: <span class="command">O(1)</span>.</p>
+                    <div class="code-block">
+                        <pre><code>from collections import deque
+queue = deque()
+queue.append('A') # Enqueue
+queue.append('B')
+print(queue.popleft()) # Dequeue: 'A'</code></pre>
+                    </div>
+                </div>
+
+                <div class="concept-card p-6 border-t-4 border-[#FFDC00]">
+                    <h3 class="text-2xl font-bold text-[#FFDC00] mb-3">Hash Tables (Dicts)</h3>
+                    <p class="mb-4"><strong>Analogy:</strong> A dictionary. You look up a word (key) to instantly find its definition (value). Super fast lookups.</p>
+                    <p class="mb-2"><strong>Complexity:</strong> Insert/Delete/Search: Average <span class="command">O(1)</span>.</p>
+                    <div class="code-block">
+                        <pre><code># Python dictionaries are hash tables
+my_dict = {'name': 'Alice', 'age': 30}
+print(my_dict['name']) # Fast lookup
+my_dict['city'] = 'New York'</code></pre>
+                    </div>
+                </div>
+
+                <div class="concept-card p-6 border-t-4 border-[#39CCCC]">
+                    <h3 class="text-2xl font-bold text-[#39CCCC] mb-3">Trees & Graphs</h3>
+                    <p class="mb-4"><strong>Analogy:</strong> A family tree (hierarchical) or a map of connected cities (network). Used for representing relationships.</p>
+                    <p class="mb-2"><strong>Use Cases:</strong> File systems, social networks, network routing.</p>
+                    <div class="code-block">
+                        <pre><code># Basic tree node
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None</code></pre>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="algorithms" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-[#1a1a1a] mb-10">Essential Algorithms</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-4">Searching Algorithms</h3>
+                    <p class="mb-2"><strong>Linear Search:</strong> Checks each element one by one. <span class="command">O(n)</span>.</p>
+                    <p><strong>Binary Search:</strong> Efficiently finds an item in a *sorted* array by repeatedly dividing the search interval in half. <span class="command">O(log n)</span>.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#2ECC40] mb-4">Sorting Algorithms</h3>
+                    <p class="mb-2"><strong>Bubble/Selection/Insertion Sort:</strong> Simple but inefficient. <span class="command">O(n²)</span>.</p>
+                    <p><strong>Merge Sort & Quick Sort:</strong> Efficient, divide-and-conquer algorithms. Average <span class="command">O(n log n)</span>.</p>
+                </div>
+                 <div class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#FF851B] mb-4">Graph Traversal</h3>
+                    <p class="mb-2"><strong>Breadth-First Search (BFS):</strong> Explores neighbor nodes first (level by level). Used for finding the shortest path in an unweighted graph.</p>
+                    <p><strong>Depth-First Search (DFS):</strong> Explores as far as possible along each branch before backtracking. Used for cycle detection and topological sorting.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice" class="bg-gray-800 text-white p-12 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-10">Where to Practice: Sharpen Your Skills</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-300 text-lg mb-10">Theory is important, but consistent practice is what builds mastery. These platforms are essential for honing your problem-solving abilities and preparing for technical interviews.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-[#2ECC40]">LeetCode</h3>
+                    <p class="text-gray-400">The gold standard for interview prep. Focus on Easy, then Medium problems.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white">HackerRank</h3>
+                    <p class="text-gray-400">Great for structured learning paths and domain-specific challenges.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-[#FFDC00]">CodeSignal</h3>
+                    <p class="text-gray-400">Often used by companies for initial screening. Good for timed assessments.</p>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-bold text-[#0074D9]">GeeksforGeeks</h3>
+                    <p class="text-gray-400">Excellent for detailed articles and a wide variety of problems.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-gray-200 text-gray-600 mt-16">
+        <p>Your DSA journey is a marathon, not a sprint. Stay consistent, and you will succeed. Happy coding!</p>
+    </footer>
+
+    <script>
+        const palette = {
+            red: '#FF4136',
+            orange: '#FF851B',
+            yellow: '#FFDC00',
+            green: '#2ECC40',
+            blue: '#0074D9',
+        };
+
+        const bigOCtx = document.getElementById('bigOChart').getContext('2d');
+        new Chart(bigOCtx, {
+            type: 'line',
+            data: {
+                labels: ['1', '2', '4', '8', '16', '32', '64', '128'],
+                datasets: [
+                    {
+                        label: 'O(1) - Excellent',
+                        data: [1, 1, 1, 1, 1, 1, 1, 1],
+                        borderColor: palette.green,
+                        tension: 0.1,
+                        fill: false,
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'O(log n) - Good',
+                        data: [0, 1, 2, 3, 4, 5, 6, 7],
+                        borderColor: palette.blue,
+                        tension: 0.1,
+                        fill: false,
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'O(n) - Fair',
+                        data: [1, 2, 4, 8, 16, 32, 64, 128],
+                        borderColor: palette.yellow,
+                        tension: 0.1,
+                        fill: false,
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'O(n²)',
+                        data: [1, 4, 16, 64, 256, 1024, 4096, 16384],
+                        borderColor: palette.red,
+                        tension: 0.1,
+                        fill: false,
+                        borderWidth: 3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Growth Rate of Common Complexities',
+                        font: { size: 18, weight: 'bold' }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Operations (Log Scale)'
+                        }
+                    },
+                    x: {
+                         title: {
+                            display: true,
+                            text: 'Input Size (n)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

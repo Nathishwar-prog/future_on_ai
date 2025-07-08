@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Algorithm Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow: hidden;
+        }
+        .btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        .btn-secondary {
+            background-color: #4b5563;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #374151;
+        }
+        .algo-button.active {
+            background-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+        .tab.active {
+            border-bottom-color: #3b82f6;
+            color: #e2e8f0;
+        }
+        .node circle {
+            stroke: #60a5fa;
+            stroke-width: 2px;
+            fill: #1e293b;
+            transition: all 0.3s ease;
+        }
+        .node:hover circle {
+            filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
+        }
+        .node text {
+            fill: #e5e7eb;
+            font-size: 14px;
+            font-weight: 600;
+            pointer-events: none;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .link {
+            stroke: #4b5563;
+            stroke-width: 2px;
+            transition: stroke 0.3s ease, stroke-width 0.3s ease;
+        }
+        .link-label {
+            fill: #9ca3af;
+            font-size: 12px;
+            font-weight: 600;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        .node.current circle {
+            fill: #60a5fa;
+            stroke: #93c5fd;
+            stroke-width: 3px;
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.8));
+        }
+        .node.visited circle {
+            fill: #1e40af;
+            stroke: #3b82f6;
+        }
+        .link.active {
+            stroke: #60a5fa;
+            stroke-width: 4px;
+        }
+        .link.path {
+            stroke: #f59e0b; /* amber-500 */
+            stroke-width: 5px;
+            stroke-dasharray: 10, 5;
+            animation: dash 1s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -15;
+            }
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-72 bg-gray-800 p-6 flex flex-col flex-shrink-0">
+        <h1 class="text-2xl font-bold text-white mb-8">Graph Algorithms</h1>
+        <nav id="algo-nav" class="flex flex-col space-y-2">
+            <button data-algo="bfs" class="algo-button text-left p-3 rounded-lg btn btn-secondary">Breadth-First Search</button>
+            <button data-algo="dfs" class="algo-button text-left p-3 rounded-lg btn btn-secondary">Depth-First Search</button>
+            <button data-algo="dijkstra" class="algo-button text-left p-3 rounded-lg btn btn-secondary">Dijkstra's Algorithm</button>
+            <button data-algo="a_star" class="algo-button text-left p-3 rounded-lg btn btn-secondary">A* Search</button>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <div class="p-8 flex-1 flex flex-col min-h-0">
+            <!-- Header -->
+            <header class="flex-shrink-0">
+                <h2 id="algo-title" class="text-4xl font-bold text-blue-400 mb-4">Select an Algorithm</h2>
+                <div id="algo-explanation" class="prose prose-invert max-w-none text-gray-300 mb-8">
+                    <p>Select an algorithm from the sidebar to begin.</p>
+                </div>
+            </header>
+           
+            <!-- Tabbed Content -->
+            <div class="bg-gray-800 rounded-lg flex-1 flex flex-col min-h-0">
+                <div class="flex border-b border-gray-700 flex-shrink-0">
+                    <button id="viz-tab" class="tab py-3 px-6 text-lg font-semibold text-gray-400 border-b-2 border-transparent">Visualization</button>
+                    <button id="code-tab" class="tab py-3 px-6 text-lg font-semibold text-gray-400 border-b-2 border-transparent">Python Code</button>
+                </div>
+
+                <div id="viz-panel" class="p-4 flex-1 relative">
+                    <div class="absolute inset-0 bg-gray-900 rounded-b-lg">
+                        <svg id="visualization" class="w-full h-full"></svg>
+                        <div id="status-panel" class="absolute top-4 left-4 bg-gray-800/80 backdrop-blur-sm p-4 rounded-lg border border-gray-700 max-w-xs z-10">
+                            <h4 id="status-title" class="font-semibold text-blue-400 mb-2">Data Structure</h4>
+                            <div id="status-datastructure" class="font-mono bg-gray-900 p-2 rounded text-sm min-h-[3em] break-all"></div>
+                            <h4 class="font-semibold text-blue-400 mt-3 mb-2">Status</h4>
+                            <div id="message-display" class="text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="code-panel" class="p-4 hidden flex-1 min-h-0 overflow-auto">
+                    <pre class="h-full"><code id="code-display" class="language-python text-sm h-full block bg-gray-900 p-4 rounded-lg"></code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <footer class="control-panel p-4 flex items-center justify-center space-x-4 flex-shrink-0">
+            <button id="start-btn" class="btn btn-primary py-2 px-5 rounded-lg font-semibold">Start</button>
+            <button id="pause-btn" class="btn btn-secondary py-2 px-5 rounded-lg font-semibold hidden">Pause</button>
+            <button id="step-btn" class="btn btn-secondary py-2 px-5 rounded-lg font-semibold">Step</button>
+            <button id="reset-btn" class="btn btn-secondary py-2 px-5 rounded-lg font-semibold">Reset</button>
+            <div class="flex items-center space-x-2 text-white">
+                <label for="speed-slider">Speed:</label>
+                <input type="range" id="speed-slider" min="100" max="2000" value="1000" class="w-32">
+            </div>
+        </footer>
+        
+    </main>
+
+    <script type="module">
+        // --- Data Definitions ---
+        const ALGORITHMS = {
+            bfs: {
+                name: 'Breadth-First Search (BFS)',
+                explanation: `<p>A traversal algorithm that explores neighbor nodes first, before moving to the next level neighbors. It's excellent for finding the shortest path in unweighted graphs.</p><h4 class="font-semibold mt-4 mb-2">Complexity</h4><p>Time: O(V+E), Space: O(V)</p>`,
+                code: `from collections import deque
+def bfs(graph, start_node):
+    visited = set()
+    queue = deque([start_node])
+    visited.add(start_node)
+    traversal_order = []
+    while queue:
+        node = queue.popleft()
+        traversal_order.append(node)
+        for neighbor in graph.get(node, []):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+    return traversal_order`,
+                generateSteps: (adj, start) => {
+                    const steps = [];
+                    const q = [start];
+                    const visited = new Set([start]);
+                    steps.push({ type: 'start', ds: [...q], visited: new Set(visited), msg: `Start at ${start}. Enqueue.` });
+                    while (q.length > 0) {
+                        const u = q.shift();
+                        steps.push({ type: 'process', node: u, ds: [...q], visited: new Set(visited), msg: `Dequeue ${u}, process neighbors.` });
+                        for (const { target: v } of adj[u]) {
+                            if (!visited.has(v)) {
+                                visited.add(v);
+                                q.push(v);
+                                steps.push({ type: 'visit', node: v, parent: u, ds: [...q], visited: new Set(visited), msg: `Visit ${v} from ${u}. Enqueue.` });
+                            }
+                        }
+                    }
+                    steps.push({ type: 'end', ds: [], visited: new Set(visited), msg: 'BFS Complete.' });
+                    return steps;
+                }
+            },
+            dfs: {
+                name: 'Depth-First Search (DFS)',
+                explanation: `<p>A traversal algorithm that explores as far as possible along each branch before backtracking. It uses a stack (or recursion).</p><h4 class="font-semibold mt-4 mb-2">Complexity</h4><p>Time: O(V+E), Space: O(V)</p>`,
+                code: `def dfs(graph, start_node):
+    visited = set()
+    stack = [start_node]
+    traversal_order = []
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            visited.add(node)
+            traversal_order.append(node)
+            # Add neighbors in reverse for a more natural traversal order
+            for neighbor in reversed(graph.get(node, [])):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+    return traversal_order`,
+                generateSteps: (adj, start) => {
+                    const steps = [];
+                    const stack = [start];
+                    const visited = new Set();
+                    steps.push({ type: 'start', ds: [...stack], visited: new Set(visited), msg: `Start at ${start}. Push to stack.` });
+                    while (stack.length > 0) {
+                        const u = stack.pop();
+                        if (visited.has(u)) continue;
+                        visited.add(u);
+                        steps.push({ type: 'process', node: u, ds: [...stack], visited: new Set(visited), msg: `Pop ${u}, mark as visited.` });
+                        const neighbors = adj[u].map(link => link.target);
+                        for (let i = neighbors.length - 1; i >= 0; i--) {
+                            const v = neighbors[i];
+                            if (!visited.has(v)) {
+                                stack.push(v);
+                                steps.push({ type: 'visit', node: v, parent: u, ds: [...stack], visited: new Set(visited), msg: `Discover ${v} from ${u}. Push to stack.` });
+                            }
+                        }
+                    }
+                    steps.push({ type: 'end', ds: [], visited: new Set(visited), msg: 'DFS Complete.' });
+                    return steps;
+                }
+            },
+            dijkstra: {
+                name: "Dijkstra's Algorithm",
+                explanation: `<p>Finds the shortest path from a source to all other nodes in a weighted graph. It uses a priority queue to greedily select the closest unvisited node.</p><h4 class="font-semibold mt-4 mb-2">Complexity</h4><p>Time: O(E log V), Space: O(V)</p>`,
+                code: `import heapq
+def dijkstra(graph, start_node):
+    distances = {node: float('infinity') for node in graph}
+    distances[start_node] = 0
+    pq = [(0, start_node)]
+    previous_nodes = {node: None for node in graph}
+
+    while pq:
+        current_dist, current_node = heapq.heappop(pq)
+        if current_dist > distances[current_node]:
+            continue
+        for neighbor, weight in graph[current_node].items():
+            distance = current_dist + weight
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                previous_nodes[neighbor] = current_node
+                heapq.heappush(pq, (distance, neighbor))
+    return distances, previous_nodes`,
+                generateSteps: (adj, start, end) => {
+                    const steps = [];
+                    const dist = {};
+                    const prev = {};
+                    const pq = new Map();
+                    Object.keys(adj).forEach(node => {
+                        dist[node] = Infinity;
+                        prev[node] = null;
+                    });
+                    dist[start] = 0;
+                    pq.set(start, 0);
+                    steps.push({ type: 'start', ds: Array.from(pq.entries()), visited: new Set(), dist: { ...dist }, msg: `Init distances. Start at ${start}.` });
+
+                    while (pq.size > 0) {
+                        const u = [...pq.entries()].reduce((a, b) => a[1] < b[1] ? a : b)[0];
+                        pq.delete(u);
+                        steps.push({ type: 'process', node: u, ds: Array.from(pq.entries()), visited: new Set(Object.keys(prev).filter(k=>prev[k]!==null || k===start)), dist: { ...dist }, msg: `Extract min: ${u} (dist=${dist[u]})` });
+
+                        if (u === end) {
+                             steps.push({ type: 'end', path: prev, node: u, ds: Array.from(pq.entries()), visited: new Set(Object.keys(prev).filter(k=>prev[k]!==null || k===start)), msg: `Goal ${u} reached!` });
+                             return steps;
+                        }
+
+                        for (const { target: v, weight: w } of adj[u]) {
+                            if (dist[u] + w < dist[v]) {
+                                dist[v] = dist[u] + w;
+                                prev[v] = u;
+                                pq.set(v, dist[v]);
+                                steps.push({ type: 'visit', node: v, parent: u, ds: Array.from(pq.entries()), visited: new Set(Object.keys(prev).filter(k=>prev[k]!==null || k===start)), dist: { ...dist }, msg: `Relax edge ${u}->${v}. New dist: ${dist[v]}` });
+                            }
+                        }
+                    }
+                    steps.push({ type: 'end', path: prev, ds: [], visited: new Set(Object.keys(adj)), dist: { ...dist }, msg: 'Dijkstra Complete.' });
+                    return steps;
+                }
+            },
+            a_star: {
+                name: 'A* Search',
+                explanation: `<p>An informed search algorithm, or a "best-first search", that is an extension of Dijkstra's. It uses a heuristic to guide its search towards the goal node.</p><h4 class="font-semibold mt-4 mb-2">Complexity</h4><p>Time: O(E log V), Space: O(V)</p>`,
+                code: `import heapq
+def a_star(graph, start_node, end_node, heuristic):
+    open_set = [(0, start_node)]
+    came_from = {}
+    g_score = {node: float('inf') for node in graph}
+    g_score[start_node] = 0
+    f_score = {node: float('inf') for node in graph}
+    f_score[start_node] = heuristic(start_node, end_node)
+    
+    while open_set:
+        _, current = heapq.heappop(open_set)
+        if current == end_node:
+            # Reconstruct path
+            return came_from
+        
+        for neighbor, weight in graph[current].items():
+            tentative_g_score = g_score[current] + weight
+            if tentative_g_score < g_score[neighbor]:
+                came_from[neighbor] = current
+                g_score[neighbor] = tentative_g_score
+                f_score[neighbor] = tentative_g_score + heuristic(neighbor, end_node)
+                heapq.heappush(open_set, (f_score[neighbor], neighbor))
+    return None # Path not found`,
+                generateSteps: (adj, start, end, nodes) => {
+                    const heuristic = (nodeA, nodeB) => {
+                        const a = nodes.find(n => n.id === nodeA);
+                        const b = nodes.find(n => n.id === nodeB);
+                        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2)) / 10; // Scaled heuristic
+                    };
+                    const steps = [];
+                    const openSet = new Map([[start, heuristic(start, end)]]); // node -> fScore
+                    const cameFrom = {};
+                    const gScore = {};
+                    Object.keys(adj).forEach(node => gScore[node] = Infinity);
+                    gScore[start] = 0;
+
+                    steps.push({ type: 'start', ds: Array.from(openSet.entries()), visited: new Set(), msg: `Init scores. Start at ${start}.` });
+
+                    while (openSet.size > 0) {
+                        const u = [...openSet.entries()].reduce((a, b) => a[1] < b[1] ? a : b)[0];
+                        
+                        if (u === end) {
+                            steps.push({ type: 'end', path: cameFrom, node: u, ds: Array.from(openSet.entries()), visited: new Set(Object.keys(cameFrom)), msg: `Goal ${u} reached!` });
+                            return steps;
+                        }
+                        
+                        openSet.delete(u);
+                        steps.push({ type: 'process', node: u, ds: Array.from(openSet.entries()), visited: new Set(Object.keys(cameFrom)), msg: `Process ${u}. fScore=${(gScore[u] + heuristic(u, end)).toFixed(1)}` });
+
+                        for (const { target: v, weight: w } of adj[u]) {
+                            const tentativeGScore = gScore[u] + w;
+                            if (tentativeGScore < gScore[v]) {
+                                cameFrom[v] = u;
+                                gScore[v] = tentativeGScore;
+                                const fScore = tentativeGScore + heuristic(v, end);
+                                openSet.set(v, fScore);
+                                steps.push({ type: 'visit', node: v, parent: u, ds: Array.from(openSet.entries()), visited: new Set(Object.keys(cameFrom)), msg: `Update ${v} via ${u}. New fScore: ${fScore.toFixed(1)}` });
+                            }
+                        }
+                    }
+                    steps.push({ type: 'end', ds: [], visited: new Set(), msg: 'A* Complete. Path not found.' });
+                    return steps;
+                }
+            }
+        };
+
+        const graphData = {
+            nodes: [
+                { id: 'A', x: 200, y: 150 }, { id: 'B', x: 100, y: 250 },
+                { id: 'C', x: 300, y: 250 }, { id: 'D', x: 50,  y: 350 },
+                { id: 'E', x: 200, y: 350 }, { id: 'F', x: 350, y: 350 },
+                { id: 'G', x: 150, y: 450 }, { id: 'H', x: 400, y: 450 }
+            ],
+            links: [
+                { source: 'A', target: 'B', weight: 4 }, { source: 'A', target: 'C', weight: 2 },
+                { source: 'B', target: 'D', weight: 5 }, { source: 'C', target: 'E', weight: 3 },
+                { source: 'C', target: 'F', weight: 6 }, { source: 'D', target: 'G', weight: 5 },
+                { source: 'E', target: 'G', weight: 1 }, { source: 'F', target: 'H', weight: 2 },
+                { source: 'G', target: 'H', weight: 4 }
+            ]
+        };
+        const adjacencyList = {};
+        graphData.nodes.forEach(node => adjacencyList[node.id] = []);
+        graphData.links.forEach(link => {
+            adjacencyList[link.source].push({ target: link.target, weight: link.weight });
+            // For undirected graphs, add the reverse link
+            adjacencyList[link.target].push({ target: link.source, weight: link.weight });
+        });
+
+
+        // --- State ---
+        let link, node, linkLabel;
+        let activeAlgorithm = null;
+        let animationSteps = [];
+        let currentStep = 0;
+        let isPlaying = false;
+        let animationTimer = null;
+        let animationSpeed = 1000;
+
+        // --- DOM Elements ---
+        const DOMElements = {
+            nav: document.getElementById('algo-nav'),
+            title: document.getElementById('algo-title'),
+            explanation: document.getElementById('algo-explanation'),
+            code: document.getElementById('code-display'),
+            vizTab: document.getElementById('viz-tab'),
+            codeTab: document.getElementById('code-tab'),
+            vizPanel: document.getElementById('viz-panel'),
+            codePanel: document.getElementById('code-panel'),
+            svg: d3.select("#visualization"),
+            statusTitle: document.getElementById('status-title'),
+            statusDS: document.getElementById('status-datastructure'),
+            message: document.getElementById('message-display'),
+            startBtn: document.getElementById('start-btn'),
+            pauseBtn: document.getElementById('pause-btn'),
+            stepBtn: document.getElementById('step-btn'),
+            resetBtn: document.getElementById('reset-btn'),
+            speedSlider: document.getElementById('speed-slider'),
+        };
+
+        // --- Core Functions ---
+        function setupVisualization() {
+            DOMElements.svg.selectAll('*').remove();
+
+            link = DOMElements.svg.append("g").selectAll("line")
+                .data(graphData.links).enter().append("line").attr("class", "link");
+            
+            linkLabel = DOMElements.svg.append("g").selectAll("text")
+                .data(graphData.links).enter().append("text").attr("class", "link-label").text(d => d.weight);
+
+            node = DOMElements.svg.append("g").selectAll("g")
+                .data(graphData.nodes).enter().append("g").attr("class", "node");
+            node.append("circle").attr("r", 25);
+            node.append("text").text(d => d.id);
+            
+            updatePositions();
+        }
+
+        function updatePositions() {
+            const container = DOMElements.vizPanel.querySelector('.absolute');
+            const { width, height } = container.getBoundingClientRect();
+            if (width === 0 || height === 0) return;
+
+            const xCoords = graphData.nodes.map(n => n.x);
+            const yCoords = graphData.nodes.map(n => n.y);
+            const minX = Math.min(...xCoords);
+            const maxX = Math.max(...xCoords);
+            const minY = Math.min(...yCoords);
+            const maxY = Math.max(...yCoords);
+            const graphWidth = maxX - minX;
+            const graphHeight = maxY - minY;
+
+            const scaleX = (width - 100) / graphWidth;
+            const scaleY = (height - 100) / graphHeight;
+            const scale = Math.min(scaleX, scaleY);
+
+            const offsetX = (width - graphWidth * scale) / 2 - minX * scale;
+            const offsetY = (height - graphHeight * scale) / 2 - minY * scale;
+
+            const nodeMap = new Map(graphData.nodes.map(n => [n.id, n]));
+
+            node.attr("transform", d => `translate(${d.x * scale + offsetX}, ${d.y * scale + offsetY})`);
+            
+            link
+                .attr("x1", d => nodeMap.get(d.source).x * scale + offsetX)
+                .attr("y1", d => nodeMap.get(d.source).y * scale + offsetY)
+                .attr("x2", d => nodeMap.get(d.target).x * scale + offsetX)
+                .attr("y2", d => nodeMap.get(d.target).y * scale + offsetY);
+            
+            linkLabel
+                .attr("x", d => (nodeMap.get(d.source).x + nodeMap.get(d.target).x) / 2 * scale + offsetX)
+                .attr("y", d => (nodeMap.get(d.source).y + nodeMap.get(d.target).y) / 2 * scale + offsetY);
+        }
+
+        function loadAlgorithm(key) {
+            pauseAnimation();
+            activeAlgorithm = key;
+            const algo = ALGORITHMS[key];
+            
+            DOMElements.title.textContent = algo.name;
+            DOMElements.explanation.innerHTML = algo.explanation;
+            DOMElements.code.textContent = algo.code;
+            
+            DOMElements.nav.querySelectorAll('.algo-button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.algo === key);
+            });
+
+            const startNode = 'A', endNode = 'H';
+            animationSteps = algo.generateSteps(adjacencyList, startNode, endNode, graphData.nodes);
+            resetAnimation();
+        }
+
+        function applyStep(step) {
+            if (!step) return;
+
+            // Update status panel
+            const dsType = { bfs: 'Queue', dfs: 'Stack', dijkstra: 'Priority Queue', a_star: 'Open Set' }[activeAlgorithm];
+            DOMElements.statusTitle.textContent = `${dsType}:`;
+            DOMElements.statusDS.textContent = JSON.stringify(step.ds);
+            DOMElements.message.textContent = step.msg;
+
+            if (!node || !link) return;
+            
+            node.attr("class", "node");
+            link.attr("class", "link");
+            
+            if (step.visited) {
+                node.filter(d => step.visited.has(d.id)).classed("visited", true);
+            }
+            if (step.node) {
+                node.filter(d => d.id === step.node).classed("current", true);
+            }
+            if (step.parent) {
+                link.filter(l => (l.source.id === step.parent && l.target.id === step.node) || (l.source.id === step.node && l.target.id === step.parent))
+                    .classed("active", true).raise();
+            }
+            if (step.path) {
+                let u = 'H';
+                while(step.path[u]) {
+                    const v = step.path[u];
+                    link.filter(l => (l.source.id === u && l.target.id === v) || (l.source.id === v && l.target.id === u))
+                        .classed("path", true).raise();
+                    u = v;
+                }
+            }
+        }
+
+        // --- Controls ---
+        function startAnimation() {
+            if (isPlaying) return;
+            isPlaying = true;
+            DOMElements.startBtn.classList.add('hidden');
+            DOMElements.pauseBtn.classList.remove('hidden');
+            [DOMElements.stepBtn, DOMElements.resetBtn].forEach(b => b.disabled = true);
+            runAnimation();
+        }
+
+        function runAnimation() {
+            if (!isPlaying || currentStep >= animationSteps.length) {
+                pauseAnimation();
+                return;
+            }
+            applyStep(animationSteps[currentStep]);
+            currentStep++;
+            animationTimer = setTimeout(runAnimation, 2100 - animationSpeed);
+        }
+
+        function pauseAnimation() {
+            isPlaying = false;
+            clearTimeout(animationTimer);
+            DOMElements.startBtn.classList.remove('hidden');
+            DOMElements.pauseBtn.classList.add('hidden');
+            [DOMElements.stepBtn, DOMElements.resetBtn].forEach(b => b.disabled = false);
+        }
+
+        function stepForward() {
+            if (isPlaying || currentStep >= animationSteps.length) return;
+            applyStep(animationSteps[currentStep]);
+            currentStep++;
+        }
+
+        function resetAnimation() {
+            pauseAnimation();
+            currentStep = 0;
+            if (animationSteps.length > 0) {
+                applyStep(animationSteps[0]);
+            } else {
+                DOMElements.message.textContent = 'Select an algorithm to start.';
+            }
+             if (node) node.attr("class", "node");
+             if (link) link.attr("class", "link");
+        }
+
+        // --- Event Listeners ---
+        DOMElements.nav.addEventListener('click', e => {
+            if (e.target.matches('.algo-button')) {
+                loadAlgorithm(e.target.dataset.algo);
+            }
+        });
+
+        DOMElements.vizTab.addEventListener('click', () => {
+            DOMElements.vizPanel.classList.remove('hidden');
+            DOMElements.codePanel.classList.add('hidden');
+            DOMElements.vizTab.classList.add('active');
+            DOMElements.codeTab.classList.remove('active');
+        });
+
+        DOMElements.codeTab.addEventListener('click', () => {
+            DOMElements.vizPanel.classList.add('hidden');
+            DOMElements.codePanel.classList.remove('hidden');
+            DOMElements.vizTab.classList.remove('active');
+            DOMElements.codeTab.classList.add('active');
+        });
+
+        DOMElements.startBtn.addEventListener('click', startAnimation);
+        DOMElements.pauseBtn.addEventListener('click', pauseAnimation);
+        DOMElements.stepBtn.addEventListener('click', stepForward);
+        DOMElements.resetBtn.addEventListener('click', resetAnimation);
+        DOMElements.speedSlider.addEventListener('input', e => {
+            animationSpeed = Number(e.target.value);
+        });
+
+        new ResizeObserver(() => {
+            updatePositions();
+        }).observe(DOMElements.vizPanel);
+
+        // --- Initial Load ---
+        setupVisualization();
+        DOMElements.vizTab.classList.add('active');
+        loadAlgorithm('bfs'); // Load BFS by default
+    </script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Our Mission Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #00001a; /* Deep space blue */
+            color: #e0e0e0;
+        }
+        
+        /* Animation keyframes */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulseSubtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-nav {
+            background-color: rgba(0, 0, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 246, 255, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            color: #a0a0c0; /* Lighter text for contrast */
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 246, 255, 0.8);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00f6ff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .special-link {
+            border: 1px solid #00f6ff;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .special-link:hover {
+            background-color: #00f6ff;
+            color: #00001a;
+            box-shadow: 0 0 20px #00f6ff;
+            text-shadow: none;
+        }
+        .special-link:hover::after {
+            width: 0; /* Don't show underline on button hover */
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 246, 255, 0.9), 0 0 25px rgba(255, 0, 255, 0.5);
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+        
+        .icon-pulse {
+            animation: pulseSubtle 2s ease-in-out infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .animate-on-scroll {
+                transform: translateY(20px);
+            }
+            .text-gradient {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <!-- Reusable Header and Navigation Section -->
+    <header class="header-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Site Title -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-2xl font-bold text-white text-glow">
+                        Future on AI
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:block">
+                    <nav class="ml-10 flex items-baseline space-x-4">
+                        <a href="pages/home.html" class="nav-link">Home</a>
+                        <a href="/pages/about.html" class="nav-link">About</a>
+                        <a href="/pages/course.html" class="nav-link">Courses</a>
+                        <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link">Infographics</a>
+                        <a href="/pages/resources.html" class="nav-link">Resources</a>
+                        <a href="/pages/contact.html" class="nav-link">Contact</a>
+                        <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link">Student ID Offers</a>
+                    </nav>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Icon for menu open -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Icon for menu close (hidden by default) -->
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/pages/home.html" class="nav-link block text-center py-2">Home</a>
+                <a href="/pages/about.html" class="nav-link block text-center py-2">About</a>
+                <a href="/pages/course.html" class="nav-link block text-center py-2">Courses</a>
+                <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link block text-center py-2">Infographics</a>
+                <a href="/pages/resources.html" class="nav-link block text-center py-2">Resources</a>
+                <a href="/pages/contact.html" class="nav-link block text-center py-2">Contact</a>
+                <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link block text-center mx-auto mt-2 w-fit">Student ID Offers</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <section id="about" class="page relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl float-animation"></div>
+            <div class="absolute top-20 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl float-animation" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-10 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl float-animation" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="relative z-10 py-20 px-4 max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-on-scroll">
+                <div class="inline-block mb-4">
+                    <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-full">
+                        Our Purpose
+                    </span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-bold text-gradient mb-6">
+                    Our Mission
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex flex-col lg:flex-row items-center gap-16 mb-20">
+                <!-- Image Side -->
+                <div class="lg:w-1/2 animate-on-scroll">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-20"></div>
+                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Our+Team" 
+                             alt="Our Team" 
+                             class="relative rounded-2xl shadow-2xl card-hover w-full">
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full glass-effect flex items-center justify-center float-animation">
+                            <svg class="w-12 h-12 text-white icon-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        
+                        <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full glass-effect flex items-center justify-center float-animation" style="animation-delay: 1s;">
+                            <svg class="w-10 h-10 text-white icon-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="lg:w-1/2 animate-on-scroll" style="transition-delay: 200ms;">
+                    <div class="space-y-6">
+                        <p class="text-xl text-gray-700 leading-relaxed">
+                            <span class="text-2xl font-bold text-gradient">Future On AI</span> was founded on a simple yet powerful principle: to make cutting-edge AI education accessible to everyone. We believe that AI has the transformative power to solve some of the world's most pressing challenges, and we're committed to empowering the next generation of AI leaders.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Our platform is more than just a collection of courses; it's a comprehensive ecosystem for learning, collaboration, and innovation. We're building the future of AI education, one student at a time.
+                        </p>
+                        
+                        <!-- Call to Action -->
+                        <div class="pt-4">
+                            <button class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                                <span class="relative z-10">Join Our Mission</span>
+                                <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="grid md:grid-cols-3 gap-8 animate-on-scroll" style="transition-delay: 400ms;">
+                <div class="feature-card bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Comprehensive Learning</h3>
+                    <p class="text-gray-600">From fundamentals to advanced topics, our curriculum covers every aspect of AI development.</p>
+                </div>
+                
+                <div class="feature-card bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Global Community</h3>
+                    <p class="text-gray-600">Connect with learners and experts from around the world in our vibrant community.</p>
+                </div>
+                
+                <div class="feature-card bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Innovation Hub</h3>
+                    <p class="text-gray-600">Access cutting-edge tools and resources to bring your AI ideas to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Error handling for intersection observer
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animate-on-scroll class
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                el.classList.add('animate');
+            });
+        }
+
+        // Add interactive hover effects with error handling
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Handle potential backdrop-filter support issues
+        const supportsBackdropFilter = CSS.supports('backdrop-filter', 'blur(10px)') || CSS.supports('-webkit-backdrop-filter', 'blur(10px)');
+        
+        if (!supportsBackdropFilter) {
+            document.querySelectorAll('.glass-effect').forEach(el => {
+                el.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            });
+        }
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = mobileMenuButton.querySelector('svg:first-child');
+        const closeIcon = mobileMenuButton.querySelector('svg:last-child');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

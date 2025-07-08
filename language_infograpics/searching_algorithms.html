@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Searching Algorithm Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* blue-500 */
+            --secondary-color: #10b981; /* emerald-500 */
+            --bg-color: #111827; /* gray-900 */
+            --text-color: #d1d5db; /* gray-300 */
+            --container-bg: #1f2937; /* gray-800 */
+            --border-color: #374151; /* gray-700 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .array-cell {
+            transition: all 0.5s ease-in-out;
+            min-width: 40px;
+            height: 40px;
+        }
+        .cell-index {
+            font-size: 0.75rem;
+        }
+        .pointer {
+            transition: all 0.5s ease-in-out;
+            opacity: 0;
+        }
+        pre {
+            background-color: #111827; /* gray-900 */
+            color: #e5e7eb; /* gray-200 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+        .tab-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .info-tab-button.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .loader {
+            border: 4px solid #374151; /* gray-700 */
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="p-2 md:p-4">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-100">Searching Algorithm Visualizer</h1>
+            <p class="text-gray-400 mt-2">An interactive tool to understand how searching algorithms work.</p>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Left Panel: Algorithm Selection -->
+            <aside class="lg:w-1/4">
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700">
+                    <h2 class="text-lg font-semibold mb-3 border-b border-gray-600 pb-2 text-gray-200">Select Algorithm</h2>
+                    <div id="algorithm-list" class="space-y-2">
+                        <!-- Algorithm buttons will be injected here -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Panel: Main Content -->
+            <main class="lg:w-3/4">
+                <!-- Controls -->
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md mb-6 border border-gray-700">
+                    <h2 id="current-algorithm-title" class="text-xl font-bold mb-4 text-blue-400">Select an Algorithm</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
+                        <div>
+                            <label for="array-input" class="block text-sm font-medium text-gray-300">Array (comma-separated)</label>
+                            <input type="text" id="array-input" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="e.g., 2, 5, 8, 12, 16, 23, 38, 56">
+                        </div>
+                        <div>
+                            <label for="target-input" class="block text-sm font-medium text-gray-300">Target Value</label>
+                            <input type="number" id="target-input" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="e.g., 23">
+                        </div>
+                        <div class="flex gap-2">
+                             <button id="sort-button" class="w-full bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold py-2 px-4 rounded-md transition-colors">Sort Array</button>
+                            <button id="search-button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors flex items-center justify-center gap-2" disabled>
+                                <span id="search-button-text">Search</span>
+                                <div id="search-loader" class="loader hidden"></div>
+                            </button>
+                        </div>
+                    </div>
+                     <div class="mt-4">
+                        <label for="speed-slider" class="block text-sm font-medium text-gray-300">Animation Speed</label>
+                        <input type="range" id="speed-slider" min="100" max="2000" value="500" step="100" class="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md min-h-[200px] mb-6 border border-gray-700">
+                    <h3 class="text-lg font-semibold mb-2 text-gray-200">Visualization</h3>
+                    <div id="visualization-container" class="relative overflow-x-auto p-2">
+                        <!-- Array cells will be injected here -->
+                    </div>
+                    <p id="status-message" class="mt-4 text-center font-medium h-6"></p>
+                </div>
+
+                <!-- Information Section -->
+                <div class="bg-gray-800 rounded-lg shadow-md border border-gray-700">
+                    <div class="border-b border-gray-700">
+                        <nav id="info-tabs" class="-mb-px flex space-x-6 px-4" aria-label="Tabs">
+                            <!-- Info tabs will be injected here -->
+                        </nav>
+                    </div>
+                    <div id="info-content" class="p-4">
+                        <!-- Content for tabs will be injected here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="mt-20 pt-10 border-t border-slate-700/50">
+                <div class="max-w-4xl mx-auto bg-gradient-to-br from-slate-900 to-slate-800/70 rounded-2xl shadow-2xl shadow-black/30 p-8 md:p-12 relative overflow-hidden">
+                    
+                    <!-- Enhanced Background Effects -->
+                    <div class="absolute inset-0 overflow-hidden">
+                        <div class="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-sky-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+                        <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse [animation-delay:3s]"></div>
+                        <div class="absolute top-20 right-20 w-32 h-32 bg-sky-400/10 rounded-full blur-2xl animate-bounce [animation-delay:1s]"></div>
+                        
+                        <!-- Code-like decorative elements -->
+                        <div class="absolute top-8 left-8 text-sky-500/20 font-mono text-sm opacity-50">
+                            <div class="animate-pulse [animation-delay:0.5s]">def create_magic():</div>
+                            <div class="animate-pulse [animation-delay:1s] ml-4">return innovation</div>
+                        </div>
+                        <div class="absolute bottom-8 right-8 text-purple-500/20 font-mono text-sm opacity-50">
+                            <div class="animate-pulse [animation-delay:1.5s]">class Developer:</div>
+                            <div class="animate-pulse [animation-delay:2s] ml-4">passion = True</div>
+                        </div>
+                    </div>
+
+                    <div class="md:grid md:grid-cols-3 md:gap-12 items-center relative z-10">
+                        <!-- Enhanced Profile Section -->
+                        <div class="md:col-span-1 text-center">
+                            <div class="relative inline-block group">
+                                <!-- Animated rings around profile -->
+                                <div class="absolute inset-0 rounded-full border-2 border-sky-500/30 animate-ping"></div>
+                                <div class="absolute inset-0 rounded-full border-2 border-purple-500/30 animate-ping [animation-delay:1s]"></div>
+                                
+                                <!-- Profile image with enhanced styling -->
+                                <img class="h-40 w-40 rounded-full object-cover ring-4 ring-sky-500/50 relative z-10 transition-transform duration-500 group-hover:scale-110 group-hover:ring-sky-400/70" 
+                                    src="https://placehold.co/400x400/0f172a/e0e7ff?text=N" 
+                                    alt="Profile picture of Mr. Nathishwar">
+                                
+                                <!-- Enhanced badge with animation -->
+                                <span class="absolute bottom-2 -right-2 block h-10 w-10 rounded-full bg-gradient-to-r from-sky-500 to-purple-500 border-4 border-slate-800 flex items-center justify-center text-white font-bold text-xs shadow-lg animate-pulse">
+                                    PY
+                                </span>
+                                
+                                <!-- Floating skill badges -->
+                                <div class="absolute -top-4 -left-4 bg-sky-500/90 text-white px-2 py-1 rounded-full text-xs font-semibold animate-bounce [animation-delay:0.5s]">
+                                    Full Stack
+                                </div>
+                                <div class="absolute -bottom-4 -right-8 bg-purple-500/90 text-white px-2 py-1 rounded-full text-xs font-semibold animate-bounce [animation-delay:1.5s]">
+                                    UI/UX
+                                </div>
+                            </div>
+                            
+                            <!-- Achievement indicators -->
+                            <div class="mt-6 flex justify-center space-x-2">
+                                <div class="w-2 h-2 bg-sky-400 rounded-full animate-pulse"></div>
+                                <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse [animation-delay:0.5s]"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full animate-pulse [animation-delay:1s]"></div>
+                            </div>
+                        </div>
+
+                        <!-- Enhanced Content Section -->
+                        <div class="md:col-span-2 mt-8 md:mt-0 text-center md:text-left">
+                            <!-- Title with enhanced styling -->
+                            <div class="relative">
+                                <p class="text-base font-semibold text-sky-400 tracking-wider uppercase animate-pulse">
+                                    <span class="inline-block w-2 h-2 bg-sky-400 rounded-full mr-2 animate-ping"></span>
+                                    Lead Developer & Course Architect
+                                </p>
+                                <h3 class="mt-2 text-4xl lg:text-5xl font-extrabold text-white bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-purple-400 to-pink-400 animate-pulse">
+                                    Mr. Nathishwar
+                                </h3>
+                                
+                                <!-- Decorative line -->
+                                <div class="mt-3 w-24 h-1 bg-gradient-to-r from-sky-500 to-purple-500 rounded-full mx-auto md:mx-0 animate-pulse"></div>
+                            </div>
+                            
+                            <!-- Enhanced description -->
+                            <p class="mt-4 text-lg text-slate-400 leading-relaxed">
+                                A passionate <span class="text-sky-400 font-semibold">Python & Frontend developer</span> and 
+                                <span class="text-purple-400 font-semibold">UI/UX enthusiast</span> with a mission to revolutionize 
+                                tech education. This platform represents the perfect fusion of 
+                                <span class="text-pink-400 font-semibold">cutting-edge technology</span> and 
+                                <span class="text-sky-400 font-semibold">beautiful design</span>, proving that learning to code 
+                                should be an inspiring and visually captivating journey.
+                            </p>
+
+                            <!-- Skills showcase -->
+                            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
+                                <span class="px-3 py-1 bg-sky-500/20 text-sky-300 rounded-full text-sm font-medium border border-sky-500/30 animate-pulse">Python</span>
+                                <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30 animate-pulse [animation-delay:0.5s]">JavaScript</span>
+                                <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm font-medium border border-pink-500/30 animate-pulse [animation-delay:1s]">React</span>
+                                <span class="px-3 py-1 bg-sky-500/20 text-sky-300 rounded-full text-sm font-medium border border-sky-500/30 animate-pulse [animation-delay:1.5s]">Design</span>
+                            </div>
+
+                            <!-- Enhanced social links -->
+                            <div class="mt-8 flex justify-center md:justify-start items-center space-x-6">
+                                <p class="text-slate-500 font-semibold flex items-center">
+                                    <span class="inline-block w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                                    Connect:
+                                </p>
+                                
+                                <!-- GitHub link with enhanced styling -->
+                                <a href="https://github.com/Nathishwar-prog" class="group relative text-slate-400 hover:text-white transition-all duration-300 hover:scale-125" title="GitHub">
+                                    <div class="absolute inset-0 bg-slate-700/50 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <svg class="w-8 h-8 relative z-10 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">GitHub</span>
+                                </a>
+                                
+                                <!-- LinkedIn link with enhanced styling -->
+                                <a href="https://www.linkedin.com/in/nathishwar/" class="group relative text-slate-400 hover:text-white transition-all duration-300 hover:scale-125" title="LinkedIn">
+                                    <div class="absolute inset-0 bg-blue-700/50 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <svg class="w-8 h-8 relative z-10 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                    </svg>
+                                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">LinkedIn</span>
+                                </a>
+                                
+                                <!-- Portfolio link -->
+                                <a href="https://nathishwardev.neocities.org/" class="group relative text-slate-400 hover:text-white transition-all duration-300 hover:scale-125" title="Portfolio">
+                                    <div class="absolute inset-0 bg-purple-700/50 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <svg class="w-8 h-8 relative z-10 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6m8 0H8m0 0v2m0-2V4m8 2v2m0-2V4" />
+                                    </svg>
+                                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">Portfolio</span>
+                                </a>
+                            </div>
+
+                            <!-- Stats section -->
+                            <div class="mt-8 grid grid-cols-3 gap-4">
+                                <div class="text-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                                    <div class="text-2xl font-bold text-sky-400 animate-pulse">3+</div>
+                                    <div class="text-xs text-slate-500 uppercase tracking-wider">Years Experience</div>
+                                </div>
+                                <div class="text-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                                    <div class="text-2xl font-bold text-purple-400 animate-pulse [animation-delay:0.5s]">50+</div>
+                                    <div class="text-xs text-slate-500 uppercase tracking-wider">Projects Built</div>
+                                </div>
+                                <div class="text-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                                    <div class="text-2xl font-bold text-pink-400 animate-pulse [animation-delay:1s]">1k+</div>
+                                    <div class="text-xs text-slate-500 uppercase tracking-wider">Students Taught</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DATA & CONFIG ---
+        const algorithms = {
+            linear: {
+                name: "Linear Search",
+                requiresSorted: false,
+                explanation: `
+                    <p>Linear Search is the most basic search algorithm. It sequentially checks each element of the list until a match is found or the whole list has been searched.</p>
+                    <h4 class="font-semibold mt-2">How it works:</h4>
+                    <ol class="list-decimal list-inside">
+                        <li>Start from the leftmost element of the array.</li>
+                        <li>Compare the target value with the current element.</li>
+                        <li>If the element matches the target, return the index.</li>
+                        <li>If the element does not match, move to the next element.</li>
+                        <li>If the end of the array is reached without finding the target, the search terminates unsuccessfully.</li>
+                    </ol>
+                `,
+                complexity: `
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr><th class="border p-2 border-gray-600">Case</th><th class="border p-2 border-gray-600">Time Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td class="border p-2 border-gray-600">Best Case</td><td class="border p-2 border-gray-600">O(1) - Target is the first element.</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Average Case</td><td class="border p-2 border-gray-600">O(n)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Worst Case</td><td class="border p-2 border-gray-600">O(n) - Target is the last element or not present.</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2"><b>Space Complexity:</b> O(1)</p>
+                `,
+                pythonCode: `
+def linear_search(arr, target):
+    """
+    Sequentially checks each element of the list.
+    """
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i  # Return the index of the found element
+    return -1  # Return -1 if the element is not found
+                `
+            },
+            binary: {
+                name: "Binary Search",
+                requiresSorted: true,
+                explanation: `
+                    <p>Binary Search is a highly efficient search algorithm that works on <strong>sorted</strong> arrays. It follows a divide and conquer approach.</p>
+                    <h4 class="font-semibold mt-2">How it works:</h4>
+                    <ol class="list-decimal list-inside">
+                        <li>Compare the target value with the middle element of the array.</li>
+                        <li>If the target matches the middle element, its position is found.</li>
+                        <li>If the target is less than the middle element, narrow the search to the lower half of the array.</li>
+                        <li>If the target is greater than the middle element, narrow the search to the upper half of the array.</li>
+                        <li>Repeat the process on the new sub-array until the value is found or the sub-array is empty.</li>
+                    </ol>
+                `,
+                complexity: `
+                     <table class="w-full text-left border-collapse">
+                        <thead><tr><th class="border p-2 border-gray-600">Case</th><th class="border p-2 border-gray-600">Time Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td class="border p-2 border-gray-600">Best Case</td><td class="border p-2 border-gray-600">O(1) - Target is the middle element.</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Average Case</td><td class="border p-2 border-gray-600">O(log n)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Worst Case</td><td class="border p-2 border-gray-600">O(log n)</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2"><b>Space Complexity:</b> O(1) for iterative, O(log n) for recursive.</p>
+                `,
+                pythonCode: `
+def binary_search(arr, target):
+    """
+    Efficiently finds an item from a sorted list of items.
+    """
+    low = 0
+    high = len(arr) - 1
+    
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+            
+    return -1 # Target not found
+                `
+            },
+            jump: {
+                name: "Jump Search",
+                requiresSorted: true,
+                explanation: `
+                    <p>Jump Search (or Block Search) is a searching algorithm for <strong>sorted</strong> arrays. The basic idea is to check fewer elements than linear search by jumping ahead by fixed steps.</p>
+                    <h4 class="font-semibold mt-2">How it works:</h4>
+                    <ol class="list-decimal list-inside">
+                        <li>Determine a block (or jump) size, typically √n.</li>
+                        <li>Jump from index 0 to index √n, 2√n, and so on, until the element at the jumped-to index is greater than the target.</li>
+                        <li>Once you find such a block, perform a linear search from the previous block's end to the current block's end.</li>
+                        <li>This reduces the number of comparisons by not checking every single element.</li>
+                    </ol>
+                `,
+                complexity: `
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr><th class="border p-2 border-gray-600">Case</th><th class="border p-2 border-gray-600">Time Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td class="border p-2 border-gray-600">Best Case</td><td class="border p-2 border-gray-600">O(1)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Average Case</td><td class="border p-2 border-gray-600">O(√n)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Worst Case</td><td class="border p-2 border-gray-600">O(√n)</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2"><b>Space Complexity:</b> O(1)</p>
+                `,
+                pythonCode: `
+import math
+
+def jump_search(arr, target):
+    """
+    Searches a sorted array by jumping ahead by fixed steps.
+    """
+    n = len(arr)
+    step = int(math.sqrt(n))
+    prev = 0
+    
+    # Finding the block where element is present (if it is)
+    while arr[min(step, n) - 1] < target:
+        prev = step
+        step += int(math.sqrt(n))
+        if prev >= n:
+            return -1
+            
+    # Doing a linear search for target in block
+    # beginning with prev.
+    while arr[prev] < target:
+        prev += 1
+        # If we reached next block or end of array, element is not present.
+        if prev == min(step, n):
+            return -1
+            
+    # If element is found
+    if arr[prev] == target:
+        return prev
+        
+    return -1
+                `
+            },
+            interpolation: {
+                name: "Interpolation Search",
+                requiresSorted: true,
+                explanation: `
+                    <p>Interpolation Search is an improvement over Binary Search for instances where the values in a <strong>sorted</strong> array are uniformly distributed.</p>
+                    <h4 class="font-semibold mt-2">How it works:</h4>
+                    <p>While Binary Search always checks the middle element, Interpolation Search probes different locations according to the value of the target key. For example, if the target value is closer to the last element, interpolation search is likely to start search from the end side.</p>
+                    <p>The probe position is calculated by the formula:</p>
+                    <code>pos = low + [ (target - arr[low]) * (high - low) / (arr[high] - arr[low]) ]</code>
+                `,
+                complexity: `
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr><th class="border p-2 border-gray-600">Case</th><th class="border p-2 border-gray-600">Time Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td class="border p-2 border-gray-600">Best Case</td><td class="border p-2 border-gray-600">O(1)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Average Case</td><td class="border p-2 border-gray-600">O(log(log n)) - for uniformly distributed data.</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Worst Case</td><td class="border p-2 border-gray-600">O(n) - for non-uniformly distributed data (e.g., exponential).</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2"><b>Space Complexity:</b> O(1)</p>
+                `,
+                pythonCode: `
+def interpolation_search(arr, target):
+    """
+    An improvement over Binary Search for uniformly distributed data.
+    """
+    low = 0
+    high = len(arr) - 1
+    
+    while low <= high and target >= arr[low] and target <= arr[high]:
+        if low == high:
+            if arr[low] == target:
+                return low
+            return -1
+            
+        # Probing the position with keeping uniform distribution in mind.
+        pos = low + int(((float(high - low) / 
+            (arr[high] - arr[low])) * (target - arr[low])))
+            
+        if arr[pos] == target:
+            return pos
+        
+        if arr[pos] < target:
+            low = pos + 1
+        else:
+            high = pos - 1
+            
+    return -1
+                `
+            },
+            exponential: {
+                name: "Exponential Search",
+                requiresSorted: true,
+                explanation: `
+                    <p>Exponential Search (also known as doubling search) works on <strong>sorted</strong>, unbounded/infinite arrays. This algorithm is also useful for bounded arrays where the element to be searched is likely to be at the beginning.</p>
+                    <h4 class="font-semibold mt-2">How it works:</h4>
+                    <ol class="list-decimal list-inside">
+                        <li>Find a range where the element might be present. Start with a subarray of size 1, compare its last element with the target, then try size 2, 4, 8 and so on.</li>
+                        <li>Once the element at index <code>i</code> is greater than the target, we know the target (if it exists) must lie between <code>i/2</code> and <code>i</code>.</li>
+                        <li>Perform a Binary Search on this found range.</li>
+                    </ol>
+                `,
+                complexity: `
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr><th class="border p-2 border-gray-600">Case</th><th class="border p-2 border-gray-600">Time Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td class="border p-2 border-gray-600">Best Case</td><td class="border p-2 border-gray-600">O(1)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Average Case</td><td class="border p-2 border-gray-600">O(log i) where i is the index of the target.</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Worst Case</td><td class="border p-2 border-gray-600">O(log n)</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2"><b>Space Complexity:</b> O(1) for iterative binary search, O(log i) for recursive.</p>
+                `,
+                pythonCode: `
+def binary_search_for_exponential(arr, low, high, target):
+    # Helper for exponential search
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+def exponential_search(arr, target):
+    """
+    Useful for unbounded arrays or when the element is near the beginning.
+    """
+    n = len(arr)
+    if arr[0] == target:
+        return 0
+        
+    i = 1
+    while i < n and arr[i] <= target:
+        i = i * 2
+        
+    return binary_search_for_exponential(arr, i // 2, min(i, n - 1), target)
+                `
+            },
+            fibonacci: {
+                name: "Fibonacci Search",
+                requiresSorted: true,
+                explanation: `
+                    <p>Fibonacci Search is a comparison-based technique that uses Fibonacci numbers to search an element in a <strong>sorted</strong> array. It's similar to Binary Search but uses addition and subtraction instead of division.</p>
+                    <h4 class="font-semibold mt-2">How it works:</h4>
+                    <ol class="list-decimal list-inside">
+                        <li>Find the smallest Fibonacci number greater than or equal to the length of the array (n). Let this be <code>fibM</code>.</li>
+                        <li>Let the two preceding Fibonacci numbers be <code>fibM_1</code> and <code>fibM_2</code>.</li>
+                        <li>While <code>fibM</code> is greater than 1, compare the target with the element at index <code>i = min(offset + fibM_2, n-1)</code>.</li>
+                        <li>If the target matches, return the index.</li>
+                        <li>If the target is greater, move the offset and drop the two lowest Fibonacci numbers.</li>
+                        <li>If the target is smaller, drop the lowest Fibonacci number.</li>
+                        <li>Repeat until the element is found or the search space is exhausted.</li>
+                    </ol>
+                `,
+                complexity: `
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr><th class="border p-2 border-gray-600">Case</th><th class="border p-2 border-gray-600">Time Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td class="border p-2 border-gray-600">Best Case</td><td class="border p-2 border-gray-600">O(1)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Average Case</td><td class="border p-2 border-gray-600">O(log n)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Worst Case</td><td class="border p-2 border-gray-600">O(log n)</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2"><b>Space Complexity:</b> O(1)</p>
+                `,
+                pythonCode: `
+def fibonacci_search(arr, target):
+    """
+    Searches a sorted array using Fibonacci numbers.
+    """
+    n = len(arr)
+    fibM_2 = 0  # (m-2)'th Fibonacci No.
+    fibM_1 = 1  # (m-1)'th Fibonacci No.
+    fibM = fibM_2 + fibM_1  # m'th Fibonacci
+    
+    while fibM < n:
+        fibM_2 = fibM_1
+        fibM_1 = fibM
+        fibM = fibM_2 + fibM_1
+        
+    offset = -1
+    
+    while fibM > 1:
+        i = min(offset + fibM_2, n - 1)
+        
+        if arr[i] < target:
+            fibM = fibM_1
+            fibM_1 = fibM_2
+            fibM_2 = fibM - fibM_1
+            offset = i
+        elif arr[i] > target:
+            fibM = fibM_2
+            fibM_1 = fibM_1 - fibM_2
+            fibM_2 = fibM - fibM_1
+        else:
+            return i
+            
+    if fibM_1 and arr[offset + 1] == target:
+        return offset + 1
+        
+    return -1
+                `
+            },
+            ternary: {
+                name: "Ternary Search",
+                requiresSorted: true,
+                explanation: `
+                    <p>Ternary search is a divide and conquer algorithm, similar to binary search, but it divides the array into three parts instead of two.</p>
+                    <h4 class="font-semibold mt-2">How it works:</h4>
+                    <ol class="list-decimal list-inside">
+                        <li>Find two midpoints, <code>mid1</code> and <code>mid2</code>, which divide the array into three equal parts. <code>mid1 = low + (high-low)/3</code> and <code>mid2 = high - (high-low)/3</code>.</li>
+                        <li>Compare the target with the elements at <code>mid1</code> and <code>mid2</code>.</li>
+                        <li>If a match is found, return the index.</li>
+                        <li>If the target is less than <code>arr[mid1]</code>, recur for the first part.</li>
+                        <li>If the target is greater than <code>arr[mid2]</code>, recur for the third part.</li>
+                        <li>Otherwise, the target must lie in the middle part, so recur for the second part.</li>
+                    </ol>
+                `,
+                complexity: `
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr><th class="border p-2 border-gray-600">Case</th><th class="border p-2 border-gray-600">Time Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td class="border p-2 border-gray-600">Best Case</td><td class="border p-2 border-gray-600">O(1)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Average Case</td><td class="border p-2 border-gray-600">O(log3 n)</td></tr>
+                            <tr><td class="border p-2 border-gray-600">Worst Case</td><td class="border p-2 border-gray-600">O(log3 n)</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2"><b>Space Complexity:</b> O(1) for iterative, O(log n) for recursive.</p>
+                `,
+                pythonCode: `
+def ternary_search(arr, target):
+    """
+    Searches a sorted array by dividing it into three parts.
+    """
+    low = 0
+    high = len(arr) - 1
+    
+    while high >= low:
+        mid1 = low + (high - low) // 3
+        mid2 = high - (high - low) // 3
+        
+        if arr[mid1] == target:
+            return mid1
+        if arr[mid2] == target:
+            return mid2
+            
+        if target < arr[mid1]:
+            high = mid1 - 1
+        elif target > arr[mid2]:
+            low = mid2 + 1
+        else:
+            low = mid1 + 1
+            high = mid2 - 1
+            
+    return -1
+                `
+            }
+        };
+
+        const infoTabsData = [
+            { id: 'explanation', name: 'Explanation' },
+            { id: 'pythonCode', name: 'Python Code' },
+            { id: 'complexity', name: 'Complexity & Use Case' }
+        ];
+
+        // --- STATE ---
+        let currentAlgorithm = null;
+        let animationQueue = [];
+        let animationTimeout = null;
+        let animationSpeed = 500;
+        let isAnimating = false;
+        let array = [];
+
+        // --- DOM ELEMENTS ---
+        const algorithmList = document.getElementById('algorithm-list');
+        const currentAlgorithmTitle = document.getElementById('current-algorithm-title');
+        const arrayInput = document.getElementById('array-input');
+        const targetInput = document.getElementById('target-input');
+        const searchButton = document.getElementById('search-button');
+        const searchButtonText = document.getElementById('search-button-text');
+        const searchLoader = document.getElementById('search-loader');
+        const sortButton = document.getElementById('sort-button');
+        const speedSlider = document.getElementById('speed-slider');
+        const visualizationContainer = document.getElementById('visualization-container');
+        const statusMessage = document.getElementById('status-message');
+        const infoTabs = document.getElementById('info-tabs');
+        const infoContent = document.getElementById('info-content');
+
+        // --- INITIALIZATION ---
+        function init() {
+            // Populate algorithm list
+            Object.keys(algorithms).forEach(key => {
+                const button = document.createElement('button');
+                button.id = `btn-${key}`;
+                button.dataset.algo = key;
+                button.className = 'w-full text-left p-2 rounded-md hover:bg-gray-700 tab-button transition-colors';
+                button.textContent = algorithms[key].name;
+                button.onclick = () => selectAlgorithm(key);
+                algorithmList.appendChild(button);
+            });
+
+            // Populate info tabs
+            infoTabsData.forEach(tab => {
+                const button = document.createElement('button');
+                button.id = `tab-${tab.id}`;
+                button.dataset.tab = tab.id;
+                button.className = 'py-4 px-1 border-b-2 border-transparent text-sm font-medium text-gray-400 hover:text-gray-200 hover:border-gray-500 info-tab-button';
+                button.textContent = tab.name;
+                button.onclick = () => selectInfoTab(tab.id);
+                infoTabs.appendChild(button);
+            });
+
+            // Set default values
+            arrayInput.value = '2, 5, 8, 12, 16, 23, 38, 56, 72, 91';
+            targetInput.value = '23';
+
+            // Add event listeners
+            searchButton.addEventListener('click', startSearch);
+            sortButton.addEventListener('click', sortInputArray);
+            speedSlider.addEventListener('input', (e) => {
+                animationSpeed = 2100 - e.target.value;
+            });
+            
+            // Select first algorithm by default
+            selectAlgorithm('linear');
+        }
+
+        // --- UI & STATE MANAGEMENT ---
+        function selectAlgorithm(algoKey) {
+            if (isAnimating) return;
+            currentAlgorithm = algoKey;
+            
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${algoKey}`).classList.add('active');
+
+            currentAlgorithmTitle.textContent = algorithms[algoKey].name;
+            if (algorithms[algoKey].requiresSorted) {
+                currentAlgorithmTitle.textContent += " (Requires Sorted Array)";
+            }
+            
+            searchButton.disabled = false;
+            selectInfoTab('explanation');
+            resetVisualization();
+        }
+
+        function selectInfoTab(tabId) {
+            if (!currentAlgorithm) return;
+
+            document.querySelectorAll('.info-tab-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            
+            let content = algorithms[currentAlgorithm][tabId];
+            if (tabId === 'pythonCode') {
+                infoContent.innerHTML = `<pre><code>${content.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
+            } else {
+                infoContent.innerHTML = content;
+            }
+        }
+
+        function setAnimatingState(isBusy) {
+            isAnimating = isBusy;
+            searchButtonText.textContent = isBusy ? 'Searching...' : 'Search';
+            searchLoader.classList.toggle('hidden', !isBusy);
+            searchButton.disabled = isBusy;
+            arrayInput.disabled = isBusy;
+            targetInput.disabled = isBusy;
+            sortButton.disabled = isBusy;
+            document.querySelectorAll('.tab-button').forEach(btn => btn.disabled = isBusy);
+        }
+        
+        function sortInputArray() {
+            if (isAnimating) return;
+            const parsedArray = parseArrayInput();
+            if (!parsedArray) return;
+            parsedArray.sort((a,b) => a-b);
+            arrayInput.value = parsedArray.join(', ');
+            resetVisualization();
+        }
+
+        // --- VISUALIZATION ---
+        function renderArray(arr) {
+            visualizationContainer.innerHTML = '';
+            const container = document.createElement('div');
+            container.className = 'flex flex-nowrap items-end space-x-1';
+
+            arr.forEach((value, index) => {
+                const cellWrapper = document.createElement('div');
+                cellWrapper.className = 'flex flex-col items-center';
+                
+                const pointer = document.createElement('div');
+                pointer.id = `pointer-${index}`;
+                pointer.className = 'pointer text-sm font-bold h-6';
+                
+                const cell = document.createElement('div');
+                cell.id = `cell-${index}`;
+                cell.className = 'array-cell border-2 border-gray-600 bg-gray-700 rounded-md flex items-center justify-center font-mono font-bold text-lg';
+                cell.textContent = value;
+
+                const idxLabel = document.createElement('div');
+                idxLabel.className = 'cell-index text-gray-400 mt-1';
+                idxLabel.textContent = index;
+
+                cellWrapper.appendChild(pointer);
+                cellWrapper.appendChild(cell);
+                cellWrapper.appendChild(idxLabel);
+                container.appendChild(cellWrapper);
+            });
+            visualizationContainer.appendChild(container);
+        }
+
+        function resetVisualization() {
+            clearTimeout(animationTimeout);
+            setAnimatingState(false);
+            animationQueue = [];
+            const parsedArray = parseArrayInput();
+            if (parsedArray) {
+                array = parsedArray;
+                renderArray(array);
+            } else {
+                visualizationContainer.innerHTML = '';
+            }
+            statusMessage.textContent = 'Enter an array and a target value, then press "Search".';
+            statusMessage.className = 'mt-4 text-center font-medium h-6 text-gray-400';
+        }
+
+        function updateStatus(message, colorClass = 'text-gray-200') {
+            statusMessage.textContent = message;
+            statusMessage.className = `mt-4 text-center font-medium h-6 ${colorClass}`;
+        }
+
+        function highlight(indices, colorClass, pointerText = '') {
+            // Reset previous highlights to default dark theme style
+            document.querySelectorAll('.array-cell').forEach(cell => {
+                 cell.className = 'array-cell border-2 border-gray-600 bg-gray-700 rounded-md flex items-center justify-center font-mono font-bold text-lg';
+            });
+            document.querySelectorAll('.pointer').forEach(pointer => {
+                pointer.textContent = '';
+                pointer.style.opacity = 0;
+            });
+
+            indices.forEach(item => {
+                let index;
+                let text;
+                if(typeof item === 'object'){
+                    index = item.index;
+                    text = item.text;
+                } else {
+                    index = item;
+                    text = pointerText;
+                }
+                const cell = document.getElementById(`cell-${index}`);
+                const pointer = document.getElementById(`pointer-${index}`);
+                if (cell) {
+                    cell.className = `array-cell border-2 ${colorClass} rounded-md flex items-center justify-center font-mono font-bold text-lg`;
+                }
+                if (pointer && text) {
+                    pointer.textContent = text;
+                    pointer.style.opacity = 1;
+                }
+            });
+        }
+
+        // --- ANIMATION ENGINE ---
+        function processAnimationQueue() {
+            if (animationQueue.length === 0) {
+                setAnimatingState(false);
+                return;
+            }
+
+            const step = animationQueue.shift();
+            
+            updateStatus(step.message);
+
+            switch (step.type) {
+                case 'compare':
+                    highlight(step.indices, 'border-blue-400 bg-blue-500/20');
+                    break;
+                case 'range':
+                    highlight(step.indices, 'border-purple-400 bg-purple-500/20');
+                    break;
+                case 'pointers':
+                    highlight(step.indices, 'border-gray-400 bg-gray-500/20');
+                    break;
+                case 'found':
+                    highlight([step.index], 'border-green-400 bg-green-500/30');
+                    updateStatus(`Element found at index ${step.index}!`, 'text-green-400');
+                    setAnimatingState(false);
+                    return;
+                case 'not-found':
+                    updateStatus(step.message, 'text-red-400');
+                    setAnimatingState(false);
+                    return;
+            }
+
+            animationTimeout = setTimeout(processAnimationQueue, animationSpeed);
+        }
+
+        // --- ALGORITHM LOGIC ---
+        function startSearch() {
+            if (isAnimating) return;
+
+            resetVisualization();
+            array = parseArrayInput();
+            const target = parseInt(targetInput.value, 10);
+
+            if (!array || isNaN(target)) {
+                updateStatus('Invalid input. Please check the array and target value.', 'text-red-400');
+                return;
+            }
+            
+            if (algorithms[currentAlgorithm].requiresSorted) {
+                const isSorted = array.every((v, i, a) => !i || a[i-1] <= v);
+                if (!isSorted) {
+                    updateStatus('This algorithm requires a sorted array. Please sort it first.', 'text-red-400');
+                    return;
+                }
+            }
+
+            setAnimatingState(true);
+            
+            switch (currentAlgorithm) {
+                case 'linear': linearSearch(array, target); break;
+                case 'binary': binarySearch(array, target); break;
+                case 'jump': jumpSearch(array, target); break;
+                case 'interpolation': interpolationSearch(array, target); break;
+                case 'exponential': exponentialSearch(array, target); break;
+                case 'fibonacci': fibonacciSearch(array, target); break;
+                case 'ternary': ternarySearch(array, target); break;
+            }
+
+            processAnimationQueue();
+        }
+
+        function parseArrayInput() {
+            const input = arrayInput.value.trim();
+            if (!input) return null;
+            return input.split(',').map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n));
+        }
+
+        // --- SEARCH ALGORITHM VISUALIZERS ---
+        // (Logic remains the same, only visual classes were changed above)
+
+        function linearSearch(arr, target) {
+            for (let i = 0; i < arr.length; i++) {
+                animationQueue.push({ type: 'compare', indices: [i], message: `Comparing with element at index ${i} (${arr[i]})` });
+                if (arr[i] === target) {
+                    animationQueue.push({ type: 'found', index: i });
+                    return;
+                }
+            }
+            animationQueue.push({ type: 'not-found', message: 'Element not found in the array.' });
+        }
+
+        function binarySearch(arr, target) {
+            let low = 0;
+            let high = arr.length - 1;
+            while (low <= high) {
+                let mid = Math.floor((low + high) / 2);
+                animationQueue.push({
+                    type: 'pointers',
+                    indices: [{index: low, text: 'low'}, {index: high, text: 'high'}, {index: mid, text: 'mid'}],
+                    message: `Searching between index ${low} and ${high}. Mid is ${mid}.`
+                });
+                animationQueue.push({ type: 'compare', indices: [mid], message: `Comparing target with ${arr[mid]}` });
+                if (arr[mid] === target) {
+                    animationQueue.push({ type: 'found', index: mid });
+                    return;
+                } else if (arr[mid] < target) {
+                    low = mid + 1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is larger. New range: ${low} to ${high}.` });
+                } else {
+                    high = mid - 1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is smaller. New range: ${low} to ${high}.` });
+                }
+            }
+            animationQueue.push({ type: 'not-found', message: 'Element not found in the array.' });
+        }
+
+        function jumpSearch(arr, target) {
+            const n = arr.length;
+            let step = Math.floor(Math.sqrt(n));
+            let prev = 0;
+            
+            animationQueue.push({ type: 'range', indices: [], message: `Setting jump step to ${step}.` });
+
+            while (arr[Math.min(step, n) - 1] < target) {
+                animationQueue.push({ type: 'compare', indices: [prev, Math.min(step, n) - 1], message: `Jumping from ${prev} to ${Math.min(step, n) - 1}.` });
+                prev = step;
+                step += Math.floor(Math.sqrt(n));
+                if (prev >= n) {
+                    animationQueue.push({ type: 'not-found', message: 'Element not found.' });
+                    return;
+                }
+            }
+            
+            animationQueue.push({ type: 'range', indices: [], message: `Target may be in block from ${prev} to ${step-1}. Performing linear search.` });
+
+            while (prev < Math.min(step, n)) {
+                animationQueue.push({ type: 'compare', indices: [prev], message: `Comparing with ${arr[prev]}.` });
+                if (arr[prev] === target) {
+                    animationQueue.push({ type: 'found', index: prev });
+                    return;
+                }
+                prev++;
+            }
+            
+            animationQueue.push({ type: 'not-found', message: 'Element not found.' });
+        }
+        
+        function interpolationSearch(arr, target) {
+            let low = 0;
+            let high = arr.length - 1;
+
+            while (low <= high && target >= arr[low] && target <= arr[high]) {
+                if (low === high) {
+                    animationQueue.push({ type: 'compare', indices: [low], message: `Single element left. Comparing with ${arr[low]}.` });
+                    if (arr[low] === target) animationQueue.push({ type: 'found', index: low });
+                    break;
+                }
+                
+                let pos = low + Math.floor(((high - low) / (arr[high] - arr[low])) * (target - arr[low]));
+                
+                if (pos < low || pos > high || isNaN(pos)) {
+                    animationQueue.push({ type: 'not-found', message: 'Probe position is out of bounds. Element not found.' });
+                    return;
+                }
+
+                animationQueue.push({
+                    type: 'pointers',
+                    indices: [{index: low, text: 'low'}, {index: high, text: 'high'}, {index: pos, text: 'pos'}],
+                    message: `Probing at calculated position ${pos}.`
+                });
+
+                animationQueue.push({ type: 'compare', indices: [pos], message: `Comparing target with ${arr[pos]}.` });
+
+                if (arr[pos] === target) {
+                    animationQueue.push({ type: 'found', index: pos });
+                    return;
+                }
+
+                if (arr[pos] < target) {
+                    low = pos + 1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is larger. New range: ${low} to ${high}.` });
+                } else {
+                    high = pos - 1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is smaller. New range: ${low} to ${high}.` });
+                }
+            }
+            animationQueue.push({ type: 'not-found', message: 'Element not found.' });
+        }
+        
+        function exponentialSearch(arr, target) {
+            const n = arr.length;
+            if (arr[0] === target) {
+                animationQueue.push({ type: 'compare', indices: [0], message: `Comparing with element at index 0.` });
+                animationQueue.push({ type: 'found', index: 0 });
+                return;
+            }
+            
+            let i = 1;
+            animationQueue.push({ type: 'range', indices: [], message: `Finding range...` });
+            while (i < n && arr[i] <= target) {
+                animationQueue.push({ type: 'compare', indices: [i], message: `Checking bound at index ${i}. Value is ${arr[i]}.` });
+                i = i * 2;
+            }
+            
+            const low = i / 2;
+            const high = Math.min(i, n - 1);
+            animationQueue.push({ type: 'range', indices: [], message: `Range found. Performing binary search between ${low} and ${high}.` });
+            
+            let bsLow = low, bsHigh = high;
+            while(bsLow <= bsHigh) {
+                let mid = Math.floor((bsLow + bsHigh) / 2);
+                animationQueue.push({
+                    type: 'pointers',
+                    indices: [{index: bsLow, text: 'low'}, {index: bsHigh, text: 'high'}, {index: mid, text: 'mid'}],
+                    message: `Binary searching... Mid is ${mid}.`
+                });
+                animationQueue.push({ type: 'compare', indices: [mid], message: `Comparing target with ${arr[mid]}` });
+                if (arr[mid] === target) {
+                    animationQueue.push({ type: 'found', index: mid });
+                    return;
+                } else if (arr[mid] < target) {
+                    bsLow = mid + 1;
+                } else {
+                    bsHigh = mid - 1;
+                }
+            }
+            animationQueue.push({ type: 'not-found', message: 'Element not found.' });
+        }
+        
+        function fibonacciSearch(arr, target) {
+            const n = arr.length;
+            let fibM_2 = 0;
+            let fibM_1 = 1;
+            let fibM = fibM_2 + fibM_1;
+
+            while (fibM < n) {
+                fibM_2 = fibM_1;
+                fibM_1 = fibM;
+                fibM = fibM_2 + fibM_1;
+            }
+
+            let offset = -1;
+            animationQueue.push({ type: 'range', indices: [], message: `Using Fibonacci numbers: ${fibM_2}, ${fibM_1}, ${fibM}` });
+
+            while (fibM > 1) {
+                let i = Math.min(offset + fibM_2, n - 1);
+                animationQueue.push({ type: 'pointers', indices: [{index: i, text: 'probe'}], message: `Probing at index ${i}.` });
+                animationQueue.push({ type: 'compare', indices: [i], message: `Comparing target with ${arr[i]}.` });
+
+                if (arr[i] < target) {
+                    fibM = fibM_1;
+                    fibM_1 = fibM_2;
+                    fibM_2 = fibM - fibM_1;
+                    offset = i;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is larger. Moving offset.` });
+                } else if (arr[i] > target) {
+                    fibM = fibM_2;
+                    fibM_1 = fibM_1 - fibM_2;
+                    fibM_2 = fibM - fibM_1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is smaller. Reducing search space.` });
+                } else {
+                    animationQueue.push({ type: 'found', index: i });
+                    return;
+                }
+            }
+
+            if (fibM_1 && arr[offset + 1] === target) {
+                animationQueue.push({ type: 'found', index: offset + 1 });
+                return;
+            }
+
+            animationQueue.push({ type: 'not-found', message: 'Element not found.' });
+        }
+        
+        function ternarySearch(arr, target) {
+            let low = 0;
+            let high = arr.length - 1;
+            while (high >= low) {
+                let mid1 = low + Math.floor((high - low) / 3);
+                let mid2 = high - Math.floor((high - low) / 3);
+                
+                animationQueue.push({
+                    type: 'pointers',
+                    indices: [{index: low, text: 'low'}, {index: high, text: 'high'}, {index: mid1, text: 'mid1'}, {index: mid2, text: 'mid2'}],
+                    message: `Searching between ${low} and ${high}. Mids are ${mid1}, ${mid2}.`
+                });
+
+                animationQueue.push({ type: 'compare', indices: [mid1], message: `Comparing with mid1 value ${arr[mid1]}.` });
+                if (arr[mid1] === target) {
+                    animationQueue.push({ type: 'found', index: mid1 });
+                    return;
+                }
+                animationQueue.push({ type: 'compare', indices: [mid2], message: `Comparing with mid2 value ${arr[mid2]}.` });
+                if (arr[mid2] === target) {
+                    animationQueue.push({ type: 'found', index: mid2 });
+                    return;
+                }
+
+                if (target < arr[mid1]) {
+                    high = mid1 - 1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is in first third. New range: ${low} to ${high}.` });
+                } else if (target > arr[mid2]) {
+                    low = mid2 + 1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is in last third. New range: ${low} to ${high}.` });
+                } else {
+                    low = mid1 + 1;
+                    high = mid2 - 1;
+                    animationQueue.push({ type: 'range', indices: [], message: `Target is in middle third. New range: ${low} to ${high}.` });
+                }
+            }
+            animationQueue.push({ type: 'not-found', message: 'Element not found.' });
+        }
+
+        // --- START THE APP ---
+        init();
+    });
+    </script>
+
+</body>
+</html>

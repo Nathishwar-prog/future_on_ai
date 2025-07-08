@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Resources - Free Educational Content</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body and Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+                /* Styles for the navigation bar */
+                .header-nav {
+            background-color: rgba(0, 0, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 246, 255, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            color: #a0a0c0; /* Lighter text for contrast */
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 246, 255, 0.8);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00f6ff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .special-link {
+            border: 1px solid #00f6ff;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .special-link:hover {
+            background-color: #00f6ff;
+            color: #00001a;
+            box-shadow: 0 0 20px #00f6ff;
+            text-shadow: none;
+        }
+        .special-link:hover::after {
+            width: 0; /* Don't show underline on button hover */
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 246, 255, 0.9), 0 0 25px rgba(255, 0, 255, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Student Portal Section Styles */
+        .student-portal {
+            padding: 40px 0;
+        }
+
+        /* Header Styles */
+        .portal-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .portal-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .portal-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 10px;
+        }
+
+        .free-badge {
+            background: #10b981;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Access Methods Section Styles */
+        .access-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .access-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .access-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .access-card {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .access-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .access-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .access-method-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .access-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .access-info {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            color: #065f46;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* NEW: Explore Resources Section Styles */
+        .explore-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .explore-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .explore-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .explore-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .explore-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .explore-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .explore-card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .explore-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .explore-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+
+        /* Community Section Styles */
+        .community-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .community-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .community-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .community-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Final Info/CTA Section */
+        .info-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .info-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .info-description {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px 10px;
+        }
+
+        .info-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Animation and Floating Elements */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Reusable Header and Navigation Section -->
+    <header class="header-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Site Title -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-2xl font-bold text-white text-glow">
+                        Future on AI
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:block">
+                    <nav class="ml-10 flex items-baseline space-x-4">
+                        <a href="pages/home.html" class="nav-link">Home</a>
+                        <a href="/pages/about.html" class="nav-link">About</a>
+                        <a href="/pages/course.html" class="nav-link">Courses</a>
+                        <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link">Infographics</a>
+                        <a href="/pages/resources.html" class="nav-link">Resources</a>
+                        <a href="/pages/contact.html" class="nav-link">Contact</a>
+                        <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link">Student ID Offers</a>
+                    </nav>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Icon for menu open -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Icon for menu close (hidden by default) -->
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/pages/home.html" class="nav-link block text-center py-2">Home</a>
+                <a href="/pages/about.html" class="nav-link block text-center py-2">About</a>
+                <a href="/pages/course.html" class="nav-link block text-center py-2">Courses</a>
+                <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link block text-center py-2">Infographics</a>
+                <a href="/pages/resources.html" class="nav-link block text-center py-2">Resources</a>
+                <a href="/pages/contact.html" class="nav-link block text-center py-2">Contact</a>
+                <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link block text-center mx-auto mt-2 w-fit">Student ID Offers</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Decorative floating background elements -->
+    <div class="floating-elements">
+        <div class="floating-circle" style="top: 20%; left: 10%; width: 100px; height: 100px; animation-delay: 0s;"></div>
+        <div class="floating-circle" style="top: 60%; right: 10%; width: 150px; height: 150px; animation-delay: 2s;"></div>
+        <div class="floating-circle" style="bottom: 20%; left: 20%; width: 80px; height: 80px; animation-delay: 4s;"></div>
+    </div>
+
+    <section class="student-portal">
+        <div class="container">
+            <!-- Header -->
+            <div class="portal-header animate-on-scroll">
+                <h1 class="portal-title">Free Contents for Student ID and Email</h1>
+                <div class="free-badge">🎓 100% FREE for Students</div>
+                <p class="portal-subtitle">Discover what's available with your student credentials</p>
+            </div>
+
+            <!-- Access Methods Section -->
+            <div class="access-section animate-on-scroll">
+                <h2 class="access-title">How to Get Access</h2>
+                <div class="access-methods">
+                    <div class="access-card">
+                        <div class="access-icon"><i data-feather="credit-card"></i></div>
+                        <h3 class="access-method-title">With Your Student ID</h3>
+                        <p class="access-description">Your student ID unlocks access to comprehensive educational resources, digital libraries, and collaborative tools.</p>
+                        <div class="access-info">
+                            ✓ Instant access to all content<br>
+                            ✓ Full community participation<br>
+                            ✓ Certification eligibility
+                        </div>
+                    </div>
+                    <div class="access-card">
+                        <div class="access-icon"><i data-feather="mail"></i></div>
+                        <h3 class="access-method-title">With Your .edu Email</h3>
+                        <p class="access-description">Your educational email provides verification for premium student resources and community access.</p>
+                        <div class="access-info">
+                            ✓ Verified student status<br>
+                            ✓ Premium resource access<br>
+                            ✓ Academic networking
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explore Free Resources Section -->
+            <div class="explore-section animate-on-scroll">
+                <h2 class="explore-title">Explore Our Free Resources</h2>
+                <div class="explore-grid">
+                    <!-- Card for Courses -->
+                    <div class="explore-card">
+                        <div class="explore-icon"><i data-feather="book-open"></i></div>
+                        <h3 class="explore-card-title">Online Courses</h3>
+                        <p class="explore-card-description">Access a vast library of courses in tech, science, and humanities, complete with certificates.</p>
+                        <a href="#" class="explore-button">Access Courses</a>
+                    </div>
+                    <!-- Card for Digital Library -->
+                    <div class="explore-card">
+                        <div class="explore-icon"><i data-feather="database"></i></div>
+                        <h3 class="explore-card-title">Digital Library</h3>
+                        <p class="explore-card-description">Browse thousands of academic papers, digital textbooks, and research materials.</p>
+                        <a href="#" class="explore-button">Browse Library</a>
+                    </div>
+                    <!-- Card for Software -->
+                    <div class="explore-card">
+                        <div class="explore-icon"><i data-feather="tool"></i></div>
+                        <h3 class="explore-card-title">Software & Tools</h3>
+                        <p class="explore-card-description">Get free student licenses for premium software and development tools to aid your studies.</p>
+                        <a href="#" class="explore-button">Get Software</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Support Section -->
+            <div class="community-section animate-on-scroll">
+                <div class="community-header">
+                    <h2 class="community-title">Join Our Student Community</h2>
+                    <p class="community-subtitle">Connect with a thriving community of students from around the world. Collaborate, get support, and grow together.</p>
+                </div>
+                <div class="explore-grid">
+                     <!-- Card for Forums -->
+                    <div class="explore-card">
+                        <div class="explore-icon"><i data-feather="message-circle"></i></div>
+                        <h3 class="explore-card-title">Discussion Forums</h3>
+                        <p class="explore-card-description">Ask questions, share insights, and collaborate with peers in our exclusive student forums.</p>
+                        <a href="#" class="explore-button">Join Discussions</a>
+                    </div>
+                    <!-- Card for Study Groups -->
+                    <div class="explore-card">
+                        <div class="explore-icon"><i data-feather="users"></i></div>
+                        <h3 class="explore-card-title">Study Groups</h3>
+                        <p class="explore-card-description">Find or create study groups for your courses to tackle challenging subjects together.</p>
+                        <a href="#" class="explore-button">Find Groups</a>
+                    </div>
+                    <!-- Card for Mentoring -->
+                    <div class="explore-card">
+                        <div class="explore-icon"><i data-feather="user-check"></i></div>
+                        <h3 class="explore-card-title">Peer Mentoring</h3>
+                        <p class="explore-card-description">Connect with experienced students who can guide you through academic challenges.</p>
+                        <a href="#" class="explore-button">Find a Mentor</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final CTA Section -->
+            <div class="info-section animate-on-scroll">
+                <h2 class="info-title">Ready to <span class="highlight">Unlock Your Potential?</span></h2>
+                <p class="info-description">
+                    All these resources are waiting for you! Simply use your student ID or educational email to verify your status and gain instant access to our comprehensive learning platform.
+                </p>
+                <div>
+                    <a href="#" class="info-button">Verify Student Status</a>
+                    <a href="#" class="info-button">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const triggerBottom = window.innerHeight / 5 * 4.5;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < triggerBottom) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        // Run on page load to show elements already in view
+        animateOnScroll(); 
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = mobileMenuButton.querySelector('svg:first-child');
+        const closeIcon = mobileMenuButton.querySelector('svg:last-child');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

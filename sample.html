@@ -1,0 +1,152 @@
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles for the futuristic look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #00001a; /* Deep space blue */
+            color: #e0e0e0;
+        }
+        
+        /* Styles for the navigation bar */
+        .header-nav {
+            background-color: rgba(0, 0, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 246, 255, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            color: #a0a0c0; /* Lighter text for contrast */
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 246, 255, 0.8);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00f6ff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .special-link {
+            border: 1px solid #00f6ff;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .special-link:hover {
+            background-color: #00f6ff;
+            color: #00001a;
+            box-shadow: 0 0 20px #00f6ff;
+            text-shadow: none;
+        }
+        .special-link:hover::after {
+            width: 0; /* Don't show underline on button hover */
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 246, 255, 0.9), 0 0 25px rgba(255, 0, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <!-- Reusable Header and Navigation Section -->
+    <header class="header-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Site Title -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-2xl font-bold text-white text-glow">
+                        Future on AI
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:block">
+                    <nav class="ml-10 flex items-baseline space-x-4">
+                        <a href="pages/home.html" class="nav-link">Home</a>
+                        <a href="/pages/about.html" class="nav-link">About</a>
+                        <a href="/pages/course.html" class="nav-link">Courses</a>
+                        <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link">Infographics</a>
+                        <a href="/pages/resources.html" class="nav-link">Resources</a>
+                        <a href="/pages/contact.html" class="nav-link">Contact</a>
+                        <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link">Student ID Offers</a>
+                    </nav>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Icon for menu open -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Icon for menu close (hidden by default) -->
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/pages/home.html" class="nav-link block text-center py-2">Home</a>
+                <a href="/pages/about.html" class="nav-link block text-center py-2">About</a>
+                <a href="/pages/course.html" class="nav-link block text-center py-2">Courses</a>
+                <a href="/language_infograpics/dsa_visual_guide.html" class="nav-link block text-center py-2">Infographics</a>
+                <a href="/pages/resources.html" class="nav-link block text-center py-2">Resources</a>
+                <a href="/pages/contact.html" class="nav-link block text-center py-2">Contact</a>
+                <a href="/pages/student_id.html" class="nav-link text-cyan-400 special-link block text-center mx-auto mt-2 w-fit">Student ID Offers</a>
+            </nav>
+        </div>
+    </header>
+
+</body>
+
+    <!-- Your page content goes here -->
+    <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="py-20 text-center">
+            <h1 class="text-4xl font-bold text-white">Your Page Title</h1>
+            <p class="mt-4 text-lg text-gray-300">This is where the content for your page will go.</p>
+        </div>
+    </main>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = mobileMenuButton.querySelector('svg:first-child');
+        const closeIcon = mobileMenuButton.querySelector('svg:last-child');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

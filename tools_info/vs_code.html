@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Guide to Visual Studio Code (2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #24292e;
+            color: #e1e4e8;
+        }
+        .header {
+            background: linear-gradient(45deg, #007ACC, #3a93d6);
+        }
+        .card {
+            background-color: #2f363d;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+            border-left: 4px solid #007ACC;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .shortcut {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #444c56;
+            color: #adbac7;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            border: 1px solid #545d68;
+        }
+        .extension-name {
+            font-weight: 700;
+            color: #58a6ff;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header text-white text-center py-20 px-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">The Ultimate Guide to VS Code</h1>
+        <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">Your 2025 roadmap to mastering the world's most popular code editor and supercharging your development workflow.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="why-vscode" class="text-center mb-20">
+            <h2 class="text-3xl font-bold text-white mb-4">Why is VS Code the Editor of Choice?</h2>
+            <p class="max-w-3xl mx-auto text-gray-400 text-lg mb-8">Visual Studio Code has dominated the development landscape by perfectly balancing simplicity and power. It's lightweight, incredibly fast, and endlessly customizable through its vast extension marketplace. For developers in 2025, it's not just an editor; it's a complete development environment.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#2f363d] p-6 rounded-lg shadow-lg"><div class="text-4xl mb-3">⚡️</div><h3 class="text-xl font-bold text-white">Performance</h3><p class="text-gray-400">Blazing fast startup and performance, even with large projects.</p></div>
+                <div class="bg-[#2f363d] p-6 rounded-lg shadow-lg"><div class="text-4xl mb-3">🧩</div><h3 class="text-xl font-bold text-white">Extensibility</h3><p class="text-gray-400">A massive library of extensions for any language, framework, or tool.</p></div>
+                <div class="bg-[#2f363d] p-6 rounded-lg shadow-lg"><div class="text-4xl mb-3">🌐</div><h3 class="text-xl font-bold text-white">Git Integration</h3><p class="text-gray-400">Powerful, built-in version control that simplifies your workflow.</p></div>
+            </div>
+        </section>
+
+        <section id="anatomy" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-white mb-10">Anatomy of the Editor</h2>
+            <div class="bg-[#2f363d] p-6 rounded-lg shadow-lg">
+                <div class="h-96 flex text-sm">
+                    <div class="bg-[#24292e] w-16 flex flex-col items-center py-4 space-y-6"><div class="text-2xl">📄</div><div class="text-2xl">🔍</div><div class="text-2xl">🌿</div><div class="text-2xl">🐞</div><div class="text-2xl">🧩</div></div>
+                    <div class="bg-[#2a3037] w-56 p-4">
+                        <p class="font-bold mb-2">EXPLORER</p>
+                        <p>▶ PROJECT-FOLDER</p>
+                        <ul class="ml-4 space-y-1 mt-1"><li>📄 index.html</li><li class="text-blue-400">📄 style.css</li><li>📄 script.js</li></ul>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="bg-[#2f363d] p-2 flex space-x-4 border-b border-gray-700"><div class="bg-[#2a3037] px-3 py-1 rounded-md text-blue-400">style.css</div></div>
+                        <div class="flex-1 p-4 font-mono text-sm bg-[#1f2428]">
+                            <span class="text-yellow-400">body</span> {<br>
+                            &nbsp;&nbsp;<span class="text-blue-300">font-family</span>: <span class="text-green-300">'Inter'</span>;<br>
+                            }
+                        </div>
+                        <div class="h-24 bg-[#24292e] border-t border-gray-700 p-2 font-mono text-xs"><p>> TERMINAL&nbsp;&nbsp;&nbsp;PROBLEMS&nbsp;&nbsp;&nbsp;OUTPUT</p><p class="mt-2">> npm start</p></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mt-4 text-center text-xs">
+                    <div class="p-2 bg-[#24292e] rounded"><p class="font-bold">Activity Bar</p><p>Quick access to views</p></div>
+                    <div class="p-2 bg-[#2a3037] rounded"><p class="font-bold">Side Bar</p><p>File explorer, search, etc.</p></div>
+                    <div class="p-2 bg-[#1f2428] rounded col-span-2 lg:col-span-1"><p class="font-bold">Editor</p><p>Where you write code</p></div>
+                    <div class="p-2 bg-[#24292e] rounded"><p class="font-bold">Panel</p><p>Terminal, console, etc.</p></div>
+                    <div class="p-2 bg-[#007ACC] text-white rounded col-span-2 lg:col-span-1"><p class="font-bold">Status Bar</p><p>Info about the open project</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="command-palette" class="mb-20 text-center bg-gradient-to-r from-[#007ACC] to-[#58a6ff] text-white p-12 rounded-lg shadow-2xl">
+            <h2 class="text-3xl font-bold mb-4">Master the Command Palette</h2>
+            <p class="text-xl mb-6">If you learn only one shortcut, make it this one. The Command Palette is your universal search and action bar for everything in VS Code.</p>
+            <div class="text-2xl font-bold"><span class="shortcut">Ctrl + Shift + P</span> (or <span class="shortcut">Cmd + Shift + P</span> on Mac)</div>
+            <p class="mt-4">From here, you can run any command, open files, change settings, and install extensions without ever touching your mouse.</p>
+        </section>
+
+        <section id="core-features" class="mb-20">
+             <h2 class="text-3xl font-bold text-center text-white mb-10">Core Features Deep Dive</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="card p-6 border-l-[#38b2ac]">
+                     <h3 class="text-2xl font-bold text-white mb-4">💡 IntelliSense</h3>
+                     <p class="text-gray-300">IntelliSense is more than just autocompletion. It provides smart completions based on variable types, function definitions, and imported modules. It's code completion, parameter info, and quick info, all rolled into one powerful feature that dramatically speeds up development.</p>
+                 </div>
+                 <div class="card p-6 border-l-[#d69e2e]">
+                     <h3 class="text-2xl font-bold text-white mb-4">🐞 Integrated Debugger</h3>
+                     <p class="text-gray-300">Debug your code directly from the editor. Set breakpoints, step through your code line-by-line, inspect variables, and analyze the call stack. The built-in debugger supports Node.js, and extensions add support for nearly any other language like Python or C++.</p>
+                 </div>
+             </div>
+        </section>
+
+        <section id="extensions" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-white mb-10">Must-Have Extensions by Role</h2>
+            <div class="bg-[#2f363d] p-6 rounded-lg shadow-lg mb-10">
+                <h3 class="text-xl font-bold text-center text-white mb-4">Top Extension Categories</h3>
+                <div class="chart-container">
+                    <canvas id="extensionChart"></canvas>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="card p-6"><h3 class="text-2xl font-bold text-white mb-4">🚀 General Productivity</h3><ul class="space-y-4 text-gray-300"><li><span class="extension-name">Prettier - Code formatter:</span> Automatically formats your code to ensure consistent style.</li><li><span class="extension-name">ESLint:</span> Finds and fixes problems in your JavaScript code.</li><li><span class="extension-name">GitLens:</span> Supercharges the built-in Git capabilities with code authorship, history, and more.</li><li><span class="extension-name">Live Server:</span> Launch a local development server with live reload for static & dynamic pages.</li><li><span class="extension-name">Material Icon Theme:</span> Provides beautiful, recognizable icons for all your files and folders.</li></ul></div>
+                <div class="card p-6 border-l-[#38b2ac]"><h3 class="text-2xl font-bold text-white mb-4">🎨 Frontend Development</h3><ul class="space-y-4 text-gray-300"><li><span class="extension-name">Auto Rename Tag:</span> Automatically renames the paired HTML/XML tag.</li><li><span class="extension-name">Tailwind CSS IntelliSense:</span> Provides advanced features like autocomplete, syntax highlighting, and linting for Tailwind CSS.</li><li><span class="extension-name">Volar</span> (for Vue) or <span class="extension-name">React Extension Pack</span> (for React): Essential language support and snippets.</li><li><span class="extension-name">Color Highlight:</span> Styles CSS colors found in your document.</li></ul></div>
+                <div class="card p-6 border-l-[#d69e2e]"><h3 class="text-2xl font-bold text-white mb-4">🐍 Backend & Data Science</h3><ul class="space-y-4 text-gray-300"><li><span class="extension-name">Python</span> (by Microsoft): The official extension with linting, debugging, IntelliSense, and Jupyter Notebook support.</li><li><span class="extension-name">Pylance:</span> A high-performance language server for Python, providing fast and feature-rich support.</li><li><span class="extension-name">Docker:</span> Makes it easy to create, manage, and debug containerized applications.</li><li><span class="extension-name">REST Client:</span> Allows you to send HTTP requests and view the response directly in VS Code.</li><li><span class="extension-name">Jupyter:</span> The essential extension for running and debugging Jupyter notebooks within VS Code.</li></ul></div>
+            </div>
+        </section>
+
+        <section id="shortcuts" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-white mb-10">Essential Keyboard Shortcuts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Toggle Terminal</p><p class="shortcut mt-2">Ctrl + `</p></div>
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Open File</p><p class="shortcut mt-2">Ctrl + P</p></div>
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Toggle Sidebar</p><p class="shortcut mt-2">Ctrl + B</p></div>
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Multi-Cursor</p><p class="shortcut mt-2">Ctrl + D</p></div>
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Find in Files</p><p class="shortcut mt-2">Ctrl + Shift + F</p></div>
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Move Line</p><p class="shortcut mt-2">Alt + ↑ / ↓</p></div>
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Copy Line</p><p class="shortcut mt-2">Shift + Alt + ↑ / ↓</p></div>
+                <div class="bg-[#2f363d] p-4 rounded-lg"><p class="text-lg text-gray-300">Split Editor</p><p class="shortcut mt-2">Ctrl + \</p></div>
+            </div>
+        </section>
+
+        <section id="customization" class="bg-[#2f363d] p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center text-white mb-10">Make It Your Own: Customization</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-400 text-lg mb-10">One of VS Code's greatest strengths is its customizability. Tailor your editor to match your workflow and aesthetic preferences for a more enjoyable and productive coding experience.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div><div class="text-4xl mb-3">🎨</div><h3 class="text-xl font-bold text-white">Themes</h3><p class="text-gray-400">Change the entire color scheme. Popular choices include "GitHub Dark", "One Dark Pro", and "Dracula".</p></div>
+                <div><div class="text-4xl mb-3">🖼️</div><h3 class="text-xl font-bold text-white">Icon Packs</h3><p class="text-gray-400">Assign custom icons to file types for easier navigation. Try "Material Icon Theme" or "vscode-icons".</p></div>
+                <div><div class="text-4xl mb-3">⚙️</div><h3 class="text-xl font-bold text-white">Settings.json</h3><p class="text-gray-400">Fine-tune every aspect of the editor, from font size and line height to language-specific settings, by editing your <span class="shortcut">settings.json</span> file.</p></div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-[#1f2428] text-gray-500 mt-16">
+        <p>Your editor is your most important tool. Master it.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const extensionCtx = document.getElementById('extensionChart').getContext('2d');
+        new Chart(extensionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Linters & Formatters', 'Language Support', 'Themes & Icons', 'Git Tools', 'Debugging Tools'],
+                datasets: [{
+                    label: 'Popularity Score',
+                    data: [95, 92, 88, 85, 75],
+                    backgroundColor: [
+                        '#38b2ac',
+                        '#007ACC',
+                        '#d69e2e',
+                        '#e53e3e',
+                        '#9f7aea'
+                    ],
+                    borderColor: '#2f363d',
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: '#444c56'
+                        },
+                        ticks: {
+                            color: '#adbac7'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        },
+                         ticks: {
+                            color: '#adbac7',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

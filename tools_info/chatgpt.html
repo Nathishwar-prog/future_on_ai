@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate ChatGPT Prompting Guide (2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .prompt-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border-left: 5px solid transparent;
+        }
+        .prompt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .prompt-text {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #e9ecef;
+            color: #343a40;
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+            display: block;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .prompt-text::before {
+            content: '»';
+            margin-right: 0.75rem;
+            color: #ff6f61;
+            font-weight: bold;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+        }
+        .anatomy-box {
+            border: 2px dashed #ff6f61;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#ff6f61] text-white text-center py-20 px-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">The Ultimate ChatGPT Prompting Guide</h1>
+        <p class="text-lg md:text-xl text-red-100 max-w-3xl mx-auto">Unlock the full potential of AI with this comprehensive cheat sheet of powerful prompts, interactive tools, and expert tips for 2025.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="principles" class="text-center mb-20">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] mb-4">The Anatomy of a Perfect Prompt</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-lg mb-12">The quality of your output depends entirely on the quality of your input. A great prompt isn't just a question; it's a set of clear instructions. By providing persona, context, task, and format, you guide the AI to deliver precisely what you need.</p>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                    <div class="anatomy-box border-[#ff6f61]">
+                        <h3 class="text-xl font-bold text-[#ff6f61]">1. Persona 🎭</h3>
+                        <p>Who should the AI be? An expert copywriter? A travel guide? Assigning a role sets the tone and knowledge base.</p>
+                    </div>
+                     <div class="anatomy-box border-[#ffb443]">
+                        <h3 class="text-xl font-bold text-[#ffb443]">2. Task 📝</h3>
+                        <p>What is the specific action? "Write," "summarize," "translate," "generate," "debug." Be direct and clear.</p>
+                    </div>
+                     <div class="anatomy-box border-[#88d8b0]">
+                        <h3 class="text-xl font-bold text-[#88d8b0]">3. Context 📚</h3>
+                        <p>Provide necessary background. Include target audience, key details, and examples to steer the output.</p>
+                    </div>
+                     <div class="anatomy-box border-[#79a9d1]">
+                        <h3 class="text-xl font-bold text-[#79a9d1]">4. Format 📋</h3>
+                        <p>How should the output be structured? A bulleted list? A JSON object? A Markdown table? Specify the final form.</p>
+                    </div>
+                </div>
+                <div class="mt-8 chart-container">
+                    <canvas id="promptImpactChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="prompt-builder" class="mb-20 bg-gray-800 text-white p-8 rounded-lg shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-4">Interactive Prompt Builder</h2>
+            <p class="max-w-2xl mx-auto text-center text-gray-300 mb-8">Stuck on how to start? Select a category and task, then fill in the details. The builder will generate a well-structured prompt for you to copy and use.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <select id="builder-category" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#ff6f61]">
+                    <option value="Writing">Writing</option>
+                    <option value="Coding">Coding</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Business">Business</option>
+                </select>
+                <input type="text" id="builder-task" placeholder="Enter your specific task (e.g., 'a blog post about AI')" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#ff6f61]">
+            </div>
+            <div id="generated-prompt-container" class="mt-6 p-4 bg-gray-900 rounded-lg hidden">
+                <p id="generated-prompt" class="font-mono text-green-300"></p>
+                <button id="copy-prompt-btn" class="mt-4 bg-[#ff6f61] text-white font-bold py-2 px-4 rounded-lg hover:bg-red-500 transition">Copy Prompt</button>
+            </div>
+        </section>
+
+        <section id="prompt-library" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-[#1a1a1a] mb-10">The Prompt Library: Your Go-To Examples</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="prompt-card border-l-[#ff6f61]"><div class="p-6"><h3 class="text-2xl font-bold text-gray-800 mb-4">💡 Business & Ideation</h3><div class="space-y-4"><code class="prompt-text">Generate 10 potential names for a new tech startup focused on [your niche].</code><code class="prompt-text">Create a SWOT analysis for a [type of business] in the [current market].</code><code class="prompt-text">What are 5 insightful interview questions for a [Job Role] position?</code></div></div></div>
+                <div class="prompt-card border-l-[#ffb443]"><div class="p-6"><h3 class="text-2xl font-bold text-gray-800 mb-4">✍️ Writing & Content</h3><div class="space-y-4"><code class="prompt-text">Write a 500-word blog post about [topic] in an engaging and informative tone.</code><code class="prompt-text">Draft a professional email to a client regarding [subject], maintaining a friendly but formal tone.</code><code class="prompt-text">Act as a creative writer. Write a short story opening in the [genre] genre.</code></div></div></div>
+                <div class="prompt-card border-l-[#88d8b0]"><div class="p-6"><h3 class="text-2xl font-bold text-gray-800 mb-4">💻 Coding & Development</h3><div class="space-y-4"><code class="prompt-text">Write a Python script to [task, e.g., 'scrape a website for headlines'].</code><code class="prompt-text">Explain [e.g., 'asynchronous programming'] in simple terms with a code example.</code><code class="prompt-text">Help me debug this code snippet: [paste your code here]. Explain the error and suggest a fix.</code></div></div></div>
+                <div class="prompt-card border-l-[#79a9d1]"><div class="p-6"><h3 class="text-2xl font-bold text-gray-800 mb-4">📊 Data & Spreadsheets</h3><div class="space-y-4"><code class="prompt-text">Create an Excel formula to [task, e.g., 'find the average of column A if column B is "Sales"'].</code><code class="prompt-text">Write a SQL query to select [fields] from [table] where [condition].</code><code class="prompt-text">Analyze this dataset [paste data] and provide key insights and trends in a bulleted list.</code></div></div></div>
+                <div class="prompt-card border-l-[#fd9a9a]"><div class="p-6"><h3 class="text-2xl font-bold text-gray-800 mb-4">📢 Marketing & SEO</h3><div class="space-y-4"><code class="prompt-text">Generate ad copy for a Google Ads campaign targeting [audience] for [product].</code><code class="prompt-text">Create a list of 10 long-tail keywords for a blog post about [topic].</code><code class="prompt-text">Outline a content marketing strategy for a [type of business] for the next quarter.</code></div></div></div>
+                <div class="prompt-card border-l-[#c5a3ff]"><div class="p-6"><h3 class="text-2xl font-bold text-gray-800 mb-4">🚀 Personal Productivity</h3><div class="space-y-4"><code class="prompt-text">Help me plan my week. My priorities are [priority 1], [priority 2], and [priority 3].</code><code class="prompt-text">Create a study plan to learn [subject] in 30 days.</code><code class="prompt-text">Summarize the key points of this article: [paste article text].</code></div></div></div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-gray-200 text-gray-600 mt-16">
+        <p>The conversation is your canvas. Start prompting and create something amazing!</p>
+    </footer>
+
+    <script>
+        const palette = {
+            primary: '#ff6f61',
+            secondary: '#ffb443',
+            tertiary: '#88d8b0',
+            quaternary: '#79a9d1'
+        };
+
+        const promptImpactCtx = document.getElementById('promptImpactChart').getContext('2d');
+        new Chart(promptImpactCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Vague Prompt', 'Specific Prompt', 'Prompt with Persona & Context'],
+                datasets: [{
+                    label: 'Output Quality Score (1-10)',
+                    data: [3, 7, 9.5],
+                    backgroundColor: [palette.secondary, palette.tertiary, palette.primary],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Impact of Prompt Quality on Output',
+                        font: { size: 18, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        const categorySelect = document.getElementById('builder-category');
+        const taskInput = document.getElementById('builder-task');
+        const generatedPromptContainer = document.getElementById('generated-prompt-container');
+        const generatedPromptEl = document.getElementById('generated-prompt');
+        const copyBtn = document.getElementById('copy-prompt-btn');
+
+        const promptTemplates = {
+            Writing: (task) => `Act as an expert copywriter. Your task is to write ${task}. The tone should be engaging, professional, and targeted towards [target audience]. Please structure the output as [desired format, e.g., 'a 500-word article'].`,
+            Coding: (task) => `You are a senior software engineer specializing in [language, e.g., 'Python']. Write a script that ${task}. Please include comments in your code to explain the logic. Ensure the code is clean, efficient, and follows best practices.`,
+            Marketing: (task) => `As a seasoned digital marketing strategist, create ${task}. The target audience is [audience description]. The campaign's main goal is [goal, e.g., 'to increase brand awareness']. The output should be a [format, e.g., 'bulleted list of ideas'].`,
+            Business: (task) => `Act as a business consultant. I need you to ${task}. Provide a detailed analysis, considering factors like [factor 1] and [factor 2]. Please present your findings in a [format, e.g., 'structured report with clear headings'].`
+        };
+
+        function updatePrompt() {
+            const category = categorySelect.value;
+            const task = taskInput.value.trim();
+
+            if (task) {
+                const template = promptTemplates[category];
+                generatedPromptEl.textContent = template(task);
+                generatedPromptContainer.classList.remove('hidden');
+            } else {
+                generatedPromptContainer.classList.add('hidden');
+            }
+        }
+
+        categorySelect.addEventListener('change', updatePrompt);
+        taskInput.addEventListener('input', updatePrompt);
+
+        copyBtn.addEventListener('click', () => {
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = generatedPromptEl.textContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = 'Copy Prompt';
+            }, 2000);
+        });
+
+    </script>
+</body>
+</html>

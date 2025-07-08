@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Git & GitHub Guide (2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .command {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#2ECC40] text-white text-center py-16 px-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-3">The Ultimate Git & GitHub Guide</h1>
+        <p class="text-lg md:text-xl text-gray-100 max-w-3xl mx-auto">Your 2025 visual roadmap to mastering version control and collaborative coding.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] mb-4">What is Version Control?</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 text-lg">Imagine a time machine for your code. Version control systems track every change you make to your project, allowing you to recall specific versions, compare changes over time, and collaborate with others without overwriting each other's work. Git is the world's most popular version control system.</p>
+        </section>
+
+        <section id="git-vs-github" class="mb-20">
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-[#0074D9]">
+                    <h3 class="text-3xl font-bold text-[#0074D9] mb-4">Git: The Tool ⚙️</h3>
+                    <p class="text-lg text-gray-600 mb-4">The Local Time Machine</p>
+                    <p>Git is a command-line tool that runs on your local machine. It's the engine that tracks changes, manages branches, and merges code. You use Git to save snapshots (commits) of your project's state.</p>
+                    <ul class="mt-6 space-y-2 text-gray-700">
+                        <li class="flex items-start"><span class="text-[#0074D9] mr-2 font-bold">✓</span><span>A distributed version control system.</span></li>
+                        <li class="flex items-start"><span class="text-[#0074D9] mr-2 font-bold">✓</span><span>Installed and run on your computer.</span></li>
+                        <li class="flex items-start"><span class="text-[#0074D9] mr-2 font-bold">✓</span><span>The core technology for tracking changes.</span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-[#FF4136]">
+                    <h3 class="text-3xl font-bold text-[#FF4136] mb-4">GitHub: The Service ☁️</h3>
+                    <p class="text-lg text-gray-600 mb-4">The Cloud-Based Clubhouse</p>
+                    <p>GitHub is a web-based hosting service for Git repositories. It's where you store your project's code and history online. It adds a collaborative layer on top of Git with features like Pull Requests, issue tracking, and user management.</p>
+                     <ul class="mt-6 space-y-2 text-gray-700">
+                        <li class="flex items-start"><span class="text-[#FF4136] mr-2 font-bold">✓</span><span>A platform for hosting Git repositories.</span></li>
+                        <li class="flex items-start"><span class="text-[#FF4136] mr-2 font-bold">✓</span><span>Accessed via your web browser.</span></li>
+                        <li class="flex items-start"><span class="text-[#FF4136] mr-2 font-bold">✓</span><span>Facilitates collaboration and code sharing.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="mb-20 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] text-center mb-10">The Core Git Workflow</h2>
+            <div class="flex flex-col md:flex-row items-center justify-around text-center">
+                <div class="flex flex-col items-center p-4">
+                    <div class="text-5xl mb-3">📝</div>
+                    <h3 class="text-xl font-bold">1. Modify Files</h3>
+                    <p class="text-gray-600">You edit, add, or delete files in your working directory.</p>
+                </div>
+                <div class="flow-arrow hidden md:block">→</div>
+                <div class="flow-arrow block md:hidden my-4">↓</div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="text-5xl mb-3">➕</div>
+                    <h3 class="text-xl font-bold">2. Stage Changes</h3>
+                    <p class="text-gray-600">You select which modified files you want to include in your next snapshot using <span class="command">git add</span>.</p>
+                </div>
+                <div class="flow-arrow hidden md:block">→</div>
+                 <div class="flow-arrow block md:hidden my-4">↓</div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="text-5xl mb-3">💾</div>
+                    <h3 class="text-xl font-bold">3. Commit Snapshot</h3>
+                    <p class="text-gray-600">You save the staged changes as a permanent snapshot with a descriptive message using <span class="command">git commit</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="commands" class="mb-20">
+            <h2 class="text-3xl font-bold text-[#1a1a1a] text-center mb-10">Essential Git Commands</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#0074D9] mb-4">Setup & Init</h3>
+                    <p><span class="command">git config --global user.name "Your Name"</span><br>Sets your name for all commits.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git config --global user.email "you@example.com"</span><br>Sets your email for all commits.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git init</span><br>Initializes a new Git repository in the current directory.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git clone [url]</span><br>Downloads a repository from a remote source like GitHub.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#2ECC40] mb-4">Making Changes</h3>
+                    <p><span class="command">git status</span><br>Shows the status of changes as untracked, modified, or staged.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git add [file]</span><br>Adds a file to the staging area.</p>
+                    <hr class="my-3">
+                     <p><span class="command">git add .</span><br>Adds all modified and new files to the staging area.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git commit -m "Message"</span><br>Commits the staged changes with a descriptive message.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#FF851B] mb-4">Branching & Merging</h3>
+                    <p><span class="command">git branch</span><br>Lists all local branches.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git branch [branch-name]</span><br>Creates a new branch.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git checkout [branch-name]</span><br>Switches to the specified branch.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git merge [branch-name]</span><br>Merges the specified branch's history into the current branch.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#FF4136] mb-4">Syncing with Remotes</h3>
+                    <p><span class="command">git remote -v</span><br>Lists all remote repositories.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git fetch [remote]</span><br>Downloads changes from a remote but doesn't integrate them.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git pull</span><br>Fetches and merges changes from the remote into your current branch.</p>
+                    <hr class="my-3">
+                    <p><span class="command">git push [remote] [branch]</span><br>Uploads your committed changes to a remote repository.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#FFDC00] mb-4">Inspecting History</h3>
+                     <p><span class="command">git log</span><br>Shows the commit history for the current branch.</p>
+                     <hr class="my-3">
+                     <p><span class="command">git log --oneline</span><br>Shows a condensed version of the commit history.</p>
+                     <hr class="my-3">
+                     <p><span class="command">git diff</span><br>Shows unstaged changes between your working directory and the last commit.</p>
+                     <hr class="my-3">
+                     <p><span class="command">git diff --staged</span><br>Shows changes between the staging area and the last commit.</p>
+                </div>
+                 
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Developer Time Allocation</h3>
+                    <div class="w-full h-64">
+                         <canvas id="timeAllocationChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 mt-4">A typical developer's time using Git. Most time is spent coding, with version control being a frequent, quick, and essential part of the workflow.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="github-workflow" class="mb-20 bg-gray-800 text-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-10 text-[#2ECC40]">The GitHub Collaboration Workflow: Pull Requests</h2>
+            <div class="flex flex-col md:flex-row items-start justify-around text-center space-y-8 md:space-y-0">
+                <div class="flex flex-col items-center p-2 w-full md:w-1/5">
+                    <div class="text-5xl mb-3">🍴</div>
+                    <h3 class="text-xl font-bold">1. Fork</h3>
+                    <p class="text-gray-300">Create a personal copy of someone else's repository on your GitHub account.</p>
+                </div>
+                <div class="flow-arrow hidden md:block self-center">→</div>
+                <div class="flow-arrow block md:hidden self-center">↓</div>
+                <div class="flex flex-col items-center p-2 w-full md:w-1/5">
+                    <div class="text-5xl mb-3">🌿</div>
+                    <h3 class="text-xl font-bold">2. Branch</h3>
+                    <p class="text-gray-300">Create a new branch on your forked repo to work on a new feature or bug fix.</p>
+                </div>
+                <div class="flow-arrow hidden md:block self-center">→</div>
+                <div class="flow-arrow block md:hidden self-center">↓</div>
+                <div class="flex flex-col items-center p-2 w-full md:w-1/5">
+                    <div class="text-5xl mb-3">💾</div>
+                    <h3 class="text-xl font-bold">3. Commit & Push</h3>
+                    <p class="text-gray-300">Make your changes, commit them, and push the branch to your GitHub fork.</p>
+                </div>
+                 <div class="flow-arrow hidden md:block self-center">→</div>
+                 <div class="flow-arrow block md:hidden self-center">↓</div>
+                <div class="flex flex-col items-center p-2 w-full md:w-1/5">
+                    <div class="text-5xl mb-3">📬</div>
+                    <h3 class="text-xl font-bold">4. Pull Request</h3>
+                    <p class="text-gray-300">Open a Pull Request (PR) from your branch to the original repository to propose your changes.</p>
+                </div>
+                 <div class="flow-arrow hidden md:block self-center">→</div>
+                 <div class="flow-arrow block md:hidden self-center">↓</div>
+                 <div class="flex flex-col items-center p-2 w-full md:w-1/5">
+                    <div class="text-5xl mb-3">🎉</div>
+                    <h3 class="text-xl font-bold">5. Merge</h3>
+                    <p class="text-gray-300">After review and approval, the project owner merges your PR into the main codebase.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-gray-200 text-gray-600 mt-16">
+        <p>Master these tools, and you'll be an indispensable part of any development team. Happy coding!</p>
+    </footer>
+
+    <script>
+        const palette = {
+            red: '#FF4136',
+            orange: '#FF851B',
+            yellow: '#FFDC00',
+            green: '#2ECC40',
+            blue: '#0074D9',
+        };
+
+        const timeAllocationCtx = document.getElementById('timeAllocationChart').getContext('2d');
+        new Chart(timeAllocationCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Coding & Debugging', 'Committing & Pushing', 'Branching & Merging', 'Reading Docs'],
+                datasets: [{
+                    label: 'Time Allocation',
+                    data: [70, 15, 10, 5],
+                    backgroundColor: [palette.blue, palette.green, palette.orange, palette.yellow],
+                    borderColor: '#f8f9fa',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                return item.chart.data.labels[item.dataIndex];
+                           }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
