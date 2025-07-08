@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Pandas: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .visual-box {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            background-color: #111827; /* bg-gray-900 */
+            min-height: 50px;
+        }
+        .visual-item {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #6b7280; /* border-gray-500 */
+            color: #f9fafb; /* text-gray-50 */
+        }
+        .arrow {
+            color: #6b7280; /* text-gray-500 */
+        }
+        .tag {
+            background-color: #374151;
+            color: #a5f3fc;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #4ade80, #38bdf8, #1f2937);
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">Pandas</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for the 80/20 of data manipulation in Python.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <section id="other-functions" class="py-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Important Functions <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+                    <p class="mt-2 text-gray-400">Frequently used to support the critical functions.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">sort_values()</span><span class="tag">rename()</span><span class="tag">drop()</span><span class="tag">astype()</span><span class="tag">sum()</span><span class="tag">mean()</span><span class="tag">count()</span><span class="tag">std()</span><span class="tag">apply()</span><span class="tag">concat()</span><span class="tag">to_datetime()</span><span class="tag">set_index()</span><span class="tag">reset_index()</span>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Utility Functions <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+                    <p class="mt-2 text-gray-400">Valuable for edge cases and specific applications.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">pivot_table()</span><span class="tag">melt()</span><span class="tag">stack()</span><span class="tag">unstack()</span><span class="tag">cut()</span><span class="tag">qcut()</span><span class="tag">duplicated()</span><span class="tag">drop_duplicates()</span><span class="tag">resample()</span><span class="tag">to_excel()</span><span class="tag">read_sql()</span><span class="tag">pipe()</span><span class="tag">explode()</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+        
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">Follow this path for maximum return on your learning investment.</p>
+            </div>
+            <div class="relative">
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Data Structures & I/O</h4>
+                        <p class="text-gray-400 text-sm">Series, DataFrame, read_csv</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Inspection & Selection</h4>
+                        <p class="text-gray-400 text-sm">head, info, describe, loc, iloc</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Grouping & Merging</h4>
+                        <p class="text-gray-400 text-sm">groupby, merge, value_counts</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Cleaning & Advanced</h4>
+                        <p class="text-gray-400 text-sm">dropna, fillna, apply, pivot_table</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quick-reference" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+                <p class="mt-2 text-gray-400">A searchable list of all covered pandas functions.</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto mb-8">
+                <input type="text" id="searchInput" onkeyup="filterFunctions()" placeholder="Search for a function..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
+            </div>
+
+            <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table id="functionsTable" class="min-w-full text-left">
+                        <thead class="bg-gray-900">
+                            <tr>
+                                <th class="p-4 font-semibold text-sky-400 font-code">Function</th>
+                                <th class="p-4 font-semibold text-sky-400">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-700">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+             <p class="text-center text-gray-500 text-sm mt-4">*(Note: This is a subset; pandas has hundreds of functions.)*</p>
+        </section>
+
+        <script>
+            const functionsList = [
+                { name: 'DataFrame', desc: 'Create a DataFrame object' },
+                { name: 'Series', desc: 'Create a Series object' },
+                { name: 'read_csv', desc: 'Read a comma-separated values (csv) file' },
+                { name: 'read_excel', desc: 'Read an Excel file' },
+                { name: 'to_csv', desc: 'Write object to a comma-separated values (csv) file' },
+                { name: 'head', desc: 'Return the first n rows' },
+                { name: 'tail', desc: 'Return the last n rows' },
+                { name: 'info', desc: 'Print a concise summary of a DataFrame' },
+                { name: 'describe', desc: 'Generate descriptive statistics' },
+                { name: 'loc', desc: 'Access a group of rows and columns by label(s)' },
+                { name: 'iloc', desc: 'Access a group of rows and columns by integer position(s)' },
+                { name: 'groupby', desc: 'Group DataFrame using a mapper or by a Series of columns' },
+                { name: 'agg', desc: 'Aggregate using one or more operations' },
+                { name: 'merge', desc: 'Merge DataFrame or named Series objects' },
+                { name: 'join', desc: 'Join columns of another DataFrame' },
+                { name: 'concat', desc: 'Concatenate pandas objects along a particular axis' },
+                { name: 'value_counts', desc: 'Return a Series containing counts of unique values' },
+                { name: 'sort_values', desc: 'Sort by the values along either axis' },
+                { name: 'sort_index', desc: 'Sort object by labels (along an axis)' },
+                { name: 'rename', desc: 'Alter axes labels' },
+                { name: 'drop', desc: 'Drop specified labels from rows or columns' },
+                { name: 'astype', desc: 'Cast a pandas object to a specified dtype' },
+                { name: 'dropna', desc: 'Remove missing values' },
+                { name: 'fillna', desc: 'Fill NA/NaN values using the specified method' },
+                { name: 'apply', desc: 'Apply a function along an axis of the DataFrame' },
+                { name: 'pivot_table', desc: 'Create a spreadsheet-style pivot table' },
+                { name: 'melt', desc: 'Unpivot a DataFrame from wide to long format' },
+                { name: 'stack', desc: 'Stack the prescribed level(s) from columns to index' },
+                { name: 'unstack', desc: 'Unstack the prescribed level(s) from index to columns' },
+                { name: 'cut', desc: 'Bin values into discrete intervals' },
+                { name: 'qcut', desc: 'Quantile-based discretization function' },
+                { name: 'to_datetime', desc: 'Convert argument to datetime' },
+                { name: 'resample', desc: 'Resample time-series data' },
+                { name: 'set_index', desc: 'Set the DataFrame index using existing columns' },
+                { name: 'reset_index', desc: 'Reset the index, or a level of it' },
+                { name: 'duplicated', desc: 'Return boolean Series denoting duplicate rows' },
+                { name: 'drop_duplicates', desc: 'Return DataFrame with duplicate rows removed' }
+            ];
+
+            const tableBody = document.querySelector('#functionsTable tbody');
+
+            function populateTable(functions) {
+                if (!tableBody) return;
+                tableBody.innerHTML = ''; // Clear existing rows
+                functions.forEach(func => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-700';
+                    row.innerHTML = `
+                        <td class="p-4 font-code text-green-400">${func.name}()</td>
+                        <td class="p-4 text-gray-300">${func.desc}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function filterFunctions() {
+                const input = document.getElementById('searchInput');
+                const filter = input.value.toLowerCase();
+                const filteredFunctions = functionsList.filter(func => {
+                    return func.name.toLowerCase().includes(filter) || func.desc.toLowerCase().includes(filter);
+                });
+                populateTable(filteredFunctions);
+            }
+
+            // Initial population
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                 populateTable(functionsList);
+            } else {
+                 document.addEventListener('DOMContentLoaded', () => populateTable(functionsList));
+            }
+
+        </script>
+        <div class="section-divider"></div>
+
+        <section id="critical-functions" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">The Critical 12 Functions <span class="text-lg font-semibold text-green-400">(80% of Use Cases)</span></h2>
+                <p class="mt-2 text-gray-400">Master these to handle the vast majority of your data analysis tasks.</p>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Data Structures & I/O</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">pd.DataFrame()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">The primary data structure: a 2D table with labeled axes (rows and columns).</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df = pd.DataFrame({'A': [1,2], 'B': [3,4]})</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="text-center">
+                                <p class="font-code text-xs">{'A':[1,2]...}</p>
+                                <p class="text-gray-500 text-xs">Python Dict</p>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs">
+                                <div class="grid grid-cols-2 gap-1">
+                                    <div class="text-center font-bold text-sky-400">A</div><div class="text-center font-bold text-sky-400">B</div>
+                                    <div class="visual-item p-1 text-center rounded">1</div><div class="visual-item p-1 text-center rounded">3</div>
+                                    <div class="visual-item p-1 text-center rounded">2</div><div class="visual-item p-1 text-center rounded">4</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">pd.read_csv()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">The most common way to load data from a file into a DataFrame.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df = pd.read_csv('data.csv')</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                           <div class="text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                <p class="text-gray-500 text-xs mt-1">data.csv</p>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs">
+                                 <div class="grid grid-cols-2 gap-1">
+                                    <div class="text-center font-bold text-sky-400">col1</div><div class="text-center font-bold text-sky-400">col2</div>
+                                    <div class="visual-item p-1 text-center rounded">a</div><div class="visual-item p-1 text-center rounded">b</div>
+                                    <div class="visual-item p-1 text-center rounded">c</div><div class="visual-item p-1 text-center rounded">d</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.to_csv()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Save a DataFrame to a CSV file, completing the I/O cycle.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.to_csv('output.csv')</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                             <div class="visual-box p-2 rounded text-xs">
+                                 <div class="grid grid-cols-2 gap-1">
+                                    <div class="text-center font-bold text-sky-400">A</div><div class="text-center font-bold text-sky-400">B</div>
+                                    <div class="visual-item p-1 text-center rounded">1</div><div class="visual-item p-1 text-center rounded">2</div>
+                                </div>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" /><path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
+                                <p class="text-gray-500 text-xs mt-1">output.csv</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Inspection & Selection</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.head() / info()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Quickly inspect the first few rows, data types, and null counts of your data.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.head(2)</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization (head):</p>
+                        <div class="flex items-center justify-center space-x-4">
+                           <div class="visual-box p-2 rounded text-xs w-24">
+                                <div class="visual-item p-1 text-center rounded bg-green-600 border-green-400">Row 1</div>
+                                <div class="visual-item p-1 mt-1 text-center rounded bg-green-600 border-green-400">Row 2</div>
+                                <div class="visual-item p-1 mt-1 text-center rounded">...</div>
+                                <div class="visual-item p-1 mt-1 text-center rounded">Row N</div>
+                           </div>
+                           <span class="arrow text-2xl font-bold">&rarr;</span>
+                           <div class="visual-box p-2 rounded text-xs w-24">
+                               <div class="visual-item p-1 text-center rounded">Row 1</div>
+                               <div class="visual-item p-1 mt-1 text-center rounded">Row 2</div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.loc[]</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Select data by labels (row index names, column names, or boolean conditions).</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.loc[df['A'] > 1]</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="text-xs">Filter: A > 1</div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs">
+                                <div class="grid grid-cols-2 gap-1">
+                                    <div class="text-center font-bold text-sky-400">A</div><div class="text-center font-bold text-sky-400">B</div>
+                                    <div class="visual-item p-1 text-center rounded opacity-30">1</div><div class="visual-item p-1 text-center rounded opacity-30">3</div>
+                                    <div class="visual-item p-1 text-center rounded bg-green-600 border-green-400">2</div><div class="visual-item p-1 text-center rounded bg-green-600 border-green-400">4</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.iloc[]</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Select data by integer position (e.g., the first row, last three columns).</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.iloc[0:2, 1]</code></pre>
+                     <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization: Rows 0-1, Col 1</p>
+                        <div class="flex items-center justify-center space-x-4">
+                             <div class="visual-box p-2 rounded text-xs">
+                                <div class="grid grid-cols-2 gap-1">
+                                    <div class="text-center font-bold text-sky-400">A</div><div class="text-center font-bold text-sky-400">B</div>
+                                    <div class="visual-item p-1 text-center rounded">1</div><div class="visual-item p-1 text-center rounded bg-green-600 border-green-400">3</div>
+                                    <div class="visual-item p-1 text-center rounded">2</div><div class="visual-item p-1 text-center rounded bg-green-600 border-green-400">4</div>
+                                </div>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs">
+                               <div class="visual-item p-1 text-center rounded">3</div>
+                               <div class="visual-item p-1 mt-1 text-center rounded">4</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Manipulation & Analysis</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.groupby()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">The core of analysis: split data into groups, apply a function, and combine results.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.groupby('category').sum()</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-around space-x-2">
+                            <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded bg-sky-600">A</div><div class="visual-item p-1 mt-1 rounded bg-rose-600">B</div><div class="visual-item p-1 mt-1 rounded bg-sky-600">A</div></div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="flex flex-col space-y-2">
+                                <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-sky-600">A</div><div class="visual-item p-1 mt-1 rounded bg-sky-600">A</div></div>
+                                <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-rose-600">B</div></div>
+                            </div>
+                             <span class="arrow text-2xl font-bold">&rarr;</span>
+                             <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-green-600">Σ(A)</div><div class="visual-item p-1 mt-1 rounded bg-green-600">Σ(B)</div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">pd.merge()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Combine datasets by linking rows using one or more keys (like a SQL join).</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">pd.merge(df1, df2, on='key')</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-sky-600">DF1</div></div>
+                            <div class="text-2xl font-bold text-white">+</div>
+                            <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-rose-600">DF2</div></div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-1 rounded text-xs flex"><div class="visual-item p-1 rounded bg-sky-600">DF1</div><div class="visual-item p-1 rounded bg-rose-600">DF2</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.value_counts()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Quickly count the number of occurrences of each unique value in a column.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['category'].value_counts()</code></pre>
+                     <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                             <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded">A</div><div class="visual-item p-1 mt-1 rounded">B</div><div class="visual-item p-1 mt-1 rounded">A</div></div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                             <div class="visual-box p-1 rounded text-xs"><div class="p-1">A: 2</div><div class="p-1">B: 1</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">4. Data Cleaning</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                 <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.dropna()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Remove missing values (NaN) from a DataFrame, essential for clean analysis.</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.dropna()</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="visual-box p-2 rounded text-xs">
+                               <div class="visual-item p-1 rounded">Row 1</div>
+                               <div class="visual-item p-1 mt-1 rounded bg-rose-600 border-rose-400">Row with NaN</div>
+                               <div class="visual-item p-1 mt-1 rounded">Row 3</div>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs">
+                               <div class="visual-item p-1 rounded">Row 1</div>
+                               <div class="visual-item p-1 mt-1 rounded">Row 3</div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.fillna()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Fill in missing values with a specified value or method (e.g., the mean).</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.fillna(0)</code></pre>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                         <div class="flex items-center justify-center space-x-4">
+                            <div class="visual-box p-2 rounded text-xs">
+                               <div class="visual-item p-1 rounded">1</div>
+                               <div class="visual-item p-1 mt-1 rounded bg-rose-600 border-rose-400">NaN</div>
+                               <div class="visual-item p-1 mt-1 rounded">3</div>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs">
+                               <div class="visual-item p-1 rounded">1</div>
+                               <div class="visual-item p-1 mt-1 rounded bg-green-600 border-green-400">0</div>
+                               <div class="visual-item p-1 mt-1 rounded">3</div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg p-6">
+                    <h4 class="text-xl font-bold text-white font-code">df.astype()</h4>
+                    <p class="text-gray-400 mt-1 mb-4">Convert a column to a different data type (e.g., object to integer or datetime).</p>
+                    <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['col'].astype('int')</code></pre>
+                     <div class="mt-4">
+                        <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                        <div class="flex items-center justify-center space-x-4">
+                             <div class="text-center">
+                                <p class="font-code text-sm">"123"</p>
+                                <p class="text-gray-500 text-xs">Object</p>
+                            </div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                             <div class="text-center">
+                                <p class="font-code text-sm">123</p>
+                                <p class="text-gray-500 text-xs">Integer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center max-w-3xl mx-auto">
+                <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Critical?</h3>
+                <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+                    <p class="text-gray-300"><strong class="text-green-400">Core Workflow:</strong> They represent the entire data analysis pipeline: loading data (`read_csv`), inspecting it (`head`, `info`), selecting subsets (`loc`, `iloc`), analyzing it (`groupby`), combining it (`merge`), and cleaning it (`dropna`, `fillna`).</p>
+                    <p class="text-gray-300"><strong class="text-green-400">Universal Need:</strong> Virtually every data science project using Python and pandas will rely heavily on this specific set of functions. Mastering them provides the foundation for everything else.</p>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+<!-- ============ START: Important Functions Section ======================= -->
+<!-- ======================================================================= -->
+<section id="important-functions" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Important Functions <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+        <p class="mt-2 text-gray-400">Frequently used to support critical functions and handle common data transformations.</p>
+    </div>
+
+    <!-- Category: Aggregation & Summarization -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Aggregation & Summarization</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: .sum() / .mean() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">sum() / mean()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Basic aggregations that calculate the total or average of a column's values.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['sales'].sum()</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (sum):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs">
+                       <div class="visual-item p-1 rounded">100</div>
+                       <div class="visual-item p-1 mt-1 rounded">200</div>
+                       <div class="visual-item p-1 mt-1 rounded">150</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">450</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .describe() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">describe()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Generate a quick statistical summary (count, mean, std, etc.) of numerical columns.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.describe()</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded">DataFrame</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs">
+                        <div class="p-1">count: 3.0</div>
+                        <div class="p-1">mean: 150.0</div>
+                        <div class="p-1">std: 50.0</div>
+                        <div class="p-1">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .drop_duplicates() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">drop_duplicates()</h4>
+            <p class="text-gray-400 mt-1 mb-4">A common cleaning operation to remove entire duplicate rows from a DataFrame.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.drop_duplicates()</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs">
+                       <div class="visual-item p-1 rounded">Row A</div>
+                       <div class="visual-item p-1 mt-1 rounded bg-rose-600 border-rose-400">Row B</div>
+                       <div class="visual-item p-1 mt-1 rounded bg-rose-600 border-rose-400">Row B</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded text-xs">
+                       <div class="visual-item p-1 rounded">Row A</div>
+                       <div class="visual-item p-1 mt-1 rounded">Row B</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Transformation & Reshaping -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Transformation & Reshaping</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: .apply() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">apply()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Apply a custom function along an axis (rows or columns). Powerful but can be slow.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['col'].apply(lambda x: x*2)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded">1</div><div class="visual-item p-1 mt-1 rounded">2</div></div>
+                    <div class="text-center"><p class="text-gray-400 font-code text-sm">f(x) = x*2</p><span class="arrow text-2xl font-bold">&rarr;</span></div>
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded bg-green-600">2</div><div class="visual-item p-1 mt-1 rounded bg-green-600">4</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .map() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">map()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Substitute each value in a Series with another value (from a dict or function).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['col'].map({'A': 'Apple'})</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded">A</div><div class="visual-item p-1 mt-1 rounded">B</div></div>
+                    <div class="text-center"><p class="text-gray-400 font-code text-xs">{'A':'Apple'}</p><span class="arrow text-2xl font-bold">&rarr;</span></div>
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded bg-green-600">Apple</div><div class="visual-item p-1 mt-1 rounded">NaN</div></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: pd.concat() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">pd.concat()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Stack pandas objects (like DataFrames) vertically or horizontally.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">pd.concat([df1, df2])</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-2">
+                    <div class="flex flex-col space-y-2">
+                        <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-sky-600">DF1</div></div>
+                        <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-rose-600">DF2</div></div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs"><div class="visual-item p-1 rounded bg-sky-600">DF1</div><div class="visual-item p-1 mt-1 rounded bg-rose-600">DF2</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .set_index() / .reset_index() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">set_index() / reset_index()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Promote a column to be the DataFrame's index, or demote the index to a column.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.set_index('ID')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (set_index):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="font-bold text-sky-400">ID</div><div class="visual-item p-1 rounded bg-green-600">A</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded text-xs"><div class="font-bold text-sky-400 -ml-1 bg-green-600">A</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .pivot_table() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">pivot_table()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Reshape data by creating a spreadsheet-style pivot table based on columns.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.pivot_table(index='A', columns='B')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded text-xs">Long Data</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs">Wide Data</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Filtering -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Filtering & Selection</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: .isin() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">isin()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Filter a DataFrame where a column's value is present in a given list of items.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df[df['col'].isin(['A', 'C'])]</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                     <div class="visual-box p-2 rounded text-xs">
+                       <div class="visual-item p-1 rounded bg-green-600">A</div>
+                       <div class="visual-item p-1 mt-1 rounded">B</div>
+                       <div class="visual-item p-1 mt-1 rounded bg-green-600">C</div>
+                    </div>
+                    <div class="text-center"><p class="text-gray-400 font-code text-xs">['A', 'C']</p><span class="arrow text-2xl font-bold">&rarr;</span></div>
+                    <div class="visual-box p-2 rounded text-xs">
+                       <div class="visual-item p-1 rounded">A</div>
+                       <div class="visual-item p-1 mt-1 rounded">C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .query() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">query()</h4>
+            <p class="text-gray-400 mt-1 mb-4">An alternative way to filter rows using a boolean expression as a string.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.query('sales > 100 and region == "West"')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded text-xs">DataFrame</div>
+                    <div class="text-center"><p class="text-gray-400 font-code text-xs">"sales > 100"</p><span class="arrow text-2xl font-bold">&rarr;</span></div>
+                    <div class="visual-box p-1 rounded text-xs">Filtered DF</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Why Important Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+         <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Important?</h3>
+         <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+             <p class="text-gray-300"><strong class="text-green-400">Bridge to Advanced Analysis:</strong> These functions are the workhorses that prepare your data for critical operations. You use <code class="font-code text-sm bg-gray-700 px-1 rounded">isin()</code> or <code class="font-code text-sm bg-gray-700 px-1 rounded">query()</code> to select data *before* feeding it to <code class="font-code text-sm bg-gray-700 px-1 rounded">groupby()</code>.</p>
+             <p class="text-gray-300"><strong class="text-green-400">Flexibility and Power:</strong> Functions like <code class="font-code text-sm bg-gray-700 px-1 rounded">apply()</code> and <code class="font-code text-sm bg-gray-700 px-1 rounded">pivot_table()</code> provide immense flexibility to perform complex, custom transformations that are not possible with basic aggregations alone.</p>
+         </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============= END: Important Functions Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============= START: Utility Functions Section ======================== -->
+<!-- ======================================================================= -->
+<section id="utility-functions" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Utility Functions <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+        <p class="mt-2 text-gray-400">Valuable for edge cases, convenience, or specific applications.</p>
+    </div>
+
+    <!-- Category: Statistical Analysis & Visualization -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Statistical Analysis & Visualization</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: .corr() / .var() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">corr() / var()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Calculate the correlation matrix between columns or the variance of a series.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.corr()</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (corr):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded">DF</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs">
+                        <div class="grid grid-cols-2 gap-1">
+                            <div class="visual-item p-1 rounded">1.0</div><div class="visual-item p-1 rounded">0.9</div>
+                            <div class="visual-item p-1 rounded">0.9</div><div class="visual-item p-1 rounded">1.0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .quantile() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">quantile()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Return value at the given quantile (e.g., 0.5 for the median).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['col'].quantile(0.5)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (0.5 Quantile):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs">
+                       <div class="visual-item p-1 rounded">10</div>
+                       <div class="visual-item p-1 mt-1 rounded">20</div>
+                       <div class="visual-item p-1 mt-1 rounded">100</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">20.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .nunique() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">nunique()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Count the number of distinct/unique elements in a Series.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['col'].nunique()</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs">
+                       <div class="visual-item p-1 rounded">A</div>
+                       <div class="visual-item p-1 mt-1 rounded">B</div>
+                       <div class="visual-item p-1 mt-1 rounded">A</div>
+                    </div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded">
+                        <div class="visual-item p-2 rounded bg-green-600 border-green-400">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: .plot() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">plot()</h4>
+            <p class="text-gray-400 mt-1 mb-4">A wrapper for Matplotlib to quickly generate plots from a DataFrame or Series.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['sales'].plot(kind='line')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded">Data</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded h-20 w-24">
+                        <svg class="w-full h-full" viewBox="0 0 100 80">
+                            <polyline points="10,70 30,50 50,60 70,30 90,40" fill="none" stroke="#4ade80" stroke-width="3"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category: Selection, Reshaping & Conversion -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Selection, Reshaping & Conversion</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: .astype() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">astype()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Cast a pandas object (like a column) to a specified data type.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df['col'].astype(float)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="text-center"><p class="font-code text-sm">"123"</p><p class="text-gray-500 text-xs">Object</p></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="text-center"><p class="font-code text-sm">123.0</p><p class="text-gray-500 text-xs">Float</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .transpose() or .T -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">transpose() or .T</h4>
+            <p class="text-gray-400 mt-1 mb-4">Reflect the DataFrame over its main diagonal by swapping rows and columns.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.T</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded text-xs">2x3 DF</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs">3x2 DF</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .sample() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">sample()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Return a random sample of items from an axis of an object.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.sample(n=2)</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded">Full DF</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded bg-green-600">Random<br/>Sample</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .filter() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">filter()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Subset rows or columns of a DataFrame according to labels in a specified index.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.filter(like='_id')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (filter columns):</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-1 rounded text-xs">user_id, sale, item_id</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs">user_id, item_id</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: .to_dict() / .to_numpy() -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">to_dict() / to_numpy()</h4>
+            <p class="text-gray-400 mt-1 mb-4">Convert the DataFrame to a Python dictionary or a NumPy array.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">df.to_dict('records')</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="visual-box p-2 rounded text-xs"><div class="visual-item p-1 rounded">DF</div></div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs">[{'A':1}, {'A':2}]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Why Utility Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+         <h3 class="text-2xl font-semibold text-rose-400 mb-4">Why Are These "Utility"?</h3>
+         <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+             <p class="text-gray-300"><strong class="text-green-400">Niche Use Cases:</strong> Many of these functions solve specific problems that don't appear in every project. For example, <code class="font-code text-sm bg-gray-700 px-1 rounded">.plot()</code> is for quick visualization, and <code class="font-code text-sm bg-gray-700 px-1 rounded">.filter()</code> is for label-based selection, which is less common than conditional filtering.</p>
+             <p class="text-gray-300"><strong class="text-green-400">Convenience & Interoperability:</strong> Some are helpers that offer convenient syntax (<code class="font-code text-sm bg-gray-700 px-1 rounded">.T</code>) or are used for converting data to other formats for use with other libraries (<code class="font-code text-sm bg-gray-700 px-1 rounded">to_numpy()</code>, <code class="font-code text-sm bg-gray-700 px-1 rounded">to_dict()</code>).</p>
+         </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Utility Functions Section ========================= -->
+<!-- ======================================================================= -->
+
+        </main>
+
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Created to make Pandas mastery accessible and visual.</p>
+    </footer>
+
+</body>
+</html>

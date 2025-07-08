@@ -1,0 +1,1595 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Seaborn: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4f46e5, #14b8a6); /* indigo-500 to teal-500 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .tag {
+            background-color: #374151;
+            color: #818cf8; /* indigo-300 */
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #4f46e5, #14b8a6, #1f2937);
+            margin: 4rem 0;
+        }
+                .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4f46e5, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .card-visual {
+            min-height: 144px; /* 9rem */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111827;
+            border-bottom: 1px solid #374151;
+        }
+        .card-content {
+            padding: 1rem; /* p-4 */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-content pre {
+            background-color: #111827;
+            padding: 0.75rem; /* p-3 */
+            margin-top: 0.75rem; /* mt-3 */
+            border-radius: 0.375rem; /* rounded-md */
+            overflow-x: auto;
+            font-size: 0.75rem; /* text-xs */
+            color: #e5e7eb; /* text-gray-200 */
+        }
+        /* Animation Keyframes */
+        @keyframes draw-line {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scale-up {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        @keyframes grow-bar {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+        @keyframes rise-up {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Applying Animations */
+        .animate-draw-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-line 1.5s ease-out forwards;
+        }
+        .animate-fade-in {
+            animation: fade-in 1s ease-in forwards;
+        }
+        .animate-scale-up {
+            transform-origin: center;
+            animation: scale-up 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        .animate-grow-bar {
+            transform-origin: bottom;
+            animation: grow-bar 1s ease-out forwards;
+        }
+        .stagger-fade-in > * {
+            opacity: 0;
+            animation: rise-up 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">Seaborn</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for beautiful statistical graphics in Python.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- ======================================================================= -->
+        <!-- ================= START: Core Concepts Section ======================== -->
+        <!-- ======================================================================= -->
+        <section id="core-concepts" class="py-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Key Concepts -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Key Concepts <span class="text-lg font-semibold text-indigo-400">(The Seaborn Way)</span></h2>
+                    <p class="mt-2 text-gray-400">Seaborn's philosophy for high-level plotting.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3 font-code">
+                        <span class="tag">Tidy Data</span><span class="tag">Data-Aware</span><span class="tag">Figure-level</span><span class="tag">Axes-level</span><span class="tag">Semantic Mapping</span><span class="tag">Matplotlib Backend</span>
+                    </div>
+                </div>
+
+                <!-- Foundational Functions -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Core Functions <span class="text-lg font-semibold text-teal-400">(The Starting Points)</span></h2>
+                    <p class="mt-2 text-gray-400">The building blocks for any Seaborn visualization.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3 font-code">
+                        <span class="tag">sns.set_theme()</span><span class="tag">sns.load_dataset()</span><span class="tag">sns.relplot()</span><span class="tag">sns.displot()</span><span class="tag">sns.catplot()</span><span class="tag">sns.lmplot()</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- =================== END: Core Concepts Section ======================== -->
+        <!-- ======================================================================= -->
+        
+        <div class="section-divider"></div>
+        
+        <!-- ======================================================================= -->
+        <!-- ================= START: Learning Path Section ======================== -->
+        <!-- ======================================================================= -->
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">A structured approach to creating statistical graphics with Seaborn.</p>
+            </div>
+            <div class="relative">
+                <!-- The connecting line -->
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Load Data & Set Style</h4>
+                        <p class="text-gray-400 text-sm font-code">sns.load_dataset('tips'), sns.set_theme()</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-cyan-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Choose a Plot</h4>
+                        <p class="text-gray-400 text-sm font-code">sns.scatterplot(data=..., x=..., y=...)</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-teal-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Add Semantics</h4>
+                        <p class="text-gray-400 text-sm font-code">hue='smoker', style='time', size='size'</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Customize & Show</h4>
+                        <p class="text-gray-400 text-sm font-code">plt.title('My Plot'), plt.show()</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- =================== END: Learning Path Section ======================== -->
+        <!-- ======================================================================= -->
+
+        <div class="section-divider"></div>
+
+        <!-- ======================================================================= -->
+        <!-- ============ START: Core Plot Categories Section ====================== -->
+        <!-- ======================================================================= -->
+        <section id="plot-categories" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Core Plot Categories</h2>
+                <p class="mt-2 text-gray-400">Seaborn groups its functions into logical categories for easy discovery.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Relational Plots -->
+                <div class="card p-6 rounded-lg text-center">
+                    <svg class="h-12 w-12 mx-auto text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 19.5l2.25-2.25a1.125 1.125 0 011.591 0L12 21.75l2.659-2.659a1.125 1.125 0 011.591 0L20.25 22.5" /><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l2.25-2.25a1.125 1.125 0 011.591 0L12 15.75l2.659-2.659a1.125 1.125 0 011.591 0L20.25 15" />
+                    </svg>
+                    <h3 class="mt-4 font-bold text-lg text-indigo-300">Relational Plots</h3>
+                    <p class="text-sm text-gray-400 mt-2">Understand relationships between variables. (`scatterplot`, `lineplot`)</p>
+                </div>
+                <!-- Distribution Plots -->
+                <div class="card p-6 rounded-lg text-center">
+                    <svg class="h-12 w-12 mx-auto text-cyan-400" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 50 C 15 10, 25 10, 35 30 S 45 50, 55 50" stroke="currentColor" stroke-width="3" fill="currentColor" fill-opacity="0.2"/>
+                    </svg>
+                    <h3 class="mt-4 font-bold text-lg text-cyan-300">Distribution Plots</h3>
+                    <p class="text-sm text-gray-400 mt-2">Visualize the distribution of a dataset. (`histplot`, `kdeplot`, `ecdfplot`)</p>
+                </div>
+                <!-- Categorical Plots -->
+                <div class="card p-6 rounded-lg text-center">
+                     <svg class="h-12 w-12 mx-auto text-teal-400" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="25" width="12" height="30" fill="currentColor" fill-opacity="0.7"/>
+                        <rect x="24" y="10" width="12" height="45" fill="currentColor" fill-opacity="0.7"/>
+                        <rect x="40" y="20" width="12" height="35" fill="currentColor" fill-opacity="0.7"/>
+                    </svg>
+                    <h3 class="mt-4 font-bold text-lg text-teal-300">Categorical Plots</h3>
+                    <p class="text-sm text-gray-400 mt-2">Explore relationships with categorical data. (`barplot`, `boxplot`, `violinplot`)</p>
+                </div>
+                <!-- Matrix Plots -->
+                <div class="card p-6 rounded-lg text-center">
+                    <svg class="h-12 w-12 mx-auto text-emerald-400" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs><linearGradient id="grad_matrix" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#14b8a6"/></linearGradient></defs>
+                        <rect x="5" y="5" width="15" height="15" fill="currentColor" opacity="0.4"/><rect x="22.5" y="5" width="15" height="15" fill="currentColor" opacity="0.6"/><rect x="40" y="5" width="15" height="15" fill="currentColor" opacity="0.8"/>
+                        <rect x="5" y="22.5" width="15" height="15" fill="currentColor" opacity="0.6"/><rect x="22.5" y="22.5" width="15" height="15" fill="currentColor" opacity="0.8"/><rect x="40" y="22.5" width="15" height="15" fill="currentColor" opacity="0.4"/>
+                        <rect x="5" y="40" width="15" height="15" fill="currentColor" opacity="0.8"/><rect x="22.5" y="40" width="15" height="15" fill="currentColor" opacity="0.4"/><rect x="40" y="40" width="15" height="15" fill="currentColor" opacity="0.6"/>
+                    </svg>
+                    <h3 class="mt-4 font-bold text-lg text-emerald-300">Matrix Plots</h3>
+                    <p class="text-sm text-gray-400 mt-2">Visualize matrix data as color-encoded grids. (`heatmap`, `clustermap`)</p>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- ============= END: Core Plot Categories Section ======================= -->
+        <!-- ======================================================================= -->
+
+        <div class="section-divider"></div>
+
+        <!-- ======================================================================= -->
+        <!-- ============ START: Quick Reference Section =========================== -->
+        <!-- ======================================================================= -->
+        <section id="quick-reference" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+                <p class="mt-2 text-gray-400">A searchable list of the most common Seaborn functions.</p>
+            </div>
+
+            <!-- Search Input -->
+            <div class="max-w-2xl mx-auto mb-8">
+                <input type="text" id="searchInput" onkeyup="filterFunctions()" placeholder="Search for a function (e.g., sns.violinplot)..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+
+            <!-- Functions Table -->
+            <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table id="functionsTable" class="min-w-full text-left">
+                        <thead class="bg-gray-900">
+                            <tr>
+                                <th class="p-4 font-semibold text-indigo-400 font-code">Function</th>
+                                <th class="p-4 font-semibold text-indigo-400">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-700">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            const functionsList = [
+                { name: 'sns.barplot()', desc: 'Show point estimates and confidence intervals as rectangular bars.' },
+                { name: 'sns.boxplot()', desc: 'Draw a box plot to show distributions with respect to categories.' },
+                { name: 'sns.boxenplot()', desc: 'Draw an enhanced box plot for larger datasets.' },
+                { name: 'sns.catplot()', desc: 'Figure-level interface for drawing categorical plots onto a FacetGrid.' },
+                { name: 'sns.clustermap()', desc: 'Plot a matrix dataset as a hierarchically-clustered heatmap.' },
+                { name: 'sns.countplot()', desc: 'Show the counts of observations in each categorical bin using bars.' },
+                { name: 'sns.displot()', desc: 'Figure-level interface for drawing distribution plots onto a FacetGrid.' },
+                { name: 'sns.ecdfplot()', desc: 'Plot the empirical cumulative distribution function.' },
+                { name: 'sns.heatmap()', desc: 'Plot rectangular data as a color-encoded matrix.' },
+                { name: 'sns.histplot()', desc: 'Plot univariate or bivariate histograms to show distributions of datasets.' },
+                { name: 'sns.jointplot()', desc: 'Draw a plot of two variables with bivariate and univariate graphs.' },
+                { name: 'sns.kdeplot()', desc: 'Plot univariate or bivariate distributions using kernel density estimation.' },
+                { name: 'sns.lineplot()', desc: 'Draw a line plot with possibility of several semantic groupings.' },
+                { name: 'sns.lmplot()', desc: 'Plot data and regression models across a FacetGrid.' },
+                { name: 'sns.load_dataset()', desc: 'Load an example dataset from the online repository.' },
+                { name: 'sns.pairplot()', desc: 'Plot pairwise relationships in a dataset.' },
+                { name: 'sns.pointplot()', desc: 'Show point estimates and confidence intervals using scatter plot glyphs.' },
+                { name: 'sns.regplot()', desc: 'Plot data and a linear regression model fit.' },
+                { name: 'sns.relplot()', desc: 'Figure-level interface for drawing relational plots onto a FacetGrid.' },
+                { name: 'sns.rugplot()', desc: 'Plot marginal distributions by drawing ticks along the x and y axes.' },
+                { name: 'sns.scatterplot()', desc: 'Draw a scatter plot with possibility of several semantic groupings.' },
+                { name: 'sns.set_theme()', desc: 'Set aspects of the visual theme for all subsequent plots.' },
+                { name: 'sns.stripplot()', desc: 'Draw a scatterplot where one variable is categorical.' },
+                { name: 'sns.swarmplot()', desc: 'Draw a categorical scatterplot with non-overlapping points.' },
+                { name: 'sns.violinplot()', desc: 'Draw a combination of a boxplot and a kernel density estimate.' },
+            ];
+
+            const tableBody = document.querySelector('#functionsTable tbody');
+
+            function populateTable(functions) {
+                if (!tableBody) return;
+                tableBody.innerHTML = ''; // Clear existing rows
+                functions.forEach(func => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-700';
+                    row.innerHTML = `
+                        <td class="p-4 font-code text-teal-400">${func.name}</td>
+                        <td class="p-4 text-gray-300">${func.desc}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function filterFunctions() {
+                const input = document.getElementById('searchInput');
+                const filter = input.value.toLowerCase();
+                const filteredFunctions = functionsList.filter(func => {
+                    return func.name.toLowerCase().includes(filter) || func.desc.toLowerCase().includes(filter);
+                });
+                populateTable(filteredFunctions);
+            }
+
+            // Initial population
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                 populateTable(functionsList);
+            } else {
+                 document.addEventListener('DOMContentLoaded', () => populateTable(functionsList));
+            }
+
+        </script>
+        <!-- ======================================================================= -->
+        <!-- ============== END: Quick Reference Section =========================== -->
+        <!-- ======================================================================= -->
+             <!-- ======================================================================= -->
+    <!-- ========= START: Complete Function Inventory Section ================== -->
+    <!-- ======================================================================= -->
+    <section id="function-inventory">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-white">Complete Function Inventory</h2>
+            <p class="mt-2 text-lg text-gray-400">A visual guide to the most common functions in <code class="font-code text-teal-300">seaborn</code>.</p>
+        </div>
+
+        <!-- Plotting Functions -->
+        <div class="mb-12">
+            <h3 class="text-2xl font-semibold text-white mb-6">Plotting Functions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+                <!-- barplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in" style="animation-delay: 0s;"><rect class="animate-grow-bar" x="15" y="25" width="20" height="30" fill="#818cf8" style="animation-delay: 0.1s;"/><line x1="25" y1="15" x2="25" y2="25" stroke="white" stroke-width="2" class="animate-fade-in" style="animation-delay: 0.6s;"/></g><g class="stagger-fade-in" style="animation-delay: 0.2s;"><rect class="animate-grow-bar" x="40" y="10" width="20" height="45" fill="#60a5fa" style="animation-delay: 0.3s;"/><line x1="50" y1="5" x2="50" y2="10" stroke="white" stroke-width="2" class="animate-fade-in" style="animation-delay: 0.8s;"/></g><g class="stagger-fade-in" style="animation-delay: 0.4s;"><rect class="animate-grow-bar" x="65" y="35" width="20" height="20" fill="#818cf8" style="animation-delay: 0.5s;"/><line x1="75" y1="30" x2="75" y2="35" stroke="white" stroke-width="2" class="animate-fade-in" style="animation-delay: 1s;"/></g><path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">barplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Bar plots with confidence intervals.</p>
+                        <pre><code class="font-code">sns.barplot(data=df, x="day", y="total_bill")</code></pre>
+                    </div>
+                </div>
+
+                <!-- boxplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="animate-fade-in" style="animation-delay: 0.2s;"><line x1="30" y1="10" x2="30" y2="50" stroke="#d1d5db" stroke-width="1"/><line x1="25" y1="10" x2="35" y2="10" stroke="#d1d5db" stroke-width="1"/><line x1="25" y1="50" x2="35" y2="50" stroke="#d1d5db" stroke-width="1"/><rect x="20" y="20" width="20" height="20" stroke="#60a5fa" stroke-width="2" fill="#1f2937" class="animate-scale-up"/><line x1="20" y1="30" x2="40" y2="30" stroke="#14b8a6" stroke-width="2" class="animate-draw-line" style="animation-delay: 0.5s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">boxplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Box and whisker plots.</p>
+                        <pre><code class="font-code">sns.boxplot(data=df, x="day", y="total_bill")</code></pre>
+                    </div>
+                </div>
+
+                <!-- catplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-36 h-24" viewBox="0 0 120 60"><g class="stagger-fade-in"><rect x="5" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.1s;"/><rect x="65" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.3s;"/><circle cx="30" cy="30" r="10" fill="#60a5fa" class="animate-scale-up" style="animation-delay: 0.5s;"/><rect x="80" y="20" width="20" height="20" fill="#818cf8" class="animate-scale-up" style="animation-delay: 0.7s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">catplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Figure-level interface for categorical plots.</p>
+                        <pre><code class="font-code">sns.catplot(data=df, x="day", y="total_bill", kind="box", col="time")</code></pre>
+                    </div>
+                </div>
+
+                <!-- countplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><rect class="animate-grow-bar" x="15" y="25" width="20" height="30" fill="#818cf8" style="animation-delay: 0.1s;"/><rect class="animate-grow-bar" x="40" y="10" width="20" height="45" fill="#60a5fa" style="animation-delay: 0.3s;"/><rect class="animate-grow-bar" x="65" y="35" width="20" height="20" fill="#818cf8" style="animation-delay: 0.5s;"/></g><path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">countplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Show counts of categories.</p>
+                        <pre><code class="font-code">sns.countplot(data=df, x="day")</code></pre>
+                    </div>
+                </div>
+                
+                <!-- displot() -->
+                <div class="card">
+                     <div class="card-visual">
+                        <svg class="w-36 h-24" viewBox="0 0 120 60"><g class="stagger-fade-in"><rect x="5" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.1s;"/><rect x="65" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.3s;"/><path d="M15 50 C 25 20, 35 20, 45 40" stroke="#14b8a6" stroke-width="2" fill="none" class="animate-draw-line" style="animation-delay: 0.5s;"/><path d="M75 50 C 85 20, 95 20, 105 40" stroke="#60a5fa" stroke-width="2" fill="none" class="animate-draw-line" style="animation-delay: 0.7s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">displot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Figure-level interface for distribution plots.</p>
+                        <pre><code class="font-code">sns.displot(data=df, x="total_bill", col="time", kind="kde")</code></pre>
+                    </div>
+                </div>
+
+                <!-- distplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="animate-fade-in" style="animation-delay: 0.1s"><path d="M10 55 V 50 H 20 V 40 H 30 V 20 H 40 V 10 H 50 V 15 H 60 V 30 H 70 V 45 H 80 V 55 Z" fill="#60a5fa" opacity="0.5"/><path d="M10 55 H 90" stroke="#4b5563" stroke-width="1"/><path d="M10 50 C 30 5, 60 5, 85 45" stroke="#14b8a6" stroke-width="2" fill="none" class="animate-draw-line" style="animation-delay: 0.5s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-red-400">distplot() <span class="text-xs">(deprecated)</span></h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Histogram with KDE.</p>
+                        <pre><code class="font-code">sns.distplot(df["total_bill"])</code></pre>
+                    </div>
+                </div>
+
+                <!-- ecdfplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><path d="M10 55 H 10 V 50 H 25 V 42 H 40 V 30 H 55 V 25 H 70 V 15 H 85 V 10 H 90" stroke="#14b8a6" stroke-width="2" fill="none" class="animate-draw-line" /></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">ecdfplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Empirical Cumulative Distribution Function.</p>
+                        <pre><code class="font-code">sns.ecdfplot(data=df, x="total_bill")</code></pre>
+                    </div>
+                </div>
+
+                <!-- histplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><rect class="animate-grow-bar" style="animation-delay: 0.1s;" x="10" y="50" width="10" height="5" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.2s;" x="20" y="40" width="10" height="15" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.3s;" x="30" y="20" width="10" height="35" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.4s;" x="40" y="10" width="10" height="45" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.5s;" x="50" y="15" width="10" height="40" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.6s;" x="60" y="30" width="10" height="25" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.7s;" x="70" y="45" width="10" height="10" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.8s;" x="80" y="52" width="10" height="3" fill="#60a5fa"/></g><path d="M10 55 H 90" stroke="#4b5563" stroke-width="1"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">histplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Histogram with optional KDE.</p>
+                        <pre><code class="font-code">sns.histplot(data=df, x="total_bill", kde=True)</code></pre>
+                    </div>
+                </div>
+
+                <!-- jointplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="animate-fade-in"><rect x="15" y="15" width="70" height="40" stroke="#4b5563" stroke-width="1" fill="none"/><rect x="15" y="0" width="70" height="15" stroke="#4b5563" stroke-width="1" fill="none"/><rect x="0" y="15" width="15" height="40" stroke="#4b5563" stroke-width="1" fill="none"/><g class="stagger-fade-in" style="animation-delay: 0.5s;"><circle class="animate-scale-up" style="animation-delay: 0.1s;" cx="30" cy="45" r="2" fill="#60a5fa"/><circle class="animate-scale-up" style="animation-delay: 0.2s;" cx="40" cy="35" r="2" fill="#60a5fa"/><circle class="animate-scale-up" style="animation-delay: 0.3s;" cx="55" cy="30" r="2" fill="#60a5fa"/><circle class="animate-scale-up" style="animation-delay: 0.4s;" cx="70" cy="25" r="2" fill="#60a5fa"/></g><path d="M15 15 V 10 H 25 V 5 H 45 V 2 H 65 V 5 H 75 V 10 H 85" stroke="#14b8a6" stroke-width="1.5" fill="none" class="animate-draw-line" style="animation-delay: 1s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">jointplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Scatter plot with marginal distributions.</p>
+                        <pre><code class="font-code">sns.jointplot(data=df, x="total_bill", y="tip")</code></pre>
+                    </div>
+                </div>
+
+                <!-- kdeplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><path d="M10 50 C 20 10, 30 10, 50 30 S 70 50, 90 50" stroke="#14b8a6" stroke-width="2" fill="#14b8a6" fill-opacity="0.2" class="animate-draw-line"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">kdeplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Kernel Density Estimate plot.</p>
+                        <pre><code class="font-code">sns.kdeplot(data=df, x="total_bill")</code></pre>
+                    </div>
+                </div>
+
+                <!-- lmplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-36 h-24" viewBox="0 0 120 60"><g class="animate-fade-in"><rect x="5" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563"/><rect x="65" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563"/><g class="stagger-fade-in" style="animation-delay: 0.2s;"><circle cx="15" cy="45" r="1.5" fill="#60a5fa"/><circle cx="25" cy="35" r="1.5" fill="#60a5fa"/><circle cx="45" cy="20" r="1.5" fill="#60a5fa"/></g><path d="M10 50 L 50 15" stroke="#e11d48" stroke-width="2" class="animate-draw-line" style="animation-delay: 0.8s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">lmplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Figure-level regression plots.</p>
+                        <pre><code class="font-code">sns.lmplot(data=df, x="total_bill", y="tip", col="time")</code></pre>
+                    </div>
+                </div>
+
+                <!-- pairplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><rect x="5" y="5" width="25" height="25" fill="#14b8a6" opacity="0.5" class="animate-scale-up" style="animation-delay:0.1s"/><rect x="35" y="5" width="25" height="25" fill="#60a5fa" opacity="0.5" class="animate-scale-up" style="animation-delay:0.2s"/><rect x="65" y="5" width="25" height="25" fill="#60a5fa" opacity="0.5" class="animate-scale-up" style="animation-delay:0.3s"/><rect x="5" y="35" width="25" height="25" fill="#60a5fa" opacity="0.5" class="animate-scale-up" style="animation-delay:0.4s"/><rect x="35" y="35" width="25" height="25" fill="#14b8a6" opacity="0.5" class="animate-scale-up" style="animation-delay:0.5s"/><rect x="65" y="35" width="25" height="25" fill="#60a5fa" opacity="0.5" class="animate-scale-up" style="animation-delay:0.6s"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">pairplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Scatter plot matrix.</p>
+                        <pre><code class="font-code">sns.pairplot(df)</code></pre>
+                    </div>
+                </div>
+
+                <!-- pointplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="animate-fade-in"><path d="M20 40 L 50 20 L 80 30" stroke="#4b5563" stroke-width="1.5" class="animate-draw-line" style="animation-delay: 0.8s;"/><g class="stagger-fade-in" style="animation-delay: 0.2s;"><circle cx="20" cy="40" r="3" fill="#60a5fa" class="animate-scale-up"/><line x1="20" y1="35" x2="20" y2="45" stroke="#60a5fa" stroke-width="1.5"/></g><g class="stagger-fade-in" style="animation-delay: 0.4s;"><circle cx="50" cy="20" r="3" fill="#60a5fa" class="animate-scale-up"/><line x1="50" y1="15" x2="50" y2="25" stroke="#60a5fa" stroke-width="1.5"/></g><g class="stagger-fade-in" style="animation-delay: 0.6s;"><circle cx="80" cy="30" r="3" fill="#60a5fa" class="animate-scale-up"/><line x1="80" y1="25" x2="80" y2="35" stroke="#60a5fa" stroke-width="1.5"/></g></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">pointplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Point estimates with confidence intervals.</p>
+                        <pre><code class="font-code">sns.pointplot(data=df, x="day", y="tip")</code></pre>
+                    </div>
+                </div>
+
+                <!-- regplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><circle cx="20" cy="50" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/><circle cx="35" cy="40" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.2s"/><circle cx="50" cy="35" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/><circle cx="65" cy="25" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.4s"/><circle cx="80" cy="15" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/></g><path d="M10 55 L 90 10" stroke="#e11d48" stroke-width="2" class="animate-draw-line" style="animation-delay: 0.8s;"/><path d="M10 60 L 90 15 L 90 5 L 10 50 Z" fill="#e11d48" opacity="0.2" class="animate-fade-in" style="animation-delay: 1.2s;"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">regplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Linear regression plot.</p>
+                        <pre><code class="font-code">sns.regplot(data=df, x="total_bill", y="tip")</code></pre>
+                    </div>
+                </div>
+
+                <!-- relplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-36 h-24" viewBox="0 0 120 60"><g class="stagger-fade-in"><rect x="5" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.1s;"/><rect x="65" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.3s;"/><g class="stagger-fade-in" style="animation-delay:0.5s"><circle cx="15" cy="45" r="2" fill="#60a5fa"/><circle cx="25" cy="35" r="2" fill="#818cf8"/><circle cx="45" cy="20" r="2" fill="#60a5fa"/></g><g class="stagger-fade-in" style="animation-delay:0.7s"><circle cx="75" cy="45" r="2" fill="#60a5fa"/><circle cx="85" cy="35" r="2" fill="#818cf8"/><circle cx="105" cy="20" r="2" fill="#60a5fa"/></g></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">relplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Figure-level relational plots.</p>
+                        <pre><code class="font-code">sns.relplot(data=df, x="total_bill", y="tip", hue="smoker", col="time")</code></pre>
+                    </div>
+                </div>
+
+                <!-- residplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><line x1="10" y1="30" x2="90" y2="30" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4"/><g class="stagger-fade-in"><circle cx="20" cy="40" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/><circle cx="35" cy="20" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.2s"/><circle cx="50" cy="35" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/><circle cx="65" cy="25" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.4s"/><circle cx="80" cy="45" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">residplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Residual plot for regression.</p>
+                        <pre><code class="font-code">sns.residplot(data=df, x="total_bill", y="tip")</code></pre>
+                    </div>
+                </div>
+
+                <!-- rugplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><line x1="20" y1="50" x2="20" y2="55" stroke="#14b8a6" stroke-width="2"/><line x1="30" y1="50" x2="30" y2="55" stroke="#14b8a6" stroke-width="2" style="animation-delay:0.1s"/><line x1="35" y1="50" x2="35" y2="55" stroke="#14b8a6" stroke-width="2" style="animation-delay:0.2s"/><line x1="50" y1="50" x2="50" y2="55" stroke="#14b8a6" stroke-width="2" style="animation-delay:0.3s"/><line x1="70" y1="50" x2="70" y2="55" stroke="#14b8a6" stroke-width="2" style="animation-delay:0.4s"/><line x1="85" y1="50" x2="85" y2="55" stroke="#14b8a6" stroke-width="2" style="animation-delay:0.5s"/></g><path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">rugplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Marginal tick plots.</p>
+                        <pre><code class="font-code">sns.rugplot(data=df, x="total_bill")</code></pre>
+                    </div>
+                </div>
+
+                <!-- scatterplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><circle cx="20" cy="50" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/><circle cx="35" cy="40" r="2" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.2s"/><circle cx="50" cy="35" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/><circle cx="65" cy="25" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.4s"/><circle cx="80" cy="15" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">scatterplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Scatter plot with grouping.</p>
+                        <pre><code class="font-code">sns.scatterplot(data=df, x="total_bill", y="tip", hue="smoker")</code></pre>
+                    </div>
+                </div>
+
+                <!-- stripplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><circle cx="30" cy="20" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/><circle cx="32" cy="30" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.2s"/><circle cx="28" cy="40" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/><circle cx="70" cy="25" r="2" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.4s"/><circle cx="68" cy="35" r="2" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.5s"/><circle cx="72" cy="45" r="2" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.6s"/></g><path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">stripplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Scatter plot for categorical data.</p>
+                        <pre><code class="font-code">sns.stripplot(data=df, x="day", y="total_bill")</code></pre>
+                    </div>
+                </div>
+
+                <!-- swarmplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><circle cx="30" cy="20" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/><circle cx="30" cy="26" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.2s"/><circle cx="30" cy="32" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/><circle cx="27" cy="38" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.4s"/><circle cx="33" cy="38" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/><circle cx="70" cy="23" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.6s"/><circle cx="70" cy="29" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.7s"/></g><path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">swarmplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Non-overlapping categorical scatter plot.</p>
+                        <pre><code class="font-code">sns.swarmplot(data=df, x="day", y="total_bill")</code></pre>
+                    </div>
+                </div>
+
+                <!-- violinplot() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="animate-fade-in"><path d="M30 10 C 10 20, 10 40, 30 50 L 30 10" fill="#60a5fa" opacity="0.4" stroke="#60a5fa" stroke-width="1" class="animate-scale-up"/><path d="M30 10 C 50 20, 50 40, 30 50 L 30 10" fill="#60a5fa" opacity="0.4" stroke="#60a5fa" stroke-width="1" class="animate-scale-up"/><rect x="28" y="25" width="4" height="10" fill="white" stroke="black" stroke-width="0.5" class="animate-fade-in" style="animation-delay:0.5s"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">violinplot()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Violin plots.</p>
+                        <pre><code class="font-code">sns.violinplot(data=df, x="day", y="total_bill")</code></pre>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Figure-Level Functions -->
+        <div>
+            <h3 class="text-2xl font-semibold text-white mb-6">Figure-Level Functions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                
+                <!-- FacetGrid() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-36 h-24" viewBox="0 0 120 80"><g class="stagger-fade-in"><rect x="5" y="5" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.1s;"/><rect x="65" y="5" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.3s;"/><rect x="5" y="45" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.5s;"/><rect x="65" y="45" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.7s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">FacetGrid()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Multi-plot grid for conditional relationships.</p>
+                        <pre><code class="font-code">g = sns.FacetGrid(df, col="time", row="sex")
+g.map(sns.scatterplot, "total_bill", "tip")</code></pre>
+                    </div>
+                </div>
+
+                <!-- PairGrid() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="stagger-fade-in"><rect x="5" y="5" width="40" height="20" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay:0.1s"/><rect x="55" y="5" width="40" height="20" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay:0.3s"/><rect x="5" y="35" width="40" height="20" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay:0.5s"/><rect x="55" y="35" width="40" height="20" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay:0.7s"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">PairGrid()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Grid for pairwise relationships.</p>
+                        <pre><code class="font-code">g = sns.PairGrid(df)
+g.map(sns.scatterplot)</code></pre>
+                    </div>
+                </div>
+
+                <!-- JointGrid() -->
+                <div class="card">
+                    <div class="card-visual">
+                        <svg class="w-32 h-24" viewBox="0 0 100 60"><g class="animate-fade-in"><rect x="20" y="20" width="75" height="35" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.1s;"/><rect x="20" y="0" width="75" height="15" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.4s;"/><rect x="0" y="20" width="15" height="35" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.7s;"/></g></svg>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="font-bold font-code text-teal-300">JointGrid()</h4>
+                        <p class="text-gray-400 text-sm mt-1 flex-grow">Grid for joint and marginal distributions.</p>
+                        <pre><code class="font-code">g = sns.JointGrid(data=df, x="total_bill", y="tip")
+g.plot(sns.scatterplot, sns.histplot)</code></pre>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ======================================================================= -->
+    <!-- ========== END: Complete Function Inventory Section =================== -->
+    <!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Styling Functions Section ========================== -->
+<!-- ======================================================================= -->
+<section id="styling-functions">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Styling Functions</h2>
+        <p class="mt-2 text-lg text-gray-400">Control the look and feel of your plots with these aesthetic functions.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- set() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <g class="animate-fade-in" style="animation-delay: 0.5s;">
+                        <path d="M19.14,12.94a4,4,0,0,0-4.28,0" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.7,18.53a4,4,0,0,0-5.4,0" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12,19.4a4,4,0,0,0-1.42,0" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.29,12.94a4,4,0,0,1,4.28,0" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.84,7.47a4,4,0,0,1,5.4,0" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.42,4.6a4,4,0,0,0,1.42,0" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <circle cx="12" cy="12" r="10" class="animate-draw-line" />
+                    <circle cx="12" cy="12" r="3" class="animate-scale-up" style="animation-delay: 1s;" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">set()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Set aesthetic parameters in one step.</p>
+                <pre><code class="font-code">sns.set(style="whitegrid", palette="muted")</code></pre>
+            </div>
+        </div>
+
+        <!-- set_style() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <rect x="5" y="5" width="90" height="50" stroke="#4b5563" stroke-width="1" fill="none"/>
+                    <g class="stagger-fade-in">
+                        <path d="M5 21.6 H 95" stroke="#4b5563" stroke-width="1" stroke-dasharray="2" style="animation-delay: 0.2s;"/>
+                        <path d="M5 38.2 H 95" stroke="#4b5563" stroke-width="1" stroke-dasharray="2" style="animation-delay: 0.4s;"/>
+                        <path d="M27.5 5 V 55" stroke="#4b5563" stroke-width="1" stroke-dasharray="2" style="animation-delay: 0.6s;"/>
+                        <path d="M50 5 V 55" stroke="#4b5563" stroke-width="1" stroke-dasharray="2" style="animation-delay: 0.8s;"/>
+                        <path d="M72.5 5 V 55" stroke="#4b5563" stroke-width="1" stroke-dasharray="2" style="animation-delay: 1s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">set_style()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Set the aesthetic style of the plots.</p>
+                <pre><code class="font-code">sns.set_style("darkgrid")</code></pre>
+            </div>
+        </div>
+
+        <!-- set_context() -->
+        <div class="card">
+            <div class="card-visual">
+                 <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="animate-fade-in">
+                        <text x="20" y="30" font-size="10" fill="#d1d5db" class="animate-fade-in" style="animation-delay: 0.2s;">Aa</text>
+                        <text x="40" y="35" font-size="16" fill="#d1d5db" class="animate-fade-in" style="animation-delay: 0.5s;">Aa</text>
+                        <text x="70" y="40" font-size="22" fill="#d1d5db" class="animate-fade-in" style="animation-delay: 0.8s;">Aa</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">set_context()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Set plotting context parameters.</p>
+                <pre><code class="font-code">sns.set_context("talk")</code></pre>
+            </div>
+        </div>
+
+        <!-- set_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="10" width="15" height="20" fill="#a855f7" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <rect x="25" y="10" width="15" height="20" fill="#ec4899" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <rect x="45" y="10" width="15" height="20" fill="#f59e0b" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <rect x="65" y="10" width="15" height="20" fill="#84cc16" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <rect x="85" y="10" width="15" height="20" fill="#14b8a6" class="animate-scale-up" style="animation-delay:0.5s"/>
+                        <rect x="105" y="10" width="15" height="20" fill="#3b82f6" class="animate-scale-up" style="animation-delay:0.6s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">set_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Set the color palette for all plots.</p>
+                <pre><code class="font-code">sns.set_palette("viridis")</code></pre>
+            </div>
+        </div>
+
+        <!-- axes_style() -->
+        <div class="card">
+            <div class="card-visual">
+                 <svg class="w-24 h-24" viewBox="0 0 100 100">
+                    <rect x="10" y="10" width="80" height="80" fill="#111827" stroke="#374151" rx="5"/>
+                    <path d="M20 30h60 M20 50h60 M20 70h60 M30 20v60 M50 20v60 M70 20v60" stroke="#374151" stroke-width="2" stroke-dasharray="4"/>
+                    <g class="animate-fade-in" style="animation-delay: 0.5s;">
+                        <circle cx="50" cy="50" r="20" fill="#1f2937" stroke="#60a5fa" stroke-width="3"/>
+                        <line x1="65" y1="65" x2="80" y2="80" stroke="#60a5fa" stroke-width="4"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">axes_style()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Return parameters of a style, or temporarily set style.</p>
+                <pre><code class="font-code">with sns.axes_style("whitegrid"):
+    sns.boxplot(...)</code></pre>
+            </div>
+        </div>
+        
+        <!-- plotting_context() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24" viewBox="0 0 100 100">
+                    <text x="50" y="55" font-size="30" text-anchor="middle" fill="#374151">Aa</text>
+                     <g class="animate-fade-in" style="animation-delay: 0.5s;">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke="#60a5fa" stroke-width="3"/>
+                        <line x1="65" y1="65" x2="80" y2="80" stroke="#60a5fa" stroke-width="4"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">plotting_context()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Return parameters of a context, or temporarily set context.</p>
+                <pre><code class="font-code">with sns.plotting_context("paper"):
+    sns.lineplot(...)</code></pre>
+            </div>
+        </div>
+
+        <!-- color_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="10" width="15" height="20" fill="#78716c" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <rect x="25" y="10" width="15" height="20" fill="#f87171" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <rect x="45" y="10" width="15" height="20" fill="#fbbf24" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <rect x="65" y="10" width="15" height="20" fill="#34d399" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <rect x="85" y="10" width="15" height="20" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">color_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Return a list of colors defining a palette.</p>
+                <pre><code class="font-code">sns.color_palette("pastel")</code></pre>
+            </div>
+        </div>
+
+        <!-- diverging_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <defs>
+                        <linearGradient id="div_grad">
+                            <stop offset="0%" stop-color="#053061" />
+                            <stop offset="50%" stop-color="#f7f7f7" />
+                            <stop offset="100%" stop-color="#67001f" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="10" width="110" height="20" fill="url(#div_grad)" class="animate-fade-in"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">diverging_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Make a diverging palette between two HUSL colors.</p>
+                <pre><code class="font-code">sns.diverging_palette(220, 20, as_cmap=True)</code></pre>
+            </div>
+        </div>
+        
+        <!-- light_palette() / dark_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                 <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <defs>
+                        <linearGradient id="light_grad">
+                            <stop offset="0%" stop-color="#d1fae5" />
+                            <stop offset="100%" stop-color="#064e3b" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="10" width="110" height="20" fill="url(#light_grad)" class="animate-fade-in"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">light_palette() / dark_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Make a sequential palette from a single color.</p>
+                <pre><code class="font-code">sns.light_palette("green", as_cmap=True)</code></pre>
+            </div>
+        </div>
+
+        <!-- cubehelix_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <defs>
+                        <linearGradient id="cube_grad">
+                            <stop offset="0%" stop-color="#d8d2ff" />
+                            <stop offset="50%" stop-color="#4f46e5" />
+                            <stop offset="100%" stop-color="#1e1b4b" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="10" width="110" height="20" fill="url(#cube_grad)" class="animate-fade-in"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">cubehelix_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Make a sequential palette from the cubehelix system.</p>
+                <pre><code class="font-code">sns.cubehelix_palette(as_cmap=True)</code></pre>
+            </div>
+        </div>
+        
+        <!-- husl_palette() / hls_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                     <defs>
+                        <linearGradient id="husl_grad">
+                            <stop offset="0%" stop-color="#f87171" />
+                            <stop offset="25%" stop-color="#fbbf24" />
+                            <stop offset="50%" stop-color="#34d399" />
+                            <stop offset="75%" stop-color="#60a5fa" />
+                            <stop offset="100%" stop-color="#a855f7" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="10" width="110" height="20" fill="url(#husl_grad)" class="animate-fade-in"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">husl_palette() / hls_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Make a palette with evenly spaced hues in HUSL or HLS.</p>
+                <pre><code class="font-code">sns.husl_palette(n_colors=8)</code></pre>
+            </div>
+        </div>
+
+        <!-- blend_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <defs>
+                        <linearGradient id="blend_grad">
+                            <stop offset="0%" stop-color="#2563eb" />
+                            <stop offset="100%" stop-color="#db2777" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="10" width="110" height="20" fill="url(#blend_grad)" class="animate-fade-in"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">blend_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Make a palette by blending a list of colors.</p>
+                <pre><code class="font-code">sns.blend_palette(["blue", "pink"], n_colors=10)</code></pre>
+            </div>
+        </div>
+        
+        <!-- xkcd_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="10" width="15" height="20" fill="#96b7d2" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <rect x="25" y="10" width="15" height="20" fill="#ff7855" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <rect x="45" y="10" width="15" height="20" fill="#57a86b" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <rect x="65" y="10" width="15" height="20" fill="#c47a55" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <rect x="85" y="10" width="15" height="20" fill="#8d6eb2" class="animate-scale-up" style="animation-delay:0.5s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">xkcd_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Make a palette with colors from the xkcd color survey.</p>
+                <pre><code class="font-code">sns.xkcd_palette(["windows blue", "amber"])</code></pre>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Styling Functions Section =========================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Critical Functions Section ========================= -->
+<!-- ======================================================================= -->
+<section id="critical-functions">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Critical Functions <span class="gradient-text">(The 20% You'll Use 80% of the Time)</span></h2>
+        <p class="mt-2 text-lg text-gray-400">The minimal set needed for the vast majority of data visualization tasks.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- scatterplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="stagger-fade-in">
+                        <circle cx="20" cy="50" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <circle cx="35" cy="40" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <circle cx="50" cy="35" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <circle cx="65" cy="25" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <circle cx="80" cy="15" r="3" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/>
+                         <circle cx="40" cy="20" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.6s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">scatterplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Fundamental visualization for relationships.</p>
+                <pre><code class="font-code">sns.scatterplot(data=df, x="bill", y="tip")</code></pre>
+            </div>
+        </div>
+
+        <!-- lineplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <path d="M10 50 Q 30 10, 50 30 T 90 20" stroke="#60a5fa" stroke-width="2.5" fill="none" class="animate-draw-line"/>
+                    <path d="M10 55 Q 30 15, 50 35 T 90 25" stroke="#14b8a6" stroke-width="2.5" fill="none" class="animate-draw-line" style="animation-delay: 0.3s;"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">lineplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Essential for time series and trend visualization.</p>
+                <pre><code class="font-code">sns.lineplot(data=df, x="date", y="price")</code></pre>
+            </div>
+        </div>
+
+        <!-- barplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="stagger-fade-in" style="animation-delay: 0s;"><rect class="animate-grow-bar" x="15" y="25" width="20" height="30" fill="#818cf8" style="animation-delay: 0.1s;"/><line x1="25" y1="15" x2="25" y2="25" stroke="white" stroke-width="2" class="animate-fade-in" style="animation-delay: 0.6s;"/></g>
+                    <g class="stagger-fade-in" style="animation-delay: 0.2s;"><rect class="animate-grow-bar" x="40" y="10" width="20" height="45" fill="#60a5fa" style="animation-delay: 0.3s;"/><line x1="50" y1="5" x2="50" y2="10" stroke="white" stroke-width="2" class="animate-fade-in" style="animation-delay: 0.8s;"/></g>
+                    <g class="stagger-fade-in" style="animation-delay: 0.4s;"><rect class="animate-grow-bar" x="65" y="35" width="20" height="20" fill="#818cf8" style="animation-delay: 0.5s;"/><line x1="75" y1="30" x2="75" y2="35" stroke="white" stroke-width="2" class="animate-fade-in" style="animation-delay: 1s;"/></g>
+                    <path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">barplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Most common categorical comparison.</p>
+                <pre><code class="font-code">sns.barplot(data=df, x="day", y="total_bill")</code></pre>
+            </div>
+        </div>
+
+        <!-- histplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="stagger-fade-in">
+                        <rect class="animate-grow-bar" style="animation-delay: 0.1s;" x="10" y="50" width="10" height="5" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.2s;" x="20" y="40" width="10" height="15" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.3s;" x="30" y="20" width="10" height="35" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.4s;" x="40" y="10" width="10" height="45" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.5s;" x="50" y="15" width="10" height="40" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.6s;" x="60" y="30" width="10" height="25" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.7s;" x="70" y="45" width="10" height="10" fill="#60a5fa"/><rect class="animate-grow-bar" style="animation-delay: 0.8s;" x="80" y="52" width="10" height="3" fill="#60a5fa"/>
+                    </g>
+                    <path d="M10 55 H 90" stroke="#4b5563" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">histplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Primary distribution visualization.</p>
+                <pre><code class="font-code">sns.histplot(data=df, x="age")</code></pre>
+            </div>
+        </div>
+
+        <!-- boxplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="animate-fade-in" style="animation-delay: 0.2s;">
+                        <line x1="30" y1="10" x2="30" y2="50" stroke="#d1d5db" stroke-width="1"/><line x1="25" y1="10" x2="35" y2="10" stroke="#d1d5db" stroke-width="1"/><line x1="25" y1="50" x2="35" y2="50" stroke="#d1d5db" stroke-width="1"/>
+                        <rect x="20" y="20" width="20" height="20" stroke="#60a5fa" stroke-width="2" fill="#1f2937" class="animate-scale-up"/>
+                        <line x1="20" y1="30" x2="40" y2="30" stroke="#14b8a6" stroke-width="2" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                    </g>
+                     <g class="animate-fade-in" style="animation-delay: 0.5s;">
+                        <line x1="70" y1="15" x2="70" y2="55" stroke="#d1d5db" stroke-width="1"/><line x1="65" y1="15" x2="75" y2="15" stroke="#d1d5db" stroke-width="1"/><line x1="65" y1="55" x2="75" y2="55" stroke="#d1d5db" stroke-width="1"/>
+                        <rect x="60" y="25" width="20" height="20" stroke="#60a5fa" stroke-width="2" fill="#1f2937" class="animate-scale-up" style="animation-delay: 0.3s;"/>
+                        <line x1="60" y1="35" x2="80" y2="35" stroke="#14b8a6" stroke-width="2" class="animate-draw-line" style="animation-delay: 0.8s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">boxplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Standard statistical representation.</p>
+                <pre><code class="font-code">sns.boxplot(data=df, x="class", y="score")</code></pre>
+            </div>
+        </div>
+
+        <!-- heatmap() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <defs>
+                        <linearGradient id="heat_grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1e3a8a" />
+                            <stop offset="50%" stop-color="#fef08a" />
+                            <stop offset="100%" stop-color="#b91c1c" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="5" width="80" height="50" fill="url(#heat_grad)" class="animate-fade-in" rx="4"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">heatmap()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Critical for correlation and matrix data.</p>
+                <pre><code class="font-code">sns.heatmap(df.corr(), annot=True)</code></pre>
+            </div>
+        </div>
+
+        <!-- pairplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="5" width="25" height="25" fill="#14b8a6" opacity="0.5" class="animate-scale-up" style="animation-delay:0.1s"/><rect x="35" y="5" width="25" height="25" fill="#60a5fa" opacity="0.5" class="animate-scale-up" style="animation-delay:0.2s"/><rect x="65" y="5" width="25" height="25" fill="#818cf8" opacity="0.5" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <rect x="5" y="35" width="25" height="25" fill="#60a5fa" opacity="0.5" class="animate-scale-up" style="animation-delay:0.4s"/><rect x="35" y="35" width="25" height="25" fill="#14b8a6" opacity="0.5" class="animate-scale-up" style="animation-delay:0.5s"/><rect x="65" y="35" width="25" height="25" fill="#60a5fa" opacity="0.5" class="animate-scale-up" style="animation-delay:0.6s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">pairplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Key EDA tool for multivariate data.</p>
+                <pre><code class="font-code">sns.pairplot(df, hue="species")</code></pre>
+            </div>
+        </div>
+
+        <!-- lmplot() / regplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="stagger-fade-in">
+                        <circle cx="20" cy="50" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/><circle cx="35" cy="40" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.2s"/><circle cx="50" cy="35" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/><circle cx="65" cy="25" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.4s"/><circle cx="80" cy="15" r="2" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/>
+                    </g>
+                    <path d="M10 55 L 90 10" stroke="#e11d48" stroke-width="2" class="animate-draw-line" style="animation-delay: 0.8s;"/>
+                    <path d="M10 60 L 90 15 L 90 5 L 10 50 Z" fill="#e11d48" opacity="0.2" class="animate-fade-in" style="animation-delay: 1.2s;"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">lmplot() / regplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Core regression visualization.</p>
+                <pre><code class="font-code">sns.regplot(data=df, x="bill", y="tip")</code></pre>
+            </div>
+        </div>
+        
+        <!-- FacetGrid() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 80">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="5" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.1s;"/><rect x="65" y="5" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.3s;"/>
+                        <rect x="5" y="45" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.5s;"/><rect x="65" y="45" width="50" height="30" fill="none" stroke="#4b5563" stroke-dasharray="4" class="animate-fade-in" style="animation-delay: 0.7s;"/>
+                        <path d="M10 30 L 50 10" stroke="#60a5fa" class="animate-draw-line" style="animation-delay: 0.9s;"/>
+                        <path d="M70 30 L 110 10" stroke="#818cf8" class="animate-draw-line" style="animation-delay: 1.1s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">FacetGrid()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Enables complex multi-plot layouts.</p>
+                <pre><code class="font-code">g = sns.FacetGrid(df, col="time")
+g.map(sns.histplot, "tip")</code></pre>
+            </div>
+        </div>
+
+        <!-- set_style() / set_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="10" width="15" height="20" fill="#a855f7" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <rect x="25" y="10" width="15" height="20" fill="#ec4899" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <rect x="45" y="10" width="15" height="20" fill="#f59e0b" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <rect x="65" y="10" width="15" height="20" fill="#84cc16" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <rect x="85" y="10" width="15" height="20" fill="#14b8a6" class="animate-scale-up" style="animation-delay:0.5s"/>
+                        <rect x="105" y="10" width="15" height="20" fill="#3b82f6" class="animate-scale-up" style="animation-delay:0.6s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">set_style() / set_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Critical for visual polish and aesthetics.</p>
+                <pre><code class="font-code">sns.set_style("whitegrid")
+sns.set_palette("flare")</code></pre>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Critical Functions Section ========================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Important Functions Section ======================== -->
+<!-- ======================================================================= -->
+<section id="important-functions">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Important Functions <span class="gradient-text">(The Supporting Cast)</span></h2>
+        <p class="mt-2 text-lg text-gray-400">Enhance critical plots and provide essential supporting functionality.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- violinplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="animate-fade-in" style="animation-delay: 0.2s;">
+                        <path d="M30 10 C 10 20, 10 40, 30 50 L 30 10" fill="#60a5fa" opacity="0.4" stroke="#60a5fa" stroke-width="1" class="animate-scale-up" style="transform-origin: 30px 30px;"/>
+                        <path d="M30 10 C 50 20, 50 40, 30 50 L 30 10" fill="#60a5fa" opacity="0.4" stroke="#60a5fa" stroke-width="1" class="animate-scale-up" style="transform-origin: 30px 30px;"/>
+                        <rect x="28" y="25" width="4" height="10" fill="white" stroke="black" stroke-width="0.5" class="animate-fade-in" style="animation-delay:0.5s"/>
+                    </g>
+                    <g class="animate-fade-in" style="animation-delay: 0.6s;">
+                        <path d="M70 15 C 50 25, 50 45, 70 55 L 70 15" fill="#818cf8" opacity="0.4" stroke="#818cf8" stroke-width="1" class="animate-scale-up" style="transform-origin: 70px 35px;"/>
+                        <path d="M70 15 C 90 25, 90 45, 70 55 L 70 15" fill="#818cf8" opacity="0.4" stroke="#818cf8" stroke-width="1" class="animate-scale-up" style="transform-origin: 70px 35px;"/>
+                        <rect x="68" y="30" width="4" height="10" fill="white" stroke="black" stroke-width="0.5" class="animate-fade-in" style="animation-delay:0.9s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">violinplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Enhanced distribution view combining a boxplot with a KDE.</p>
+                <pre><code class="font-code">sns.violinplot(data=df, x="day", y="tip")</code></pre>
+            </div>
+        </div>
+
+        <!-- stripplot() / swarmplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="stagger-fade-in">
+                        <circle cx="30" cy="20" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <circle cx="27" cy="26" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <circle cx="33" cy="26" r="2.5" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <circle cx="70" cy="25" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <circle cx="72" cy="35" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.5s"/>
+                        <circle cx="68" cy="35" r="2.5" fill="#818cf8" class="animate-scale-up" style="animation-delay:0.6s"/>
+                    </g>
+                    <path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">stripplot() / swarmplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Categorical scatter variants for individual data points.</p>
+                <pre><code class="font-code">sns.swarmplot(data=df, x="day", y="total_bill")</code></pre>
+            </div>
+        </div>
+
+        <!-- kdeplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <path d="M10 50 C 20 10, 30 10, 50 30 S 70 50, 90 50" stroke="#14b8a6" stroke-width="2.5" fill="#14b8a6" fill-opacity="0.2" class="animate-draw-line"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">kdeplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Smooth density visualization using Kernel Density Estimation.</p>
+                <pre><code class="font-code">sns.kdeplot(data=df, x="total_bill", hue="time")</code></pre>
+            </div>
+        </div>
+
+        <!-- jointplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="animate-fade-in">
+                        <rect x="20" y="20" width="75" height="35" stroke="#4b5563" stroke-width="1" fill="none"/>
+                        <rect x="20" y="0" width="75" height="15" stroke="#4b5563" stroke-width="1" fill="none"/>
+                        <rect x="0" y="20" width="15" height="35" stroke="#4b5563" stroke-width="1" fill="none"/>
+                        <g class="stagger-fade-in" style="animation-delay: 0.5s;">
+                            <circle class="animate-scale-up" style="animation-delay: 0.1s;" cx="30" cy="45" r="2" fill="#60a5fa"/>
+                            <circle class="animate-scale-up" style="animation-delay: 0.2s;" cx="40" cy="35" r="2" fill="#60a5fa"/>
+                            <circle class="animate-scale-up" style="animation-delay: 0.3s;" cx="55" cy="30" r="2" fill="#60a5fa"/>
+                        </g>
+                        <path d="M20 15 V 10 H 35 V 5 H 55 V 2 H 75 V 5 H 95" stroke="#14b8a6" stroke-width="1.5" fill="none" class="animate-draw-line" style="animation-delay: 1s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">jointplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Visualize bivariate distributions with marginal plots.</p>
+                <pre><code class="font-code">sns.jointplot(data=df, x="bill", y="tip", kind="hex")</code></pre>
+            </div>
+        </div>
+
+        <!-- countplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="stagger-fade-in">
+                        <rect class="animate-grow-bar" x="15" y="25" width="20" height="30" fill="#818cf8" style="animation-delay: 0.1s;"/>
+                        <rect class="animate-grow-bar" x="40" y="10" width="20" height="45" fill="#60a5fa" style="animation-delay: 0.3s;"/>
+                        <rect class="animate-grow-bar" x="65" y="35" width="20" height="20" fill="#818cf8" style="animation-delay: 0.5s;"/>
+                    </g>
+                    <path d="M10 55 H90" stroke="#4b5563" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">countplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Show the counts of observations in each category.</p>
+                <pre><code class="font-code">sns.countplot(data=df, x="day", hue="sex")</code></pre>
+            </div>
+        </div>
+
+        <!-- relplot() / catplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 60">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.1s;"/>
+                        <rect x="65" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.3s;"/>
+                        <g class="stagger-fade-in" style="animation-delay:0.5s">
+                            <circle cx="15" cy="45" r="2" fill="#60a5fa"/><circle cx="25" cy="35" r="2" fill="#818cf8"/><circle cx="45" cy="20" r="2" fill="#60a5fa"/>
+                        </g>
+                        <g class="stagger-fade-in" style="animation-delay:0.7s">
+                            <rect x="75" y="35" width="10" height="15" fill="#60a5fa"/><rect x="90" y="20" width="10" height="30" fill="#818cf8"/>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">relplot() / catplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Figure-level interfaces for relational and categorical plots.</p>
+                <pre><code class="font-code">sns.catplot(data=df, x="day", y="tip", kind="swarm")</code></pre>
+            </div>
+        </div>
+
+        <!-- displot() -->
+        <div class="card">
+             <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 60">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.1s;"/>
+                        <rect x="65" y="5" width="50" height="50" fill="#1f2937" stroke="#4b5563" class="animate-fade-in" style="animation-delay: 0.3s;"/>
+                        <path d="M15 50 C 25 20, 35 20, 45 40" stroke="#14b8a6" stroke-width="2" fill="none" class="animate-draw-line" style="animation-delay: 0.5s;"/>
+                        <path d="M75 50 V 45 H 85 V 30 H 95 V 50" stroke="#60a5fa" stroke-width="2" fill="none" class="animate-draw-line" style="animation-delay: 0.7s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">displot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Modern figure-level interface for distribution plots.</p>
+                <pre><code class="font-code">sns.displot(data=df, x="bill", kind="ecdf")</code></pre>
+            </div>
+        </div>
+
+        <!-- color_palette() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="10" width="15" height="20" fill="#78716c" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <rect x="25" y="10" width="15" height="20" fill="#f87171" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <rect x="45" y="10" width="15" height="20" fill="#fbbf24" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <rect x="65" y="10" width="15" height="20" fill="#34d399" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <rect x="85" y="10" width="15" height="20" fill="#60a5fa" class="animate-scale-up" style="animation-delay:0.5s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">color_palette()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Define or return a color palette for customization.</p>
+                <pre><code class="font-code">my_palette = sns.color_palette("pastel")
+sns.barplot(..., palette=my_palette)</code></pre>
+            </div>
+        </div>
+
+        <!-- load_dataset() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 7v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2h-6l-2-2H6c-1.1 0-2 .9-2 2z" class="animate-fade-in" style="animation-delay: 0.2s;"></path>
+                    <path d="M12 17l-4-4 1.4-1.4 1.6 1.6V8h2v5.2l1.6-1.6L16 13l-4 4z" class="animate-fade-in" style="animation-delay: 0.6s;"></path>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">load_dataset()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Convenient access to example datasets.</p>
+                <pre><code class="font-code">tips_df = sns.load_dataset("tips")</code></pre>
+            </div>
+        </div>
+
+        <!-- despine() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="animate-fade-in" style="animation-delay: 0.2s;">
+                        <path d="M10 55 H 90" stroke="#d1d5db" stroke-width="1.5"/>
+                        <path d="M10 5 V 55" stroke="#d1d5db" stroke-width="1.5"/>
+                        <rect x="10" y="5" width="80" height="50" stroke="red" stroke-dasharray="4" stroke-width="2" class="animate-fade-in" style="animation-delay: 0.8s;"/>
+                        <path d="M10 5 H 90" stroke="red" stroke-width="2" class="animate-draw-line" style="animation-delay: 1.2s;"/>
+                        <path d="M90 5 V 55" stroke="red" stroke-width="2" class="animate-draw-line" style="animation-delay: 1.2s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">despine()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Aesthetic refinement by removing top and right spines.</p>
+                <pre><code class="font-code">sns.lineplot(...)
+sns.despine(left=True)</code></pre>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Important Functions Section ========================= -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Utility Functions Section ========================== -->
+<!-- ======================================================================= -->
+<section id="utility-functions">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white">Utility Functions <span class="gradient-text">(The Tool-belt)</span></h2>
+        <p class="mt-2 text-lg text-gray-400">Convenience functions for data, aesthetics, and plot management.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- load_dataset() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 7v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2h-6l-2-2H6c-1.1 0-2 .9-2 2z" class="animate-fade-in" style="animation-delay: 0.2s;"></path>
+                    <path d="M12 17l-4-4 1.4-1.4 1.6 1.6V8h2v5.2l1.6-1.6L16 13l-4 4z" class="animate-fade-in" style="animation-delay: 0.6s;"></path>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">load_dataset()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Load an example dataset from the online repository.</p>
+                <pre><code class="font-code">flights_df = sns.load_dataset("flights")</code></pre>
+            </div>
+        </div>
+
+        <!-- despine() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <g class="animate-fade-in" style="animation-delay: 0.2s;">
+                        <path d="M10 55 H 90" stroke="#d1d5db" stroke-width="1.5"/>
+                        <path d="M10 5 V 55" stroke="#d1d5db" stroke-width="1.5"/>
+                        <rect x="10" y="5" width="80" height="50" stroke="#e11d48" stroke-dasharray="4" stroke-width="2" class="animate-fade-in" style="animation-delay: 0.8s;"/>
+                        <path d="M10 5 H 90" stroke="#e11d48" stroke-width="2" class="animate-draw-line" style="animation-delay: 1.2s;"/>
+                        <path d="M90 5 V 55" stroke="#e11d48" stroke-width="2" class="animate-draw-line" style="animation-delay: 1.2s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">despine()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Remove the top and right axis spines from a plot.</p>
+                <pre><code class="font-code">sns.lineplot(...)
+sns.despine()</code></pre>
+            </div>
+        </div>
+        
+        <!-- mpl.pyplot.show() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-24 h-24 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <g class="animate-fade-in">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3" class="animate-scale-up" style="animation-delay: 0.5s;"></circle>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">mpl.pyplot.show()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Display all open figures (from Matplotlib).</p>
+                <pre><code class="font-code">import matplotlib.pyplot as plt
+sns.histplot(...)
+plt.show()</code></pre>
+            </div>
+        </div>
+
+        <!-- move_legend() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <rect x="5" y="5" width="90" height="50" fill="none" stroke="#4b5563"/>
+                    <g class="animate-fade-in" style="animation-delay: 0.2s;">
+                        <rect x="65" y="10" width="25" height="15" fill="#1f2937" stroke="#d1d5db" rx="2"/>
+                        <path d="M65 17.5 C 40 10, 30 40, 15 45" stroke="#60a5fa" stroke-dasharray="3" fill="none" class="animate-draw-line" style="animation-delay: 0.6s;"/>
+                        <path d="M15 45 l -3 -3 m 3 3 l -3 3" stroke="#60a5fa" stroke-width="1.5" class="animate-fade-in" style="animation-delay: 1.2s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">move_legend()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Re-position a plot's legend.</p>
+                <pre><code class="font-code">g = sns.lineplot(...)
+sns.move_legend(g, "lower left")</code></pre>
+            </div>
+        </div>
+
+        <!-- clustermap() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 70">
+                    <defs>
+                        <linearGradient id="cluster_grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#4f46e5" />
+                            <stop offset="100%" stop-color="#ec4899" />
+                        </linearGradient>
+                    </defs>
+                    <g class="animate-fade-in">
+                        <rect x="25" y="15" width="70" height="50" fill="url(#cluster_grad)" rx="2" style="animation-delay: 0.2s;"/>
+                        <path d="M5 20 H 25 M 15 20 V 35 H 25 M 10 45 H 25 M 15 45 V 55 H 25" stroke="#d1d5db" stroke-width="1" fill="none" class="animate-draw-line" style="animation-delay: 0.6s;"/>
+                        <path d="M30 15 V 5 M 30 5 H 45 M 55 15 V 5 M 55 5 H 70 M 80 15 V 5 M 80 5 H 90" stroke="#d1d5db" stroke-width="1" fill="none" class="animate-draw-line" style="animation-delay: 0.9s;"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">clustermap()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Plot a hierarchically-clustered heatmap.</p>
+                <pre><code class="font-code">sns.clustermap(df, metric="correlation")</code></pre>
+            </div>
+        </div>
+
+        <!-- heatmap() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <defs>
+                        <linearGradient id="heat_grad_util" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#dbeafe" />
+                            <stop offset="100%" stop-color="#1e3a8a" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="5" width="80" height="50" fill="url(#heat_grad_util)" class="animate-fade-in" rx="4"/>
+                    <g class="stagger-fade-in" style="animation-delay: 0.5s;">
+                        <text x="30" y="25" font-size="8" fill="#1e3a8a">.9</text>
+                        <text x="70" y="45" font-size="8" fill="#dbeafe">.2</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">heatmap()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Create an annotated heatmap of matrix data.</p>
+                <pre><code class="font-code">sns.heatmap(df.corr(), annot=True, fmt=".2f")</code></pre>
+            </div>
+        </div>
+
+        <!-- lineplot() (aggregation) -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-32 h-24" viewBox="0 0 100 60">
+                    <path d="M10 50 Q 30 10, 50 30 T 90 20" stroke="#60a5fa" stroke-width="2" fill="none" class="animate-draw-line"/>
+                    <path d="M10 55 Q 30 15, 50 35 T 90 25 L 90 15 T 50 25 Q 30 5 10 45 Z" fill="#60a5fa" opacity="0.2" class="animate-fade-in" style="animation-delay: 0.5s;"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">lineplot() <span class="text-xs text-gray-400">(aggregation)</span></h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Line plot with confidence interval aggregation.</p>
+                <pre><code class="font-code">sns.lineplot(data=df, x="time", y="value")</code></pre>
+            </div>
+        </div>
+
+        <!-- palplot() -->
+        <div class="card">
+            <div class="card-visual">
+                <svg class="w-36 h-24" viewBox="0 0 120 40">
+                    <g class="stagger-fade-in">
+                        <rect x="5" y="10" width="15" height="20" fill="#a855f7" class="animate-scale-up" style="animation-delay:0.1s"/>
+                        <rect x="25" y="10" width="15" height="20" fill="#ec4899" class="animate-scale-up" style="animation-delay:0.2s"/>
+                        <rect x="45" y="10" width="15" height="20" fill="#f59e0b" class="animate-scale-up" style="animation-delay:0.3s"/>
+                        <rect x="65" y="10" width="15" height="20" fill="#84cc16" class="animate-scale-up" style="animation-delay:0.4s"/>
+                        <rect x="85" y="10" width="15" height="20" fill="#14b8a6" class="animate-scale-up" style="animation-delay:0.5s"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="card-content">
+                <h4 class="font-bold font-code text-teal-300">palplot()</h4>
+                <p class="text-gray-400 text-sm mt-1 flex-grow">Plot the values in a color palette as a horizontal array.</p>
+                <pre><code class="font-code">sns.palplot(sns.color_palette("husl", 8))</code></pre>
+            </div>
+        </div>
+        
+        <!-- Internal/Advanced Functions -->
+        <div class="card col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4">
+             <div class="card-content text-center">
+                 <h4 class="font-bold font-code text-indigo-300">Advanced & Internal Utilities</h4>
+                 <p class="text-gray-400 text-sm mt-1 max-w-3xl mx-auto">These are less common, used for specific cases or internally by other Seaborn functions.</p>
+                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-xs font-code">
+                    <span class="tag">regression.regplot()</span>
+                    <span class="tag">utils.ci_to_errsize()</span>
+                    <span class="tag">utils.get_dataset_names()</span>
+                    <span class="tag">axisgrid.Grid()</span>
+                    <span class="tag text-red-400">_DistributionPlotter</span>
+                    <span class="tag text-red-400">_DendrogramPlotter</span>
+                 </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Utility Functions Section =========================== -->
+<!-- ======================================================================= -->
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Built on top of Matplotlib, designed for statistical insight.</p>
+    </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering OS & Sys: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f87171, #fb923c); /* red-400 to orange-400 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .visual-box {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            background-color: #111827; /* bg-gray-900 */
+            min-height: 50px;
+        }
+        .visual-item {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #6b7280; /* border-gray-500 */
+            color: #f9fafb; /* text-gray-50 */
+        }
+        .arrow {
+            color: #6b7280; /* text-gray-500 */
+        }
+        .tag {
+            background-color: #374151;
+            color: #fdba74; /* orange-300 */
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #f87171, #fb923c, #1f2937);
+            margin: 4rem 0;
+        }
+        .icon {
+            height: 48px;
+            width: 48px;
+            margin: 0 auto;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">OS & Sys</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for system interaction and script automation in Python.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+
+        <div class="section-divider"></div>
+
+        <!-- ======================================================================= -->
+        <!-- ============ START: Important & Utility Functions Section ============= -->
+        <!-- ======================================================================= -->
+        <section id="other-functions" class="py-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Important Functions -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Important Functions <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+                    <p class="mt-2 text-gray-400">Frequently used to support the critical functions.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3 font-code">
+                        <span class="tag">os.getcwd()</span><span class="tag">os.chdir()</span><span class="tag">os.makedirs()</span><span class="tag">os.rmdir()</span><span class="tag">os.walk()</span><span class="tag">os.system()</span><span class="tag">os.path.abspath()</span><span class="tag">os.path.basename()</span><span class="tag">os.path.dirname()</span><span class="tag">os.path.isfile()</span><span class="tag">os.path.isdir()</span><span class="tag">os.path.splitext()</span><span class="tag">sys.platform</span><span class="tag">sys.version</span><span class="tag">sys.executable</span>
+                    </div>
+                </div>
+
+                <!-- Utility Functions -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Utility Functions <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+                    <p class="mt-2 text-gray-400">Valuable for edge cases and specific applications.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3 font-code">
+                        <span class="tag">os.stat()</span><span class="tag">os.chmod()</span><span class="tag">os.chown()</span><span class="tag">os.getlogin()</span><span class="tag">os.cpu_count()</span><span class="tag">os.urandom()</span><span class="tag">os.sep</span><span class="tag">sys.getrecursionlimit()</span><span class="tag">sys.setrecursionlimit()</span><span class="tag">sys.getsizeof()</span><span class="tag">sys.stdin</span><span class="tag">sys.stdout</span><span class="tag">sys.stderr</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- ============= END: Important & Utility Functions Section ============== -->
+        <!-- ======================================================================= -->
+        
+        <div class="section-divider"></div>
+        
+        <!-- ======================================================================= -->
+        <!-- ================= START: Learning Path Section ======================== -->
+        <!-- ======================================================================= -->
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">Follow this path for maximum return on your learning investment.</p>
+            </div>
+            <div class="relative">
+                <!-- The connecting line -->
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Environment Info</h4>
+                        <p class="text-gray-400 text-sm font-code">sys.argv, sys.platform, os.getcwd, os.environ</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Path Handling</h4>
+                        <p class="text-gray-400 text-sm font-code">os.path.join, abspath, basename, dirname</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Filesystem Reading</h4>
+                        <p class="text-gray-400 text-sm font-code">os.path.exists, isfile, isdir, os.listdir</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Filesystem Writing</h4>
+                        <p class="text-gray-400 text-sm font-code">os.mkdir, os.rename, os.remove, sys.exit</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- =================== END: Learning Path Section ======================== -->
+        <!-- ======================================================================= -->
+
+        <div class="section-divider"></div>
+
+        <!-- ======================================================================= -->
+        <!-- ============ START: Quick Reference Section =========================== -->
+        <!-- ======================================================================= -->
+        <section id="quick-reference" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+                <p class="mt-2 text-gray-400">A searchable list of all covered OS & Sys functions.</p>
+            </div>
+
+            <!-- Search Input -->
+            <div class="max-w-2xl mx-auto mb-8">
+                <input type="text" id="searchInput" onkeyup="filterFunctions()" placeholder="Search for a function (e.g., os.path.join)..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500">
+            </div>
+
+            <!-- Functions Table -->
+            <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table id="functionsTable" class="min-w-full text-left">
+                        <thead class="bg-gray-900">
+                            <tr>
+                                <th class="p-4 font-semibold text-orange-400 font-code">Function / Attribute</th>
+                                <th class="p-4 font-semibold text-orange-400">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-700">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            const functionsList = [
+                { name: 'os.chdir(path)', desc: 'Change the current working directory.' },
+                { name: 'os.chmod(path, mode)', desc: 'Change the mode of a path to the numeric mode.' },
+                { name: 'os.cpu_count()', desc: 'Return the number of CPUs in the system.' },
+                { name: 'os.environ', desc: 'A dictionary representing the string environment.' },
+                { name: 'os.getcwd()', desc: 'Return a string representing the current working directory.' },
+                { name: 'os.listdir(path)', desc: 'Return a list of the entries in the directory given by path.' },
+                { name: 'os.makedirs(path, exist_ok=False)', desc: 'Recursive directory creation function.' },
+                { name: 'os.mkdir(path)', desc: 'Create a directory.' },
+                { name: 'os.path.abspath(path)', desc: 'Return a normalized absolutized version of the pathname path.' },
+                { name: 'os.path.basename(path)', desc: 'Return the base name of pathname path.' },
+                { name: 'os.path.dirname(path)', desc: 'Return the directory name of pathname path.' },
+                { name: 'os.path.exists(path)', desc: 'Return True if path refers to an existing path.' },
+                { name: 'os.path.isdir(path)', desc: 'Return True if path is an existing directory.' },
+                { name: 'os.path.isfile(path)', desc: 'Return True if path is an existing regular file.' },
+                { name: 'os.path.join(path, *paths)', desc: 'Join one or more path components intelligently.' },
+                { name: 'os.path.splitext(path)', desc: 'Split the pathname path into a pair (root, ext).'},
+                { name: 'os.remove(path)', desc: 'Remove (delete) the file path.' },
+                { name: 'os.rename(src, dst)', desc: 'Rename the file or directory src to dst.' },
+                { name: 'os.rmdir(path)', desc: 'Remove (delete) the directory path.' },
+                { name: 'os.sep', desc: 'The character used by the OS to separate pathname components.'},
+                { name: 'os.stat(path)', desc: 'Get the status of a file or a file descriptor.' },
+                { name: 'os.system(command)', desc: 'Execute the command in a subshell.' },
+                { name: 'os.urandom(n)', desc: 'Return a string of n random bytes suitable for cryptographic use.'},
+                { name: 'os.walk(top)', desc: 'Generate the file names in a directory tree by walking the tree.' },
+                { name: 'sys.argv', desc: 'The list of command line arguments passed to a Python script.' },
+                { name: 'sys.executable', desc: 'A string giving the absolute path of the executable binary for the Python interpreter.' },
+                { name: 'sys.exit([arg])', desc: 'Exit from Python.' },
+                { name: 'sys.path', desc: 'A list of strings that specifies the search path for modules.' },
+                { name: 'sys.platform', desc: 'A string identifying the platform Python is running on (e.g., \'linux\', \'win32\').' },
+                { name: 'sys.stderr', desc: 'A file object corresponding to the standard error stream.'},
+                { name: 'sys.stdin', desc: 'A file object corresponding to the standard input stream.'},
+                { name: 'sys.stdout', desc: 'A file object corresponding to the standard output stream.'},
+                { name: 'sys.version', desc: 'A string containing the version number of the Python interpreter.' }
+            ];
+
+            const tableBody = document.querySelector('#functionsTable tbody');
+
+            function populateTable(functions) {
+                if (!tableBody) return;
+                tableBody.innerHTML = ''; // Clear existing rows
+                functions.forEach(func => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-700';
+                    row.innerHTML = `
+                        <td class="p-4 font-code text-green-400">${func.name}</td>
+                        <td class="p-4 text-gray-300">${func.desc}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function filterFunctions() {
+                const input = document.getElementById('searchInput');
+                const filter = input.value.toLowerCase();
+                const filteredFunctions = functionsList.filter(func => {
+                    return func.name.toLowerCase().includes(filter) || func.desc.toLowerCase().includes(filter);
+                });
+                populateTable(filteredFunctions);
+            }
+
+            // Initial population
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                 populateTable(functionsList);
+            } else {
+                 document.addEventListener('DOMContentLoaded', () => populateTable(functionsList));
+            }
+
+        </script>
+        <!-- ======================================================================= -->
+        <!-- ============== END: Quick Reference Section =========================== -->
+        <!-- ======================================================================= -->
+         <!-- ======================================================================= -->
+<!-- ========= START: Complete Function Inventory Section ================== -->
+<!-- ======================================================================= -->
+<section id="function-inventory" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Complete Function Inventory</h2>
+        <p class="mt-2 text-gray-400">A comprehensive list of core functions from the OS and Sys modules.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-8">
+        <!-- OS Module Column -->
+        <div>
+            <h3 class="text-2xl font-semibold text-orange-400 mb-6 border-b-2 border-orange-400/30 pb-2">OS Module Core Functions</h3>
+            <ul class="space-y-3 text-gray-300">
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.chdir()</code> - Change working directory</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.getcwd()</code> - Get current working directory</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.listdir()</code> - List directory contents</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.mkdir()/makedirs()</code> - Create directory(ies)</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.remove()/unlink()</code> - Delete file</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.rename()</code> - Rename/move file/directory</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.rmdir()/removedirs()</code> - Remove directory(ies)</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.path.exists()</code> - Check if path exists</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.path.join()</code> - Join path components</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.path.basename()/dirname()</code> - Get path components</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.path.isdir()/isfile()</code> - Check path type</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.path.getsize()</code> - Get file size</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.stat()</code> - Get file status</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.environ</code> - Access environment variables</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.system()</code> - Execute shell command</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.walk()</code> - Directory tree generator</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.access()</code> - Check path permissions</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">os.urandom()</code> - Generate random bytes</li>
+            </ul>
+        </div>
+
+        <!-- SYS Module Column -->
+        <div>
+            <h3 class="text-2xl font-semibold text-red-400 mb-6 border-b-2 border-red-400/30 pb-2">SYS Module Core Functions</h3>
+            <ul class="space-y-3 text-gray-300">
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.argv</code> - Command line arguments</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.exit()</code> - Exit interpreter</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.path</code> - Module search path</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.modules</code> - Loaded modules</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.stdin/stdout/stderr</code> - Standard streams</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.version</code> - Python version info</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.platform</code> - OS platform identifier</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.getsizeof()</code> - Object memory usage</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.exc_info()</code> - Exception information</li>
+                <li><code class="font-code text-green-400 bg-gray-800 px-2 py-1 rounded-md">sys.settrace()</code> - Set trace function</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Complete Function Inventory Section =================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Critical Functions by Module Section =============== -->
+<!-- ======================================================================= -->
+<section id="critical-functions-split" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Critical Functions by Module</h2>
+        <p class="mt-2 text-gray-400">The most essential functions for filesystem operations and script environment control.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-10">
+        <!-- OS Module Critical Functions -->
+        <div>
+            <h3 class="text-2xl font-semibold text-orange-400 mb-6 border-b-2 border-orange-400/30 pb-2 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+                OS Module: Filesystem & Environment
+            </h3>
+            <div class="space-y-4">
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">os.path.join()</h4>
+                    <p class="text-gray-400 text-sm">The only safe way to combine path parts on any OS (e.g., handles `/` vs `\`).</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-2 text-sm">
+                            <div class="visual-item p-2 rounded">'folder'</div>
+                            <span class="text-2xl font-bold text-orange-400">+</span>
+                            <div class="visual-item p-2 rounded">'file.txt'</div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-item p-2 rounded bg-gray-900 border-green-500">'folder/file.txt'</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">os.path.exists()</h4>
+                    <p class="text-gray-400 text-sm">Essential for checking if a file or directory exists before trying to access it.</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-3">
+                            <svg class="h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25" /></svg>
+                            <span class="arrow text-2xl font-bold">&rarr; ? &rarr;</span>
+                            <div class="visual-item p-2 rounded text-sm bg-green-800 border-green-600">True</div>
+                            <span class="text-gray-500">/</span>
+                            <div class="visual-item p-2 rounded text-sm bg-red-800 border-red-600">False</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">os.listdir()</h4>
+                    <p class="text-gray-400 text-sm">The primary way to read the contents of a directory to loop over files.</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4">
+                            <svg class="h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" /></svg>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-2 rounded text-xs">['f1.txt', 'f2.py']</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">os.mkdir() / os.makedirs()</h4>
+                    <p class="text-gray-400 text-sm">The standard for programmatically creating new folders.</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="text-gray-400 text-sm font-code">'new_dir'</div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <svg class="h-8 w-8 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" /></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">os.remove() & os.rmdir()</h4>
+                    <p class="text-gray-400 text-sm">Core functions for deleting files and empty directories, respectively.</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4 h-8">
+                             <div class="relative h-full w-8">
+                                <svg class="h-full w-full text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25" /></svg>
+                                <svg class="absolute top-0 left-0 h-full w-full text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">os.environ</h4>
+                    <p class="text-gray-400 text-sm">The standard way to access system environment variables for configuration (e.g., API keys).</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 009 9" /></svg>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-1 rounded text-xs font-code">{'API_KEY': '...'}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SYS Module Critical Functions -->
+        <div>
+            <h3 class="text-2xl font-semibold text-red-400 mb-6 border-b-2 border-red-400/30 pb-2 flex items-center gap-3">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+                Sys Module: Script & Interpreter
+            </h3>
+            <div class="space-y-4">
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">sys.argv</h4>
+                    <p class="text-gray-400 text-sm">The gateway to all command-line arguments passed to your script.</p>
+                    <div class="mt-3">
+                        <div class="visual-box p-2 rounded text-xs font-code text-center">
+                            <p class="text-gray-500">$ python script.py arg1</p>
+                            <p class="text-2xl arrow">&darr;</p>
+                            <p>['script.py', 'arg1']</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">sys.path</h4>
+                    <p class="text-gray-400 text-sm">Crucial for understanding and manipulating where Python looks for modules.</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.648.5.5 5.648.5 12s5.148 11.5 11.5 11.5S23.5 18.352 23.5 12S18.352.5 12 .5zm0 21C6.757 21.5 2.5 17.243 2.5 12S6.757 2.5 12 2.5s9.5 4.257 9.5 9.5-4.257 9.5-9.5 9.5z"/><path d="M12 4.5c-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5 7.5-3.36 7.5-7.5-3.36-7.5-7.5-7.5zm0 13c-3.033 0-5.5-2.468-5.5-5.5s2.467-5.5 5.5-5.5 5.5 2.468 5.5 5.5-2.467 5.5-5.5 5.5z"/><path d="M12 7.5a.5.5 0 00-.5.5v3.793l-2.146 2.146a.5.5 0 00.708.708L12.5 12.207V8a.5.5 0 00-.5-.5z"/></svg>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-1 rounded text-xs font-code">['/app', '/lib', ...]</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">sys.exit()</h4>
+                    <p class="text-gray-400 text-sm">The canonical way to terminate a script, optionally with an error code.</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="text-gray-400 text-sm">Script Running</div>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="text-red-500 font-bold text-lg">STOP</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">sys.platform</h4>
+                    <p class="text-gray-400 text-sm">Allows you to write OS-specific logic (e.g., for 'win32', 'linux', or 'darwin').</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-item p-2 rounded text-sm font-code">'linux'</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">sys.stdin / stdout / stderr</h4>
+                    <p class="text-gray-400 text-sm">Direct access to the script's input/output streams, vital for shell pipelines.</p>
+                    <div class="mt-3 text-center text-xs font-code space-y-1">
+                        <p>Input &rarr; [stdin] &rarr; Script</p>
+                        <p>Script &rarr; [stdout] &rarr; Output</p>
+                        <p class="text-red-400">Script &rarr; [stderr] &rarr; Error Output</p>
+                    </div>
+                </div>
+                 <div class="card p-4 rounded-lg">
+                    <h4 class="font-bold font-code text-green-400">sys.version</h4>
+                    <p class="text-gray-400 text-sm">Provides information about the Python interpreter version being used.</p>
+                    <div class="mt-3">
+                        <div class="flex items-center justify-center space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.648.5.5 5.648.5 12s5.148 11.5 11.5 11.5S23.5 18.352 23.5 12S18.352.5 12 .5zm0 21C6.757 21.5 2.5 17.243 2.5 12S6.757 2.5 12 2.5s9.5 4.257 9.5 9.5-4.257 9.5-9.5 9.5z"/><path d="M12 4.5c-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5 7.5-3.36 7.5-7.5-3.36-7.5-7.5-7.5zm0 13c-3.033 0-5.5-2.468-5.5-5.5s2.467-5.5 5.5-5.5 5.5 2.468 5.5 5.5-2.467 5.5-5.5 5.5z"/><path d="M12 7.5a.5.5 0 00-.5.5v3.793l-2.146 2.146a.5.5 0 00.708.708L12.5 12.207V8a.5.5 0 00-.5-.5z"/></svg>
+                            <span class="arrow text-2xl font-bold">&rarr;</span>
+                            <div class="visual-box p-1 rounded text-xs font-code">'3.10.4 (...)'</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Critical Functions by Module Section ================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Important Functions Section ======================== -->
+<!-- ======================================================================= -->
+<section id="important-functions-detailed" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Important Functions <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+        <p class="mt-2 text-gray-400">Frequently used functions that support critical operations and handle common tasks.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Card: os.path.isdir()/isfile() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.path.isdir() / isfile()</h4>
+            <p class="text-gray-400 text-sm mt-1">Frequent and necessary checks to determine if a path is a directory or a file.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">if os.path.isfile(p): ...</code></pre>
+            <div class="mt-3 space-y-2 flex-grow flex flex-col justify-center">
+                <div class="flex items-center justify-center space-x-2">
+                    <svg class="h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5M5.25 6H18.75a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25-2.25H5.25a2.25 2.25 0 0 1-2.25-2.25V8.25a2.25 2.25 0 0 1 2.25-2.25Z" /></svg>
+                    <span class="arrow text-lg">&rarr; isfile? &rarr;</span>
+                    <div class="visual-item p-2 rounded text-sm bg-green-800 border-green-600">True</div>
+                </div>
+                <div class="flex items-center justify-center space-x-2">
+                    <svg class="h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" /></svg>
+                    <span class="arrow text-lg">&rarr; isdir? &rarr;</span>
+                    <div class="visual-item p-2 rounded text-sm bg-green-800 border-green-600">True</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: os.rename() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.rename()</h4>
+            <p class="text-gray-400 text-sm mt-1">A common and essential file operation for renaming or moving files and directories.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">os.rename('a.txt', 'b.txt')</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-2 text-sm">
+                    <div class="visual-item p-2 rounded">'old.txt'</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-item p-2 rounded bg-gray-900 border-green-500">'new.txt'</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: os.remove() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.remove()</h4>
+            <p class="text-gray-400 text-sm mt-1">The most basic and direct way to delete a file from the filesystem.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">os.remove('stale.log')</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center h-16">
+                     <div class="relative h-8 w-8">
+                        <svg class="h-full w-full text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25" /></svg>
+                        <svg class="absolute top-0 left-0 h-full w-full text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: os.walk() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.walk()</h4>
+            <p class="text-gray-400 text-sm mt-1">Powerful generator for recursively traversing a directory tree from top to bottom.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">for r, d, f in os.walk('.'): ...</code></pre>
+            <div class="mt-3 text-center flex-grow flex flex-col justify-center">
+                <svg class="h-8 w-8 mx-auto text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" /></svg>
+                <p class="text-2xl arrow">&darr;</p>
+                <div class="visual-box p-1 rounded text-xs font-code">yields (root, dirs, files)</div>
+            </div>
+        </div>
+        
+        <!-- Card: os.environ -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.environ</h4>
+            <p class="text-gray-400 text-sm mt-1">Dictionary-like access to system environment variables for configuration.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">key = os.environ.get('API_KEY')</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 009 9" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs font-code">{'API_KEY': '...'}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: sys.stdin/stdout/stderr -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">sys.stdin / stdout / stderr</h4>
+            <p class="text-gray-400 text-sm mt-1">File objects for script I/O, essential for creating command-line tools.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">sys.stdout.write('Hello')</code></pre>
+            <div class="mt-3 text-center text-xs font-code space-y-1 flex-grow flex flex-col justify-center">
+                <p>Input &rarr; [stdin] &rarr; Script</p>
+                <p>Script &rarr; [stdout] &rarr; Output</p>
+                <p class="text-red-400">Script &rarr; [stderr] &rarr; Error</p>
+            </div>
+        </div>
+
+        <!-- Card: sys.version -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">sys.version</h4>
+            <p class="text-gray-400 text-sm mt-1">Check the running Python version for compatibility logic.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">if sys.version_info.major < 3: ...</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs font-code">'3.10.4 (...)'</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: os.stat() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.stat()</h4>
+            <p class="text-gray-400 text-sm mt-1">Retrieve detailed file metadata like size, permissions, and modification times.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">info = os.stat('file.txt')</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <svg class="h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs font-code">st_size, st_mtime...</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Important Functions Section ========================= -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ========= START: Utility Functions Section ========================== -->
+<!-- ======================================================================= -->
+<section id="utility-functions-detailed" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Utility Functions <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+        <p class="mt-2 text-gray-400">Valuable for edge cases, convenience, or specific applications.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Card: os.path.getsize() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.path.getsize()</h4>
+            <p class="text-gray-400 text-sm mt-1">A nice-to-have for getting the size of a file in bytes.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">size = os.path.getsize('file.txt')</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <svg class="h-8 w-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5M5.25 6H18.75a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25-2.25H5.25a2.25 2.25 0 0 1-2.25-2.25V8.25a2.25 2.25 0 0 1 2.25-2.25Z" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-item p-2 rounded text-sm bg-gray-900 border-green-500">1024 (bytes)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: os.urandom() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.urandom()</h4>
+            <p class="text-gray-400 text-sm mt-1">Specialized use for generating cryptographically strong random bytes.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">key = os.urandom(16)</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs font-code">b'\x12\xab...'</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: os.access() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.access()</h4>
+            <p class="text-gray-400 text-sm mt-1">Used for checking user's access permissions for a path (Read, Write, Execute).</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">can_write = os.access('.', os.W_OK)</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" /></svg>
+                    <span class="arrow text-lg">&rarr; W_OK? &rarr;</span>
+                    <div class="visual-item p-2 rounded text-sm bg-green-800 border-green-600">True</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: sys.getsizeof() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">sys.getsizeof()</h4>
+            <p class="text-gray-400 text-sm mt-1">Useful for memory optimization by checking the size of a Python object in bytes.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">mem = sys.getsizeof([1, 2, 3])</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <div class="visual-item p-2 rounded text-sm">[1,2,3]</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-item p-2 rounded text-sm bg-gray-900 border-green-500">80 (bytes)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: sys.exc_info() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">sys.exc_info()</h4>
+            <p class="text-gray-400 text-sm mt-1">Provides detailed information about the current exception for advanced debugging.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">except:
+    type, val, tb = sys.exc_info()</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs font-code">(type, val, tb)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: os.system() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.system()</h4>
+            <p class="text-gray-400 text-sm mt-1">Executes a shell command. Often better alternatives exist (like `subprocess`).</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">os.system('echo "Hello"')</code></pre>
+             <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-item p-2 rounded text-sm">Shell Output</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: os.path.splitext() -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">os.path.splitext()</h4>
+            <p class="text-gray-400 text-sm mt-1">Helpful edge case for splitting a path into its root and extension.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">os.path.splitext('img.png')</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-2">
+                    <div class="visual-item p-2 rounded text-sm">'image.png'</div>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-box p-1 rounded text-xs font-code">('image', '.png')</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- sys.settrace() is highly specialized and visual representation is less intuitive -->
+        <div class="card p-4 rounded-lg flex flex-col">
+            <h4 class="font-bold font-code text-green-400">sys.settrace()</h4>
+            <p class="text-gray-400 text-sm mt-1">Advanced debugging hook to trace program execution, used by debuggers.</p>
+            <pre class="bg-gray-900 p-2 mt-3 rounded-md overflow-x-auto text-xs"><code class="font-code text-white">sys.settrace(my_trace_func)</code></pre>
+            <div class="mt-3 flex-grow flex items-center">
+                <div class="w-full flex items-center justify-center space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                    <span class="arrow text-2xl font-bold">&rarr;</span>
+                    <div class="visual-item p-2 rounded text-sm">Debugger Hook</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+       <h3 class="text-2xl font-semibold text-rose-400 mb-4">Why Are These "Utility"?</h3>
+       <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+           <p class="text-gray-300">Useful for specific scenarios but not frequently needed in core workflows.</p>
+       </div>
+   </div>
+
+</section>
+<!-- ======================================================================= -->
+<!-- ========== END: Utility Functions Section =========================== -->
+<!-- ======================================================================= -->
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Created to make OS & Sys mastery accessible and visual.</p>
+    </footer>
+
+</body>
+</html>
