@@ -3,299 +3,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Guide to Git & GitHub Commands</title>
+    <title>A Visual Guide to Git & GitHub Commands</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
         }
         .card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            border: 1px solid #e2e8f0; /* slate-200 */
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            border-radius: 0.75rem; /* rounded-xl */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        .card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .tag {
-            display: inline-block;
+        .table-header {
+            background-color: #374151; /* bg-gray-700 */
+        }
+        .command-row {
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .command-row:hover {
+            background-color: #374151; /* bg-gray-700 */
+            transform: scale(1.02);
+        }
+        .table-row-odd {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .table-row-even {
+            background-color: #253143; /* slightly lighter gray */
+        }
+        .command-tag {
+            background-color: #4b5563; /* bg-gray-600 */
+            color: #e5e7eb; /* text-gray-200 */
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-block;
         }
-        .tag-safe { background-color: #dcfce7; color: #166534; } /* green-100, green-800 */
-        .tag-local { background-color: #e0f2fe; color: #0c4a6e; } /* sky-100, sky-800 */
-        .tag-danger { background-color: #fee2e2; color: #991b1b; } /* red-100, red-800 */
-        
-        .icon-container {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .section-title-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-right: 1rem;
+            color: #60a5fa; /* text-blue-400 */
+        }
+        .github-section .section-title-icon {
+            color: #a78bfa; /* text-violet-400 */
         }
 
-        .section-title {
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
+        /* Modal Styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 40;
+        }
+        .modal-container {
+            background-color: #1f2937;
+            z-index: 50;
+            max-width: 600px;
+        }
+        
+        /* Terminal Animation Styles */
+        .terminal {
+            background-color: #000;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Source Code Pro', monospace;
+            min-height: 200px;
+        }
+        .terminal-line {
+            white-space: pre-wrap;
+        }
+        .terminal-line .prompt {
+            color: #4ade80; /* green-400 */
+        }
+        .terminal-line .output {
+            color: #9ca3af; /* gray-400 */
+        }
+        .typing::after {
+            content: '▋';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
-<body class="p-4 sm:p-6 md:p-8">
+<body class="antialiased">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
 
-    <div class="max-w-7xl mx-auto">
         <!-- Header -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl sm:text-5xl font-bold text-slate-800 mb-2">Visual Git Command Guide</h1>
-            <p class="text-lg text-slate-600">A quick reference for the most essential Git & GitHub commands.</p>
+        <header class="text-center mb-12 card">
+            <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">A Visual Guide to Git & GitHub</h1>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                Your go-to reference for mastering version control. Click on any command to see a visual simulation!
+            </p>
         </header>
 
-        <!-- Section: Daily Toolkit -->
+        <!-- Git Commands Section -->
         <section class="mb-16">
-            <h2 class="text-3xl font-bold text-slate-700 section-title">A Developer's Daily Toolkit</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- git clone -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git clone</h3>
-                            <p class="text-slate-500 mt-1">Copy a remote repository.</p>
-                        </div>
-                        <div class="icon-container bg-blue-100 text-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v-6m0 0l-3 3m3-3l3 3" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git clone [url]</code>
-                </div>
+            <div class="flex items-center mb-8 card">
+                <svg class="section-title-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                <h2 class="text-3xl font-bold text-white">Git Commands: Your Local Toolkit</h2>
+            </div>
 
-                <!-- git status -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git status</h3>
-                            <p class="text-slate-500 mt-1">Check the state of your repo.</p>
-                        </div>
-                        <div class="icon-container bg-green-100 text-green-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git status</code>
+            <!-- 1. Setting Up a Repository -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-blue-400 mb-4">1. Setting Up a Repository</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                            <tr class="command-row table-row-even" data-command="git init" data-visual='[{"type": "input", "text": "git init"}, {"type": "output", "text": "Initialized empty Git repository in /Users/dev/my-project/.git/"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git init</span></td><td class="p-4">Initializes a new, empty Git repository.</td><td class="p-4">Start tracking a brand new project.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git clone" data-visual='[{"type": "input", "text": "git clone https://github.com/example/repo.git"}, {"type": "output", "text": "Cloning into \'repo\'...\nremote: Enumerating objects: 10, done.\nremote: Counting objects: 100% (10/10), done.\nremote: Compressing objects: 100% (8/8), done.\nremote: Total 10 (delta 1), reused 10 (delta 1), pack-reused 0\nReceiving objects: 100% (10/10), done.\nResolving deltas: 100% (1/1), done."}]'>
+                                <td class="p-4"><span class="font-code command-tag">git clone [url]</span></td><td class="p-4">Creates a local copy of a remote repository.</td><td class="p-4">Get a local working copy of a project.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="git config" data-visual='[{"type": "input", "text": "git config --global user.name \\"Your Name\\""}, {"type": "output", "text": "(No output, configuration is saved)"}, {"type": "input", "text": "git config --global user.email \\"you@example.com\\""}, {"type": "output", "text": "(No output, configuration is saved)"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git config</span></td><td class="p-4">Configures Git settings (user, email, etc.).</td><td class="p-4">Set your identity for commits.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <!-- git add -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git add</h3>
-                            <p class="text-slate-500 mt-1">Stage changes for commit.</p>
-                        </div>
-                        <div class="icon-container bg-green-100 text-green-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git add [file]  |  git add .</code>
+            <!-- 2. Staging & Committing Changes -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-blue-400 mb-4">2. Staging & Committing Changes</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                         <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                            <tr class="command-row table-row-even" data-command="git add [file]" data-visual='[{"type": "input", "text": "git status"}, {"type": "output", "text": "On branch main\\nUntracked files:\\n  (use \\"git add <file>...\\" to include in what will be committed)\\n\\n    index.html"}, {"type": "input", "text": "git add index.html"}, {"type": "input", "text": "git status"}, {"type": "output", "text": "On branch main\\nChanges to be committed:\\n  (use \\"git restore --staged <file>...\\" to unstage)\\n\\n    new file:   index.html"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git add [file]</span></td><td class="p-4">Adds a file to the staging area.</td><td class="p-4">Prepare specific changes for commit.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git add ." data-visual='[{"type": "input", "text": "git status"}, {"type": "output", "text": "On branch main\\nUntracked files:\\n\\n    index.html\\n    style.css"}, {"type": "input", "text": "git add ."}, {"type": "input", "text": "git status"}, {"type": "output", "text": "On branch main\\nChanges to be committed:\\n\\n    new file:   index.html\\n    new file:   style.css"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git add .</span></td><td class="p-4">Adds all new and modified files to staging.</td><td class="p-4">Quickly stage all current changes.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="git commit -m" data-visual='[{"type": "input", "text": "git commit -m \\"Initial commit: Add homepage\\""}, {"type": "output", "text": "[main (root-commit) a1b2c3d] Initial commit: Add homepage\\n 1 file changed, 1 insertion(+)\\n create mode 100644 index.html"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git commit -m "[msg]"</span></td><td class="p-4">Records staged changes to the repository.</td><td class="p-4">Save a snapshot of your work.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git status" data-visual='[{"type": "input", "text": "git status"}, {"type": "output", "text": "On branch main\\nYour branch is up to date with \'origin/main\'.\\n\\nChanges not staged for commit:\\n  (use \\"git add <file>...\\" to update what will be committed)\\n  (use \\"git restore <file>...\\" to discard changes in working directory)\\n    modified:   README.md\\n\\nno changes added to commit (use \\"git add\\" and/or \\"git commit -a\\")"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git status</span></td><td class="p-4">Shows the status of your working directory.</td><td class="p-4">See what's changed or staged.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <!-- git commit -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git commit</h3>
-                            <p class="text-slate-500 mt-1">Save staged changes locally.</p>
-                        </div>
-                        <div class="icon-container bg-green-100 text-green-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git commit -m "Your message"</code>
+            </div>
+            
+            <!-- 3. Branching & Merging -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-blue-400 mb-4">3. Branching & Merging</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                         <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                            <tr class="command-row table-row-even" data-command="git branch" data-visual='[{"type": "input", "text": "git branch"}, {"type": "output", "text": "* main\\n  feature-A\\n  hotfix-B"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git branch</span></td><td class="p-4">Lists all local branches.</td><td class="p-4">See what branches exist locally.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git branch [name]" data-visual='[{"type": "input", "text": "git branch new-feature"}, {"type": "output", "text": ""}, {"type": "input", "text": "git branch"}, {"type": "output", "text": "* main\\n  new-feature"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git branch [name]</span></td><td class="p-4">Creates a new branch.</td><td class="p-4">Work on a new feature in isolation.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="git checkout [name]" data-visual='[{"type": "input", "text": "git checkout new-feature"}, {"type": "output", "text": "Switched to branch \'new-feature\'"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git checkout [name]</span></td><td class="p-4">Switches to the specified branch.</td><td class="p-4">Start working on a different branch.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git checkout -b [name]" data-visual='[{"type": "input", "text": "git checkout -b another-feature"}, {"type": "output", "text": "Switched to a new branch \'another-feature\'"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git checkout -b [name]</span></td><td class="p-4">Creates a new branch and switches to it.</td><td class="p-4">A shortcut for creating and checking out.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="git merge [name]" data-visual='[{"type": "input", "text": "git checkout main"}, {"type": "output", "text": "Switched to branch \'main\'"}, {"type": "input", "text": "git merge new-feature"}, {"type": "output", "text": "Updating a1b2c3d..e4f5g6h\\nFast-forward\\n feature.js | 1 +\\n 1 file changed, 1 insertion(+)\\n create mode 100644 feature.js"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git merge [name]</span></td><td class="p-4">Merges a branch into the current one.</td><td class="p-4">Integrate feature changes into main.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git branch -d [name]" data-visual='[{"type": "input", "text": "git branch -d new-feature"}, {"type": "output", "text": "Deleted branch new-feature (was e4f5g6h)."}]'>
+                                <td class="p-4"><span class="font-code command-tag">git branch -d [name]</span></td><td class="p-4">Deletes the specified local branch.</td><td class="p-4">Clean up unneeded branches.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <!-- git pull -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git pull</h3>
-                            <p class="text-slate-500 mt-1">Fetch & merge remote changes.</p>
-                        </div>
-                        <div class="icon-container bg-blue-100 text-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git pull origin main</code>
+            <!-- 4. Working with Remotes -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-blue-400 mb-4">4. Working with Remote Repositories</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                         <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                            <tr class="command-row table-row-even" data-command="git remote -v" data-visual='[{"type": "input", "text": "git remote -v"}, {"type": "output", "text": "origin  https://github.com/user/repo.git (fetch)\\norigin  https://github.com/user/repo.git (push)"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git remote -v</span></td><td class="p-4">Lists all remote repositories.</td><td class="p-4">Verify remote server connections.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git remote add" data-visual='[{"type": "input", "text": "git remote add upstream https://github.com/original/repo.git"}, {"type": "input", "text": "git remote -v"}, {"type": "output", "text": "origin  https://github.com/user/repo.git (fetch)\\norigin  https://github.com/user/repo.git (push)\\nupstream  https://github.com/original/repo.git (fetch)\\nupstream  https://github.com/original/repo.git (push)"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git remote add [n] [url]</span></td><td class="p-4">Adds a new remote repository.</td><td class="p-4">Connect to another remote server.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="git fetch" data-visual='[{"type": "input", "text": "git fetch origin"}, {"type": "output", "text": "remote: Enumerating objects: 5, done.\\nremote: Counting objects: 100% (5/5), done.\\nremote: Compressing objects: 100% (3/3), done.\\nremote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0\\nUnpacking objects: 100% (3/3), done.\\nFrom https://github.com/user/repo\\n   a1b2c3d..e4f5g6h  main       -> origin/main"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git fetch [remote]</span></td><td class="p-4">Downloads changes from a remote.</td><td class="p-4">See remote changes without merging.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git pull" data-visual='[{"type": "input", "text": "git pull origin main"}, {"type": "output", "text": "From https://github.com/example/repo\\n * branch            main     -> FETCH_HEAD\\nUpdating e4f5g6h..i7j8k9l\\nFast-forward\\n README.md | 2 ++\n 1 file changed, 2 insertions(+)"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git pull</span></td><td class="p-4">Fetches and merges remote changes.</td><td class="p-4">Update your local branch.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="git push" data-visual='[{"type": "input", "text": "git push origin main"}, {"type": "output", "text": "Enumerating objects: 4, done.\\nCounting objects: 100% (4/4), done.\\nDelta compression using up to 8 threads\\nCompressing objects: 100% (2/2), done.\\nWriting objects: 100% (3/3), 300 bytes | 300.00 KiB/s, done.\\nTotal 3 (delta 0), reused 0 (delta 0)\\nTo https://github.com/example/repo.git\\n   a1b2c3d..e4f5g6h  main -> main"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git push [rem] [br]</span></td><td class="p-4">Pushes changes to a remote repository.</td><td class="p-4">Share your work with others.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <!-- git push -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git push</h3>
-                            <p class="text-slate-500 mt-1">Share local commits remotely.</p>
-                        </div>
-                         <div class="icon-container bg-blue-100 text-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git push origin [branch-name]</code>
+            <!-- 5. Inspecting & Undoing Changes -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-blue-400 mb-4">5. Inspecting & Undoing Changes</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                            <tr class="command-row table-row-even" data-command="git log" data-visual='[{"type": "input", "text": "git log --oneline -2"}, {"type": "output", "text": "e4f5g6h (HEAD -> main) Add feature X\\na1b2c3d Initial commit"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git log</span></td><td class="p-4">Shows the commit history.</td><td class="p-4">Review the project`s history.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git diff" data-visual='[{"type": "input", "text": "git diff"}, {"type": "output", "text": "diff --git a/index.html b/index.html\\nindex e69de29..8c62b4a 100644\\n--- a/index.html\\n+++ b/index.html\\n@@ -0,0 +1 @@\\n+<h1>Hello World</h1>"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git diff</span></td><td class="p-4">Shows differences between commits, etc.</td><td class="p-4">See exact line-by-line changes.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="git reset" data-visual='[{"type": "input", "text": "git add ."}, {"type": "input", "text": "git status"}, {"type": "output", "text": "Changes to be committed:\\n    modified:   README.md"}, {"type": "input", "text": "git reset README.md"}, {"type": "output", "text": "Unstaged changes after reset:\\nM   README.md"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git reset [file]</span></td><td class="p-4">Unstages a file, but preserves contents.</td><td class="p-4">Remove a file from the staging area.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git revert" data-visual='[{"type": "input", "text": "git revert HEAD"}, {"type": "output", "text": "[main 8a9b0c1] Revert \\"Add feature X\\"\\n 1 file changed, 1 deletion(-)"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git revert [commit]</span></td><td class="p-4">Creates a new commit that undoes another.</td><td class="p-4">Safely undo a public commit.</td>
+                            </tr>
+                             <tr class="command-row table-row-even" data-command="git stash" data-visual='[{"type": "input", "text": "git stash"}, {"type": "output", "text": "Saved working directory and index state WIP on main: e4f5g6h Add feature X"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git stash</span></td><td class="p-4">Temporarily saves uncommitted changes.</td><td class="p-4">Switch branches without committing.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="git stash pop" data-visual='[{"type": "input", "text": "git stash pop"}, {"type": "output", "text": "On branch main\\nChanges not staged for commit:\\n    modified:   index.html\\n\\nDropped refs/stash@{0} (a1b2c3d...)"}]'>
+                                <td class="p-4"><span class="font-code command-tag">git stash pop</span></td><td class="p-4">Applies the most recently stashed changes.</td><td class="p-4">Re-apply saved changes.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Branching & Integration -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold text-slate-700 section-title">Branching & Integration</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- git branch -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git branch</h3>
-                            <p class="text-slate-500 mt-1">Create or list branches.</p>
-                        </div>
-                        <div class="icon-container bg-purple-100 text-purple-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git branch [new-branch-name]</code>
+        <!-- GitHub CLI Section -->
+        <section class="mb-8 github-section">
+            <div class="flex items-center mb-8 card">
+                <svg class="section-title-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" /></svg>
+                <h2 class="text-3xl font-bold text-white">GitHub CLI: Power in Your Terminal</h2>
+            </div>
+             <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-violet-400 mb-4">1. Repository Management</h3>
+                <div class="overflow-x-auto">
+                     <table class="w-full text-left">
+                        <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                            <tr class="command-row table-row-even" data-command="gh repo create" data-visual='[{"type": "input", "text": "gh repo create my-new-app --public"}, {"type": "output", "text": "✓ Created repository user/my-new-app on GitHub\\n✓ Added remote https://github.com/user/my-new-app.git"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh repo create</span></td><td class="p-4">Creates a new repository on GitHub.</td><td class="p-4">Start a new project on GitHub.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="gh repo clone" data-visual='[{"type": "input", "text": "gh repo clone user/my-new-app"}, {"type": "output", "text": "Cloning into \'my-new-app\'...\\n✓ Cloned repository."}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh repo clone [repo]</span></td><td class="p-4">Clones a repository from GitHub.</td><td class="p-4">Get a local copy of a GitHub repo.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="gh repo view" data-visual='[{"type": "input", "text": "gh repo view --web"}, {"type": "output", "text": "Opening github.com/user/my-new-app in your browser."}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh repo view</span></td><td class="p-4">Views a repository in the browser.</td><td class="p-4">Quickly open a repo`s GitHub page.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <!-- git checkout -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git checkout</h3>
-                            <p class="text-slate-500 mt-1">Switch to a different branch.</p>
-                        </div>
-                        <div class="icon-container bg-purple-100 text-purple-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git checkout [branch-name]</code>
+            </div>
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-violet-400 mb-4">2. Pull Request Management</h3>
+                <div class="overflow-x-auto">
+                     <table class="w-full text-left">
+                        <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                             <tr class="command-row table-row-even" data-command="gh pr list" data-visual='[{"type": "input", "text": "gh pr list"}, {"type": "output", "text": "Showing 2 of 2 open pull requests in user/repo\\n\\n#12 Fix login bug      bug-fix-branch\\n#11 Add user profiles   feature-profiles-branch"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh pr list</span></td><td class="p-4">Lists pull requests in a repository.</td><td class="p-4">See all open pull requests.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="gh pr create" data-visual='[{"type": "input", "text": "gh pr create --title \\"My new feature\\" --body \\"Here are the details.\\""}, {"type": "output", "text": "https://github.com/example/repo/pull/123"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh pr create</span></td><td class="p-4">Creates a new pull request.</td><td class="p-4">Propose changes for review.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="gh pr checkout" data-visual='[{"type": "input", "text": "gh pr checkout 12"}, {"type": "output", "text": "remote: Enumerating objects: 15, done.\\n...\\nSwitched to branch \'user/feature-branch\'"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh pr checkout [pr]</span></td><td class="p-4">Checks out a pull request locally.</td><td class="p-4">Easily test a contributor`s changes.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="gh pr merge" data-visual='[{"type": "input", "text": "gh pr merge 123 --squash --delete-branch"}, {"type": "output", "text": "✔ Squashed and merged pull request #123"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh pr merge</span></td><td class="p-4">Merges a pull request.</td><td class="p-4">Merge an approved pull request.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <!-- git merge -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git merge</h3>
-                            <p class="text-slate-500 mt-1">Combine histories of branches.</p>
-                        </div>
-                        <div class="icon-container bg-purple-100 text-purple-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-5M3 4v5h5m10 0a2 2 0 012 2v3a2 2 0 01-2 2h-3m-1-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git merge [branch-to-merge]</code>
+            </div>
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-semibold text-violet-400 mb-4">3. Issue Management</h3>
+                <div class="overflow-x-auto">
+                     <table class="w-full text-left">
+                        <thead class="table-header"><tr><th class="p-4 rounded-tl-lg">Command</th><th class="p-4">Description</th><th class="p-4 rounded-tr-lg">Use Case</th></tr></thead>
+                        <tbody>
+                             <tr class="command-row table-row-even" data-command="gh issue list" data-visual='[{"type": "input", "text": "gh issue list"}, {"type": "output", "text": "Showing 3 of 3 open issues in user/repo\\n\\n#45 API rate limit error   bug, P1\\n#42 Update documentation   docs\\n#38 Feature request: dark mode enhancement"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh issue list</span></td><td class="p-4">Lists issues in a repository.</td><td class="p-4">Find tasks to work on.</td>
+                            </tr>
+                            <tr class="command-row table-row-odd" data-command="gh issue create" data-visual='[{"type": "input", "text": "gh issue create -t \\"Button is misaligned\\" -b \\"On the settings page, the save button is off-center.\\""}, {"type": "output", "text": "https://github.com/user/repo/issues/46"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh issue create</span></td><td class="p-4">Creates a new issue.</td><td class="p-4">Report a bug or request a feature.</td>
+                            </tr>
+                            <tr class="command-row table-row-even" data-command="gh issue status" data-visual='[{"type": "input", "text": "gh issue status"}, {"type": "output", "text": "Issues assigned to you\\n  #21 in user/repo: Refactor payment gateway (bug)\\n\\nIssues opened by you\\n  #46 in user/repo: Button is misaligned (open)\\n  #35 in user/repo: Add new logo (completed)"}]'>
+                                <td class="p-4"><span class="font-code command-tag">gh issue status</span></td><td class="p-4">Shows the status of your issues.</td><td class="p-4">Track your reported issues.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Problem Solving Arsenal -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold text-slate-700 section-title">Problem-Solving Arsenal</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- git rebase -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git rebase</h3>
-                            <p class="text-slate-500 mt-1">Re-apply commits on a new base.</p>
-                        </div>
-                        <div class="icon-container bg-yellow-100 text-yellow-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5M5 9a7 7 0 0110.5-6L14 7" /><path stroke-linecap="round" stroke-linejoin="round" d="M20 20v-5h-5M19 15a7 7 0 01-10.5 6L10 17" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git rebase [base-branch]</code>
-                    <div class="mt-4"><span class="tag tag-local">Private Branches Only</span></div>
-                </div>
-
-                <!-- git reset -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git reset</h3>
-                            <p class="text-slate-500 mt-1">Undo commits, erasing history.</p>
-                        </div>
-                        <div class="icon-container bg-red-100 text-red-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git reset [--soft|mixed|hard]</code>
-                    <div class="mt-4"><span class="tag tag-danger">Destructive</span></div>
-                </div>
-
-                <!-- git revert -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git revert</h3>
-                            <p class="text-slate-500 mt-1">Undo a commit with a new one.</p>
-                        </div>
-                        <div class="icon-container bg-green-100 text-green-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15l-6-6m0 0l6-6m-6 6h12a6 6 0 010 12h-3" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git revert [commit-hash]</code>
-                    <div class="mt-4"><span class="tag tag-safe">Safe for Public Branches</span></div>
-                </div>
-                
-                <!-- git stash -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git stash</h3>
-                            <p class="text-slate-500 mt-1">Temporarily save changes.</p>
-                        </div>
-                        <div class="icon-container bg-indigo-100 text-indigo-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git stash | git stash pop</code>
-                    <div class="mt-4"><span class="tag tag-local">Local Workspace</span></div>
-                </div>
-
-                <!-- git cherry-pick -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git cherry-pick</h3>
-                            <p class="text-slate-500 mt-1">Apply a specific commit.</p>
-                        </div>
-                        <div class="icon-container bg-pink-100 text-pink-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path d="M11.02,7.373c0.232-0.345,0.13-0.824-0.234-1.043c-0.364-0.219-0.852-0.109-1.07,0.234L8,8.277V3c0-0.552-0.447-1-1-1S6,2.448,6,3v5.277L4.284,6.564c-0.218-0.344-0.706-0.453-1.07-0.234c-0.363,0.219-0.466,0.698-0.234,1.043l3.499,5.249C6.681,12.979,7.323,13.3,8,13.3h0.001c0.677,0,1.319-0.321,1.72-0.814L11.02,7.373z" /><path d="M15,12c-2.209,0-4,1.791-4,4c0,2.209,1.791,4,4,4s4-1.791,4-4C19,13.791,17.209,12,15,12z M15,18.5c-1.381,0-2.5-1.119-2.5-2.5s1.119-2.5,2.5-2.5s2.5,1.119,2.5,2.5S16.381,18.5,15,18.5z" /><path d="M16,12c-2.209,0-4,1.791-4,4c0,2.209,1.791,4,4,4s4-1.791,4-4C20,13.791,18.209,12,16,12z M16,18.5c-1.381,0-2.5-1.119-2.5-2.5s1.119-2.5,2.5-2.5s2.5,1.119,2.5,2.5S17.381,18.5,16,18.5z" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git cherry-pick [commit-hash]</code>
-                    <div class="mt-4"><span class="tag tag-local">For Hotfixes</span></div>
-                </div>
-
-                <!-- git reflog -->
-                <div class="card p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">git reflog</h3>
-                            <p class="text-slate-500 mt-1">Your ultimate safety net.</p>
-                        </div>
-                        <div class="icon-container bg-red-100 text-red-600">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                    </div>
-                    <code class="block bg-slate-100 text-slate-700 rounded-md p-3 mt-4 text-sm font-mono">git reflog</code>
-                    <div class="mt-4"><span class="tag tag-danger">Local Recovery</span></div>
-                </div>
-            </div>
-        </section>
-
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-500 card">
+            <p>This guide covers the most common commands. For advanced usage, refer to the official Git and GitHub documentation.</p>
+        </footer>
     </div>
 
+    <!-- Modal for Visual Animation -->
+    <div id="visual-modal" class="fixed inset-0 modal-overlay items-center justify-center p-4 hidden">
+        <div class="modal-container w-full max-w-2xl mx-auto rounded-lg shadow-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-2xl font-bold text-white"></h3>
+                <button id="close-modal" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
+            <div id="terminal" class="terminal">
+                <div id="terminal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Intersection Observer for fade-in animation ---
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            cards.forEach(card => observer.observe(card));
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('visual-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const terminalBody = document.getElementById('terminal-body');
+            const closeModalBtn = document.getElementById('close-modal');
+            const commandRows = document.querySelectorAll('.command-row');
+
+            const typeSpeed = 30; // ms
+            let animationCancelled = false;
+
+            async function typeLine(element, text, isInput) {
+                return new Promise(resolve => {
+                    if (animationCancelled) return resolve();
+
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+                    
+                    const prompt = document.createElement('span');
+                    prompt.className = 'prompt';
+                    prompt.textContent = isInput ? '$ ' : '';
+                    line.appendChild(prompt);
+
+                    const textElement = document.createElement('span');
+                    textElement.className = isInput ? 'input' : 'output';
+                    line.appendChild(textElement);
+                    
+                    element.appendChild(line);
+
+                    let i = 0;
+                    function type() {
+                        if (animationCancelled) return resolve();
+                        if (i < text.length) {
+                            textElement.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(type, typeSpeed);
+                        } else {
+                            line.classList.remove('typing');
+                            resolve();
+                        }
+                    }
+                    textElement.classList.add('typing');
+                    type();
+                });
+            }
+
+            async function runAnimation(visualData) {
+                animationCancelled = false;
+                terminalBody.innerHTML = '';
+                for (const step of visualData) {
+                    if (animationCancelled) break;
+                    await typeLine(terminalBody, step.text, step.type === 'input');
+                    if (animationCancelled) break;
+                    await new Promise(res => setTimeout(res, 300)); // Pause between lines
+                }
+            }
+
+            commandRows.forEach(row => {
+                row.addEventListener('click', () => {
+                    const command = row.querySelector('.command-tag').textContent;
+                    const visualData = JSON.parse(row.dataset.visual);
+                    
+                    modalTitle.textContent = command;
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    
+                    runAnimation(visualData);
+                });
+            });
+
+            function closeModal() {
+                animationCancelled = true;
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                terminalBody.innerHTML = '';
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+
