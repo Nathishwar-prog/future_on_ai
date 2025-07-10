@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Built-in Functions: A Visual Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar for a more modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Main Container -->
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Header Section -->
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">Python Built-in Functions</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">A visually organized guide to Python's built-in functions and their syntax. Click on a function name to quickly copy its syntax.</p>
+        </header>
+
+        <!-- Functions Grid -->
+        <main id="functions-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <!-- Function cards will be dynamically inserted here by JavaScript -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-gray-500">
+            <p>A visual reference created by Gemini.</p>
+        </footer>
+        
+        <!-- Toast Notification for Copying -->
+        <div id="toast" class="fixed bottom-10 right-10 bg-gray-900 text-white py-2 px-5 rounded-lg shadow-xl transition-opacity duration-300 opacity-0">
+            Syntax copied to clipboard!
+        </div>
+
+    </div>
+
+    <script>
+        // Data for all the Python built-in functions
+        const functionsData = [
+            // A
+            { name: "abs", syntax: "abs(x)" },
+            { name: "aiter", syntax: "aiter(async_iterable)" },
+            { name: "all", syntax: "all(iterable)" },
+            { name: "anext", syntax: "anext(async_iterator[, default])" },
+            { name: "any", syntax: "any(iterable)" },
+            { name: "ascii", syntax: "ascii(object)" },
+            // B
+            { name: "bin", syntax: "bin(x)" },
+            { name: "bool", syntax: "bool([x])" },
+            { name: "breakpoint", syntax: "breakpoint(*args, **kws)" },
+            { name: "bytearray", syntax: "bytearray([source[, encoding[, errors]]])" },
+            { name: "bytes", syntax: "bytes([source[, encoding[, errors]]])" },
+            // C
+            { name: "callable", syntax: "callable(object)" },
+            { name: "chr", syntax: "chr(i)" },
+            { name: "classmethod", syntax: "classmethod(function)" },
+            { name: "compile", syntax: "compile(source, filename, mode, flags=0, ...)" },
+            { name: "complex", syntax: "complex([real[, imag]])" },
+            // D
+            { name: "delattr", syntax: "delattr(object, name)" },
+            { name: "dict", syntax: "dict(**kwarg) / dict(mapping, **kwarg)" },
+            { name: "dir", syntax: "dir([object])" },
+            { name: "divmod", syntax: "divmod(a, b)" },
+            // E
+            { name: "enumerate", syntax: "enumerate(iterable, start=0)" },
+            { name: "eval", syntax: "eval(expression[, globals[, locals]])" },
+            { name: "exec", syntax: "exec(object[, globals[, locals]])" },
+            // F
+            { name: "filter", syntax: "filter(function, iterable)" },
+            { name: "float", syntax: "float([x])" },
+            { name: "format", syntax: "format(value[, format_spec])" },
+            { name: "frozenset", syntax: "frozenset([iterable])" },
+            // G
+            { name: "getattr", syntax: "getattr(object, name[, default])" },
+            { name: "globals", syntax: "globals()" },
+            // H
+            { name: "hasattr", syntax: "hasattr(object, name)" },
+            { name: "hash", syntax: "hash(object)" },
+            { name: "help", syntax: "help([object])" },
+            { name: "hex", syntax: "hex(x)" },
+            // I
+            { name: "id", syntax: "id(object)" },
+            { name: "input", syntax: "input([prompt])" },
+            { name: "int", syntax: "int(x, base=10)" },
+            { name: "isinstance", syntax: "isinstance(object, classinfo)" },
+            { name: "issubclass", syntax: "issubclass(class, classinfo)" },
+            { name: "iter", syntax: "iter(object[, sentinel])" },
+            // L
+            { name: "len", syntax: "len(s)" },
+            { name: "list", syntax: "list([iterable])" },
+            { name: "locals", syntax: "locals()" },
+            // M
+            { name: "map", syntax: "map(function, iterable, ...)" },
+            { name: "max", syntax: "max(iterable, *[, key, default])" },
+            { name: "memoryview", syntax: "memoryview(object)" },
+            { name: "min", syntax: "min(iterable, *[, key, default])" },
+            // N
+            { name: "next", syntax: "next(iterator[, default])" },
+            // O
+            { name: "object", syntax: "object()" },
+            { name: "oct", syntax: "oct(x)" },
+            { name: "open", syntax: "open(file, mode='r', ...)" },
+            { name: "ord", syntax: "ord(c)" },
+            // P
+            { name: "pow", syntax: "pow(base, exp[, mod])" },
+            { name: "print", syntax: "print(*objects, sep=' ', end='\\n', ...)" },
+            { name: "property", syntax: "property(fget=None, fset=None, ...)" },
+            // R
+            { name: "range", syntax: "range(start, stop[, step])" },
+            { name: "repr", syntax: "repr(object)" },
+            { name: "reversed", syntax: "reversed(seq)" },
+            { name: "round", syntax: "round(number[, ndigits])" },
+            // S
+            { name: "set", syntax: "set([iterable])" },
+            { name: "setattr", syntax: "setattr(object, name, value)" },
+            { name: "slice", syntax: "slice(start, stop[, step])" },
+            { name: "sorted", syntax: "sorted(iterable, *, key=None, reverse=False)" },
+            { name: "staticmethod", syntax: "staticmethod(function)" },
+            { name: "str", syntax: "str(object='')" },
+            { name: "sum", syntax: "sum(iterable, /, start=0)" },
+            { name: "super", syntax: "super([type[, object-or-type]])" },
+            // T
+            { name: "tuple", syntax: "tuple([iterable])" },
+            { name: "type", syntax: "type(object) / type(name, bases, dict)" },
+            // V
+            { name: "vars", syntax: "vars([object])" },
+            // Z
+            { name: "zip", syntax: "zip(*iterables, strict=False)" },
+            // _
+            { name: "__import__", syntax: "__import__(name, globals=None, ...)" }
+        ];
+
+        // Color palette for different letter groups
+        const colors = {
+            'A-D': 'bg-blue-100 border-blue-300',
+            'E-H': 'bg-green-100 border-green-300',
+            'I-L': 'bg-yellow-100 border-yellow-300',
+            'M-P': 'bg-red-100 border-red-300',
+            'Q-T': 'bg-purple-100 border-purple-300',
+            'U-Z': 'bg-indigo-100 border-indigo-300',
+            '_':   'bg-gray-200 border-gray-400'
+        };
+
+        /**
+         * Determines the color group for a function based on its first letter.
+         * @param {string} name - The name of the function.
+         * @returns {string} The Tailwind CSS class for the color.
+         */
+        function getColorGroup(name) {
+            const firstChar = name.toUpperCase().charAt(0);
+            if (firstChar >= 'A' && firstChar <= 'D') return colors['A-D'];
+            if (firstChar >= 'E' && firstChar <= 'H') return colors['E-H'];
+            if (firstChar >= 'I' && firstChar <= 'L') return colors['I-L'];
+            if (firstChar >= 'M' && firstChar <= 'P') return colors['M-P'];
+            if (firstChar >= 'Q' && firstChar <= 'T') return colors['Q-T'];
+            if (firstChar >= 'U' && firstChar <= 'Z') return colors['U-Z'];
+            return colors['_'];
+        }
+        
+        /**
+         * Copies text to the clipboard and shows a toast notification.
+         * @param {string} text - The text to copy.
+         */
+        function copyToClipboard(text) {
+            // Using a temporary textarea element to perform the copy command
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed"; // Avoid scrolling to bottom
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
+        
+        /**
+         * Displays a short-lived toast notification.
+         */
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 2000);
+        }
+
+        // Get the grid container
+        const functionsGrid = document.getElementById('functions-grid');
+
+        // Populate the grid with function cards
+        functionsData.forEach(func => {
+            const colorClass = getColorGroup(func.name);
+            const card = document.createElement('div');
+            card.className = `p-4 rounded-lg shadow-md border-b-4 transition-transform transform hover:-translate-y-1 cursor-pointer ${colorClass}`;
+            card.onclick = () => copyToClipboard(func.syntax);
+            
+            card.innerHTML = `
+                <h3 class="text-xl font-bold text-gray-800 mb-2">${func.name}</h3>
+                <p class="font-mono text-sm text-gray-700 break-words">${func.syntax}</p>
+            `;
+            
+            functionsGrid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
+
