@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering CSS Properties: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .visual-box {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            background-color: #111827; /* bg-gray-900 */
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25;
+            overflow-x: auto; /* Allow horizontal scrolling for wide content */
+        }
+        .visual-item {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #6b7280; /* border-gray-500 */
+            color: #f9fafb; /* text-gray-50 */
+            padding: 0.5rem;
+            border-radius: 0.25rem; /* rounded */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .arrow {
+            color: #6b7280; /* text-gray-500 */
+        }
+        .tag {
+            background-color: #374151;
+            color: #a5f3fc;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #4ade80, #38bdf8, #1f2937);
+            margin: 4rem 0;
+        }
+        /* Custom styles for CSS visualizations */
+        .css-viz {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.75rem;
+            white-space: pre;
+            text-align: left;
+            padding: 0.5rem;
+        }
+        .css-property {
+            color: #4ade80; /* green-400 */
+        }
+        .css-value {
+            color: #fde047; /* yellow-300 */
+        }
+        .css-element-box {
+            border: 1px solid #38bdf8; /* blue-500 */
+            background-color: #1e3a8a; /* blue-900 */
+            color: #bfdbfe; /* blue-200 */
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .css-inner-box {
+            border: 1px dashed #a5f3fc; /* cyan-200 */
+            background-color: #0c4a6e; /* sky-900 */
+            color: #e0f2fe; /* blue-50 */
+            padding: 0.25rem;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">CSS Properties</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for the essential styling elements of the web.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Core & Specialized Properties Overview -->
+        <section id="overview-properties" class="py-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Core Properties -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Core Properties <span class="text-lg font-semibold text-amber-400">(Foundational Elements)</span></h2>
+                    <p class="mt-2 text-gray-400">Essential properties for basic styling and layout.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">display</span><span class="tag">color</span><span class="tag">font-size</span><span class="tag">margin</span><span class="tag">padding</span><span class="tag">width</span><span class="tag">height</span><span class="tag">position</span><span class="tag">text-align</span><span class="tag">border</span>
+                    </div>
+                </div>
+
+                <!-- Specialized Properties -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Specialized Properties <span class="text-lg font-semibold text-rose-400">(Advanced & Specific Use Cases)</span></h2>
+                    <p class="mt-2 text-gray-400">Properties for semantic richness, multimedia, forms, and interactive elements.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">background-color</span><span class="tag">flex-direction</span><span class="tag">grid-template-columns</span><span class="tag">transition</span><span class="tag">transform</span><span class="tag">animation</span><span class="tag">border-radius</span><span class="tag">box-shadow</span><span class="tag">@media</span><span class="tag">z-index</span><span class="tag">overflow</span><span class="tag">cursor</span><span class="tag">filter</span><span class="tag">aspect-ratio</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+        
+        <!-- Learning Path -->
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">Follow this path for maximum return on your learning investment in CSS.</p>
+            </div>
+            <div class="relative">
+                <!-- The connecting line -->
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Basic Styling</h4>
+                        <p class="text-gray-400 text-sm">color, font-family, font-size, text-align</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Box Model</h4>
+                        <p class="text-gray-400 text-sm">width, height, margin, padding, border, box-sizing</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Layout (Flexbox/Grid)</h4>
+                        <p class="text-gray-400 text-sm">display (flex/grid), flex-direction, justify-content, align-items, gap, grid-template-columns</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Positioning & Responsiveness</h4>
+                        <p class="text-gray-400 text-sm">position, top, left, right, bottom, @media, display (block/inline)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+<!-- ============ START: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+<section id="quick-reference" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+        <p class="mt-2 text-gray-400">A searchable list of common CSS properties.</p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="max-w-2xl mx-auto mb-8">
+        <input type="text" id="searchInput" onkeyup="filterProperties()" placeholder="Search for a property..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
+    </div>
+
+    <!-- Properties Table -->
+    <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table id="propertiesTable" class="min-w-full text-left">
+                <thead class="bg-gray-900">
+                    <tr>
+                        <th class="p-4 font-semibold text-sky-400 font-code">Property</th>
+                        <th class="p-4 font-semibold text-sky-400">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-4">*(Note: This is a curated subset of CSS properties.)*</p>
+</section>
+
+<script>
+    const cssPropertiesList = [
+        { name: 'accent-color', desc: 'Specifies an accent color for user-interface controls.' },
+        { name: 'align-content', desc: 'Specifies the alignment between the lines inside a flexible container when the items do not use all available space.' },
+        { name: 'align-items', desc: 'Specifies the alignment for items inside a flexible container.' },
+        { name: 'align-self', desc: 'Specifies the alignment for selected items inside a flexible container.' },
+        { name: 'all', desc: 'Resets all properties (except unicode-bidi and direction).' },
+        { name: 'animation', desc: 'A shorthand property for all the animation-* properties.' },
+        { name: 'animation-delay', desc: 'Specifies a delay for the start of an animation.' },
+        { name: 'animation-direction', desc: 'Specifies whether an animation should be played forward, backward or in alternate cycles.' },
+        { name: 'animation-duration', desc: 'Specifies how long an animation should take to complete one cycle.' },
+        { name: 'animation-fill-mode', desc: 'Specifies a style for the element when the animation is not playing (before it starts, after it ends, or both).' },
+        { name: 'animation-iteration-count', desc: 'Specifies the number of times an animation should be played.' },
+        { name: 'animation-name', desc: 'Specifies a name for the @keyframes animation.' },
+        { name: 'animation-play-state', desc: 'Specifies whether the animation is running or paused.' },
+        { name: 'animation-timing-function', desc: 'Specifies the speed curve of an animation.' },
+        { name: 'aspect-ratio', desc: 'Specifies preferred aspect ratio of an element.' },
+        { name: 'backdrop-filter', desc: 'Defines a graphical effect to the area behind an element.' },
+        { name: 'backface-visibility', desc: 'Defines whether or not the back face of an element should be visible when facing the user.' },
+        { name: 'background', desc: 'A shorthand property for all the background-* properties.' },
+        { name: 'background-attachment', desc: 'Sets whether a background image scrolls with the rest of the page, or is fixed.' },
+        { name: 'background-blend-mode', desc: 'Specifies the blending mode of each background layer (color/image).' },
+        { name: 'background-clip', desc: 'Defines how far the background (color or image) should extend within an element.' },
+        { name: 'background-color', desc: 'Specifies the background color of an element.' },
+        { name: 'background-image', desc: 'Specifies one or more background images for an element.' },
+        { name: 'background-origin', desc: 'Specifies the origin position of a background image.' },
+        { name: 'background-position', desc: 'Specifies the position of a background image.' },
+        { name: 'background-position-x', desc: 'Specifies the position of a background image on x-axis.' },
+        { name: 'background-position-y', desc: 'Specifies the position of a background image on y-axis.' },
+        { name: 'background-repeat', desc: 'Sets if/how a background image will be repeated.' },
+        { name: 'background-size', desc: 'Specifies the size of the background images.' },
+        { name: 'block-size', desc: 'Specifies the size of an element in block direction.' },
+        { name: 'border', desc: 'A shorthand property for border-width, border-style and border-color.' },
+        { name: 'border-block', desc: 'A shorthand property for border-block-width, border-block-style and border-block-color.' },
+        { name: 'border-block-color', desc: 'Sets the color of the borders at start and end in the block direction.' },
+        { name: 'border-block-end', desc: 'A shorthand property for border-block-end-width, border-block-end-style and border-block-end-color.' },
+        { name: 'border-block-end-color', desc: 'Sets the color of the border at the end in the block direction.' },
+        { name: 'border-block-end-style', desc: 'Sets the style of the border at the end in the block direction.' },
+        { name: 'border-block-end-width', desc: 'Sets the width of the border at the end in the block direction.' },
+        { name: 'border-block-start', desc: 'A shorthand property for border-block-start-width, border-block-start-style and border-block-start-color.' },
+        { name: 'border-block-start-color', desc: 'Sets the color of the border at the start in the block direction.' },
+        { name: 'border-block-start-style', desc: 'Sets the style of the border at the start in the block direction.' },
+        { name: 'border-block-start-width', desc: 'Sets the width of the border at the start in the block direction.' },
+        { name: 'border-block-style', desc: 'Sets the style of the borders at start and end in the block direction.' },
+        { name: 'border-block-width', desc: 'Sets the width of the borders at start and end in the block direction.' },
+        { name: 'border-bottom', desc: 'A shorthand property for border-bottom-width, border-bottom-style and border-bottom-color.' },
+        { name: 'border-bottom-color', desc: 'Sets the color of the bottom border.' },
+        { name: 'border-bottom-left-radius', desc: 'Defines the radius of the border of the bottom-left corner.' },
+        { name: 'border-bottom-right-radius', desc: 'Defines the radius of the border of the bottom-right corner.' },
+        { name: 'border-bottom-style', desc: 'Sets the style of the bottom border.' },
+        { name: 'border-bottom-width', desc: 'Sets the width of the bottom border.' },
+        { name: 'border-collapse', desc: 'Sets whether table borders should collapse into a single border or be separated.' },
+        { name: 'border-color', desc: 'Sets the color of the four borders.' },
+        { name: 'border-end-end-radius', desc: 'Sets the radius of the corner between the block-end and the inline-end sides of the element.' },
+        { name: 'border-end-start-radius', desc: 'Sets the radius of the corner between the block-end and the inline-start sides of the element.' },
+        { name: 'border-image', desc: 'A shorthand property for all the border-image-* properties.' },
+        { name: 'border-image-outset', desc: 'Specifies the amount by which the border image area extends beyond the border box.' },
+        { name: 'border-image-repeat', desc: 'Specifies whether the border image should be repeated, rounded or stretched.' },
+        { name: 'border-image-slice', desc: 'Specifies how to slice the border image.' },
+        { name: 'border-image-source', desc: 'Specifies the path to the image to be used as a border.' },
+        { name: 'border-image-width', desc: 'Specifies the width of the border image.' },
+        { name: 'border-inline', desc: 'A shorthand property for border-inline-width, border-inline-style and border-inline-color.' },
+        { name: 'border-inline-color', desc: 'Sets the color of the borders at start and end in the inline direction.' },
+        { name: 'border-inline-end', desc: 'A shorthand property for border-inline-end-width, border-inline-end-style and border-inline-end-color.' },
+        { name: 'border-inline-end-color', desc: 'Sets the color of the border at the end in the inline direction.' },
+        { name: 'border-inline-end-style', desc: 'Sets the style of the border at the end in the inline direction.' },
+        { name: 'border-inline-end-width', desc: 'Sets the width of the border at the end in the inline direction.' },
+        { name: 'border-inline-start', desc: 'A shorthand property for border-inline-start-width, border-inline-start-style and border-inline-start-color.' },
+        { name: 'border-inline-start-color', desc: 'Sets the color of the border at the start in the inline direction.' },
+        { name: 'border-inline-start-style', desc: 'Sets the style of the border at the start in the inline direction.' },
+        { name: 'border-inline-start-width', desc: 'Sets the width of the border at the start in the inline direction.' },
+        { name: 'border-inline-style', desc: 'Sets the style of the borders at start and end in the inline direction.' },
+        { name: 'border-inline-width', desc: 'Sets the width of the borders at start and end in the inline direction.' },
+        { name: 'border-left', desc: 'A shorthand property for all the border-left-* properties.' },
+        { name: 'border-left-color', desc: 'Sets the color of the left border.' },
+        { name: 'border-left-style', desc: 'Sets the style of the left border.' },
+        { name: 'border-left-width', desc: 'Sets the width of the left border.' },
+        { name: 'border-radius', desc: 'A shorthand property for the four border-*-radius properties.' },
+        { name: 'border-right', desc: 'A shorthand property for all the border-right-* properties.' },
+        { name: 'border-right-color', desc: 'Sets the color of the right border.' },
+        { name: 'border-right-style', desc: 'Sets the style of the right border.' },
+        { name: 'border-right-width', desc: 'Sets the width of the right border.' },
+        { name: 'border-spacing', desc: 'Sets the distance between the borders of adjacent cells.' },
+        { name: 'border-start-end-radius', desc: 'Sets the radius of the corner between the block-start and the inline-end sides of the element.' },
+        { name: 'border-start-start-radius', desc: 'Sets the radius of the corner between the block-start and the inline-start sides of the element.' },
+        { name: 'border-style', desc: 'Sets the style of the four borders.' },
+        { name: 'border-top', desc: 'A shorthand property for border-top-width, border-top-style and border-top-color.' },
+        { name: 'border-top-color', desc: 'Sets the color of the top border.' },
+        { name: 'border-top-left-radius', desc: 'Defines the radius of the border of the top-left corner.' },
+        { name: 'border-top-right-radius', desc: 'Defines the radius of the border of the top-right corner.' },
+        { name: 'border-top-style', desc: 'Sets the style of the top border.' },
+        { name: 'border-top-width', desc: 'Sets the width of the top border.' },
+        { name: 'border-width', desc: 'Sets the width of the four borders.' },
+        { name: 'bottom', desc: 'Sets the elements position, from the bottom of its parent element.' },
+        { name: 'box-decoration-break', desc: 'Sets the behavior of the background and border of an element at page-break, or, for in-line elements, at line-break.' },
+        { name: 'box-reflect', desc: 'The box-reflect property is used to create a reflection of an element.' },
+        { name: 'box-shadow', desc: 'Attaches one or more shadows to an element.' },
+        { name: 'box-sizing', desc: 'Defines how the width and height of an element are calculated: should they include padding and borders, or not.' },
+        { name: 'break-after', desc: 'Specifies whether or not a page-, column-, or region-break should occur after the specified element.' },
+        { name: 'break-before', desc: 'Specifies whether or not a page-, column-, or region-break should occur before the specified element.' },
+        { name: 'break-inside', desc: 'Specifies whether or not a page-, column-, or region-break should occur inside the specified element.' },
+        { name: 'caption-side', desc: 'Specifies the placement of a table caption.' },
+        { name: 'caret-color', desc: 'Specifies the color of the cursor (caret) in inputs, textareas, or any element that is editable.' },
+        { name: '@charset', desc: 'Specifies the character encoding used in the style sheet.' },
+        { name: 'clear', desc: 'Specifies what should happen with the element that is next to a floating element.' },
+        { name: 'clip', desc: 'Deprecated in favor of clip-path. Clips an absolutely positioned element.' },
+        { name: 'clip-path', desc: 'Clips an element to a basic shape or to an SVG source.' },
+        { name: 'color', desc: 'Sets the color of text.' },
+        { name: 'color-scheme', desc: 'Indicates which operating system color scheme an element should render with.' },
+        { name: 'column-count', desc: 'Specifies the number of columns an element should be divided into.' },
+        { name: 'column-fill', desc: 'Specifies how to fill columns, balanced or not.' },
+        { name: 'column-gap', desc: 'Specifies the gap between the columns.' },
+        { name: 'column-rule', desc: 'A shorthand property for all the column-rule-* properties.' },
+        { name: 'column-rule-color', desc: 'Specifies the color of the rule between columns.' },
+        { name: 'column-rule-style', desc: 'Specifies the style of the rule between columns.' },
+        { name: 'column-rule-width', desc: 'Specifies the width of the rule between columns.' },
+        { name: 'column-span', desc: 'Specifies how many columns an element should span across.' },
+        { name: 'column-width', desc: 'Specifies the column width.' },
+        { name: 'columns', desc: 'A shorthand property for column-width and column-count.' },
+        { name: '@container', desc: 'Define styles for elements in container, depending on the container\'s size or style.' },
+        { name: 'content', desc: 'Used with the :before and :after pseudo-elements, to insert generated content.' },
+        { name: 'counter-increment', desc: 'Increases or decreases the value of one or more CSS counters.' },
+        { name: 'counter-reset', desc: 'Creates or resets one or more CSS counters.' },
+        { name: 'counter-set', desc: 'Creates or sets one or more CSS counters.' },
+        { name: '@counter-style', desc: 'Lets you define your own counter styles.' },
+        { name: 'cursor', desc: 'Specifies the mouse cursor to be displayed when pointing over an element.' },
+        { name: 'direction', desc: 'Specifies the text direction/writing direction.' },
+        { name: 'display', desc: 'Specifies how a certain HTML element should be displayed.' },
+        { name: 'empty-cells', desc: 'Specifies whether or not to display borders and background on empty cells in a table.' },
+        { name: 'filter', desc: 'Defines effects (e.g. blurring or color shifting) on an element before the element is displayed.' },
+        { name: 'flex', desc: 'A shorthand property for the flex-grow, flex-shrink, and the flex-basis properties.' },
+        { name: 'flex-basis', desc: 'Specifies the initial length of a flexible item.' },
+        { name: 'flex-direction', desc: 'Specifies the direction of the flexible items.' },
+        { name: 'flex-flow', desc: 'A shorthand property for the flex-direction and the flex-wrap properties.' },
+        { name: 'flex-grow', desc: 'Specifies how much the item will grow relative to the rest.' },
+        { name: 'flex-shrink', desc: 'Specifies how the item will shrink relative to the rest.' },
+        { name: 'flex-wrap', desc: 'Specifies whether the flexible items should wrap or not.' },
+        { name: 'float', desc: 'Specifies whether an element should float to the left, right, or not at all.' },
+        { name: 'font', desc: 'A shorthand property for the font-style, font-variant, font-weight, font-size/line-height, and the font-family properties.' },
+        { name: '@font-face', desc: 'Specifies a custom font to use to display text.' },
+        { name: 'font-family', desc: 'Specifies the font family for text.' },
+        { name: 'font-feature-settings', desc: 'Allows control over advanced typographic features in OpenType fonts.' },
+        { name: 'font-kerning', desc: 'Controls the usage of the kerning information (how letters are spaced).' },
+        { name: 'font-language-override', desc: 'Controls the usage of language-specific glyphs in a typeface.' },
+        { name: '@font-palette-values', desc: 'Allows you to customize the default values of a font-palette.' },
+        { name: 'font-size', desc: 'Specifies the font size of text.' },
+        { name: 'font-size-adjust', desc: 'Preserves the readability and size of text when fallback font occurs.' },
+        { name: 'font-stretch', desc: 'Selects a normal, condensed, or expanded face from a font family.' },
+        { name: 'font-style', desc: 'Specifies the font style for text.' },
+        { name: 'font-synthesis', desc: 'Controls which missing typefaces (bold or italic) may be synthesized by the browser.' },
+        { name: 'font-variant', desc: 'Specifies whether or not a text should be displayed in a small-caps font.' },
+        { name: 'font-variant-alternates', desc: 'Controls the usage of alternate glyphs associated to alternative names defined in @font-feature-values.' },
+        { name: 'font-variant-caps', desc: 'Controls the usage of alternate glyphs for capital letters.' },
+        { name: 'font-variant-east-asian', desc: 'Controls the usage of alternate glyphs for East Asian scripts (e.g Japanese and Chinese).' },
+        { name: 'font-variant-ligatures', desc: 'Controls which ligatures and contextual forms are used in textual content of the elements it applies to.' },
+        { name: 'font-variant-numeric', desc: 'Controls the usage of alternate glyphs for numbers, fractions, and ordinal markers.' },
+        { name: 'font-variant-position', desc: 'Controls the usage of alternate glyphs of smaller size positioned as superscript or subscript regarding the baseline of the font.' },
+        { name: 'font-weight', desc: 'Specifies the weight of a font.' },
+        { name: 'gap', desc: 'A shorthand property for the row-gap and the column-gap properties.' },
+        { name: 'grid', desc: 'A shorthand property for the grid-template-rows, grid-template-columns, grid-template-areas, grid-auto-rows, grid-auto-columns, and the grid-auto-flow properties.' },
+        { name: 'grid-area', desc: 'Either specifies a name for the grid item, or this property is a shorthand property for the grid-row-start, grid-column-start, grid-row-end, and grid-column-end properties.' },
+        { name: 'grid-auto-columns', desc: 'Specifies a default column size.' },
+        { name: 'grid-auto-flow', desc: 'Specifies how auto-placed items are inserted in the grid.' },
+        { name: 'grid-auto-rows', desc: 'Specifies a default row size.' },
+        { name: 'grid-column', desc: 'A shorthand property for the grid-column-start and the grid-column-end properties.' },
+        { name: 'grid-column-end', desc: 'Specifies where to end the grid item.' },
+        { name: 'grid-column-start', desc: 'Specifies where to start the grid item.' },
+        { name: 'grid-row', desc: 'A shorthand property for the grid-row-start and the grid-row-end properties.' },
+        { name: 'grid-row-end', desc: 'Specifies where to end the grid item.' },
+        { name: 'grid-row-start', desc: 'Specifies where to start the grid item.' },
+        { name: 'grid-template', desc: 'A shorthand property for the grid-template-rows, grid-template-columns and grid-areas properties.' },
+        { name: 'grid-template-areas', desc: 'Specifies how to display columns and rows, using named grid items.' },
+        { name: 'grid-template-columns', desc: 'Specifies the size of the columns, and how many columns in a grid layout.' },
+        { name: 'grid-template-rows', desc: 'Specifies the size of the rows in a grid layout.' },
+        { name: 'hanging-punctuation', desc: 'Specifies whether a punctuation character may be placed outside the line box.' },
+        { name: 'height', desc: 'Sets the height of an element.' },
+        { name: 'hyphens', desc: 'Sets how to split words to improve the layout of text.' },
+        { name: 'hyphenate-character', desc: 'Sets the character used at the end of line, before a hyphenation break.' },
+        { name: 'image-rendering', desc: 'Specifies the type of algorithm to use for image scaling.' },
+        { name: '@import', desc: 'Allows you to import a style sheet into another style sheet.' },
+        { name: 'initial-letter', desc: 'Specifies the size of the initial-letter and optionally the number of lines the initial letter should sink (down in the text).' },
+        { name: 'inline-size', desc: 'Specifies the size of an element in the inline direction.' },
+        { name: 'inset', desc: 'Specifies the distance between an element and the parent element.' },
+        { name: 'inset-block', desc: 'Specifies the distance between an element and the parent element in the block direction.' },
+        { name: 'inset-block-end', desc: 'Specifies the distance between the end of an element and the parent element in the block direction.' },
+        { name: 'inset-block-start', desc: 'Specifies the distance between the start of an element and the parent element in the block direction.' },
+        { name: 'inset-inline', desc: 'Specifies the distance between an element and the parent element in the inline direction.' },
+        { name: 'inset-inline-end', desc: 'Specifies the distance between the end of an element and the parent element in the inline direction.' },
+        { name: 'inset-inline-start', desc: 'Specifies the distance between the start of an element and the parent element in the inline direction.' },
+        { name: 'isolation', desc: 'Defines whether an element must create a new stacking content.' },
+        { name: 'justify-content', desc: 'Specifies the alignment between the items inside a flexible container when the items do not use all available space.' },
+        { name: 'justify-items', desc: 'Is set on the grid container. Specifies the alignment of grid items in the inline direction.' },
+        { name: 'justify-self', desc: 'Is set on the grid item. Specifies the alignment of the grid item in the inline direction.' },
+        { name: '@keyframes', desc: 'Controls the steps in an animation by defining styles for points along the animation sequence.' },
+        { name: '@layer', desc: 'Controls how the CSS cascade layers evaluates the order of styles.' },
+        { name: 'left', desc: 'Specifies the left position of a positioned element.' },
+        { name: 'letter-spacing', desc: 'Increases or decreases the space between characters in a text.' },
+        { name: 'line-break', desc: 'Specifies how/if to break lines.' },
+        { name: 'line-height', desc: 'Sets the line height.' },
+        { name: 'list-style', desc: 'Sets all the properties for a list in one declaration.' },
+        { name: 'list-style-image', desc: 'Specifies an image as the list-item marker.' },
+        { name: 'list-style-position', desc: 'Specifies the position of the list-item markers (bullet points).' },
+        { name: 'list-style-type', desc: 'Specifies the type of list-item marker.' },
+        { name: 'margin', desc: 'Sets all the margin properties in one declaration.' },
+        { name: 'margin-block', desc: 'Specifies the margin in the block direction.' },
+        { name: 'margin-block-end', desc: 'Specifies the margin at the end in the block direction.' },
+        { name: 'margin-block-start', desc: 'Specifies the margin at the start in the block direction.' },
+        { name: 'margin-bottom', desc: 'Sets the bottom margin of an element.' },
+        { name: 'margin-inline', desc: 'Specifies the margin in the inline direction.' },
+        { name: 'margin-inline-end', desc: 'Specifies the margin at the end in the inline direction.' },
+        { name: 'margin-inline-start', desc: 'Specifies the margin at the start in the inline direction.' },
+        { name: 'margin-left', desc: 'Sets the left margin of an element.' },
+        { name: 'margin-right', desc: 'Sets the right margin of an element.' },
+        { name: 'margin-top', desc: 'Sets the top margin of an element.' },
+        { name: 'marker', desc: 'Points to a marker that will be drawn on all vertices of an element\'s path (the first, middle, and last).' },
+        { name: 'marker-end', desc: 'Points to a marker that will be drawn on the last vertex of an element\'s path.' },
+        { name: 'marker-mid', desc: 'Points to a marker that will be drawn on all the middle vertices of an element\'s path.' },
+        { name: 'marker-start', desc: 'Points to a marker that will be drawn on the first vertex of an element\'s path.' },
+        { name: 'mask', desc: 'A shorthand property for mask-image, mask-mode, mask-repeat, mask-position, mask-clip, mask-origin, mask-size and mask-composite.' },
+        { name: 'mask-clip', desc: 'Specifies which area is affected by a mask image.' },
+        { name: 'mask-composite', desc: 'Specifies a compositing operation used on the current mask layer with the mask layers below it.' },
+        { name: 'mask-image', desc: 'Specifies an image to be used as a mask layer for an element.' },
+        { name: 'mask-mode', desc: 'Specifies whether the mask layer image is treated as a luminance mask or as an alpha mask.' },
+        { name: 'mask-origin', desc: 'Specifies the origin position (the mask position area) of a mask layer image.' },
+        { name: 'mask-position', desc: 'Sets the starting position of a mask layer image (relative to the mask position area).' },
+        { name: 'mask-repeat', desc: 'Specifies how the mask layer image is repeated.' },
+        { name: 'mask-size', desc: 'Specifies the size of a mask layer image.' },
+        { name: 'mask-type', desc: 'Specifies whether an SVG <mask> element is treated as a luminance mask or as an alpha mask.' },
+        { name: 'max-height', desc: 'Sets the maximum height of an element.' },
+        { name: 'max-width', desc: 'Sets the maximum width of an element.' },
+        { name: '@media', desc: 'Sets the style rules for different media types/devices/sizes.' },
+        { name: 'max-block-size', desc: 'Sets the maximum size of an element in the block direction.' },
+        { name: 'max-inline-size', desc: 'Sets the maximum size of an element in the inline direction.' },
+        { name: 'min-block-size', desc: 'Sets the minimum size of an element in the block direction.' },
+        { name: 'min-inline-size', desc: 'Sets the minimum size of an element in the inline direction.' },
+        { name: 'min-height', desc: 'Sets the minimum height of an element.' },
+        { name: 'min-width', desc: 'Sets the minimum width of an element.' },
+        { name: 'mix-blend-mode', desc: 'Specifies how an element\'s content should blend with its direct parent background.' },
+        { name: '@namespace', desc: 'Defines an XML namespace to be used in the style sheet.' },
+        { name: 'object-fit', desc: 'Specifies how the contents of a replaced element should be fitted to the box established by its used height and width.' },
+        { name: 'object-position', desc: 'Specifies the alignment of the replaced element inside its box.' },
+        { name: 'offset', desc: 'A shorthand property for the offset-anchor, offset-distance, offset-path, offset-position, and the offset-rotate properties.' },
+        { name: 'offset-anchor', desc: 'Specifies a point on an element that is fixed to the path it is animated along.' },
+        { name: 'offset-distance', desc: 'Specifies the position along a path where an animated element is placed.' },
+        { name: 'offset-path', desc: 'Specifies the path an element is animated along.' },
+        { name: 'offset-position', desc: 'Specifies the initial position of an element along a path.' },
+        { name: 'offset-rotate', desc: 'Specifies rotation of an element as it is animated along a path.' },
+        { name: 'opacity', desc: 'Sets the opacity level for an element.' },
+        { name: 'order', desc: 'Sets the order of the flexible item, relative to the rest.' },
+        { name: 'orphans', desc: 'Sets the minimum number of lines that must be left at the bottom of a page or column.' },
+        { name: 'outline', desc: 'A shorthand property for the outline-width, outline-style, and the outline-color properties.' },
+        { name: 'outline-color', desc: 'Sets the color of an outline.' },
+        { name: 'outline-offset', desc: 'Offsets an outline, and draws it beyond the border edge.' },
+        { name: 'outline-style', desc: 'Sets the style of an outline.' },
+        { name: 'outline-width', desc: 'Sets the width of an outline.' },
+        { name: 'overflow', desc: 'Specifies what happens if content overflows an element\'s box.' },
+        { name: 'overflow-anchor', desc: 'Specifies whether or not content in viewable area in a scrollable contianer should be pushed down when new content is loaded above.' },
+        { name: 'overflow-wrap', desc: 'Specifies whether or not the browser can break lines with long words, if they overflow the container.' },
+        { name: 'overflow-x', desc: 'Specifies whether or not to clip the left/right edges of the content, if it overflows the element\'s content area.' },
+        { name: 'overflow-y', desc: 'Specifies whether or not to clip the top/bottom edges of the content, if it overflows the element\'s content area.' },
+        { name: 'overscroll-behavior', desc: 'Specifies whether to have scroll chaining or overscroll affordance in x- and y-directions.' },
+        { name: 'overscroll-behavior-block', desc: 'Specifies whether to have scroll chaining or overscroll affordance in the block direction.' },
+        { name: 'overscroll-behavior-inline', desc: 'Specifies whether to have scroll chaining or overscroll affordance in the inline direction.' },
+        { name: 'overscroll-behavior-x', desc: 'Specifies whether to have scroll chaining or overscroll affordance in x-direction.' },
+        { name: 'overscroll-behavior-y', desc: 'Specifies whether to have scroll chaining or overscroll affordance in y-directions.' },
+        { name: 'padding', desc: 'A shorthand property for all the padding-* properties.' },
+        { name: 'padding-block', desc: 'Specifies the padding in the block direction.' },
+        { name: 'padding-block-end', desc: 'Specifies the padding at the end in the block direction.' },
+        { name: 'padding-block-start', desc: 'Specifies the padding at the start in the block direction.' },
+        { name: 'padding-bottom', desc: 'Sets the bottom padding of an element.' },
+        { name: 'padding-inline', desc: 'Specifies the padding in the inline direction.' },
+        { name: 'padding-inline-end', desc: 'Specifies the padding at the end in the inline direction.' },
+        { name: 'padding-inline-start', desc: 'Specifies the padding at the start in the inline direction.' },
+        { name: 'padding-left', desc: 'Sets the left padding of an element.' },
+        { name: 'padding-right', desc: 'Sets the right padding of an element.' },
+        { name: 'padding-top', desc: 'Sets the top padding of an element.' },
+        { name: '@page', desc: 'Customizes the dimension, orientation, and margins of printed pages.' },
+        { name: 'page-break-after', desc: 'Sets the page-break behavior after an element. Replaced by break-after property.' },
+        { name: 'page-break-before', desc: 'Sets the page-break behavior before an element. Replaced by break-before property.' },
+        { name: 'page-break-inside', desc: 'Sets the page-break behavior inside an element. Replaced by break-inside property.' },
+        { name: 'paint-order', desc: 'Sets the order of how an SVG element or text is painted.' },
+        { name: 'perspective', desc: 'Gives a 3D-positioned element some perspective.' },
+        { name: 'perspective-origin', desc: 'Defines at which position the user is looking at the 3D-positioned element.' },
+        { name: 'place-content', desc: 'Specifies align-content and justify-content property values for flexbox and grid layouts.' },
+        { name: 'place-items', desc: 'Specifies align-items and justify-items property values for grid layouts.' },
+        { name: 'place-self', desc: 'Specifies align-self and justify-self property values for grid layouts.' },
+        { name: 'pointer-events', desc: 'Defines whether or not an element reacts to pointer events.' },
+        { name: 'position', desc: 'Specifies the type of positioning method used for an element (static, relative, absolute or fixed).' },
+        { name: '@property', desc: 'Defines custom CSS properties directly in the stylesheet without having to run any JavaScript.' },
+        { name: 'quotes', desc: 'Sets the type of quotation marks for embedded quotations.' },
+        { name: 'resize', desc: 'Defines if (and how) an element is resizable by the user.' },
+        { name: 'right', desc: 'Specifies the right position of a positioned element.' },
+        { name: 'rotate', desc: 'Specifies the rotation of an element.' },
+        { name: 'row-gap', desc: 'Specifies the gap between the grid rows.' },
+        { name: 'scale', desc: 'Specifies the size of an element by scaling up or down.' },
+        { name: '@scope', desc: 'Allows you to select elements in specific DOM subtrees and target elements precisely without writing overly-specific selectors.' },
+        { name: 'scroll-behavior', desc: 'Specifies whether to smoothly animate the scroll position in a scrollable box, instead of a straight jump.' },
+        { name: 'scroll-margin', desc: 'Specifies the margin between the snap position and the container.' },
+        { name: 'scroll-margin-block', desc: 'Specifies the margin between the snap position and the container in the block direction.' },
+        { name: 'scroll-margin-block-end', desc: 'Specifies the end margin between the snap position and the container in the block direction.' },
+        { name: 'scroll-margin-block-start', desc: 'Specifies the start margin between the snap position and the container in the block direction.' },
+        { name: 'scroll-margin-bottom', desc: 'Specifies the margin between the snap position on the bottom side and the container.' },
+        { name: 'scroll-margin-inline', desc: 'Specifies the margin between the snap position and the container in the inline direction.' },
+        { name: 'scroll-margin-inline-end', desc: 'Specifies the end margin between the snap position and the container in the inline direction.' },
+        { name: 'scroll-margin-inline-start', desc: 'Specifies the start margin between the snap position and the container in the inline direction.' },
+        { name: 'scroll-margin-left', desc: 'Specifies the margin between the snap position on the left side and the container.' },
+        { name: 'scroll-margin-right', desc: 'Specifies the margin between the snap position on the right side and the container.' },
+        { name: 'scroll-margin-top', desc: 'Specifies the margin between the snap position on the top side and the container.' },
+        { name: 'scroll-padding', desc: 'Specifies the distance from the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-block', desc: 'Specifies the distance in block direction from the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-block-end', desc: 'Specifies the distance in block direction from the end of the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-block-start', desc: 'Specifies the distance in block direction from the start of the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-bottom', desc: 'Specifies the distance from the bottom of the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-inline', desc: 'Specifies the distance in inline direction from the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-inline-end', desc: 'Specifies the distance in inline direction from the end of the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-inline-start', desc: 'Specifies the distance in inline direction from the start of the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-left', desc: 'Specifies the distance from the left side of the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-right', desc: 'Specifies the distance from the right side of the container to the snap position on the child elements.' },
+        { name: 'scroll-padding-top', desc: 'Specifies the distance from the top of the container to the snap position on the child elements.' },
+        { name: 'scroll-snap-align', desc: 'Specifies where to position elements when the user stops scrolling.' },
+        { name: 'scroll-snap-stop', desc: 'Specifies scroll behaviour after fast swipe on trackpad or touch screen.' },
+        { name: 'scroll-snap-type', desc: 'Specifies how snap behaviour should be when scrolling.' },
+        { name: 'scrollbar-color', desc: 'Specifies the color of the scrollbar of an element.' },
+        { name: 'shape-outside', desc: 'Defines a shape for wrapping for the inline content.' },
+        { name: '@starting-style', desc: 'Defines an element\'s starting styles before the element gets its first style update.' },
+        { name: '@supports', desc: 'Used to test whether a browser supports a CSS feature.' },
+        { name: 'tab-size', desc: 'Specifies the width of a tab character.' },
+        { name: 'table-layout', desc: 'Defines the algorithm used to lay out table cells, rows, and columns.' },
+        { name: 'text-align', desc: 'Specifies the horizontal alignment of text.' },
+        { name: 'text-align-last', desc: 'Describes how the last line of a block or a line right before a forced line break is aligned when text-align is "justify".' },
+        { name: 'text-combine-upright', desc: 'Specifies the combination of multiple characters into the space of a single character.' },
+        { name: 'text-decoration', desc: 'Specifies the decoration added to text.' },
+        { name: 'text-decoration-color', desc: 'Specifies the color of the text-decoration.' },
+        { name: 'text-decoration-line', desc: 'Specifies the type of line in a text-decoration.' },
+        { name: 'text-decoration-style', desc: 'Specifies the style of the line in a text decoration.' },
+        { name: 'text-decoration-thickness', desc: 'Specifies the thickness of the decoration line.' },
+        { name: 'text-emphasis', desc: 'A shorthand property for the text-emphasis-style and text-emphasis-color properties.' },
+        { name: 'text-emphasis-color', desc: 'Specifies the color of emphasis marks.' },
+        { name: 'text-emphasis-position', desc: 'Specifies the position of emphasis marks.' },
+        { name: 'text-emphasis-style', desc: 'Specifies the style of emphasis marks.' },
+        { name: 'text-indent', desc: 'Specifies the indentation of the first line in a text-block.' },
+        { name: 'text-justify', desc: 'Specifies the justification method used when text-align is "justify".' },
+        { name: 'text-orientation', desc: 'Defines the orientation of characters in a line.' },
+        { name: 'text-overflow', desc: 'Specifies what should happen when text overflows the containing element.' },
+        { name: 'text-shadow', desc: 'Adds shadow to text.' },
+        { name: 'text-transform', desc: 'Controls the capitalization of text.' },
+        { name: 'text-underline-offset', desc: 'Specifies the offset distance of the underline text decoration.' },
+        { name: 'text-underline-position', desc: 'Specifies the position of the underline text decoration.' },
+        { name: 'top', desc: 'Specifies the top position of a positioned element.' },
+        { name: 'transform', desc: 'Applies a 2D or 3D transformation to an element.' },
+        { name: 'transform-origin', desc: 'Allows you to change the position on transformed elements.' },
+        { name: 'transform-style', desc: 'Specifies how nested elements are rendered in 3D space.' },
+        { name: 'transition', desc: 'A shorthand property for all the transition-* properties.' },
+        { name: 'transition-delay', desc: 'Specifies when the transition effect will start.' },
+        { name: 'transition-duration', desc: 'Specifies how many seconds or milliseconds a transition effect takes to complete.' },
+        { name: 'transition-property', desc: 'Specifies the name of the CSS property the transition effect is for.' },
+        { name: 'transition-timing-function', desc: 'Specifies the speed curve of the transition effect.' },
+        { name: 'translate', desc: 'Specifies the position of an element.' },
+        { name: 'unicode-bidi', desc: 'Used together with the direction property to set or return whether the text should be overridden to support multiple languages in the same document.' },
+        { name: 'user-select', desc: 'Specifies whether the text of an element can be selected.' },
+        { name: 'vertical-align', desc: 'Sets the vertical alignment of an element.' },
+        { name: 'visibility', desc: 'Specifies whether or not an element is visible.' },
+        { name: 'white-space', desc: 'Specifies how white-space inside an element is handled.' },
+        { name: 'widows', desc: 'Sets the minimum number of lines that must be left at the top of a page or column.' },
+        { name: 'width', desc: 'Sets the width of an element.' },
+        { name: 'word-break', desc: 'Specifies how words should break when reaching the end of a line.' },
+        { name: 'word-spacing', desc: 'Increases or decreases the space between words in a text.' },
+        { name: 'word-wrap', desc: 'Allows long, unbreakable words to be broken and wrap to the next line.' },
+        { name: 'writing-mode', desc: 'Specifies whether lines of text are laid out horizontally or vertically.' },
+        { name: 'z-index', desc: 'Sets the stack order of a positioned element.' },
+        { name: 'zoom', desc: 'Specifies the zoom factor for an element. An element can be zoomed in and out.' }
+    ];
+
+    const tableBody = document.querySelector('#propertiesTable tbody');
+
+    function populateTable(properties) {
+        if (!tableBody) return;
+        tableBody.innerHTML = ''; // Clear existing rows
+        properties.forEach(prop => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-gray-700';
+            row.innerHTML = `
+                <td class="p-4 font-code text-green-400">${prop.name}</td>
+                <td class="p-4 text-gray-300">${prop.desc}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function filterProperties() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const filteredProperties = cssPropertiesList.filter(prop => {
+            return prop.name.toLowerCase().includes(filter) || prop.desc.toLowerCase().includes(filter);
+        });
+        populateTable(filteredProperties);
+    }
+
+    // Initial population
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+           populateTable(cssPropertiesList);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => populateTable(cssPropertiesList));
+    }
+
+</script>
+<!-- ======================================================================= -->
+<!-- ============== END: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+
+        <!-- ======================================================================= -->
+<!-- ============= START: Critical Properties Section ======================= -->
+<!-- ======================================================================= -->
+<section id="critical-properties" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Core CSS Properties <span class="text-lg font-semibold text-green-400">(80% of Styling)</span></h2>
+        <p class="mt-2 text-gray-400">Master these properties to handle the vast majority of your web styling tasks.</p>
+    </div>
+
+    <!-- Category: Box Model & Sizing -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Box Model & Sizing</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: width / height -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">width / height</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the width and height of an element.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.box {
+  width: 100px;
+  height: 50px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 100px; height: 50px;">
+                        <span class="css-property">Box</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: margin -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">margin</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the outer spacing of an element, creating space around it.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.element {
+  margin: 20px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="padding: 10px; background-color: #374151; border: 1px solid #6b7280;">
+                        <div class="css-inner-box" style="background-color: #1f2937; border: 1px dashed #4ade80; padding: 10px;">
+                            <span class="css-property">Element</span>
+                        </div>
+                        <span class="css-value" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">Margin</span>
+                        <span class="css-value" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">Margin</span>
+                        <span class="css-value" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 0.6rem;">Margin</span>
+                        <span class="css-value" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 0.6rem;">Margin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: padding -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">padding</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the inner spacing of an element, creating space between content and border.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.element {
+  padding: 15px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="border: 1px solid #6b7280;">
+                        <div class="css-inner-box" style="background-color: #1f2937; border: 1px dashed #fde047; padding: 5px;">
+                            <span class="css-property">Content</span>
+                        </div>
+                        <span class="css-value" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">Padding</span>
+                        <span class="css-value" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">Padding</span>
+                        <span class="css-value" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 0.6rem;">Padding</span>
+                        <span class="css-value" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 0.6rem;">Padding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: border -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">border</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the border of an element (width, style, color).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.box {
+  border: 2px solid #38bdf8;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="border: 2px solid #38bdf8; padding: 10px;">
+                        <span class="css-property">Content</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Typography & Color -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Typography & Color</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: color -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">color</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the color of the text content within an element.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.text {
+  color: #4ade80;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <span class="css-element-box" style="color: #4ade80; border: none; background: none;">Hello World!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: font-family / font-size -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">font-family / font-size</h4>
+            <p class="text-gray-400 mt-1 mb-4">Specifies the font typeface and size of text.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.heading {
+  font-family: sans-serif;
+  font-size: 24px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <span class="css-element-box" style="font-family: sans-serif; font-size: 24px; border: none; background: none;">Big Text</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: text-align -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">text-align</h4>
+            <p class="text-gray-400 mt-1 mb-4">Specifies the horizontal alignment of text within an element.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.container {
+  text-align: center;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 150px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                        <span class="css-property">Centered Text</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Basic Layout & Positioning -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Basic Layout & Positioning</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: display -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">display</h4>
+            <p class="text-gray-400 mt-1 mb-4">Specifies how an element is displayed (e.g., block, inline, flex, grid).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.element {
+  display: flex;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (flex):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="display: flex; gap: 5px; padding: 5px;">
+                        <div class="css-inner-box">1</div>
+                        <div class="css-inner-box">2</div>
+                        <div class="css-inner-box">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: position / top / left -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">position / top / left</h4>
+            <p class="text-gray-400 mt-1 mb-4">Controls the positioning method and offset of an element.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.element {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded" style="position: relative; height: 80px; width: 100px;">
+                    <div class="css-element-box" style="position: absolute; top: 10px; left: 20px; width: 40px; height: 30px;">
+                        <span class="css-property">Box</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Critical Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Critical?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Visual Foundation:</strong> These properties are the absolute bedrock for making any HTML content visually appealing and structured. They control fundamental aspects like size, spacing, text appearance, and basic placement.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Essential for Layout:</strong> `display` and `position` are core to how elements interact with each other on the page, enabling everything from simple block flows to complex overlapping designs.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Critical Properties Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============ START: Important Properties Section ======================= -->
+<!-- ======================================================================= -->
+<section id="important-properties" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Important CSS Properties <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+        <p class="mt-2 text-gray-400">Frequently used for detailed styling, common interactive effects, and responsive design.</p>
+    </div>
+
+    <!-- Category: Backgrounds & Borders -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Backgrounds & Borders</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: background-color / background-image -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">background-color / background-image</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the background color or image of an element.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.box {
+  background-color: #fde047;
+  background-image: url('...');
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (color):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="background-color: #fde047; width: 80px; height: 50px;">
+                        <span class="css-property">Box</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: border-radius -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">border-radius</h4>
+            <p class="text-gray-400 mt-1 mb-4">Rounds the corners of an element's outer border edge.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.button {
+  border-radius: 8px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 80px; height: 40px; border-radius: 8px;">
+                        <span class="css-property">Button</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: box-shadow -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">box-shadow</h4>
+            <p class="text-gray-400 mt-1 mb-4">Attaches one or more shadows to an element.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.card {
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 80px; height: 50px; box-shadow: 2px 2px 5px rgba(0,0,0,0.5);">
+                        <span class="css-property">Card</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Flexbox & Grid Fundamentals -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Flexbox & Grid Fundamentals</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: flex-direction / justify-content / align-items -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">flex-direction / justify-content / align-items</h4>
+            <p class="text-gray-400 mt-1 mb-4">Control the layout of flexible items within a flex container.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (flex row, center):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="display: flex; justify-content: center; align-items: center; width: 150px; height: 60px; gap: 5px;">
+                        <div class="css-inner-box">1</div>
+                        <div class="css-inner-box">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: grid-template-columns / grid-template-rows -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">grid-template-columns / grid-template-rows</h4>
+            <p class="text-gray-400 mt-1 mb-4">Define the structure of a grid layout by specifying column and row sizes.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 100px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 30px 30px; width: 150px; height: 60px; gap: 2px;">
+                        <div class="css-inner-box" style="width: auto; height: auto;">1</div>
+                        <div class="css-inner-box" style="width: auto; height: auto;">2</div>
+                        <div class="css-inner-box" style="width: auto; height: auto;">3</div>
+                        <div class="css-inner-box" style="width: auto; height: auto;">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Visual Effects & Responsiveness -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Visual Effects & Responsiveness</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: opacity -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">opacity</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the opacity level for an element (transparency).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.element {
+  opacity: 0.5;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 80px; height: 50px; opacity: 0.5;">
+                        <span class="css-property">Faded Box</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: transition -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">transition</h4>
+            <p class="text-gray-400 mt-1 mb-4">A shorthand for animating CSS properties smoothly over time.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.button {
+  transition: background-color 0.3s ease;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 80px; height: 40px; background-color: #38bdf8; transition: background-color 0.5s;">
+                        <span class="css-property">Smooth Change</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: transform -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">transform</h4>
+            <p class="text-gray-400 mt-1 mb-4">Applies 2D or 3D transformations (translate, rotate, scale, skew).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.element {
+  transform: rotate(45deg);
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 50px; height: 50px; transform: rotate(45deg);">
+                        <span class="css-property">Rotated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: @media -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">@media</h4>
+            <p class="text-gray-400 mt-1 mb-4">Applies styles based on media types or device characteristics (e.g., screen size).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">@media (max-width: 768px) {
+  .element {
+    font-size: 16px;
+  }
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 120px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+                        <span class="css-property">Desktop View</span>
+                    </div>
+                    <span class="arrow text-xl font-bold">&#8594;</span>
+                    <div class="css-element-box" style="width: 80px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;">
+                        <span class="css-property">Mobile View</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Important Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Important?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Enhanced Visuals:</strong> Properties like `background-image`, `border-radius`, and `box-shadow` allow for richer, more modern designs beyond basic colors and lines.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Dynamic Layouts:</strong> Flexbox and Grid properties are indispensable for creating complex, responsive, and maintainable page layouts, moving beyond traditional block/inline flows.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Interactivity & Responsiveness:</strong> `transition`, `transform`, and `@media` queries are crucial for adding smooth animations, interactive elements, and ensuring your website looks good on any device size.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============= END: Important Properties Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============= START: Utility Properties Section ======================== -->
+<!-- ======================================================================= -->
+<section id="utility-properties" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Utility CSS Properties <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+        <p class="mt-2 text-gray-400">Valuable for specific use cases, advanced features, or fine-tuning content behavior.</p>
+    </div>
+
+    <!-- Category: Advanced Layout & Control -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Advanced Layout & Control</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: z-index -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">z-index</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the stack order of a positioned element (which element appears on top).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.front { z-index: 2; }
+.back { z-index: 1; }</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded" style="position: relative; height: 80px; width: 100px;">
+                    <div class="css-element-box" style="position: absolute; top: 10px; left: 10px; width: 60px; height: 60px; background-color: #fde047; z-index: 2;">
+                        <span class="css-property">Front (2)</span>
+                    </div>
+                    <div class="css-element-box" style="position: absolute; top: 30px; left: 30px; width: 60px; height: 60px; background-color: #38bdf8; z-index: 1;">
+                        <span class="css-property">Back (1)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: overflow / overflow-x / overflow-y -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">overflow / overflow-x / overflow-y</h4>
+            <p class="text-gray-400 mt-1 mb-4">Specifies what happens if content overflows an element's box (e.g., scroll, hidden).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.container {
+  overflow: scroll;
+  height: 50px;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 100px; height: 50px; overflow: hidden; position: relative;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 80px; background-color: #1f2937; color: #d1d5db; display: flex; align-items: center; justify-content: center;">
+                            <span class="css-property">Content that overflows...</span>
+                        </div>
+                        <div style="position: absolute; right: 0; top: 0; width: 10px; height: 100%; background-color: #6b7280; border-left: 1px solid #4b5563;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: cursor -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">cursor</h4>
+            <p class="text-gray-400 mt-1 mb-4">Specifies the mouse cursor to be displayed when pointing over an element.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.link {
+  cursor: pointer;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 80px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <span class="css-property">Hover Me</span>
+                        <span style="position: absolute; top: -15px; right: -15px; font-size: 1.5rem;">&#128070;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: float / clear -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">float / clear</h4>
+            <p class="text-gray-400 mt-1 mb-4">Positions an element to the left or right, allowing text/inline elements to wrap around it, and prevents elements from floating next to it.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.image { float: left; }
+.footer { clear: both; }</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded" style="display: block; text-align: left;">
+                    <div class="css-element-box" style="width: 40px; height: 40px; float: left; margin-right: 5px;">Img</div>
+                    <span class="css-property">Text wraps around the image. More text here.</span>
+                    <div style="clear: both; background-color: #374151; padding: 5px; margin-top: 5px;">Footer (cleared)</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Animations & Filters -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Animations & Filters</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: animation / @keyframes -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">animation / @keyframes</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines and controls complex animations through keyframes.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.box { animation: slide 2s infinite; }
+@keyframes slide {...}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded" style="position: relative; height: 60px;">
+                    <div class="css-element-box" style="width: 30px; height: 30px; position: absolute; left: 10px; background-color: #4ade80;"></div>
+                    <span class="arrow text-xl font-bold" style="position: absolute; left: 45px;">&#8594;</span>
+                    <div class="css-element-box" style="width: 30px; height: 30px; position: absolute; right: 10px; background-color: #4ade80;"></div>
+                    <span class="css-property" style="position: absolute; bottom: 5px; font-size: 0.6rem;">(Animated Movement)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: filter / backdrop-filter -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">filter / backdrop-filter</h4>
+            <p class="text-gray-400 mt-1 mb-4">Applies graphical effects (e.g., blur, grayscale) to an element or the area behind it.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.image { filter: blur(5px); }
+.overlay { backdrop-filter: blur(10px); }</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (filter blur):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 80px; height: 50px; background-color: #38bdf8; filter: blur(2px);">
+                        <span class="css-property">Blurred Text</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Advanced Text & Miscellaneous -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Advanced Text & Miscellaneous</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: white-space / word-break / text-overflow -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">white-space / word-break / text-overflow</h4>
+            <p class="text-gray-400 mt-1 mb-4">Control how whitespace, word wrapping, and overflowing text are handled.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.long-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 100px; height: 30px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                        <span class="css-property">This is a very long text...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: user-select -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">user-select</h4>
+            <p class="text-gray-400 mt-1 mb-4">Controls whether the text of an element can be selected by the user.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.no-select {
+  user-select: none;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 120px; height: 40px; display: flex; align-items: center; justify-content: center; user-select: none;">
+                        <span class="css-property">Cannot Select This</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: aspect-ratio -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">aspect-ratio</h4>
+            <p class="text-gray-400 mt-1 mb-4">Specifies a preferred aspect ratio for the box.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">.square {
+  aspect-ratio: 1 / 1;
+}</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="css-element-box" style="width: 60px; height: 60px; aspect-ratio: 1 / 1;">
+                        <span class="css-property">1:1</span>
+                    </div>
+                    <span class="arrow text-xl font-bold">&#8594;</span>
+                    <div class="css-element-box" style="width: 90px; height: 45px; aspect-ratio: 2 / 1;">
+                        <span class="css-property">2:1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Utility Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-rose-400 mb-4">Why Are These "Utility"?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Fine-grained Control:</strong> These properties offer precise control over specific aspects of an element's rendering or behavior that are not always needed but are crucial for certain design requirements (e.g., `z-index` for stacking, `overflow` for content clipping).</p>
+               <p class="text-gray-300"><strong class="text-green-400">Advanced Visuals & Interactivity:</strong> Properties like `animation`, `filter`, and `cursor` enable sophisticated visual effects and custom user interactions that go beyond standard styling.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Edge Case Handling:</strong> They help address specific challenges like text truncation (`text-overflow`), preventing text selection (`user-select`), or ensuring proper aspect ratios (`aspect-ratio`) in dynamic layouts.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Utility Functions Section ========================= -->
+<!-- ======================================================================= -->
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Created to make CSS mastery accessible and visual.</p>
+    </footer>
+
+</body>
+</html>

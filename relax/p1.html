@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Particle Flow</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #030712; /* bg-gray-950 */
+            color: #f3f4f6; /* text-gray-100 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .controls-container {
+            background-color: #1f2937; /* bg-gray-800 */
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        label {
+            font-weight: 500;
+            color: #d1d5db; /* text-gray-300 */
+        }
+        button {
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2563eb; /* bg-blue-600 */
+        }
+        button.active {
+            background-color: #16a34a; /* bg-green-600 */
+        }
+        #canvas-container {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 95vw;
+            height: 80vh;
+            max-width: 1200px;
+            max-height: 800px;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Controls for the Particle System -->
+    <div class="controls-container">
+        <div class="control-group">
+            <label>Mouse Force:</label>
+            <button id="attractButton" class="active">Attract</button>
+            <button id="repelButton">Repel</button>
+        </div>
+        <button id="resetButton">Reset Particles</button>
+    </div>
+
+    <!-- Container for the p5.js canvas -->
+    <div id="canvas-container"></div>
+
+    <script>
+        // The main p5.js sketch for the particle flow
+        const sketch = (p) => {
+            let particles = [];
+            const numParticles = 500;
+            let forceMode = 'attract'; // 'attract' or 'repel'
+
+            // --- Particle Class ---
+            class Particle {
+                constructor() {
+                    this.pos = p.createVector(p.random(p.width), p.random(p.height));
+                    this.vel = p.createVector(p.random(-1, 1), p.random(-1, 1));
+                    this.acc = p.createVector(0, 0);
+                    this.maxSpeed = 4;
+                    this.color = [p.random(180, 280), 90, 90]; // HSB color
+                }
+
+                // Apply a force to the particle
+                applyForce(force) {
+                    this.acc.add(force);
+                }
+
+                // Update particle's position
+                update() {
+                    this.vel.add(this.acc);
+                    this.vel.limit(this.maxSpeed);
+                    this.pos.add(this.vel);
+                    this.acc.mult(0); // Reset acceleration
+                }
+
+                // Handle screen edges
+                edges() {
+                    if (this.pos.x > p.width) this.pos.x = 0;
+                    if (this.pos.x < 0) this.pos.x = p.width;
+                    if (this.pos.y > p.height) this.pos.y = 0;
+                    if (this.pos.y < 0) this.pos.y = p.height;
+                }
+
+                // Follow the mouse with attraction or repulsion
+                followMouse() {
+                    let mouse = p.createVector(p.mouseX, p.mouseY);
+                    let dir = p5.Vector.sub(mouse, this.pos);
+                    let d = dir.mag();
+                    
+                    if (d < 200) { // Only affect particles within a certain radius
+                        let strength = p.map(d, 0, 200, 10, 0);
+                        dir.setMag(strength);
+                        if (forceMode === 'repel') {
+                            dir.mult(-1);
+                        }
+                        this.applyForce(dir);
+                    }
+                }
+
+                // Display the particle
+                show() {
+                    p.stroke(this.color[0], this.color[1], this.color[2], 50);
+                    p.strokeWeight(2);
+                    p.point(this.pos.x, this.pos.y);
+                }
+            }
+
+            // --- Sketch Functions ---
+            const initializeParticles = () => {
+                particles = [];
+                for (let i = 0; i < numParticles; i++) {
+                    particles.push(new Particle());
+                }
+            };
+
+            p.setup = () => {
+                const canvasContainer = document.getElementById('canvas-container');
+                const canvasWidth = canvasContainer.offsetWidth;
+                const canvasHeight = canvasContainer.offsetHeight;
+                
+                let cnv = p.createCanvas(canvasWidth, canvasHeight);
+                cnv.parent('canvas-container');
+                p.colorMode(p.HSB, 360, 100, 100, 100);
+
+                initializeParticles();
+
+                // --- UI Controls ---
+                const attractButton = document.getElementById('attractButton');
+                const repelButton = document.getElementById('repelButton');
+                const resetButton = document.getElementById('resetButton');
+
+                attractButton.addEventListener('click', () => {
+                    forceMode = 'attract';
+                    attractButton.classList.add('active');
+                    repelButton.classList.remove('active');
+                });
+
+                repelButton.addEventListener('click', () => {
+                    forceMode = 'repel';
+                    repelButton.classList.add('active');
+                    attractButton.classList.remove('active');
+                });
+
+                resetButton.addEventListener('click', () => {
+                    p.background(3, 7, 18);
+                    initializeParticles();
+                });
+            };
+
+            p.draw = () => {
+                p.background(3, 7, 18, 5); // Fading trail effect
+
+                for (let particle of particles) {
+                    if(p.mouseX > 0 && p.mouseY > 0) {
+                       particle.followMouse();
+                    }
+                    particle.update();
+                    particle.edges();
+                    particle.show();
+                }
+            };
+            
+            p.windowResized = () => {
+                const canvasContainer = document.getElementById('canvas-container');
+                p.resizeCanvas(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
+                initializeParticles(); // Re-initialize for new dimensions
+            };
+        };
+
+        new p5(sketch);
+    </script>
+</body>
+</html>

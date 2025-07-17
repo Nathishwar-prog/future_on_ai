@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Git & GitHub: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .visual-box {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            background-color: #111827; /* bg-gray-900 */
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25;
+            overflow-x: auto; /* Allow horizontal scrolling for wide content */
+        }
+        .visual-item {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #6b7280; /* border-gray-500 */
+            color: #f9fafb; /* text-gray-50 */
+            padding: 0.5rem;
+            border-radius: 0.25rem; /* rounded */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .arrow {
+            color: #6b7280; /* text-gray-500 */
+        }
+        .tag {
+            background-color: #374151;
+            color: #a5f3fc;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #4ade80, #38bdf8, #1f2937);
+            margin: 4rem 0;
+        }
+        /* Custom styles for Git visualizations */
+        .git-viz {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.75rem;
+            white-space: pre;
+            text-align: left;
+            padding: 0.5rem;
+        }
+        .git-repo-box {
+            border: 1px solid #3b82f6; /* blue-500 */
+            background-color: #1e3a8a; /* blue-900 */
+            color: #bfdbfe; /* blue-200 */
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .git-file {
+            background-color: #4b5563; /* gray-600 */
+            color: #f9fafb;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.125rem;
+            margin: 0.125rem;
+            display: inline-block;
+        }
+        .git-commit-hash {
+            color: #a78bfa; /* violet-400 */
+            font-size: 0.625rem; /* text-xs */
+        }
+        .git-branch-label {
+            color: #fde047; /* yellow-300 */
+            font-weight: bold;
+        }
+        .git-head-label {
+            color: #ef4444; /* red-500 */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">Git & GitHub</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for the 80/20 of version control.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Important & Utility Commands Overview -->
+        <section id="overview-commands" class="py-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Important Commands -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Important Commands <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+                    <p class="mt-2 text-gray-400">Frequently used to support the critical commands or for common specialized tasks.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">diff</span><span class="tag">remote</span><span class="tag">fetch</span><span class="tag">reset</span><span class="tag">revert</span><span class="tag">tag</span><span class="tag">stash</span><span class="tag">rebase</span><span class="tag">rm</span><span class="tag">mv</span><span class="tag">config</span>
+                    </div>
+                </div>
+
+                <!-- Utility Commands -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Utility Commands <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+                    <p class="mt-2 text-gray-400">Valuable for edge cases, advanced workflows, or troubleshooting.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">clean</span><span class="tag">bisect</span><span class="tag">cherry-pick</span><span class="tag">reflog</span><span class="tag">blame</span><span class="tag">shortlog</span><span class="tag">show</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+        
+        <!-- Learning Path -->
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">Follow this path for maximum return on your learning investment in Git.</p>
+            </div>
+            <div class="relative">
+                <!-- The connecting line -->
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Setup & Init</h4>
+                        <p class="text-gray-400 text-sm">init, clone, config</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Basic Workflow</h4>
+                        <p class="text-gray-400 text-sm">status, add, commit, log</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Branching & Merging</h4>
+                        <p class="text-gray-400 text-sm">branch, checkout, merge, rebase</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Remote Operations</h4>
+                        <p class="text-gray-400 text-sm">remote, fetch, pull, push</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+<!-- ============ START: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+<section id="quick-reference" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+        <p class="mt-2 text-gray-400">A searchable list of commonly used Git commands.</p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="max-w-2xl mx-auto mb-8">
+        <input type="text" id="searchInput" onkeyup="filterCommands()" placeholder="Search for a command..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
+    </div>
+
+    <!-- Commands Table -->
+    <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table id="commandsTable" class="min-w-full text-left">
+                <thead class="bg-gray-900">
+                    <tr>
+                        <th class="p-4 font-semibold text-sky-400 font-code">Command</th>
+                        <th class="p-4 font-semibold text-sky-400">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-4">*(Note: This is a curated subset of Git commands.)*</p>
+</section>
+
+<script>
+    const commandsList = [
+        { name: 'add', desc: 'Add file contents to the index (staging area).' },
+        { name: 'bisect', desc: 'Find by binary search the commit that introduced a bug.' },
+        { name: 'blame', desc: 'Show what revision and author last modified each line of a file.' },
+        { name: 'branch', desc: 'List, create, or delete branches.' },
+        { name: 'checkout', desc: 'Switch branches or restore working tree files.' },
+        { name: 'cherry-pick', desc: 'Apply the changes introduced by some existing commits.' },
+        { name: 'clean', desc: 'Remove untracked files from the working tree.' },
+        { name: 'clone', desc: 'Clone an existing repository into a new directory.' },
+        { name: 'commit', desc: 'Record changes to the repository.' },
+        { name: 'config', desc: 'Get and set repository or global options.' },
+        { name: 'diff', desc: 'Show changes between commits, commit and working tree, etc.' },
+        { name: 'fetch', desc: 'Download objects and refs from another repository.' },
+        { name: 'init', desc: 'Create an empty Git repository or reinitialize an existing one.' },
+        { name: 'log', desc: 'Show commit logs.' },
+        { name: 'merge', desc: 'Join two or more development histories together.' },
+        { name: 'mv', desc: 'Move or rename a file, a directory, or a symlink.' },
+        { name: 'pull', desc: 'Fetch from and integrate with another repository or a local branch.' },
+        { name: 'push', desc: 'Update remote refs along with associated objects.' },
+        { name: 'rebase', desc: 'Reapply commits on top of another base tip.' },
+        { name: 'reflog', desc: 'Manage reflog information.' },
+        { name: 'remote', desc: 'Manage set of tracked repositories.' },
+        { name: 'reset', desc: 'Reset current HEAD to the specified state.' },
+        { name: 'revert', desc: 'Undo some existing commits.' },
+        { name: 'rm', desc: 'Remove files from the working tree and from the index.' },
+        { name: 'show', desc: 'Show various types of objects.' },
+        { name: 'shortlog', desc: 'Summarize git log output.' },
+        { name: 'stash', desc: 'Stash the changes in a dirty working directory away.' },
+        { name: 'status', desc: 'Show the working tree status.' },
+        { name: 'tag', desc: 'Create, list, delete or verify a tag object signed with GPG.' }
+    ];
+
+    const tableBody = document.querySelector('#commandsTable tbody');
+
+    function populateTable(commands) {
+        if (!tableBody) return;
+        tableBody.innerHTML = ''; // Clear existing rows
+        commands.forEach(cmd => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-gray-700';
+            row.innerHTML = `
+                <td class="p-4 font-code text-green-400">${cmd.name}</td>
+                <td class="p-4 text-gray-300">${cmd.desc}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function filterCommands() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const filteredCommands = commandsList.filter(cmd => {
+            return cmd.name.toLowerCase().includes(filter) || cmd.desc.toLowerCase().includes(filter);
+        });
+        populateTable(filteredCommands);
+    }
+
+    // Initial population
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+           populateTable(commandsList);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => populateTable(commandsList));
+    }
+
+</script>
+<!-- ======================================================================= -->
+<!-- ============== END: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+
+        <!-- ======================================================================= -->
+<!-- ============= START: Critical Commands Section ======================= -->
+<!-- ======================================================================= -->
+<section id="critical-commands" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Critical Commands <span class="text-lg font-semibold text-green-400">(80% of Use Cases)</span></h2>
+        <p class="mt-2 text-gray-400">Master these commands to handle the vast majority of your version control tasks.</p>
+    </div>
+
+    <!-- Category: Repository Setup -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Repository Setup</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git init -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git init</h4>
+            <p class="text-gray-400 mt-1 mb-4">Initializes a new Git repository in the current directory.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git init</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-gray-400">Current Folder:</span><br>
+                        <span class="text-yellow-300">my_project/</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595;</span><br>
+                        <span class="font-code text-green-400">git init</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595;</span><br>
+                        <span class="text-yellow-300">my_project/</span><br>
+                        <span class="text-gray-500">  .git/</span> <span class="text-green-400">(Git initialized!)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git clone -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git clone</h4>
+            <p class="text-gray-400 mt-1 mb-4">Clones an existing repository into a new directory.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git clone &lt;repo_url></code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-blue-400">GitHub/Remote</span><br>
+                        <span class="text-blue-200">  [Repo]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; Clone</span><br>
+                        <span class="text-yellow-300">Local Machine:</span><br>
+                        <span class="text-green-400">  my_repo/</span><br>
+                        <span class="text-gray-500">    .git/</span><br>
+                        <span class="text-gray-500">    files...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git config -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git config</h4>
+            <p class="text-gray-400 mt-1 mb-4">Gets and sets repository or global options (e.g., user info).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git config --global user.name "Your Name"</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-gray-400">Git Settings:</span><br>
+                        <span class="text-white">User Name: <span class="text-green-400">"Not Set"</span></span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; config</span><br>
+                        <span class="text-white">User Name: <span class="text-green-400">"Your Name"</span></span><br>
+                        <span class="text-gray-500">(Global or Local)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Basic Workflow -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Basic Workflow</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git status -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git status</h4>
+            <p class="text-gray-400 mt-1 mb-4">Shows the working tree status, staged, modified, and untracked files.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git status</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-gray-400">Working Dir:</span><br>
+                        <span class="text-red-400">  file_A (Untracked)</span><br>
+                        <span class="text-yellow-400">  file_B (Modified)</span><br>
+                        <span class="text-green-400">Staging Area:</span><br>
+                        <span class="text-green-400">  file_C (Staged)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git add -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git add</h4>
+            <p class="text-gray-400 mt-1 mb-4">Adds file contents to the index (staging area) for the next commit.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git add .</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-gray-400">Working Dir:</span><br>
+                        <span class="text-yellow-400">  file_A (Modified)</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; add</span><br>
+                        <span class="text-green-400">Staging Area:</span><br>
+                        <span class="text-green-400">  file_A (Staged)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git commit -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git commit</h4>
+            <p class="text-gray-400 mt-1 mb-4">Records the staged changes to the repository with a message.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git commit -m "Initial commit"</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-green-400">Staging Area:</span><br>
+                        <span class="text-green-400">  file_A (Staged)</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; commit</span><br>
+                        <span class="text-blue-400">Local Repo:</span><br>
+                        <span class="git-commit-hash">  (abc123)</span> <span class="text-white">"Initial commit"</span><br>
+                        <span class="text-gray-500">  (HEAD -> main)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git log -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git log</h4>
+            <p class="text-gray-400 mt-1 mb-4">Shows commit logs (history) of the repository.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git log --oneline</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="git-commit-hash">abc123</span> <span class="text-white">feat: Add header</span> <span class="git-head-label">(HEAD -> main)</span><br>
+                        <span class="git-commit-hash">def456</span> <span class="text-white">fix: Fix button style</span><br>
+                        <span class="git-commit-hash">ghi789</span> <span class="text-white">docs: Update readme</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Branching & Merging -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Branching & Merging</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git branch -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git branch</h4>
+            <p class="text-gray-400 mt-1 mb-4">Lists, creates, or deletes branches.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git branch feature/new-feat</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (after creation):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="git-commit-hash">abc123</span> <span class="text-white">Initial commit</span> <span class="git-head-label">(HEAD -> main)</span><br>
+                        <span class="text-yellow-300">| \</span><br>
+                        <span class="text-yellow-300">|  (feature/new-feat)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git checkout -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git checkout</h4>
+            <p class="text-gray-400 mt-1 mb-4">Switches branches or restores working tree files.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git checkout feature/new-feat</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (after switch):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="git-commit-hash">abc123</span> <span class="text-white">Initial commit</span> <span class="git-branch-label">(main)</span><br>
+                        <span class="text-yellow-300">| \</span><br>
+                        <span class="text-yellow-300">|  (HEAD -> feature/new-feat)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git merge -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git merge</h4>
+            <p class="text-gray-400 mt-1 mb-4">Joins two or more development histories together.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git merge feature/new-feat</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="git-commit-hash">A</span> <span class="text-white">-- Commit on main</span><br>
+                        <span class="text-gray-500">| \</span><br>
+                        <span class="git-commit-hash">B</span> <span class="text-white">-- Commit on feature</span><br>
+                        <span class="text-gray-500">| /</span><br>
+                        <span class="git-commit-hash">M</span> <span class="text-white">-- Merge commit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Remote Operations -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">4. Remote Operations</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git push -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git push</h4>
+            <p class="text-gray-400 mt-1 mb-4">Updates remote refs along with associated objects.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git push origin main</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-green-400">Local Repo: [C1] [C2]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8593; Push</span><br>
+                        <span class="text-blue-400">Remote Repo: [C1]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595;</span><br>
+                        <span class="text-blue-400">Remote Repo: [C1] [C2]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git pull -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git pull</h4>
+            <p class="text-gray-400 mt-1 mb-4">Fetches from and integrates with another repository or a local branch.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git pull origin main</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-blue-400">Remote Repo: [C1] [C2]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; Pull</span><br>
+                        <span class="text-green-400">Local Repo: [C1]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595;</span><br>
+                        <span class="text-green-400">Local Repo: [C1] [C2]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git remote -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git remote</h4>
+            <p class="text-gray-400 mt-1 mb-4">Manages the set of tracked repositories (e.g., add, remove, rename).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git remote add origin &lt;url></code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-yellow-300">Local Repo</span><br>
+                        <span class="text-gray-500">  (No remotes)</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; add remote</span><br>
+                        <span class="text-yellow-300">Local Repo:</span><br>
+                        <span class="text-green-400">  origin -> &lt;remote_url></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Critical Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Critical?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Core Workflow:</strong> These commands form the backbone of daily Git usage, from initializing a project to committing changes and collaborating with others via remote repositories.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Foundation of Version Control:</strong> Mastering `init`, `add`, `commit`, `push`, `pull`, `branch`, `checkout`, and `merge` allows you to manage project history, work on features in isolation, and integrate changes effectively.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Critical Commands Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============ START: Important Commands Section ======================= -->
+<!-- ======================================================================= -->
+<section id="important-commands" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Important Commands <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+        <p class="mt-2 text-gray-400">Frequently used to support critical commands and handle common specialized tasks.</p>
+    </div>
+
+    <!-- Category: History & Comparison -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. History & Comparison</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git diff -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git diff</h4>
+            <p class="text-gray-400 mt-1 mb-4">Shows changes between the working directory, staging area, and commits.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git diff &lt;file></code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-gray-400">File: my_file.txt</span><br>
+                        <span class="text-red-400">- Old Line</span><br>
+                        <span class="text-green-400">+ New Line</span><br>
+                        <span class="text-gray-500">(Shows differences)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git fetch -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git fetch</h4>
+            <p class="text-gray-400 mt-1 mb-4">Downloads objects and refs from another repository without merging.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git fetch origin</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-blue-400">Remote: [C1]-[C2]-[C3]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; Fetch</span><br>
+                        <span class="text-green-400">Local: [C1]-[C2]</span><br>
+                        <span class="text-gray-500">  (origin/main points to C3, but local main is still at C2)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: git tag -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git tag</h4>
+            <p class="text-gray-400 mt-1 mb-4">Creates, lists, deletes, or verifies a tag object (e.g., for releases).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git tag -a v1.0 -m "Release v1.0"</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="git-commit-hash">abc123</span> <span class="text-white">-- Commit A</span><br>
+                        <span class="git-commit-hash">def456</span> <span class="text-white">-- Commit B <span class="text-yellow-300">(v1.0)</span></span><br>
+                        <span class="git-commit-hash">ghi789</span> <span class="text-white">-- Commit C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Undoing Changes & Cleanup -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Undoing Changes & Cleanup</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git reset -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git reset</h4>
+            <p class="text-gray-400 mt-1 mb-4">Resets current HEAD to the specified state (undoes commits/stages).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git reset HEAD~1</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (soft reset):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-green-400">Local: C1 - C2 - C3 (HEAD)</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; reset</span><br>
+                        <span class="text-green-400">Local: C1 - C2 (HEAD)</span><br>
+                        <span class="text-gray-500">  (C3 changes are now staged)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git revert -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git revert</h4>
+            <p class="text-gray-400 mt-1 mb-4">Creates a new commit that undoes the changes made by a previous commit.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git revert &lt;commit_hash></code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-green-400">History: C1 - C2 (Bug) - C3</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; revert C2</span><br>
+                        <span class="text-green-400">History: C1 - C2 - C3 - C4 (Revert C2)</span><br>
+                        <span class="text-gray-500">  (History preserved)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git stash -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git stash</h4>
+            <p class="text-gray-400 mt-1 mb-4">Temporarily shelves changes in a dirty working directory.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git stash save "WIP: feature X"</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-yellow-400">Working Dir: [Modified Files]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; stash</span><br>
+                        <span class="text-green-400">Stash List: [WIP: feature X]</span><br>
+                        <span class="text-gray-400">Working Dir: [Clean]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: History Rewriting & File Management -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. History Rewriting & File Management</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git rebase -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git rebase</h4>
+            <p class="text-gray-400 mt-1 mb-4">Reapplies commits on top of another base tip for a cleaner history.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git rebase main</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-gray-500">Old: A--B--C (main)</span><br>
+                        <span class="text-gray-500">      \</span><br>
+                        <span class="text-yellow-300">       D--E (feature)</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; rebase</span><br>
+                        <span class="text-green-400">New: A--B--C--D'--E' (main, feature)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git rm -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git rm</h4>
+            <p class="text-gray-400 mt-1 mb-4">Removes files from the working tree and from the index.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git rm old_file.txt</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-green-400">Working Dir: [file_A, old_file.txt]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; rm</span><br>
+                        <span class="text-green-400">Working Dir: [file_A]</span><br>
+                        <span class="text-gray-500">Staging: (old_file.txt removed)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git mv -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git mv</h4>
+            <p class="text-gray-400 mt-1 mb-4">Moves or renames a file, a directory, or a symlink.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git mv old_name.txt new_name.txt</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-green-400">Working Dir: [old_name.txt]</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; mv</span><br>
+                        <span class="text-green-400">Working Dir: [new_name.txt]</span><br>
+                        <span class="text-gray-500">Staging: (renamed)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Important Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Important?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Enhance Workflow:</strong> Commands like `diff` and `fetch` provide crucial insights and updates without altering your local work, enabling more informed decisions.</p>
+               <p class="text-gray-300"><strong class="text-green-400">History Management:</strong> `reset`, `revert`, and `rebase` are powerful tools for correcting mistakes, cleaning up commit history, and maintaining a clear project timeline.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Context Switching:</strong> `stash` is invaluable for temporarily saving work when you need to switch contexts quickly, preventing unfinished changes from cluttering your branches.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============= END: Important Functions Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============= START: Utility Functions Section ======================== -->
+<!-- ======================================================================= -->
+<section id="utility-commands" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Utility Commands <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+        <p class="mt-2 text-gray-400">Valuable for edge cases, convenience, or specific advanced applications.</p>
+    </div>
+
+    <!-- Category: Diagnostics & Inspection -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Diagnostics & Inspection</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git reflog -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git reflog</h4>
+            <p class="text-gray-400 mt-1 mb-4">Manages reflog information (records updates to the tip of branches).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git reflog</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="git-commit-hash">abc123</span> <span class="text-white">HEAD@{0}: commit: New feature</span><br>
+                        <span class="git-commit-hash">def456</span> <span class="text-white">HEAD@{1}: checkout: moving to main</span><br>
+                        <span class="git-commit-hash">ghi789</span> <span class="text-white">HEAD@{2}: commit: Initial commit</span><br>
+                        <span class="text-gray-500">(Your Git "undo" history)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git blame -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git blame</h4>
+            <p class="text-gray-400 mt-1 mb-4">Shows what revision and author last modified each line of a file.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git blame my_file.js</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="git-commit-hash">abc123</span> <span class="text-yellow-300">(Alice 2023-01-01 10:00)</span> <span class="text-white">console.log("Hello");</span><br>
+                        <span class="git-commit-hash">def456</span> <span class="text-yellow-300">(Bob 2023-01-05 15:30)</span> <span class="text-white">const x = 10;</span><br>
+                        <span class="git-commit-hash">ghi789</span> <span class="text-yellow-300">(Alice 2023-01-10 11:45)</span> <span class="text-white">function greet() {</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: git show -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git show</h4>
+            <p class="text-gray-400 mt-1 mb-4">Shows various types of objects (e.g., commit, tag, tree, blob).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git show &lt;commit_hash></code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-yellow-300">Commit: abc123</span><br>
+                        <span class="text-white">Author: Alice &lt;alice@example.com></span><br>
+                        <span class="text-white">Date: Mon Jan 1 10:00:00 2023</span><br>
+                        <span class="text-white">Message: Initial commit</span><br>
+                        <span class="text-red-400">- old_line</span><br>
+                        <span class="text-green-400">+ new_line</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Advanced Workflow & Cleanup -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Advanced Workflow & Cleanup</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: git clean -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git clean</h4>
+            <p class="text-gray-400 mt-1 mb-4">Removes untracked files from the working tree.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git clean -df</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-yellow-400">Working Dir:</span><br>
+                        <span class="text-green-400">  tracked_file.txt</span><br>
+                        <span class="text-red-400">  untracked_log.txt</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; clean</span><br>
+                        <span class="text-yellow-400">Working Dir:</span><br>
+                        <span class="text-green-400">  tracked_file.txt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git bisect -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git bisect</h4>
+            <p class="text-gray-400 mt-1 mb-4">Finds by binary search the commit that introduced a bug.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git bisect start</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-gray-500">C1 (Good) --- C2 --- C3 --- C4 (Bad)</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; bisect</span><br>
+                        <span class="text-green-400">Testing C2... (Good!)</span><br>
+                        <span class="text-green-400">Testing C3... (Bad!)</span><br>
+                        <span class="text-yellow-300">Bug introduced in C3!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: git cherry-pick -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">git cherry-pick</h4>
+            <p class="text-gray-400 mt-1 mb-4">Applies the changes introduced by some existing commits.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">git cherry-pick &lt;commit_hash></code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="git-viz">
+                        <span class="text-green-400">Main: A -- B -- C</span><br>
+                        <span class="text-yellow-300">Feature: D -- E (Bugfix) -- F</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595; cherry-pick E on Main</span><br>
+                        <span class="text-green-400">Main: A -- B -- C -- E'</span><br>
+                        <span class="text-gray-500">(Specific commit applied)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Utility Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-rose-400 mb-4">Why Are These "Utility"?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Problem Solving:</strong> Commands like `bisect` and `reflog` are indispensable for debugging, finding the origin of bugs, or recovering lost work.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Granular Control:</strong> `cherry-pick` allows for precise application of changes, while `clean` helps maintain a tidy working directory, especially in complex projects.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Deeper Insights:</strong> `blame` and `show` provide detailed information about file history and Git objects, useful for understanding code origins and repository internals.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Utility Functions Section ========================= -->
+<!-- ======================================================================= -->
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Created to make Git & GitHub mastery accessible and visual.</p>
+    </footer>
+
+</body>
+</html>

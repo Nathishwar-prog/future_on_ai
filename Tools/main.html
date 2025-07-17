@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering HTML: A Visual Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .visual-box {
+            border: 2px dashed #4b5563; /* border-gray-600 */
+            background-color: #111827; /* bg-gray-900 */
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25;
+            overflow-x: auto; /* Allow horizontal scrolling for wide content */
+        }
+        .visual-item {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #6b7280; /* border-gray-500 */
+            color: #f9fafb; /* text-gray-50 */
+            padding: 0.5rem;
+            border-radius: 0.25rem; /* rounded */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .arrow {
+            color: #6b7280; /* text-gray-500 */
+        }
+        .tag {
+            background-color: #374151;
+            color: #a5f3fc;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #1f2937, #4ade80, #38bdf8, #1f2937);
+            margin: 4rem 0;
+        }
+        /* Custom styles for HTML visualizations */
+        .html-viz {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.75rem;
+            white-space: pre;
+            text-align: left;
+            padding: 0.5rem;
+        }
+        .html-element {
+            color: #4ade80; /* green-400 */
+        }
+        .html-attribute {
+            color: #fde047; /* yellow-300 */
+        }
+        .html-text {
+            color: #d1d5db; /* gray-300 */
+        }
+        .html-output {
+            background-color: #1e3a8a; /* blue-900 */
+            color: #bfdbfe; /* blue-200 */
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20 bg-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">Mastering <span class="gradient-text">HTML Tags</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">An interactive infographic for the essential building blocks of the web.</p>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Core & Specialized Tags Overview -->
+        <section id="overview-tags" class="py-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Core Tags -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Core Tags <span class="text-lg font-semibold text-amber-400">(Foundational Elements)</span></h2>
+                    <p class="mt-2 text-gray-400">Essential tags for structuring and displaying basic web content.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">html</span><span class="tag">head</span><span class="tag">body</span><span class="tag">title</span><span class="tag">p</span><span class="tag">h1</span><span class="tag">div</span><span class="tag">a</span><span class="tag">img</span><span class="tag">form</span><span class="tag">input</span><span class="tag">button</span><span class="tag">script</span>
+                    </div>
+                </div>
+
+                <!-- Specialized Tags -->
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white">Specialized Tags <span class="text-lg font-semibold text-rose-400">(Advanced & Specific Use Cases)</span></h2>
+                    <p class="mt-2 text-gray-400">Tags for semantic richness, multimedia, forms, and interactive elements.</p>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="tag">header</span><span class="tag">nav</span><span class="tag">main</span><span class="tag">section</span><span class="tag">article</span><span class="tag">aside</span><span class="tag">footer</span><span class="tag">ul</span><span class="tag">ol</span><span class="tag">li</span><span class="tag">table</span><span class="tag">video</span><span class="tag">audio</span><span class="tag">canvas</span><span class="tag">details</span><span class="tag">dialog</span><span class="tag">iframe</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+        
+        <!-- Learning Path -->
+        <section id="learning-path" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Recommended Learning Path</h2>
+                <p class="mt-2 text-gray-400">Follow this path for maximum return on your learning investment in HTML.</p>
+            </div>
+            <div class="relative">
+                <!-- The connecting line -->
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2"></div>
+                
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">1</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Document Structure</h4>
+                        <p class="text-gray-400 text-sm">html, head, body, title, meta</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">2</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Text & Basic Content</h4>
+                        <p class="text-gray-400 text-sm">p, h1-h6, div, a, img</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">3</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Forms & Interaction</h4>
+                        <p class="text-gray-400 text-sm">form, input, button, select, textarea</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="z-10 w-16 h-16 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-gray-900">4</div>
+                        <h4 class="mt-4 text-xl font-semibold text-white">Multimedia & Semantics</h4>
+                        <p class="text-gray-400 text-sm">video, audio, table, section, article</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================================================= -->
+<!-- ============ START: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+<section id="quick-reference" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Full A-Z Quick Reference</h2>
+        <p class="mt-2 text-gray-400">A searchable list of common HTML tags.</p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="max-w-2xl mx-auto mb-8">
+        <input type="text" id="searchInput" onkeyup="filterTags()" placeholder="Search for a tag..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
+    </div>
+
+    <!-- Tags Table -->
+    <div class="max-w-5xl mx-auto bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table id="tagsTable" class="min-w-full text-left">
+                <thead class="bg-gray-900">
+                    <tr>
+                        <th class="p-4 font-semibold text-sky-400 font-code">Tag</th>
+                        <th class="p-4 font-semibold text-sky-400">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-4">*(Note: This is a curated subset of HTML tags.)*</p>
+</section>
+
+<script>
+    const htmlTagsList = [
+        { name: '<a>', desc: 'Defines a hyperlink.' },
+        { name: '<abbr>', desc: 'Defines an abbreviation or an acronym.' },
+        { name: '<address>', desc: 'Defines contact information for the author/owner of a document.' },
+        { name: '<area>', desc: 'Defines an area inside an image map.' },
+        { name: '<article>', desc: 'Defines independent, self-contained content.' },
+        { name: '<aside>', desc: 'Defines content apart from the content it is placed in (like a sidebar).' },
+        { name: '<audio>', desc: 'Defines sound content.' },
+        { name: '<b>', desc: 'Defines bold text.' },
+        { name: '<base>', desc: 'Specifies the base URL/target for all relative URLs in a document.' },
+        { name: '<bdi>', desc: 'Isolates a part of text that might be formatted in a different direction from other text.' },
+        { name: '<bdo>', desc: 'Overrides the current text direction.' },
+        { name: '<body>', desc: 'Defines the document\'s body.' },
+        { name: '<br>', desc: 'Defines a single line break.' },
+        { name: '<button>', desc: 'Defines a clickable button.' },
+        { name: '<caption>', desc: 'Defines a table caption.' },
+        { name: '<canvas>', desc: 'Used to draw graphics on the fly, via scripting (usually JavaScript).' },
+        { name: '<cite>', desc: 'Defines the title of a work.' },
+        { name: '<col>', desc: 'Specifies column properties for each column within a <colgroup> element.' },
+        { name: '<colgroup>', desc: 'Specifies a group of one or more columns in a table for formatting.' },
+        { name: '<data>', desc: 'Adds a machine-readable translation of a given content.' },
+        { name: '<datalist>', desc: 'Specifies a list of pre-defined options for input data.' },
+        { name: '<dd>', desc: 'Defines a description/value of a term in a description list.' },
+        { name: '<del>', desc: 'Defines text that has been deleted from a document.' },
+        { name: '<details>', desc: 'Defines additional details that the user can view or hide.' },
+        { name: '<dfn>', desc: 'Specifies a term being defined within the surrounding content.' },
+        { name: '<dialog>', desc: 'Defines a dialog box or subwindow.' },
+        { name: '<div>', desc: 'Defines a section in a document (block-level).' },
+        { name: '<dl>', desc: 'Defines a description list.' },
+        { name: '<dt>', desc: 'Defines a term/name in a description list.' },
+        { name: '<em>', desc: 'Defines emphasized text.' },
+        { name: '<embed>', desc: 'Defines a container for an external application or interactive content.' },
+        { name: '<fieldset>', desc: 'Groups related elements in a form.' },
+        { name: '<figcaption>', desc: 'Defines a caption for a <figure> element.' },
+        { name: '<figure>', desc: 'Specifies self-contained content, like illustrations, diagrams, photos, code listings, etc.' },
+        { name: '<footer>', desc: 'Defines a footer for a document or section.' },
+        { name: '<form>', desc: 'Defines an HTML form for user input.' },
+        { name: '<h1> to <h6>', desc: 'Defines HTML headings.' },
+        { name: '<head>', desc: 'Contains meta-information about the HTML document.' },
+        { name: '<header>', desc: 'Defines a header for a document or section.' },
+        { name: '<hr>', desc: 'Defines a thematic change in the content (horizontal rule).' },
+        { name: '<html>', desc: 'Defines the root of an HTML document.' },
+        { name: '<i>', desc: 'Defines a part of text in an alternate voice or mood (e.g., italic).' },
+        { name: '<iframe>', desc: 'Defines an inline frame.' },
+        { name: '<img>', desc: 'Defines an image.' },
+        { name: '<input>', desc: 'Defines an input field.' },
+        { name: '<ins>', desc: 'Defines text that has been inserted into a document.' },
+        { name: '<kbd>', desc: 'Defines keyboard input.' },
+        { name: '<label>', desc: 'Defines a label for an <input> element.' },
+        { name: '<legend>', desc: 'Defines a caption for the <fieldset> element.' },
+        { name: '<li>', desc: 'Defines a list item.' },
+        { name: '<link>', desc: 'Defines the relationship between a document and an external resource (most used to link to style sheets).' },
+        { name: '<main>', desc: 'Specifies the dominant content of the <body>.' },
+        { name: '<map>', desc: 'Defines a client-side image map.' },
+        { name: '<mark>', desc: 'Defines marked/highlighted text.' },
+        { name: '<meta>', desc: 'Defines metadata about an HTML document.' },
+        { name: '<meter>', desc: 'Defines a scalar measurement within a known range (a gauge).' },
+        { name: '<nav>', desc: 'Defines navigation links.' },
+        { name: '<noscript>', desc: 'Defines an alternate content for users that do not support client-side scripts.' },
+        { name: '<object>', desc: 'Defines an embedded object.' },
+        { name: '<ol>', desc: 'Defines an ordered list.' },
+        { name: '<optgroup>', desc: 'Defines a group of related options in a drop-down list.' },
+        { name: '<option>', desc: 'Defines an option in a drop-down list.' },
+        { name: '<output>', desc: 'Defines the result of a calculation.' },
+        { name: '<param>', desc: 'Defines parameters for an <object> element.' },
+        { name: '<picture>', desc: 'Defines a container for multiple <source> elements and one <img> element to offer alternative versions of an image.' },
+        { name: '<pre>', desc: 'Defines preformatted text.' },
+        { name: '<progress>', desc: 'Represents the completion progress of a task.' },
+        { name: '<q>', desc: 'Defines a short quotation.' },
+        { name: '<rp>', desc: 'Defines what to show in browsers that do not support ruby annotations.' },
+        { name: '<rt>', desc: 'Defines an explanation/pronunciation of characters (for ruby annotations).' },
+        { name: '<ruby>', desc: 'Defines a ruby annotation (for East Asian typography).' },
+        { name: '<s>', desc: 'Defines text that is no longer correct, accurate, or relevant (strikethrough).' },
+        { name: '<samp>', desc: 'Defines sample output from a computer program.' },
+        { name: '<script>', desc: 'Defines a client-side script.' },
+        { name: '<section>', desc: 'Defines a section in a document.' },
+        { name: '<select>', desc: 'Defines a drop-down list.' },
+        { name: '<small>', desc: 'Defines smaller text.' },
+        { name: '<slot>', desc: 'A placeholder inside a web component that users can fill with their own markup.' },
+        { name: '<source>', desc: 'Defines multiple media resources for <picture>, <audio>, and <video>.' },
+        { name: '<span>', desc: 'Defines a section in a document (inline).' },
+        { name: '<strong>', desc: 'Defines important text.' },
+        { name: '<style>', desc: 'Defines style information for a document.' },
+        { name: '<sub>', desc: 'Defines subscripted text.' },
+        { name: '<summary>', desc: 'Defines a visible heading for a <details> element.' },
+        { name: '<sup>', desc: 'Defines superscripted text.' },
+        { name: '<table>', desc: 'Defines an HTML table.' },
+        { name: '<tbody>', desc: 'Groups the body content in a table.' },
+        { name: '<td>', desc: 'Defines a cell in a table.' },
+        { name: '<template>', desc: 'Defines content that is not rendered until activated by a script.' },
+        { name: '<textarea>', desc: 'Defines a multi-line input control (text area).' },
+        { name: '<tfoot>', desc: 'Groups the footer content in a table.' },
+        { name: '<th>', desc: 'Defines a header cell in a table.' },
+        { name: '<thead>', desc: 'Groups the header content in a table.' },
+        { name: '<time>', desc: 'Defines a specific time (or datetime).' },
+        { name: '<title>', desc: 'Defines the title of the document.' },
+        { name: '<track>', desc: 'Defines text tracks for <audio> or <video>.' },
+        { name: '<u>', desc: 'Defines some text that is unarticulated and styled differently from normal text (e.g., underlined).' },
+        { name: '<ul>', desc: 'Defines an unordered list.' },
+        { name: '<var>', desc: 'Defines a variable.' },
+        { name: '<video>', desc: 'Defines video content.' },
+        { name: '<wbr>', desc: 'Defines a possible line-break.' }
+    ];
+
+    const tableBody = document.querySelector('#tagsTable tbody');
+
+    function populateTable(tags) {
+        if (!tableBody) return;
+        tableBody.innerHTML = ''; // Clear existing rows
+        tags.forEach(tag => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-gray-700';
+            row.innerHTML = `
+                <td class="p-4 font-code text-green-400">${tag.name}</td>
+                <td class="p-4 text-gray-300">${tag.desc}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function filterTags() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const filteredTags = htmlTagsList.filter(tag => {
+            return tag.name.toLowerCase().includes(filter) || tag.desc.toLowerCase().includes(filter);
+        });
+        populateTable(filteredTags);
+    }
+
+    // Initial population
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+           populateTable(htmlTagsList);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => populateTable(htmlTagsList));
+    }
+
+</script>
+<!-- ======================================================================= -->
+<!-- ============== END: Quick Reference Section =========================== -->
+<!-- ======================================================================= -->
+
+        <!-- ======================================================================= -->
+<!-- ============= START: Critical Tags Section ======================= -->
+<!-- ======================================================================= -->
+<section id="critical-tags" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Core HTML Tags <span class="text-lg font-semibold text-green-400">(80% of Webpages)</span></h2>
+        <p class="mt-2 text-gray-400">Master these tags to build the vast majority of web content.</p>
+    </div>
+
+    <!-- Category: Document Structure -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Document Structure</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: <html> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;html&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">The root element of an HTML page.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;!-- ... --&gt;
+&lt;/html&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz">
+                        <span class="html-element">&lt;html&gt;</span><br>
+                        <span class="html-text">  &lt;head&gt;...&lt;/head&gt;</span><br>
+                        <span class="html-text">  &lt;body&gt;...&lt;/body&gt;</span><br>
+                        <span class="html-element">&lt;/html&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <head> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;head&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Contains meta-information about the HTML document (not visible on page).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+  &lt;meta charset="UTF-8"&gt;
+&lt;/head&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz">
+                        <span class="html-element">&lt;head&gt;</span><br>
+                        <span class="html-text">  (Metadata)</span><br>
+                        <span class="html-text">  Title, Charset, Styles, Scripts...</span><br>
+                        <span class="html-element">&lt;/head&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <body> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;body&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines the document's body, containing all visible content.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;body&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+  &lt;p&gt;Hello World!&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output">
+                        <span class="html-text"><h1>Welcome</h1></span>
+                        <span class="html-text"><p>Hello World!</p></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <title> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;title&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Sets the title of the document, shown in browser tab/window.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;title&gt;My Awesome Site&lt;/title&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz">
+                        <span class="html-element">&lt;head&gt;</span><br>
+                        <span class="html-text">  &lt;title&gt;<span class="html-attribute">My Awesome Site</span>&lt;/title&gt;</span><br>
+                        <span class="html-element">&lt;/head&gt;</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595;</span><br>
+                        <span class="html-output">Browser Tab: My Awesome Site</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <meta> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;meta&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Provides metadata about the HTML document (e.g., character set, viewport).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width"&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz">
+                        <span class="html-element">&lt;head&gt;</span><br>
+                        <span class="html-text">  &lt;meta <span class="html-attribute">charset="UTF-8"</span>&gt;</span><br>
+                        <span class="html-text">  &lt;meta <span class="html-attribute">name="viewport"</span> ...&gt;</span><br>
+                        <span class="html-element">&lt;/head&gt;</span><br>
+                        <span class="text-gray-500">(Instructions for browser/search engines)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Text & Basic Content -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Text & Basic Content</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: <p> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;p&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines a paragraph of text.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output">
+                        <span class="html-text">This is a paragraph.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <h1> to <h6> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;h1&gt; to &lt;h6&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines HTML headings, from largest (h1) to smallest (h6).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h3&gt;Subtitle&lt;/h3&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output">
+                        <span class="html-text" style="font-size: 1.5em; font-weight: bold;">Main Title</span><br>
+                        <span class="html-text" style="font-size: 1.17em; font-weight: bold;">Subtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <div> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;div&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">A generic block-level container for flow content.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;div class="container"&gt;
+  &lt;p&gt;Content here.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz" style="border: 1px dashed #6b7280; padding: 0.5rem;">
+                        <span class="html-element">&lt;div&gt;</span><br>
+                        <span class="html-text">  (Content Block)</span><br>
+                        <span class="html-element">&lt;/div&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <a> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;a&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines a hyperlink to another resource.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;a href="page.html"&gt;Link&lt;/a&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output">
+                        <span class="html-text" style="color: #38bdf8; text-decoration: underline;">Link</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <img> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;img&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Embeds an image into the document.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;img src="pic.jpg" alt="Description"&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="width: 80px; height: 60px; background-color: #4b5563; display: flex; align-items: center; justify-content: center;">
+                        <span class="html-text text-xs">Image</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Forms & Inputs -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">3. Forms & Inputs</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: <form> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;form&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines an HTML form for user input.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;form action="/submit" method="post"&gt;
+  &lt;!-- ... --&gt;
+&lt;/form&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz" style="border: 1px solid #6b7280; padding: 0.5rem;">
+                        <span class="html-element">&lt;form&gt;</span><br>
+                        <span class="html-text">  (Input Fields)</span><br>
+                        <span class="html-element">&lt;/form&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <input> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;input&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines an input field for various data types.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;input type="text" placeholder="Name"&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="border: 1px solid #6b7280; padding: 0.25rem 0.5rem; background-color: #1f2937;">
+                        <span class="html-text">Name...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <button> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;button&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Defines a clickable button.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;button type="submit"&gt;Send&lt;/button&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="background-color: #38bdf8; padding: 0.5rem 1rem; border-radius: 0.25rem; color: white;">
+                        <span class="html-text">Send</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Critical Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Critical?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Foundation of Webpages:</strong> These tags form the absolute minimum required to create a functional and viewable webpage. Without them, a browser cannot properly interpret and display your content.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Core Content Display:</strong> They handle the most common elements you'll find on almost any website: text, headings, links, images, and basic user input forms. Mastering these allows you to build the primary structure and content of any site.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Critical Tags Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============ START: Important Tags Section ======================= -->
+<!-- ======================================================================= -->
+<section id="important-tags" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Important HTML Tags <span class="text-lg font-semibold text-amber-400">(Supporting Roles)</span></h2>
+        <p class="mt-2 text-gray-400">Frequently used for semantic structure, common media, and lists.</p>
+    </div>
+
+    <!-- Category: Content Sectioning & Lists -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Content Sectioning & Lists</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: <header> / <nav> / <main> / <section> / <article> / <aside> / <footer> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;header&gt; / &lt;footer&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Define semantic sections of a document (e.g., introduction, navigation, main content, sidebar, footer).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;header&gt;...&lt;/header&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz" style="border: 1px solid #6b7280; padding: 0.5rem; width: 100%;">
+                        <span class="html-element">&lt;header&gt;</span> (Top)<br>
+                        <span class="html-element">&lt;nav&gt;</span> (Links)<br>
+                        <span class="html-element">&lt;main&gt;</span> (Core Content)<br>
+                        <span class="html-element">&lt;aside&gt;</span> (Sidebar)<br>
+                        <span class="html-element">&lt;footer&gt;</span> (Bottom)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <ul> / <ol> / <li> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;ul&gt; / &lt;ol&gt; / &lt;li&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Define unordered (bulleted) or ordered (numbered) lists and list items.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (unordered):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="text-align: left;">
+                        <span class="html-text">&#8226; Item 1</span><br>
+                        <span class="html-text">&#8226; Item 2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: <em> / <strong> / <code> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;em&gt; / &lt;strong&gt; / &lt;code&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Provide semantic emphasis, importance, or represent code snippets.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;p&gt;&lt;em&gt;Important&lt;/em&gt; text.&lt;/p&gt;
+&lt;code&gt;console.log()&lt;/code&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="text-align: left;">
+                        <span class="html-text" style="font-style: italic;">Important</span> text.<br>
+                        <span class="html-text" style="font-family: monospace;">console.log()</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Multimedia & Styling -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Multimedia & Styling</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: <video> / <audio> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;video&gt; / &lt;audio&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Embed video or audio content directly into the document.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;video src="movie.mp4" controls&gt;&lt;/video&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (video):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="width: 120px; height: 80px; background-color: #374151; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <span class="html-text text-xs">Video Player</span>
+                        <div style="width: 80%; height: 5px; background-color: #6b7280; margin-top: 5px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <link> / <style> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;link&gt; / &lt;style&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Link external stylesheets or embed internal CSS styles.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;style&gt;p { color: white; }&lt;/style&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization (link):</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-viz">
+                        <span class="html-element">&lt;head&gt;</span><br>
+                        <span class="html-text">  &lt;link <span class="html-attribute">rel="stylesheet"</span> ...&gt;</span><br>
+                        <span class="html-element">&lt;/head&gt;</span><br>
+                        <span class="arrow text-xl font-bold">  &#8595;</span><br>
+                        <span class="html-output" style="text-align: left;">
+                            <span class="html-text">HTML Content</span><br>
+                            <span class="html-text" style="color: #38bdf8;">(Styled by CSS)</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: <table> / <tr> / <td> / <th> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;table&gt; / &lt;tr&gt; / &lt;td&gt; / &lt;th&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Define structured tabular data with rows and cells.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="border: 1px solid #6b7280; display: grid; grid-template-columns: 1fr; gap: 1px; background-color: #6b7280;">
+                        <div style="background-color: #1f2937; padding: 0.25rem 0.5rem; font-weight: bold; color: #a5f3fc;">Header</div>
+                        <div style="background-color: #111827; padding: 0.25rem 0.5rem;">Data</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Important Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-amber-400 mb-4">Why Are These Important?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Semantic Structure:</strong> Tags like `header`, `nav`, `main`, `section`, `article`, `aside`, and `footer` provide meaning to your content, improving accessibility and SEO.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Content Organization:</strong> `ul`, `ol`, `li`, and `table` are crucial for organizing lists and tabular data, making information clear and readable.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Multimedia Integration:</strong> `video` and `audio` allow for rich media experiences, while `link` and `style` are fundamental for controlling the visual presentation of your website.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============= END: Important Tags Section ======================== -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- ============= START: Utility Tags Section ======================== -->
+<!-- ======================================================================= -->
+<section id="utility-tags" class="py-12">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">The Utility HTML Tags <span class="text-lg font-semibold text-rose-400">(Specialized Tools)</span></h2>
+        <p class="mt-2 text-gray-400">Valuable for specific use cases, advanced features, or fine-tuning content.</p>
+    </div>
+
+    <!-- Category: Inline Text Semantics & Edits -->
+    <h3 class="text-2xl font-semibold text-sky-400 mb-6">1. Inline Text Semantics & Edits</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: <small> / <s> / <i> / <b> / <u> / <mark> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;small&gt; / &lt;s&gt; / &lt;i&gt; / &lt;b&gt; / &lt;u&gt; / &lt;mark&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Apply various inline text styles or semantic meanings.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;p&gt;This is &lt;small&gt;small&lt;/small&gt; text.&lt;/p&gt;
+&lt;p&gt;This is &lt;mark&gt;highlighted&lt;/mark&gt;.&lt;/p&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="text-align: left;">
+                        <span class="html-text">This is <span style="font-size: 0.8em;">small</span> text.</span><br>
+                        <span class="html-text">This is <span style="background-color: yellow; color: black;">highlighted</span>.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <cite> / <q> / <dfn> / <abbr> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;cite&gt; / &lt;q&gt; / &lt;dfn&gt; / &lt;abbr&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Provide semantic meaning for citations, quotations, definitions, and abbreviations.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;q&gt;Hello World!&lt;/q&gt;
+&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="text-align: left;">
+                        <span class="html-text">"Hello World!"</span><br>
+                        <span class="html-text" style="border-bottom: 1px dotted #d1d5db;">HTML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: <ins> / <del> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;ins&gt; / &lt;del&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Indicate text that has been inserted or deleted from a document.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;p&gt;Price: &lt;del&gt;$10&lt;/del&gt; &lt;ins&gt;$8&lt;/ins&gt;&lt;/p&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="text-align: left;">
+                        <span class="html-text">Price: <span style="text-decoration: line-through;">$10</span> <span style="text-decoration: underline;">$8</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category: Advanced Multimedia & Interactive -->
+    <h3 class="text-2xl font-semibold text-sky-400 mt-12 mb-6">2. Advanced Multimedia & Interactive</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card: <canvas> (for drawing) -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;canvas&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Used to draw graphics on the fly, via scripting (usually JavaScript).</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;canvas id="myCanvas"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+  const ctx = document.getElementById('myCanvas').getContext('2d');
+  ctx.fillRect(0,0,50,50);
+&lt;/script&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="width: 60px; height: 60px; background-color: #38bdf8; display: flex; align-items: center; justify-content: center;">
+                        <span class="html-text text-xs">Drawing Area</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <details> / <summary> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;details&gt; / &lt;summary&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Create an interactive disclosure widget that the user can open and close.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;details&gt;
+  &lt;summary&gt;Click to expand&lt;/summary&gt;
+  &lt;p&gt;More info here.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="text-align: left; border: 1px solid #6b7280; padding: 0.5rem;">
+                        <span class="html-text">&#9658; Click to expand</span><br>
+                        <span class="html-text" style="color: #4b5563;">(Hidden content)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card: <dialog> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;dialog&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Represents a dialog box or other interactive component.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;dialog open&gt;
+  &lt;p&gt;This is a dialog window.&lt;/p&gt;
+&lt;/dialog&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="border: 2px solid #38bdf8; padding: 1rem; background-color: #1f2937; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                        <span class="html-text">This is a dialog window.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: <iframe> -->
+        <div class="card rounded-lg p-6">
+            <h4 class="text-xl font-bold text-white font-code">&lt;iframe&gt;</h4>
+            <p class="text-gray-400 mt-1 mb-4">Embeds another HTML document within the current document.</p>
+            <pre class="bg-gray-900 p-3 rounded-md overflow-x-auto"><code class="font-code text-sm text-white">&lt;iframe src="external.html"&gt;&lt;/iframe&gt;</code></pre>
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Visualization:</p>
+                <div class="visual-box p-2 rounded">
+                    <div class="html-output" style="width: 120px; height: 80px; border: 1px solid #6b7280; background-color: #1f2937; display: flex; align-items: center; justify-content: center;">
+                        <span class="html-text text-xs">Embedded Page</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Why Utility Section -->
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+           <h3 class="text-2xl font-semibold text-rose-400 mb-4">Why Are These "Utility"?</h3>
+           <div class="text-left bg-gray-800 border border-gray-700 rounded-lg p-6 space-y-3">
+               <p class="text-gray-300"><strong class="text-green-400">Niche Use Cases:</strong> Many of these tags address specific formatting needs (`<sub>`, `<sup>`), provide highly granular semantic meaning (`<dfn>`, `<abbr>`), or enable advanced browser features (`<canvas>`, `<dialog>`).</p>
+               <p class="text-gray-300"><strong class="text-green-400">Enhanced User Experience:</strong> While not strictly necessary for basic content, tags like `<details>` and `<dialog>` significantly improve user interaction and content presentation.</p>
+               <p class="text-gray-300"><strong class="text-green-400">Specialized Content Embedding:</strong> Tags like `<map>`, `<picture>`, and `<track>` provide sophisticated ways to embed and control multimedia, going beyond simple image or video display.</p>
+           </div>
+    </div>
+</section>
+<!-- ======================================================================= -->
+<!-- ============== END: Utility Functions Section ========================= -->
+<!-- ======================================================================= -->
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Created to make HTML mastery accessible and visual.</p>
+    </footer>
+
+</body>
+</html>

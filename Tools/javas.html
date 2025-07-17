@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Future - Login/Signup</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for animations and specific styling not easily done with Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrollbars from background animation */
+        }
+
+        /* Background animation */
+        .animated-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            z-index: -1;
+            overflow: hidden; /* Ensure particles stay within */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Circuit board overlay effect */
+        .animated-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, rgba(0,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: circuitFlow 30s linear infinite;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        @keyframes circuitFlow {
+            from { background-position: 0 0; }
+            to { background-position: 50px 50px; }
+        }
+
+        /* Glowing particles */
+        .particle {
+            position: absolute;
+            background: rgba(0, 255, 255, 0.2); /* Cyan glow */
+            border-radius: 50%;
+            filter: blur(2px); /* Soft glow */
+            animation: floatAndFade 20s infinite ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .particle:nth-child(1) { width: 30px; height: 30px; top: 10%; left: 20%; animation-delay: 0s; animation-duration: 18s; }
+        .particle:nth-child(2) { width: 40px; height: 40px; top: 50%; left: 70%; animation-delay: 5s; animation-duration: 22s; }
+        .particle:nth-child(3) { width: 25px; height: 25px; top: 80%; left: 40%; animation-delay: 10s; animation-duration: 16s; }
+        .particle:nth-child(4) { width: 35px; height: 35px; top: 30%; left: 85%; animation-delay: 2s; animation-duration: 20s; }
+        .particle:nth-child(5) { width: 45px; height: 45px; top: 60%; left: 10%; animation-delay: 7s; animation-duration: 25s; }
+        .particle:nth-child(6) { width: 20px; height: 20px; top: 5%; left: 50%; animation-delay: 12s; animation-duration: 19s; }
+        .particle:nth-child(7) { width: 38px; height: 38px; top: 90%; left: 60%; animation-delay: 3s; animation-duration: 21s; }
+        .particle:nth-child(8) { width: 32px; height: 32px; top: 25%; left: 5%; animation-delay: 8s; animation-duration: 23s; }
+        .particle:nth-child(9) { width: 28px; height: 28px; top: 70%; left: 95%; animation-delay: 1s; animation-duration: 17s; }
+        .particle:nth-child(10) { width: 50px; height: 50px; top: 40%; left: 30%; animation-delay: 6s; animation-duration: 24s; }
+
+
+        @keyframes floatAndFade {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
+            25% { transform: translateY(-30px) translateX(15px) scale(1.1); opacity: 0.3; }
+            50% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
+            75% { transform: translateY(30px) translateX(-15px) scale(0.9); opacity: 0.3; }
+        }
+
+        /* Glassmorphism effect for the card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1); /* More subtle */
+            backdrop-filter: blur(20px); /* Stronger blur */
+            -webkit-backdrop-filter: blur(20px); /* Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* More subtle border */
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5); /* Stronger shadow */
+        }
+
+        /* Form transition */
+        .form-container {
+            position: relative;
+            height: auto; /* Adjust height based on content */
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* More bouncy transition */
+            perspective: 1000px; /* For 3D effects */
+        }
+
+        .form-section {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateX(-100%) rotateY(-90deg); /* Initial 3D rotation */
+            transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                        transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: left center; /* Rotate from the left edge */
+        }
+
+        .form-section.active {
+            opacity: 1;
+            transform: translateX(0) rotateY(0deg);
+            position: relative; /* Take up space when active */
+        }
+
+        .form-section.hidden-right {
+            opacity: 0;
+            transform: translateX(100%) rotateY(90deg); /* Exit 3D rotation */
+            transform-origin: right center; /* Rotate from the right edge */
+        }
+
+        /* Input field styling with icon */
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(0, 255, 255, 0.6); /* Cyan icon */
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .input-glow {
+            padding-left: 3rem !important; /* Make space for icon */
+            background: rgba(255, 255, 255, 0.08); /* More transparent */
+            border: 1px solid rgba(0, 255, 255, 0.2); /* Subtle cyan border */
+            transition: all 0.3s ease;
+        }
+
+        .input-glow:focus {
+            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.4), inset 0 0 5px rgba(0, 255, 255, 0.2); /* Inner and outer glow */
+            border-color: rgba(0, 255, 255, 0.7); /* Brighter cyan border */
+            background: rgba(255, 255, 255, 0.15); /* Slightly less transparent on focus */
+        }
+
+        .input-group:focus-within i {
+            color: rgba(0, 255, 255, 0.9); /* Brighter icon on focus */
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background: linear-gradient(90deg, #00bfff, #8a2be2); /* Blue to Purple gradient */
+            background-size: 200% auto;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-position: right center; /* Shift gradient */
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.5);
+            transform: translateY(-3px) scale(1.02); /* Lift and slightly scale */
+        }
+
+        .btn-secondary {
+            background: linear-gradient(90deg, #8a2be2, #ff00ff); /* Purple to Magenta gradient */
+            background-size: 200% auto;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-position: right center;
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.5);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* Text glow for titles */
+        .text-glow {
+            font-family: 'Orbitron', sans-serif; /* Futuristic font */
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.6), 0 0 10px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Custom Message Box */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .message-box-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .message-box-content {
+            background: #1a202c; /* Dark background */
+            color: white;
+            padding: 2.5rem; /* More padding */
+            border-radius: 1.5rem; /* More rounded */
+            text-align: center;
+            max-width: 450px; /* Slightly wider */
+            transform: translateY(-30px) scale(0.9); /* Pop-in effect */
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s ease-in-out;
+            border: 2px solid rgba(0, 255, 255, 0.5); /* Cyan border */
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3); /* Stronger glow */
+        }
+
+        .message-box-overlay.show .message-box-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .message-box-content button {
+            background: linear-gradient(90deg, #00bfff, #8a2be2); /* Same gradient as primary button */
+            background-size: 200% auto;
+            color: white;
+            padding: 0.8rem 2rem; /* Larger button */
+            border-radius: 0.75rem; /* More rounded */
+            margin-top: 2rem;
+            font-weight: 700; /* Bolder font */
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 191, 255, 0.2);
+        }
+
+        .message-box-content button:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 191, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen relative">
+
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <!-- More Particles for a richer effect -->
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main Card Container -->
+    <div class="glass-card rounded-3xl p-8 md:p-10 w-full max-w-md relative z-10 transform scale-75 opacity-0 transition-all duration-1000 ease-out" id="main-card">
+        <h2 class="text-4xl font-bold text-center mb-6 text-blue-300 text-glow">
+            <span id="form-title">Welcome Back!</span>
+        </h2>
+        <p class="text-center text-lg mb-8 opacity-80">
+            <span id="form-subtitle">Sign in to access your account.</span>
+        </p>
+
+        <!-- Form Container -->
+        <div id="form-container" class="form-container">
+            <!-- Login Form -->
+            <form id="login-form" class="form-section active space-y-6" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="login-email" class="input-glow w-full p-3 rounded-xl placeholder-white placeholder-opacity-70 focus:outline-none text-white" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" class="input-glow w-full p-3 rounded-xl placeholder-white placeholder-opacity-70 focus:outline-none text-white" placeholder="Password" required>
+                </div>
+                <button type="submit" class="w-full btn-primary text-white font-bold py-3 rounded-xl shadow-lg">
+                    Log In
+                </button>
+                <p class="text-center text-white text-opacity-90 mt-4">
+                    Don't have an account?
+                    <button type="button" onclick="showSignup()" class="font-bold underline text-blue-300 hover:text-blue-100 transition-colors duration-200">
+                        Sign Up
+                    </button>
+                </p>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="form-section space-y-6" onsubmit="handleSignup(event)">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="signup-name" class="input-glow w-full p-3 rounded-xl placeholder-white placeholder-opacity-70 focus:outline-none text-white" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signup-email" class="input-glow w-full p-3 rounded-xl placeholder-white placeholder-opacity-70 focus:outline-none text-white" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signup-password" class="input-glow w-full p-3 rounded-xl placeholder-white placeholder-opacity-70 focus:outline-none text-white" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signup-confirm-password" class="input-glow w-full p-3 rounded-xl placeholder-white placeholder-opacity-70 focus:outline-none text-white" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="w-full btn-secondary text-white font-bold py-3 rounded-xl shadow-lg">
+                    Sign Up
+                </button>
+                <p class="text-center text-white text-opacity-90 mt-4">
+                    Already have an account?
+                    <button type="button" onclick="showLogin()" class="font-bold underline text-purple-300 hover:text-purple-100 transition-colors duration-200">
+                        Log In
+                    </button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Message Box HTML -->
+    <div id="message-box-overlay" class="message-box-overlay">
+        <div class="message-box-content">
+            <p id="message-box-text" class="text-lg"></p>
+            <button onclick="hideMessageBox()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Get elements
+        const mainCard = document.getElementById('main-card');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const formTitle = document.getElementById('form-title');
+        const formSubtitle = document.getElementById('form-subtitle');
+        const formContainer = document.getElementById('form-container');
+
+        // Message box elements
+        const messageBoxOverlay = document.getElementById('message-box-overlay');
+        const messageBoxText = document.getElementById('message-box-text');
+
+        /**
+         * Shows a custom message box instead of alert().
+         * @param {string} message - The message to display.
+         */
+        function showMessageBox(message) {
+            messageBoxText.textContent = message;
+            messageBoxOverlay.classList.add('show');
+        }
+
+        /**
+         * Hides the custom message box.
+         */
+        function hideMessageBox() {
+            messageBoxOverlay.classList.remove('show');
+        }
+
+        /**
+         * Shows the login form and hides the signup form with animation.
+         */
+        function showLogin() {
+            // Update titles
+            formTitle.textContent = 'Welcome Back!';
+            formSubtitle.textContent = 'Sign in to access your account.';
+
+            // Animate out signup form
+            signupForm.classList.remove('active');
+            signupForm.classList.add('hidden-right');
+
+            // Set height for smooth transition
+            formContainer.style.height = loginForm.offsetHeight + 'px';
+
+            // After a short delay, animate in login form
+            setTimeout(() => {
+                loginForm.classList.remove('hidden-right');
+                loginForm.classList.add('active');
+                signupForm.style.display = 'none'; // Hide completely after animation
+                loginForm.style.display = 'block'; // Ensure login form is visible
+                formContainer.style.height = loginForm.offsetHeight + 'px'; // Adjust height again if needed
+            }, 300); // Half of CSS transition duration for staggered effect
+        }
+
+        /**
+         * Shows the signup form and hides the login form with animation.
+         */
+        function showSignup() {
+            // Update titles
+            formTitle.textContent = 'Join Us Today!';
+            formSubtitle.textContent = 'Create an account to get started.';
+
+            // Animate out login form
+            loginForm.classList.remove('active');
+            loginForm.classList.add('hidden-right');
+
+            // Set height for smooth transition
+            formContainer.style.height = signupForm.offsetHeight + 'px';
+
+            // After a short delay, animate in signup form
+            setTimeout(() => {
+                signupForm.classList.remove('hidden-right');
+                signupForm.classList.add('active');
+                loginForm.style.display = 'none'; // Hide completely after animation
+                signupForm.style.display = 'block'; // Ensure signup form is visible
+                formContainer.style.height = signupForm.offsetHeight + 'px'; // Adjust height again if needed
+            }, 300); // Half of CSS transition duration for staggered effect
+        }
+
+        /**
+         * Handles login form submission.
+         * @param {Event} event - The form submission event.
+         */
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            console.log('Login attempt:', { email, password });
+            showMessageBox('Login functionality not implemented in this demo.');
+            // In a real application, you would send this data to your backend for authentication.
+        }
+
+        /**
+         * Handles signup form submission.
+         * @param {Event} event - The form submission event.
+         */
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+            if (password !== confirmPassword) {
+                showMessageBox('Passwords do not match!');
+                return;
+            }
+
+            console.log('Signup attempt:', { name, email, password });
+            showMessageBox('Signup functionality not implemented in this demo.');
+            // In a real application, you would send this data to your backend for user registration.
+        }
+
+        // Initial animation for the main card on page load
+        window.onload = function() {
+            mainCard.classList.remove('scale-75', 'opacity-0'); /* Changed from scale-95 */
+            mainCard.classList.add('scale-100', 'opacity-100');
+
+            // Set initial height for the form container
+            formContainer.style.height = loginForm.offsetHeight + 'px';
+        };
+
+        // Adjust form container height on window resize
+        window.onresize = function() {
+            if (loginForm.classList.contains('active')) {
+                formContainer.style.height = loginForm.offsetHeight + 'px';
+            } else if (signupForm.classList.contains('active')) {
+                formContainer.style.height = signupForm.offsetHeight + 'px';
+            }
+        };
+    </script>
+</body>
+</html>
